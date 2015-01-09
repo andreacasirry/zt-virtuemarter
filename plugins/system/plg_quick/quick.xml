@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="3.0" method="upgrade" group="system">
+    <name>quick</name>
+    <creationDate>Dec 30, 2014</creationDate>
+    <author>CleverSoft</author>
+    <authorEmail>hello@cleversoft.co</authorEmail>
+    <authorUrl>http://cleversoft.co</authorUrl>
+    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+    <version>0.0.1</version>
+    <description>Description of Zoo Virtuemart Plugin Quick View</description>
+    <scriptfile>script.php</scriptfile>
+    <files>
+        <filename plugin="quick">quick.php</filename>
+		<filename>quick.xml</filename>
+        <filename>index.html</filename>
+		<folder>quick</folder>
+    </files>
+	<languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_system_quick.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_quick.sys.ini</language>
+    </languages>
+</extension>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5.0" method="upgrade">
+    <name>mod_comparelist</name>
+    <creationDate>Dec 30, 2014</creationDate>
+    <author>CleverSoft</author>
+    <authorEmail>hello@cleversoft.co</authorEmail>
+    <authorUrl>http://cleversoft.co</authorUrl>
+    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+    <version>0.0.1</version>
+    <description>Description of Compare List Module</description>
+
+    <files>
+        <filename module="mod_comparelist">mod_comparelist.php</filename>
+        <filename>mod_comparelist.xml</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+        <folder>assets</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="advanced">
+                <field name="moduleclass_sfx"
+                       type="text"
+                       default=""
+                       label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                       description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+                <field name="layout"
+                       type="filelist"
+                       label="CompareList Layout"
+                       description="CompareList Layout"
+                       directory="/modules/mod_comparelist/tmpl"
+                       default="default" hide_default="1" hide_none="1"
+                       stripext="1" filter="\.php$" exclude="^_"/>
+            </fieldset>
+
+        </fields>
+    </config>
+</extension>

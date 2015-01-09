@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+    <name>Virtuemart ZooEx</name>
+    <creationDate>Dec 30, 2014</creationDate>
+    <author>CleverSoft</author>
+    <authorEmail>hello@cleversoft.co</authorEmail>
+    <authorUrl>http://cleversoft.co</authorUrl>
+    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+
+    <version>0.0.1</version>
+
+    <description>Description of Zoo Virtuemart Component</description>
+
+    <files folder="site">
+        <folder>models</folder>
+        <folder>views</folder>
+        <folder>controllers</folder>
+        <folder>template</folder>
+        <filename>index.html</filename>
+        <filename>router.php</filename>
+        <filename>virtuemartzooex.php</filename>
+    </files>
+    <languages folder="site/language">
+        <language tag="en-GB">en-GB/en-GB.com_virtuemartzooex.ini</language>
+    </languages>
+
+    <install>
+        <sql>
+            <file charset="utf8" driver="mysql">wishlists/install.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file charset="utf8" driver="mysql">wishlists/uninstall.sql</file>
+        </sql>
+    </uninstall>
+
+    <administration>
+        <files folder="admin">
+            <filename>wishlists/admin.wishlists.php</filename>
+            <filename>wishlists/index.html</filename>
+            <filename>wishlists/config.xml</filename>
+            <filename>wishlists/install.sql</filename>
+            <filename>wishlists/uninstall.sql</filename>
+
+            <filename>compare/admin.comparelist.php</filename>
+            <filename>compare/config.xml</filename>
+            <filename>compare/index.html</filename>
+        </files>
+        <languages folder="admin">
+            <language tag="en-GB">wishlists/language/en-GB/en-GB.com_wishlists.ini</language>
+            <language tag="en-GB">wishlists/language/en-GB/en-GB.com_wishlists.sys.ini</language>
+            <language tag="en-GB">compare/language/en-GB/en-GB.com_comparelist.ini</language>
+            <language tag="en-GB">compare/language/en-GB/en-GB.com_comparelist.sys.ini</language>
+        </languages>
+    </administration>
+</extension>

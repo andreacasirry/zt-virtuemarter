@@ -28,11 +28,9 @@ Desktop.ini
 # Joomla Directory
 
 /.htaccess
-/administrator/*
 /bin/*
 /cache/*
 /cli/*
-/components/*
 /images/*
 /includes/*
 /installation/*
@@ -128,7 +126,6 @@ Desktop.ini
 /libraries/*
 /logs/*
 /media/*
-/modules/*
 /plugins/authentication/*
 /plugins/captcha/*
 /plugins/content/*
