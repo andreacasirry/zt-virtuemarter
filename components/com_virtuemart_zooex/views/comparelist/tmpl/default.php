@@ -12,7 +12,6 @@ $mainframe = Jfactory::getApplication();
 $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id', 0));
 
 $document = JFactory::getDocument();
-$document->addScriptDeclaration($js);
 vmJsApi::jPrice();
 
 $ratingModel = VmModel::getModel('ratings');

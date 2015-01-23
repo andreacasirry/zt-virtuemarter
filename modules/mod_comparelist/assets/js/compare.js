@@ -20,17 +20,19 @@ function removeCompare(remove_id) {
 
             }
             if(json.totalrem){
-                jQuery('.btn_compare span').html(json.totalrem);
+                jQuery('.btn-compare span').html(json.totalrem);
             }
             if(json.totalrem <1){
-                jQuery('.btn_compare span').html('0');
+                jQuery('.btn-compare span').html('0');
                 jQuery('#mod_compare .zt-cart-inner .vmproduct').html('<div class="not_text compare">You have no product to compare.</div>');
             }
+            jQuery.fancybox.close();
         }
     });
 }
 
 function addToCompare(product_id) {
+    jQuery.fancybox.showActivity();
     jQuery.ajax({
         url: 'index.php?option=com_virtuemartzooex&view=comparelist&task=add',
         type: 'post',
@@ -59,7 +61,7 @@ function addToCompare(product_id) {
                 }
             );
             if(json.totalcompare != '') {
-                jQuery('.btn_compare span').html(json.totalcompare);
+                jQuery('.btn-compare span').html(json.totalcompare);
                 jQuery('#mod_compare .zt-cart-inner .vmproduct .not_text').remove();
             }
             
@@ -71,9 +73,20 @@ function addToCompare(product_id) {
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
-            alert(errorThrown);
         }
 
     });
 }
+
+jQuery(document).ready(function(){
+    jQuery('#zo2-left').find('.hover-dropdown').removeClass('hover-dropdown');
+    var iconDropdown = jQuery('body').find('.hover-dropdown').parent().parent().parent();
+    jQuery(iconDropdown).hover(
+        function (){
+            jQuery(this).find('.zt-cart-inner').delay(500).slideDown(500);
+        }, function (){
+            jQuery(this).find('.zt-cart-inner').slideUp(500);
+        }
+    );
+});
 

@@ -21,7 +21,7 @@ if (!class_exists('VirtueMartModelProduct')) {
 if (!class_exists('VirtueMartModelRatings')) {
     JLoader::import('ratings', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models');
 }
-JFactory::getLanguage()->load('com_comparelist');
+
 
 class ComparelistController extends JControllerLegacy
 {
@@ -32,6 +32,7 @@ class ComparelistController extends JControllerLegacy
         $itemID = '';
 
         $lang = JFactory::getLanguage()->getTag();
+        JFactory::getLanguage()->load('com_virtuemartzooex');
         if (empty($lang))
             $lang = '*';
 
@@ -59,9 +60,9 @@ class ComparelistController extends JControllerLegacy
         }
 
         $product_model = VmModel::getModel('product');
-        if (isset($_POST['product_id'])) ;
-        if (isset($_SESSION['compare_ids'])) ;
-        if ((!in_array($_POST['product_id'], $_SESSION['compare_ids'])) && (count($_SESSION['compare_ids']) <= 3)) {
+        if (!isset($_SESSION['compare_ids'])) $_SESSION['compare_ids'] = array();
+        if (isset($_SESSION['compare_ids']) && (!in_array($_POST['product_id'], $_SESSION['compare_ids'])) && (count($_SESSION['compare_ids']) <= 3)) {
+
             $product = array($_POST['product_id']);
             $prods = $product_model->getProducts($product);
             $product_model->addImages($prods, 1);
@@ -77,11 +78,11 @@ class ComparelistController extends JControllerLegacy
                     $img_url = 'images/stories/virtuemart/noimage.gif';
                 }
                 $prod_id = $product->virtuemart_product_id;
-                $img_prod = '<div class="image fleft"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-                $img_prod2 = '<div class="image fleft"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                $img_prod = '<div class="compare-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                $img_prod2 = '<div class="compare-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
 
-                $prod_name = '<div class="extra-wrap"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i></a></div></div>';
-                $link = JRoute::_('index.php?option=com_comparelist&Itemid=' . $itemID . '');
+                $prod_name = '<div class="compare-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div></div>';
+                $link = JRoute::_('index.php?option=com_virtuemartzooex&view=comparelist&Itemid=' . $itemID . '');
                 $btncompare = '<a id="compare_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_COMPARE') . '</a>';
                 $btncompareback = '<a id="compare_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                 $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
@@ -93,7 +94,7 @@ class ComparelistController extends JControllerLegacy
             $this->showJSON('<span class="successfully">' . JText::_('COM_COMPARE_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btncompare, $btncompareback, $totalcompare, $recent, $img_prod, $prod_name, $product_ids);
 
         } else {
-            if (!in_array($_POST['product_id'], $_SESSION['compare_ids'])) {
+            if (isset($_SESSION['compare_ids']) && !in_array($_POST['product_id'], $_SESSION['compare_ids'])) {
                 $product = array($_POST['product_id']);
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
@@ -107,8 +108,8 @@ class ComparelistController extends JControllerLegacy
                     } else {
                         $img_url = 'images/stories/virtuemart/noimage.gif';
                     }
-                    $img_prod2 = '<div class="image fleft"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-                    $link = JRoute::_('index.php?option=com_comparelist&Itemid=' . $itemID . '');
+                    $img_prod2 = '<div class="compare-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                    $link = JRoute::_('index.php?option=com_virtuemartzooex&view=comparelist&Itemid=' . $itemID . '');
                     $btncompare = '<a id="compare_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_COMPARE') . '</a>';
                     $btncompareback = '<a id="compare_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
@@ -131,14 +132,15 @@ class ComparelistController extends JControllerLegacy
                     } else {
                         $img_url = 'images/stories/virtuemart/noimage.gif';
                     }
-                    $img_prod2 = '<div class="image fleft"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-                    $link = JRoute::_('index.php?option=com_comparelist&Itemid=' . $itemID . '');
+                    $img_prod2 = '<div class="compare-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                    $link = JRoute::_('index.php?option=com_virtuemartzooex&view=comparelist&Itemid=' . $itemID . '');
                     $btncompare = '<a id="compare_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_COMPARE') . '</a>';
                     $btncompareback = '<a id="compare_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
                     if (!empty($_SESSION['compare_ids'])) {
                         $totalcompare = count($_SESSION['compare_ids']);
                     }
+
                 }
                 $this->showJSON('<span class="notification">' . JText::_('COM_COMPARE_MASSEDGE_ALLREADY_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btncompare, $btncompareback, $totalcompare);
             }

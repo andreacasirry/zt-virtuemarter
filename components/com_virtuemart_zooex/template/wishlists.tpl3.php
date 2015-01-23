@@ -4,7 +4,7 @@
 $user =& JFactory::getUser();
 if ($user->guest) {
     ?>
-    <a class="add_wishlist hasTooltip <?php if (in_array($this->product->virtuemart_product_id, $_SESSION['wishlist_ids'])) {
+    <a class="add_wishlist hasTooltip <?php if ( is_array($_SESSION['wishlist_ids']) && in_array($this->product->virtuemart_product_id, $_SESSION['wishlist_ids'])) {
         echo 'go_to_whishlist active';
     } ?>" title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
        onclick="addToWishlists('<?php echo $this->product->virtuemart_product_id; ?>');"><i

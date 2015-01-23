@@ -10,7 +10,7 @@
 // No direct access
 
 defined('_JEXEC') or die;
-define('DS', DIRECTORY_SEPARATOR);
+if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 define('VZ_BASE_PATH', JPATH_BASE . DS . 'components' . DS . 'com_virtuemartzooex');
 
 // Require the base controller

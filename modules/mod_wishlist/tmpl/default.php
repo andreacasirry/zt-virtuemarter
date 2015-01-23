@@ -22,10 +22,11 @@ foreach ( $items as $item ) {
     }
 }
 ?>
-<div class="vmgroup<?php echo $params->get('moduleclass_sfx') ?>" id="mod_wishlists">
+<div class="ajax-dropdown vmgroup<?php echo $params->get('moduleclass_sfx') ?>" id="mod_wishlists">
     <div class="seldcomp" id="butseldwish" >
-        <a class="btn_wishlist" href="<?php echo JRoute::_('index.php?option=com_virtuemartzooex&view=wishlists&Itemid='.$itemid.''); ?>">
-            <i class="fa fa-heart-o"></i>
+        <a class="btn-wishlist" href="<?php echo JRoute::_('index.php?option=com_virtuemartzooex&view=wishlists&Itemid='.$itemid.''); ?>">
+            <i class="fa fa-heart-o hover-dropdown"></i>
+            <span><?php if ($user->guest) { echo count($_SESSION['wishlist_ids']);} else { echo count($allprod['id']); }?></span>
         </a>
     </div>
     <div class="zt-cart-inner">
@@ -35,23 +36,22 @@ foreach ( $items as $item ) {
                 foreach ($prods as $product) {
                     ?>
                     <div id="wishlists_prod_<?php echo $product->virtuemart_product_id; ?>" class="modwishlistsprod clearfix">
-                        <div class="image fleft">
+                        <div class="wishlist-product-img">
                             <a href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id='.$product->virtuemart_product_id.'&virtuemart_category_id='.$product->virtuemart_category_id); ?>">
                                 <img src="<?php if (!empty($product->file_url_thumb)){ echo JURI::base().$product->file_url_thumb;}else {echo JURI::base().'images/stories/virtuemart/noimage.gif';} ?>" alt="<?php echo $product->product_name; ?>" title="<?php echo $product->product_name; ?>" />
                             </a>
                         </div>
-                        <div class="extra-wrap">
+                        <div class="wishlist-product-detail">
                             <div class="name">
                                 <?php echo JHTML::link($product->link, $product->product_name); ?>
                             </div>
                             <div class="remwishlists">
                                 <a class="tooltip-1" title="remove"  onclick="removeWishlists('<?php echo $product->virtuemart_product_id ;?>');">
-                                    <i class="fa fa-times"></i>
+                                    <i class="fa fa-times"></i><?php echo JText::_('REMOVE'); ?>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="clear"></div>
                 <?php
                 }
             } else { ?>
@@ -61,5 +61,4 @@ foreach ( $items as $item ) {
             ?>
         </div>
     </div>
-    <div class="clear"></div>
 </div>

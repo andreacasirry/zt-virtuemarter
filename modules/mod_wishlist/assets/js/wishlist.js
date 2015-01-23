@@ -20,18 +20,19 @@ function removeWishlists(remove_id) {
 
             }
             if(json.totalrem){
-                jQuery('.btn_wishlist span').html(json.totalrem);
+                jQuery('.btn-wishlist span').html(json.totalrem);
             }
             if(json.totalrem<1){
-                jQuery('.btn_wishlist span').html('0');
+                jQuery('.btn-wishlist span').html('0');
                 jQuery('#mod_wishlists .vmproduct').html('<div class="not_text wishlists">You have no product to wishlist.</div>');
             }
-            jQuery.fancybox.close;
+            jQuery.fancybox.close();
         }
     });
 }
 
 function addToWishlists(product_id) {
+    jQuery.fancybox.showActivity();
     jQuery('body > :first-child').prepend('<div class="overlay"></div><div class="loading"></div>');
     jQuery.ajax({
         url: 'index.php?option=com_virtuemartzooex&view=wishlists&task=add',
@@ -74,8 +75,20 @@ function addToWishlists(product_id) {
                 jQuery('#mod_wishlists .vmproduct').append(wishlist_item);
             }
 
-            jQuery('.btn_wishlist span').html(json.totalwishlists);
+            jQuery('.btn-wishlist span').html(json.totalwishlists);
             jQuery('#wishlists_continue').click( jQuery.fancybox.close);
         }
     });
 }
+
+jQuery(document).ready(function(){
+    jQuery('#zo2-left').find('.hover-dropdown').removeClass('hover-dropdown');
+    var iconDropdown = jQuery('body').find('.hover-dropdown').parent().parent().parent();
+    jQuery(iconDropdown).hover(
+        function (){
+            jQuery(this).find('.zt-cart-inner').delay(500).slideDown(500);
+        }, function (){
+            jQuery(this).find('.zt-cart-inner').slideUp(500);
+        }
+    );
+});
