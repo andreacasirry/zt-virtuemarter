@@ -126,6 +126,12 @@ Desktop.ini
 /libraries/*
 /logs/*
 /media/*
+/modules/mod_articles_archive/*
+/modules/mod_articles_categories/*
+/modules//*
+/modules//*
+/modules//*
+/modules//*
 /plugins/authentication/*
 /plugins/captcha/*
 /plugins/content/*
