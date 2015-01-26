@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" version="3.0" method="install">
+    <name>Zo2 Framework Package</name>
+    <packagename>VirtueMartZooEx</packagename>
+    <creationDate>Dec 30, 2014</creationDate>
+    <author>CleverSoft</author>
+    <authorEmail>hello@cleversoft.co</authorEmail>
+    <authorUrl>http://cleversoft.co</authorUrl>
+    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+    <version>0.0.1</version>
+    <description>Description of VirtueMart ZooEx Package</description>
+
+    <scriptfile>pkg_zo2.script.php</scriptfile>
+    <files folder="source">
+        <folder type="plugin" id="quick" group="system">plg_quick</folder>
+        <folder type="plugin" id="virtuemartzooex" group="system">plg_virtuemart_zooex</folder>
+        <folder type="component" id="com_virtuemartzooex" client="site">com_virtuemart_zooex</folder>
+        <folder type="module" id="mod_comparelist" client="site">mod_comparelist</folder>
+        <folder type="module" id="mod_wishlist" client="site">mod_wishlist</folder>
+    </files>
+</extension>
