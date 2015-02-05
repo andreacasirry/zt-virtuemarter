@@ -13,8 +13,8 @@
 
     <scriptfile>script.php</scriptfile>
     <files>
-        <filename plugin="zt_virtuemartzooex">virtuemartzooex.php</filename>
-        <filename>virtuemartzooex.xml</filename>
+        <filename plugin="zt_virtuemartzooex">zt_virtuemartzooex.php</filename>
+        <filename>zt_virtuemartzooex.xml</filename>
         <filename>index.html</filename>
     </files>
 

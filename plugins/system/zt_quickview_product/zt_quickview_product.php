@@ -8,7 +8,7 @@
  */
 //error_reporting('E_ALL');
 defined('_JEXEC') or die('Restricted access');
-class PlgSystemQuick extends JPlugin
+class PlgSystemZTQuickViewProduct extends JPlugin
 {
     /**
      * Class Constructor
@@ -44,10 +44,10 @@ class PlgSystemQuick extends JPlugin
                     });
 				});';
             $doc->addScriptDeclaration($jsq);
-            $doc->addScript(JURI::root(true) . '/plugins/system/zt_quickview_product/assets/custom.js');
-            $doc->addScript('http://kmage.net/js/cloud-zoom/cloud-zoom.1.0.3.min.js');
-            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickview_product/assets/more_custom.css');
-            $doc->addStyleSheet('http://kmage.net/js/cloud-zoom/cloud-zoom.css');
+            $doc->addScript(JURI::root() . '/plugins/system/zt_quickview_product/assets/custom.js');
+            $doc->addScript(JURI::root() . '/plugins/system/zt_quickview_product/assets/cloud-zoom.1.0.3.min.js');
+            $doc->addStyleSheet(JURI::root() . '/plugins/system/zt_quickview_product/assets/more_custom.css');
+            $doc->addStyleSheet(JURI::root() . '/plugins/system/zt_quickview_product/assets/cloud-zoom.css');
         }
     }
 
