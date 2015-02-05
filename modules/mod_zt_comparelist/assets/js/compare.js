@@ -1,7 +1,7 @@
 function removeCompare(remove_id) {
     jQuery('#compare_cat'+remove_id+' a').removeClass('go_to_compare active');
     jQuery.ajax({
-        url: 'index.php?option=com_virtuemartzooex&view=comparelist&task=removed',
+        url: 'index.php?option=com_zt_virtuemartzooex&view=comparelist&task=removed',
         type: 'post',
         data: 'remove_id=' + remove_id,
         dataType: 'json',
@@ -34,7 +34,7 @@ function removeCompare(remove_id) {
 function addToCompare(product_id) {
     jQuery.fancybox.showActivity();
     jQuery.ajax({
-        url: 'index.php?option=com_virtuemartzooex&view=comparelist&task=add',
+        url: 'index.php?option=com_zt_virtuemartzooex&view=comparelist&task=add',
         type: 'post',
         data: 'product_id=' + product_id,
         dataType: 'json',

@@ -13,8 +13,8 @@ $doc = JFactory::getDocument();
 $doc->addStyleSheet(JURI::root() . 'modules/mod_zt_comparelist/assets/css/compare.css');
 $doc->addScript(JURI::root() . 'modules/mod_zt_comparelist/assets/js/compare.js');
 
-JFactory::getLanguage()->load('com_virtuemartzooex');
-$items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_virtuemartzooex');
+JFactory::getLanguage()->load('com_zt_virtuemartzooex');
+$items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_zt_virtuemartzooex');
 foreach ($items as $item) {
     if ($item->query['view'] === 'comparelist') {
         $itemid = $item->id;
@@ -26,7 +26,7 @@ foreach ($items as $item) {
 <div class="mod-compare">
     <div id="cur-lang" class="header-button-compare">
         <div id="compare_total">
-            <a class="compare_total heading" href="<?php echo JRoute::_('index.php?option=com_virtuemartzooex&view=comparelist&Itemid=' . $itemid . ''); ?>">
+            <a class="compare_total heading" href="<?php echo JRoute::_('index.php?option=com_zt_virtuemartzooex&view=comparelist&Itemid=' . $itemid . ''); ?>">
                 <i class="fa fa-files-o"></i>
             <span>
 		   <?php

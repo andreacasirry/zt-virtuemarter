@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
-    <name>Component Zt VirtuemartZooEx</name>
+    <name>Zt_VirtuemartZooEx</name>
     <creationDate>Dec 30, 2014</creationDate>
     <author>CleverSoft</author>
     <authorEmail>hello@cleversoft.co</authorEmail>
@@ -22,7 +22,7 @@
     <filename>virtuemartzooex.php</filename>
 
     <languages folder="language">
-        <language tag="en-GB">en-GB/en-GB.com_virtuemartzooex.ini</language>
+        <language tag="en-GB">en-GB/en-GB.com_zt_virtuemartzooex.ini</language>
     </languages>
 
     <install>
@@ -37,7 +37,7 @@
     </uninstall>
 
     <administration>
-        <files>
+        <files folder="admin">
             <filename>virtuemartzooex.php</filename>
             <folder>sql</folder>
         </files>

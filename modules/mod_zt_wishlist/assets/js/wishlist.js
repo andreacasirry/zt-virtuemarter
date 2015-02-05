@@ -1,6 +1,6 @@
 function removeWishlists(remove_id) {
     jQuery.ajax({
-        url: 'index.php?option=com_virtuemartzooex&view=wishlists&task=removed',
+        url: 'index.php?option=com_zt_virtuemartzooex&view=wishlists&task=removed',
         type: 'post',
         data: 'remove_id=' + remove_id,
         dataType: 'json',
@@ -35,7 +35,7 @@ function addToWishlists(product_id) {
     jQuery.fancybox.showActivity();
     jQuery('body > :first-child').prepend('<div class="overlay"></div><div class="loading"></div>');
     jQuery.ajax({
-        url: 'index.php?option=com_virtuemartzooex&view=wishlists&task=add',
+        url: 'index.php?option=com_zt_virtuemartzooex&view=wishlists&task=add',
         type: 'post',
         data: 'product_id=' + product_id,
         dataType: 'json',

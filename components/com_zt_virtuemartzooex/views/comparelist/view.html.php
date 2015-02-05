@@ -7,7 +7,7 @@ class ComparelistViewComparelist extends JViewLegacy
 	{
 		$app = JFactory::getApplication();
 		$pathway = $app->getPathway();
-		$pathway->addItem(JText::_('COM_COMPARE_COMPARE_PRODUCT'),JRoute::_('index.php?option=com_virtuemartzooex&view=comparelist'));
+		$pathway->addItem(JText::_('COM_COMPARE_COMPARE_PRODUCT'),JRoute::_('index.php?option=com_zt_virtuemartzooex&view=comparelist'));
 
 		parent::display($tpl);
 	}
