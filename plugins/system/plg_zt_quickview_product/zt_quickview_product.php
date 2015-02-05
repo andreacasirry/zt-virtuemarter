@@ -44,9 +44,9 @@ class PlgSystemQuick extends JPlugin
                     });
 				});';
             $doc->addScriptDeclaration($jsq);
-            $doc->addScript(JURI::root(true) . '/plugins/system/quick/quick/custom.js');
+            $doc->addScript(JURI::root(true) . '/plugins/system/zt_quickview_product/assets/custom.js');
             $doc->addScript('http://kmage.net/js/cloud-zoom/cloud-zoom.1.0.3.min.js');
-            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/quick/quick/more_custom.css');
+            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickview_product/assets/more_custom.css');
             $doc->addStyleSheet('http://kmage.net/js/cloud-zoom/cloud-zoom.css');
         }
     }
@@ -118,8 +118,8 @@ class PlgSystemQuick extends JPlugin
             <div id="quick-view-scroll">
 
             <div id="productdetailsview" class="productdetails-view quick">
-            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/quick/quick/more_custom.js"></script>
-            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/quick/quick/shortcodes.js"></script>
+            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/more_custom.js"></script>
+            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/shortcodes.js"></script>
             <script type="text/javascript" src="http://kmage.net/js/cloud-zoom/cloud-zoom.1.0.3.min.js"></script>
             <link href="http://kmage.net/js/cloud-zoom/cloud-zoom.css" type="text/css" rel="stylesheet" />
             <div class="wrapper2">
