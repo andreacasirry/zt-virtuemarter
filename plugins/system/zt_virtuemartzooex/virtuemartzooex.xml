@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.0" method="upgrade" group="system">
-    <name>Virtuemart ZooEx</name>
+    <name>Zt VirtuemartZooEx</name>
     <!-- The following elements are optional and free of formatting conttraints -->
     <creationDate>Dec 30, 2014</creationDate>
     <author>CleverSoft</author>

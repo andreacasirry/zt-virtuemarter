@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
-    <name>Virtuemart ZooEx</name>
+    <name>Component Zt VirtuemartZooEx</name>
     <creationDate>Dec 30, 2014</creationDate>
     <author>CleverSoft</author>
     <authorEmail>hello@cleversoft.co</authorEmail>

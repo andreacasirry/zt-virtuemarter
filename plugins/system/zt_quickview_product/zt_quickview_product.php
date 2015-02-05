@@ -467,14 +467,14 @@ class PlgSystemQuick extends JPlugin
                                             <span title="<?php echo JText::_('COM_VIRTUEMART_ADDTOCART_CHOOSE_VARIANT'); ?>" class="addtocart-button addtocart-button-disabled cart-click"><?php echo JText::_('COM_VIRTUEMART_ADDTOCART_CHOOSE_VARIANT'); ?></span>
                                         <?php } ?>
                                         </span>
-                                        <?php if (is_file(JPATH_BASE . DS . "components/com_virtuemartzooex/template/wishlists.tpl.php")) { ?>
+                                        <?php if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/wishlists.tpl.php")) { ?>
                                             <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
-                                                <?php require(JPATH_BASE . DS . "components/com_virtuemartzooex/template/wishlists.tpl.php"); ?>
+                                                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/wishlists.tpl.php"); ?>
                                             </div>
                                         <?php } ?>
-                                        <?php if (is_file(JPATH_BASE . DS . "components/com_virtuemartzooex/template/comparelist.tpl.php")) { ?>
+                                        <?php if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/comparelist.tpl.php")) { ?>
                                             <div class="jClever compare_cat list_compare<?php echo $product->virtuemart_product_id; ?>">
-                                                <?php require(JPATH_BASE . DS . "components/com_virtuemartzooex/template/comparelist.tpl.php"); ?>
+                                                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/comparelist.tpl.php"); ?>
                                             </div>
                                         <?php } ?>
                                     </div>
