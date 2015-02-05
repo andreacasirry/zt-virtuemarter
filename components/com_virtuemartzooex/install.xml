@@ -39,6 +39,7 @@
     <administration>
         <files>
             <filename>virtuemartzooex.php</filename>
+            <folder>sql</folder>
         </files>
     </administration>
 
