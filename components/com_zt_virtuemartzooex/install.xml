@@ -12,15 +12,15 @@
 
     <description>Description of Zoo Virtuemart Component</description>
 
-
-    <folder>models</folder>
-    <folder>views</folder>
-    <folder>controllers</folder>
-    <folder>template</folder>
-    <filename>index.html</filename>
-    <filename>router.php</filename>
-    <filename>virtuemartzooex.php</filename>
-
+    <files>
+        <folder>models</folder>
+        <folder>views</folder>
+        <folder>controllers</folder>
+        <folder>template</folder>
+        <filename>index.html</filename>
+        <filename>router.php</filename>
+        <filename>virtuemartzooex.php</filename>
+    </files>
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.com_zt_virtuemartzooex.ini</language>
     </languages>
