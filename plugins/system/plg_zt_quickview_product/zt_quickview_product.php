@@ -120,8 +120,8 @@ class PlgSystemQuick extends JPlugin
             <div id="productdetailsview" class="productdetails-view quick">
             <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/more_custom.js"></script>
             <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/shortcodes.js"></script>
-            <script type="text/javascript" src="http://kmage.net/js/cloud-zoom/cloud-zoom.1.0.3.min.js"></script>
-            <link href="http://kmage.net/js/cloud-zoom/cloud-zoom.css" type="text/css" rel="stylesheet" />
+            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/cloud-zoom.1.0.3.min.js"></script>
+            <link href="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/cloud-zoom.css" type="text/css" rel="stylesheet" />
             <div class="wrapper2">
             <div class="fleft">
                 <div class="image_show_quick">
