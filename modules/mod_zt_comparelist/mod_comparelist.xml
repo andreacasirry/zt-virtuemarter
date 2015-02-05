@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" method="upgrade">
-    <name>mod_wishlist</name>
+    <name>Mod Zt Comparelist</name>
     <creationDate>Dec 30, 2014</creationDate>
     <author>CleverSoft</author>
     <authorEmail>hello@cleversoft.co</authorEmail>
@@ -8,10 +8,11 @@
     <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <version>0.0.1</version>
-    <description>Description of module Wishlist</description>
+    <description>Description of Compare List Module</description>
+
     <files>
-        <filename module="mod_wishlist">mod_wishlist.php</filename>
-        <filename>mod_wishlist.xml</filename>
+        <filename module="mod_zt_comparelist">mod_zt_comparelist.php</filename>
+        <filename>mod_zt_comparelist.xml</filename>
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <folder>tmpl</folder>
@@ -27,12 +28,13 @@
                        description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
                 <field name="layout"
                        type="filelist"
-                       label="Wishlist Layout"
-                       description="Wishlist Layout"
-                       directory="/modules/mod_wishlist/tmpl"
+                       label="CompareList Layout"
+                       description="CompareList Layout"
+                       directory="/modules/mod_zt_comparelist/tmpl"
                        default="default" hide_default="1" hide_none="1"
                        stripext="1" filter="\.php$" exclude="^_"/>
             </fieldset>
-	</fields>
-		</config>
+
+        </fields>
+    </config>
 </extension>

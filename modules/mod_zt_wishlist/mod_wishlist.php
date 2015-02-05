@@ -9,7 +9,7 @@
 //error_reporting('E_ALL');
 // No direct access.
 defined('_JEXEC') or die('Direct Access to ' . basename(__FILE__) . ' is not allowed.');
-if (!class_exists('mod_wishlist')) require('helper.php');
+if (!class_exists('mod_zt_wishlist')) require('helper.php');
 $user = JFactory::getUser();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
@@ -33,5 +33,5 @@ if ($user->guest) {
     $product_model->addImages($prods, 1);
     $currency = CurrencyDisplay::getInstance();
 }
-require JModuleHelper::getLayoutPath('mod_wishlist', $params->get('layout', 'default'));
+require JModuleHelper::getLayoutPath('mod_zt_wishlist', $params->get('layout', 'default'));
 ?>

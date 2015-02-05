@@ -10,8 +10,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 $doc = JFactory::getDocument();
-$doc->addStyleSheet(JURI::root() . 'modules/mod_comparelist/assets/css/compare.css');
-$doc->addScript(JURI::root() . 'modules/mod_comparelist/assets/js/compare.js');
+$doc->addStyleSheet(JURI::root() . 'modules/mod_zt_comparelist/assets/css/compare.css');
+$doc->addScript(JURI::root() . 'modules/mod_zt_comparelist/assets/js/compare.js');
 
 JFactory::getLanguage()->load('com_virtuemartzooex');
 $items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_virtuemartzooex');

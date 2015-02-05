@@ -10,7 +10,7 @@
 // No direct access.
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('mod_comparelist')) require('helper.php');
+if (!class_exists('mod_zt_comparelist')) require('helper.php');
 
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
@@ -20,5 +20,5 @@ if (!empty($_SESSION['compare_ids'])) {
     $product_model->addImages($prods, 1);
     $currency = CurrencyDisplay::getInstance();
 }
-require JModuleHelper::getLayoutPath('mod_comparelist', $params->get('layout', 'default'));
+require JModuleHelper::getLayoutPath('mod_zt_comparelist', $params->get('layout', 'default'));
 ?>

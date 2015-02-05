@@ -11,10 +11,10 @@ defined('_JEXEC') or die('Restricted access');
 JFactory::getLanguage()->load('com_virtuemartzooex');
 
 $doc = JFactory::getDocument();
-$doc->addStyleSheet(JURI::root(). 'modules/mod_wishlist/assets/fancybox/jquery.fancybox-1.3.4.css' );
-$doc->addStyleSheet(JURI::root(). 'modules/mod_wishlist/assets/css/style.wishlist.css' );
-$doc->addScript(JURI::root(). 'modules/mod_wishlist/assets/fancybox/jquery.fancybox-1.3.4.pack.js' );
-$doc->addScript(JURI::root(). 'modules/mod_wishlist/assets/js/wishlist.js' );
+$doc->addStyleSheet(JURI::root(). 'modules/mod_zt_wishlist/assets/fancybox/jquery.fancybox-1.3.4.css' );
+$doc->addStyleSheet(JURI::root(). 'modules/mod_zt_wishlist/assets/css/style.wishlist.css' );
+$doc->addScript(JURI::root(). 'modules/mod_zt_wishlist/assets/fancybox/jquery.fancybox-1.3.4.pack.js' );
+$doc->addScript(JURI::root(). 'modules/mod_zt_wishlist/assets/js/wishlist.js' );
 $items = JFactory::getApplication()->getMenu( 'site' )->getItems( 'component', 'com_virtuemartzooex' );
 foreach ( $items as $item ) {
     if($item->query['view'] === 'wishlists'){
