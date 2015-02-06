@@ -8,7 +8,7 @@
  */
 //error_reporting('E_ALL');
 defined('_JEXEC') or die('Restricted access');
-class PlgSystemQuickViewProduct extends JPlugin
+class plgSystemZt_quickviewproduct extends JPlugin
 {
     /**
      * Class Constructor
@@ -45,9 +45,8 @@ class PlgSystemQuickViewProduct extends JPlugin
 				});';
             $doc->addScriptDeclaration($jsq);
             $doc->addScript(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/custom.js');
-            //$doc->addScript(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.1.0.3.min.js');
             $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/more_custom.css');
-            //$doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.css');
+
         }
     }
 
@@ -178,7 +177,7 @@ class PlgSystemQuickViewProduct extends JPlugin
                                     <div class='hit'><?php echo JText::_('DR_HOT'); ?></div>
                                 <?php } ?>
                             </div>
-
+                            <img src="<?php echo $main_image_url ?>" data-zoom-image="<?php echo $main_image_url ?>" title="<?php echo $main_image_title ?>" alt="<?php echo $main_image_alt ?>" class="big_img" id="Img_zoom"/>
 
                             <?php
                             $j = count($images);
@@ -457,14 +456,14 @@ class PlgSystemQuickViewProduct extends JPlugin
                                             <span title="<?php echo JText::_('COM_VIRTUEMART_ADDTOCART_CHOOSE_VARIANT'); ?>" class="addtocart-button addtocart-button-disabled cart-click"><?php echo JText::_('COM_VIRTUEMART_ADDTOCART_CHOOSE_VARIANT'); ?></span>
                                         <?php } ?>
                                         </span>
-                                        <?php if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/wishlists.tpl.php")) { ?>
+                                        <?php if (is_file(JPATH_BASE . DS . "components/com_virtuemartzooex/template/wishlists.tpl.php")) { ?>
                                             <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
-                                                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/wishlists.tpl.php"); ?>
+                                                <?php require(JPATH_BASE . DS . "components/com_virtuemartzooex/template/wishlists.tpl.php"); ?>
                                             </div>
                                         <?php } ?>
-                                        <?php if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/comparelist.tpl.php")) { ?>
+                                        <?php if (is_file(JPATH_BASE . DS . "components/com_virtuemartzooex/template/comparelist.tpl.php")) { ?>
                                             <div class="jClever compare_cat list_compare<?php echo $product->virtuemart_product_id; ?>">
-                                                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/comparelist.tpl.php"); ?>
+                                                <?php require(JPATH_BASE . DS . "components/com_virtuemartzooex/template/comparelist.tpl.php"); ?>
                                             </div>
                                         <?php } ?>
                                     </div>

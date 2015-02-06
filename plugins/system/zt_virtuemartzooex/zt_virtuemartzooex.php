@@ -7,7 +7,7 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 //error_reporting('E_ALL');
-class PlgSystemZtVirtuemartzooex extends JPlugin
+class plgSystemZt_virtuemartzooex extends JPlugin
 {
     /**
      * Class Constructor
