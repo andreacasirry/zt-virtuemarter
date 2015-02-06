@@ -23,7 +23,7 @@ class WishlistsViewWishlists extends JViewLegacy
     {
         $app = JFactory::getApplication();
         $pathway = $app->getPathway();
-        $pathway->addItem(JText::_('COM_WISHLISTS_PRODUCT'), JRoute::_('index.php?option=com_zt_virtuemartzooex&view=wishlists'));
+        $pathway->addItem(JText::_('COM_WISHLISTS_PRODUCT'), JRoute::_('index.php?option=com_zt_virtuemarter&view=wishlists'));
         parent::display($tpl);
     }
 }

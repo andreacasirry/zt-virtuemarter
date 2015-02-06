@@ -7,7 +7,7 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 //error_reporting('E_ALL');
-class plgSystemZt_virtuemartzooex extends JPlugin
+class plgSystemZt_virtuemarter extends JPlugin
 {
     /**
      * Class Constructor
@@ -57,10 +57,10 @@ class plgSystemZt_virtuemartzooex extends JPlugin
 
     public static function addCompareButton($product, $type = null)
     {
-        if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/comparelist.tpl" . $type . ".php")) {
+        if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemarter/template/comparelist.tpl" . $type . ".php")) {
             ?>
             <div class="compare_cat list_compare<?php echo $product->virtuemart_product_id; ?>">
-                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/comparelist.tpl" . $type . ".php"); ?>
+                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemarter/template/comparelist.tpl" . $type . ".php"); ?>
             </div>
         <?php
         }
@@ -68,10 +68,10 @@ class plgSystemZt_virtuemartzooex extends JPlugin
 
     public static function addWishlistButton($product, $type = null)
     {
-        if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/wishlists.tpl" . $type . ".php")) {
+        if (is_file(JPATH_BASE . DS . "components/com_zt_virtuemarter/template/wishlists.tpl" . $type . ".php")) {
             ?>
             <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
-                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemartzooex/template/wishlists.tpl" . $type . ".php"); ?>
+                <?php require(JPATH_BASE . DS . "components/com_zt_virtuemarter/template/wishlists.tpl" . $type . ".php"); ?>
             </div>
         <?php
         }

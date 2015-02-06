@@ -11,7 +11,7 @@
 
 defined('_JEXEC') or die;
 if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
-define('VZ_BASE_PATH', JPATH_BASE . DS . 'components' . DS . 'com_zt_virtuemartzooex');
+define('VZ_BASE_PATH', JPATH_BASE . DS . 'components' . DS . 'com_zt_virtuemarter');
 
 // Require the base controller
 $input = JFactory::getApplication()->input;

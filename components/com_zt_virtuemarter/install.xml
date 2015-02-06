@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
-    <name>Zt_VirtuemartZooEx</name>
+    <name>Zt_Virtuemarter</name>
     <creationDate>Dec 30, 2014</creationDate>
     <author>CleverSoft</author>
     <authorEmail>hello@cleversoft.co</authorEmail>
@@ -19,12 +19,12 @@
         <folder>template</folder>
         <filename>index.html</filename>
         <filename>router.php</filename>
-        <filename>zt_virtuemartzooex.php</filename>
+        <filename>zt_virtuemarter.php</filename>
     </files>
     <languages folder="language">
-        <language tag="en-GB">en-GB/en-GB.com_zt_virtuemartzooex.ini</language>
+        <language tag="en-GB">en-GB/en-GB.com_zt_virtuemarter.ini</language>
     </languages>
-    <menu>com_zt_virtuemartzooex</menu>
+    <menu>com_zt_virtuemarter</menu>
     <install>
         <sql>
             <file charset="utf8" driver="mysql">sql/install.sql</file>
