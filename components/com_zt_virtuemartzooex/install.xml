@@ -24,7 +24,7 @@
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.com_zt_virtuemartzooex.ini</language>
     </languages>
-
+    <menu>com_zt_virtuemartzooex</menu>
     <install>
         <sql>
             <file charset="utf8" driver="mysql">sql/install.sql</file>
