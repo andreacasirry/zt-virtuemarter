@@ -13,7 +13,7 @@
 
     <scriptfile>pkg_zo2.script.php</scriptfile>
     <files folder="source">
-        <folder type="plugin" id="zt_quickview_product" group="system">plg_zt_quickview_product</folder>
+        <folder type="plugin" id="zt_quickviewproduct" group="system">plg_zt_quickviewproduct</folder>
         <folder type="plugin" id="zt_virtuemartzooex" group="system">plg_zt_virtuemartzooex</folder>
         <folder type="component" id="com_zt_virtuemartzooex" client="site">com_zt_virtuemartzooex</folder>
         <folder type="module" id="mod_zt_comparelist" client="site">mod_zt_comparelist</folder>

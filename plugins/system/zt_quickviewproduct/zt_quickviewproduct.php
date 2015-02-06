@@ -45,9 +45,9 @@ class PlgSystemQuickViewProduct extends JPlugin
 				});';
             $doc->addScriptDeclaration($jsq);
             $doc->addScript(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/custom.js');
-            $doc->addScript(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.1.0.3.min.js');
+            //$doc->addScript(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.1.0.3.min.js');
             $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/more_custom.css');
-            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.css');
+            //$doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.css');
         }
     }
 
@@ -178,18 +178,8 @@ class PlgSystemQuickViewProduct extends JPlugin
                                     <div class='hit'><?php echo JText::_('DR_HOT'); ?></div>
                                 <?php } ?>
                             </div>
-                            <img src="<?php echo $main_image_url ?>" data-zoom-image="<?php echo $main_image_url ?>" title="<?php echo $main_image_title ?>" alt="<?php echo $main_image_alt ?>" class="big_img" id="Img_zoom"/>
-                            <script>
-                                jQuery(document).ready(function() {
-                                    jQuery('img').each(function() {
-                                        var $this = jQuery(this);
-                                        var src = $this.attr('src');
-                                        var str = '<a href="' + src + '" class="cloud-zoom" rel="adjustX: 10, adjustY:-4" />';
-                                        $this.wrap(str);
-                                        jQuery(".cloud-zoom, .cloud-zoom-gallery").CloudZoom();
-                                    });
-                                });
-                            </script>
+
+
                             <?php
                             $j = count($images);
                             //add HTML
