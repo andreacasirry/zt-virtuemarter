@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.0" method="upgrade" group="system">
-    <name>Zt QuickView Product</name>
+    <name>Zt QuickViewProduct</name>
     <creationDate>Dec 30, 2014</creationDate>
     <author>CleverSoft</author>
     <authorEmail>hello@cleversoft.co</authorEmail>
@@ -11,13 +11,14 @@
     <description>Description of Zoo Virtuemart Plugin Quick View</description>
     <scriptfile>script.php</scriptfile>
     <files>
-        <filename plugin="zt_quickview_product">zt_quickview_product.php</filename>
-		<filename>zt_quickview_product.xml</filename>
+        <filename plugin="zt_quickviewproduct">zt_quickviewproduct.php</filename>
+		<filename>zt_quickviewproduct.xml</filename>
         <filename>index.html</filename>
+        <filename>script.php</filename>
 		<folder>assets</folder>
     </files>
 	<languages folder="language">
-        <language tag="en-GB">en-GB/en-GB.plg_system_zt_quickview_product.ini</language>
-        <language tag="en-GB">en-GB/en-GB.plg_system_zt_quickview_product.sys.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_zt_quickviewproduct.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_zt_quickviewproduct.sys.ini</language>
     </languages>
 </extension>

@@ -8,7 +8,7 @@
  */
 //error_reporting('E_ALL');
 defined('_JEXEC') or die('Restricted access');
-class PlgSystemZTQuickViewProduct extends JPlugin
+class PlgSystemQuickViewProduct extends JPlugin
 {
     /**
      * Class Constructor
@@ -44,10 +44,10 @@ class PlgSystemZTQuickViewProduct extends JPlugin
                     });
 				});';
             $doc->addScriptDeclaration($jsq);
-            $doc->addScript(JURI::root() . '/plugins/system/zt_quickview_product/assets/custom.js');
-            $doc->addScript(JURI::root() . '/plugins/system/zt_quickview_product/assets/cloud-zoom.1.0.3.min.js');
-            $doc->addStyleSheet(JURI::root() . '/plugins/system/zt_quickview_product/assets/more_custom.css');
-            $doc->addStyleSheet(JURI::root() . '/plugins/system/zt_quickview_product/assets/cloud-zoom.css');
+            $doc->addScript(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/custom.js');
+            $doc->addScript(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.1.0.3.min.js');
+            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/more_custom.css');
+            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zt_quickviewproduct/assets/cloud-zoom.css');
         }
     }
 
@@ -118,10 +118,10 @@ class PlgSystemZTQuickViewProduct extends JPlugin
             <div id="quick-view-scroll">
 
             <div id="productdetailsview" class="productdetails-view quick">
-            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/more_custom.js"></script>
-            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/shortcodes.js"></script>
-            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/cloud-zoom.1.0.3.min.js"></script>
-            <link href="<?php echo JUri::base(); ?>plugins/system/zt_quickview_product/assets/cloud-zoom.css" type="text/css" rel="stylesheet" />
+            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickviewproduct/assets/more_custom.js"></script>
+            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickviewproduct/assets/shortcodes.js"></script>
+            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/zt_quickviewproduct/assets/cloud-zoom.1.0.3.min.js"></script>
+            <link href="<?php echo JUri::base(); ?>plugins/system/zt_quickviewproduct/assets/cloud-zoom.css" type="text/css" rel="stylesheet" />
             <div class="wrapper2">
             <div class="fleft">
                 <div class="image_show_quick">
