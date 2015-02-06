@@ -2,7 +2,7 @@
 // No direct access
 defined( '_JEXEC' ) or die;
 
-class PlgSystemQuickViewProductInstallerScript
+class plgSystemZt_quickviewproductInstallerScript
 {
 
 	function postflight( $type, $parent )

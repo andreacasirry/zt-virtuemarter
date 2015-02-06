@@ -2,7 +2,7 @@
 // No direct access
 defined( '_JEXEC' ) or die;
 
-class PlgSystemVirtuemartzooexInstallerScript
+class plgSystemZt_virtuemartzooexInstallerScript
 {
 
 	function postflight( $type, $parent )
