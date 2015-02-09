@@ -21,26 +21,27 @@
         <filename>router.php</filename>
         <filename>zt_virtuemarter.php</filename>
     </files>
+
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.com_zt_virtuemarter.ini</language>
     </languages>
+    <menu link="index.php?option=com_zt_virtuemarter">Component Zt Virtuemarter</menu>
     <menu>com_zt_virtuemarter</menu>
-    <install>
+    <install folder="admin">
         <sql>
             <file charset="utf8" driver="mysql">sql/install.sql</file>
         </sql>
     </install>
-    <uninstall>
+    <uninstall folder="admin">
         <sql>
             <file charset="utf8" driver="mysql">sql/uninstall.sql</file>
         </sql>
     </uninstall>
-
     <administration>
         <files folder="admin">
-            <filename>virtuemartzooex.php</filename>
+            <filename>zt_virtuemarter.php</filename>
             <folder>sql</folder>
+
         </files>
     </administration>
-
 </extension>
