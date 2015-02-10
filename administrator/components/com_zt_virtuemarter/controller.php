@@ -1,7 +1,27 @@
 <?php
-defined('_JEXEC') or die ('Restricted access');
-jimport('joomla.application.component.controller');
-class ZT_VirtuemarterController extends JControllerLegacy
-{
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
 
+// import Joomla controller library
+jimport('joomla.application.component.controller');
+
+/**
+ * General Controller of HelloWorld component
+ */
+class ZT_VirtuemarterController extends JControllerForm
+{
+	/**
+	 * display task
+	 *
+	 * @return void
+	 */
+	function display($cachable = false, $urlparams = false)
+	{
+		// set default view if not set
+		$input = JFactory::getApplication()->input;
+		$input->set('view', $input->getCmd('view', 'zt_virtuemarter'));
+
+		// call parent behavior
+		parent::display($cachable);
+	}
 }

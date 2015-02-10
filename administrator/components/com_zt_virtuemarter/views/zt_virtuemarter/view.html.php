@@ -2,7 +2,7 @@
 
 
 
-class ZT_VirtuemarterViewSetting extends JViewLegacy
+class ZT_VirtuemarterViewZt_virtuemarter extends JViewLegacy
 {
 
     protected $form;
@@ -12,10 +12,8 @@ class ZT_VirtuemarterViewSetting extends JViewLegacy
      */
     public function display($tpl = null)
     {
-        $version = new JVersion;
-
-        $this->form = $this->loadForm('com_zt_virtuemarter', 'setting', array('control' => 'jform', 'load_data' => $loadData));
-        var_dump($this->form	);
+        $this->form		= $this->get('Form');
+        //var_dump($this->form	);
         $this->addToolbar();
 
         parent::display($tpl);
@@ -34,7 +32,6 @@ class ZT_VirtuemarterViewSetting extends JViewLegacy
 
     }
 }
-$ZT_Virtuemarter = new ZT_VirtuemarterViewSetting();
-$ZT_Virtuemarter->display();
+
 
 ?>

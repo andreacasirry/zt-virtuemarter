@@ -6,5 +6,9 @@ CREATE TABLE IF NOT EXISTS `#__wishlists` (
   PRIMARY KEY (`id`)
 )  DEFAULT CHARSET=utf8  ;
 
-
+CREATE TABLE IF NOT EXISTS `#__zt_virtuemarter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `setting` varchar(25) NOT NULL,
+   PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
