@@ -28,8 +28,8 @@ class plgSystemZtvirtuemarter extends JPlugin
         $user = JFactory::getUser();
         if (!($app->isAdmin())) {
             if (!$user->guest) {
-                if (isset($_SESSION['id'])) {
-                    $dbIds = $_SESSION['id'];
+                if (isset($_SESSION['wishlist_ids'])) {
+                    $dbIds = $_SESSION['wishlist_ids'];
                     $db = JFactory::getDBO();
                     $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
                     $db->setQuery($q);
