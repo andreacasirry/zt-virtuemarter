@@ -2,7 +2,7 @@
 
 
 
-class ZT_VirtuemarterViewSetting extends JViewLegacy
+class ZtvirtuemarterViewSetting extends JViewLegacy
 {
 
     protected $form;

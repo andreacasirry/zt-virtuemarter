@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
 
-class ZT_VirtuemarterModelSetting extends JModelAdmin
+class ZtvirtuemarterModelSetting extends JModelAdmin
 {
 
     /**
