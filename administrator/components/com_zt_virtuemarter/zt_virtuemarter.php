@@ -1,6 +1,5 @@
 <?php
 
-defined('_JEXEC') or die();
-JToolBarHelper::title(JText::_('Component ZT VirtueMarter '));
-echo JText::_('Description of Component ZT VirtueMarter');
-?>
+$controller = JControllerLegacy::getInstance('ZT_Virtuemarter');
+$controller->execute(JFactory::getApplication()->input->get('task'));
+$controller->redirect();
