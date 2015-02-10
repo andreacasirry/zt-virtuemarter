@@ -27,7 +27,7 @@ if ($show_price and  isset($product->prices)) {
  // 		if ($product->prices['salesPriceWithDiscount']>0) echo $currency->priceDisplay($product->prices['salesPriceWithDiscount']);
  if (!empty($product->prices['salesPriceWithDiscount']) ) echo $currency->createPriceDiv('salesPriceWithDiscount','',$product->prices,true);
  }
- if ($show_addtocart) echo mod_zt_vm3_product::addtocart($product);
+ if ($show_addtocart) echo mod_ztvirtuemarter_product::addtocart($product);
  ?>
  </div></div>
 

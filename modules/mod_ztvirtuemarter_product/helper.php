@@ -45,7 +45,7 @@ if (!class_exists ('calculationHelper')) {
 	}
 
 
-class mod_zt_vm3_product {
+class mod_ztvirtuemarter_product {
 
 	static function addtocart ($product) {
 

@@ -74,8 +74,8 @@ for($i = 0; $i < $num; $i++){
                         }
                         jQuery(this).find(".quick_id").remove();
                     });
-
-
+                    
+                    Virtuemart.product(jQuery("form.product"));
                 },
                 error: function(){
                     alert("Can not get more product!");

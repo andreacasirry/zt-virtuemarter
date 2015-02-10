@@ -3,7 +3,7 @@ defined('_JEXEC') or die( 'Direct Access to '.basename(__FILE__).' is not allowe
 /*
 * featured/Latest/Topten/Random Products Module
 *
-* @version $Id: mod_zt_vm3_product.php 2789 2011-02-28 12:41:01Z oscar $
+* @version $Id: mod_ztvirtuemarter_product.php 2789 2011-02-28 12:41:01Z oscar $
 * @package VirtueMart
 * @subpackage modules
 *
@@ -22,7 +22,7 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 if (!class_exists( 'VmConfig' )) require(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'config.php');
 
 VmConfig::loadConfig();
-VmConfig::loadJLang('mod_zt_vm3_product', true);
+VmConfig::loadJLang('mod_ztvirtuemarter_product', true);
 
 // Setting
 $max_items = 		$params->get( 'max_items', 2 ); //maximum number of items to display
@@ -42,7 +42,7 @@ $virtuemart_currency_id = $mainframe->getUserStateFromRequest( "virtuemart_curre
 
 
 /* Load  VM fonction */
-if (!class_exists( 'mod_zt_vm3_product' )) require('helper.php');
+if (!class_exists( 'mod_ztvirtuemarter_product' )) require('helper.php');
 
 $vendorId = vRequest::getInt('vendorid', 1);
 
@@ -64,7 +64,7 @@ if ($show_addtocart) {
 ob_start();
 
 /* Load tmpl default */
-require(JModuleHelper::getLayoutPath('mod_zt_vm3_product',$layout));
+require(JModuleHelper::getLayoutPath('mod_ztvirtuemarter_product',$layout));
 $output = ob_get_clean();
 
 echo $output;
