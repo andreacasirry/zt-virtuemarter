@@ -13,8 +13,8 @@ $doc = JFactory::getDocument();
 $doc->addStyleSheet(JURI::root() . 'modules/mod_zt_comparelist/assets/css/compare.css');
 $doc->addScript(JURI::root() . 'modules/mod_zt_comparelist/assets/js/compare.js');
 
-JFactory::getLanguage()->load('com_zt_virtuemarter');
-$items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_zt_virtuemarter');
+JFactory::getLanguage()->load('com_ztvirtuemarter');
+$items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_ztvirtuemarter');
 foreach ($items as $item) {
     if ($item->query['view'] === 'comparelist') {
         $itemid = $item->id;
@@ -25,7 +25,7 @@ foreach ($items as $item) {
 <div class="ajax-dropdown vmgroup<?php echo $params->get('moduleclass_sfx') ?>" id="mod_compare">
     <div class="seldcomp" id="butseldcomp">
         <a class="btn-compare"
-           href="<?php echo JRoute::_('index.php?option=com_zt_virtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
+           href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
             <i class="fa fa-files-o hover-dropdown"></i>
             <span>
 		   <?php
