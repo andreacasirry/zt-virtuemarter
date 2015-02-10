@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" method="upgrade">
     <name>Mod Zt Wishlist</name>
-    <creationDate>Dec 30, 2014</creationDate>
-    <author>CleverSoft</author>
-    <authorEmail>hello@cleversoft.co</authorEmail>
-    <authorUrl>http://cleversoft.co</authorUrl>
-    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
+    <creationDate>Feb 10, 2015</creationDate>
+    <author>Zootemplate</author>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <authorUrl>http://www.zootemplate.com/</authorUrl>
+    <copyright>Copyright (c) 2008 - 2015 ZooTemplate.com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <version>0.0.1</version>
     <description>Description of module Wishlist</description>
