@@ -8,7 +8,7 @@ jimport('joomla.database.table');
 /**
  * Hello Table class
  */
-class ZT_VirtuemarterTableZT_Virtuemarter extends JTable
+class ZT_VirtuemarterTableSetting extends JTable
 {
     /**
      * Constructor
@@ -19,4 +19,16 @@ class ZT_VirtuemarterTableZT_Virtuemarter extends JTable
     {
         parent::__construct('#__zt_virtuemarter', 'id', $db);
     }
+
+    function apply() {
+        echo 'lol';
+        die;
+    }
+
+    function save() {
+        echo 'lol2';
+        die;
+    }
+
+
 }

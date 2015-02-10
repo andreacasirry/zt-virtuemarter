@@ -8,7 +8,7 @@ jimport('joomla.application.component.controller');
 /**
  * General Controller of HelloWorld component
  */
-class ZT_VirtuemarterController extends JControllerForm
+class Zt_virtuemarterController extends JControllerLegacy
 {
 	/**
 	 * display task
@@ -19,7 +19,7 @@ class ZT_VirtuemarterController extends JControllerForm
 	{
 		// set default view if not set
 		$input = JFactory::getApplication()->input;
-		$input->set('view', $input->getCmd('view', 'zt_virtuemarter'));
+		$input->set('view', $input->getCmd('view', 'setting'));
 
 		// call parent behavior
 		parent::display($cachable);

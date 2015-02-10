@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
 
-class ZT_VirtuemarterModelZt_virtuemarter extends JModelAdmin
+class ZT_VirtuemarterModelSetting extends JModelAdmin
 {
 
     /**
@@ -16,7 +16,7 @@ class ZT_VirtuemarterModelZt_virtuemarter extends JModelAdmin
      * @return	JTable	A database object
      * @since	2.5
      */
-    public function getTable($type = 'ZT_Virtuemarter', $prefix = 'ZT_VirtuemarterTable', $config = array())
+    public function getTable($type = 'Setting', $prefix = 'ZT_VirtuemarterTable', $config = array())
     {
         return JTable::getInstance($type, $prefix, $config);
     }
@@ -24,9 +24,10 @@ class ZT_VirtuemarterModelZt_virtuemarter extends JModelAdmin
     public function getForm($data = array(), $loadData = true)
     {
         // Get the form.
-        $form = $this->loadForm('com_zt_virtuemarter.edit', 'virtuemarter',
+        $form = $this->loadForm('com_zt_virtuemarter.edit', 'setting',
             array('control' => 'jform', 'load_data' => $loadData));
-
+        var_dump($form);
+        //die;
         if (empty($form))
         {
             return false;

@@ -2,7 +2,7 @@
 
 
 
-class ZT_VirtuemarterViewZt_virtuemarter extends JViewLegacy
+class ZT_VirtuemarterViewSetting extends JViewLegacy
 {
 
     protected $form;
@@ -12,7 +12,7 @@ class ZT_VirtuemarterViewZt_virtuemarter extends JViewLegacy
      */
     public function display($tpl = null)
     {
-        $this->form		= $this->get('Form');
+        $this->form	= $this->get('Form');
         //var_dump($this->form	);
         $this->addToolbar();
 
@@ -24,12 +24,9 @@ class ZT_VirtuemarterViewZt_virtuemarter extends JViewLegacy
     {
         defined('_JEXEC') or die();
         JToolBarHelper::title(JText::_('Component ZT VirtueMarter '));
-        JToolBarHelper::apply('slide.apply');
-        JToolBarHelper::save('slide.save');
-        JToolBarHelper::cancel('slide.cancel');
-        //echo JText::_('Description of Component ZT VirtueMarter');
-
-
+        JToolBarHelper::apply('setting.apply');
+        JToolBarHelper::save('setting.save');
+        JToolBarHelper::cancel('setting.cancel');
     }
 }
 
