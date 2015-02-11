@@ -47,6 +47,7 @@ for ($i = 0; $i < $num; $i++) {
         var base_url = jQuery('.base_url').val();
         var product_per_row = parseInt(jQuery('.num_plus').val());
         jQuery('.more_product').click(function () {
+            jQuery.fancybox.showActivity();
             var num = parseInt(jQuery('.num_plus').val());
             jQuery.ajax({
                 url: base_url,
@@ -72,6 +73,7 @@ for ($i = 0; $i < $num; $i++) {
                     });
 
                     Virtuemart.product(jQuery("form.product"));
+                    jQuery.fancybox.hideActivity();
                 },
                 error: function () {
                     alert("Can not get more product!");
