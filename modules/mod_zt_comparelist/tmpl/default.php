@@ -15,6 +15,7 @@ $doc->addScript(JURI::root() . 'modules/mod_zt_comparelist/assets/js/compare.js'
 
 JFactory::getLanguage()->load('com_ztvirtuemarter');
 $items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_ztvirtuemarter');
+$itemid = '';
 foreach ($items as $item) {
     if ($item->query['view'] === 'comparelist') {
         $itemid = $item->id;
