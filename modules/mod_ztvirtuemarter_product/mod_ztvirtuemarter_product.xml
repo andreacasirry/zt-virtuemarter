@@ -13,10 +13,7 @@
 	<filename module="mod_ztvirtuemarter_product">mod_ztvirtuemarter_product.php</filename>
 	<filename>index.html</filename>
 	<filename>helper.php</filename>
-	<filename>tmpl/default.php</filename>
-	<filename>tmpl/single.php</filename>
-    <filename>tmpl/load_ajax.php</filename>
-	<filename>tmpl/index.html</filename>
+    <folder>tmpl</folder>
 	<folder>language</folder>
     </files>
     <params addpath="/administrator/components/com_virtuemart/elements">

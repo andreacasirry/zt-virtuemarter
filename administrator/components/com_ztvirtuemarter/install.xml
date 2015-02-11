@@ -25,8 +25,7 @@
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.ini</language>
     </languages>
-    <menu link="index.php?option=com_ztvirtuemarter">Component Zt Virtuemarter</menu>
-
+    
     <install folder="admin">
         <sql>
             <file charset="utf8" driver="mysql">sql/install.sql</file>
@@ -38,6 +37,7 @@
         </sql>
     </uninstall>
     <administration>
+        <menu link="index.php?option=com_ztvirtuemarter">Zt Virtuemarter</menu>
         <files folder="admin">
             <filename>ztvirtuemarter.php</filename>
             <filename>controller.php</filename>

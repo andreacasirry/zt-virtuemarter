@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" method="upgrade">
-    <name>Mod Zt Comparelist</name>
+    <name>Zt Comparelist</name>
     <creationDate>Feb 10, 2015</creationDate>
     <author>Zootemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
