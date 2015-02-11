@@ -13,7 +13,6 @@ if (!class_exists('shopFunctionsF')) require(JPATH_SITE . '/components/com_virtu
 $user = JFactory::getUser();
 $mainframe = Jfactory::getApplication();
 $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id', 0));
-
 if (!$user->guest) {
     if (isset($_SESSION['wishlist_ids'])) {
         $dbIds = $_SESSION['wishlist_ids'];
@@ -37,7 +36,7 @@ if (!$user->guest) {
                 $db->queryBatch();
             }
         }
-        unset($_SESSION['wishlist_ids']);
+        //unset($_SESSION['wishlist_ids']);
     }
 }
 
@@ -73,7 +72,7 @@ $currency = CurrencyDisplay::getInstance();
     </h3>
 </div>
 <?php // Back To Category Button
-if ($virtuemart_category_id) {
+if (isset($virtuemart_category_id)) {
     $catURL = JRoute::_('index.php?option=com_virtuemart&view=category&virtuemart_category_id=' . $virtuemart_category_id);
     $categoryName = $product->category_name;
 } else {

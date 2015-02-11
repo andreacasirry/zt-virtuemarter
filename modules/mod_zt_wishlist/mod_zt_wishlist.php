@@ -13,7 +13,7 @@ if (!class_exists('mod_zt_wishlist')) require('helper.php');
 $user = JFactory::getUser();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
-$_SESSION['wishlist_ids'] = null;
+
 $prods = array();
 if ($user->guest) {
     if (!empty($_SESSION['wishlist_ids'])) {
@@ -22,9 +22,12 @@ if ($user->guest) {
         $product_model->addImages($prods, 1);
         $currency = CurrencyDisplay::getInstance();
 
+    } else {
+        $_SESSION['wishlist_ids'] = null;
     }
 
 } else {
+
     $db = JFactory::getDBO();
     $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
     $db->setQuery($q);
