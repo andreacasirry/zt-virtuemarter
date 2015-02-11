@@ -18,7 +18,7 @@ class plgSystemZtvirtuemarter extends JPlugin
     {
         parent::__construct($subject, $config);
         $this->document = JFactory::getDocument();
-
+        $this->loadLanguage();
         $jlang = JFactory::getLanguage();
         $jlang->load('com_virtuemart', JPATH_SITE, $jlang->getDefault(), true);
         $jlang->load('com_virtuemart', JPATH_SITE, null, true);
