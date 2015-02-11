@@ -31,7 +31,7 @@ class WishlistsController extends JControllerLegacy
     {
         //error_reporting('E_ALL');
         $itemID = '';
-
+        $recent = '';
         if (empty($lang)) $lang = '*';
 
         $component = JComponentHelper::getComponent('com_ztvirtuemarter');
@@ -60,7 +60,7 @@ class WishlistsController extends JControllerLegacy
 
         $product_model = VmModel::getModel('product');
 
-        $user =& JFactory::getUser();
+        $user = JFactory::getUser();
         if (!isset($_SESSION['wishlist_ids'])) $_SESSION['wishlist_ids'] = array();
         if ($user->guest) {
             if ((!in_array($_POST['product_id'], $_SESSION['wishlist_ids']))) {

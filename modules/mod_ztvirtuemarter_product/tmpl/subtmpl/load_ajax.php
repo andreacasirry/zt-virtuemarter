@@ -25,10 +25,8 @@ if ($products_per_row > 1) {
                 ?>
                 <div class="col-md-3 col-sm-3 product-item product-grid-item">
                     <div class="spacer ">
-                        <h3><a href="<?php echo $url ?>" class="lol"><?php echo $product->product_name ?></a></h3>
-
+                        <h3><a href="<?php echo $url ?>"><?php echo $product->product_name ?></a></h3>
                         <?php
-
                             $createddate = $product->created_on;
                             $sale = $product->prices['product_override_price'];
                             $timeCreateddate = strtotime($createddate);
@@ -48,11 +46,8 @@ if ($products_per_row > 1) {
                             }
 
                             echo $htmlLabel;
-
                         ?>
                         <?php
-
-
                         $ratingModel = VmModel::getModel('ratings');
                         $product->showRating = $ratingModel->showRating($product->virtuemart_product_id);
                         if ($product->showRating) {
@@ -114,15 +109,10 @@ if ($products_per_row > 1) {
                         <div class="product_hover zt-product-content">
                             <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
                             <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
-                            <input class="quick_ids" type="hidden"
-                                   value="<?php echo $product->virtuemart_product_id; ?>">
-
-
+                            <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
                         </div>
-
                     </div>
                 </div>
-
                 <?php
                 if ($col == $products_per_row && $products_per_row && $col < $totalProd) {
                     echo "	</div><div style='clear:both;'>";
@@ -133,19 +123,15 @@ if ($products_per_row > 1) {
             } ?>
         </div>
         <br style='clear:both;'/>
-
     <?php
     } else {
         $last = count($productss) - 1;
         ?>
-
         <div id="vmproduct" class="vmproduct<?php echo $params->get('moduleclass_sfx'); ?> productdetails ">
             <?php foreach ($productss as $product) : ?>
                 <div class="col-md-3 col-sm-3 product-item">
                     <div class="spacer zt-product-content">
-
                         <?php
-
                             $createddate = $product->created_on;
                             $sale = $product->prices['product_override_price'];
                             $timeCreateddate = strtotime($createddate);
@@ -165,7 +151,6 @@ if ($products_per_row > 1) {
                             }
 
                             echo $htmlLabel;
-
                         ?>
                         <?php
                         if (!empty($product->images[0])) {
@@ -193,19 +178,24 @@ if ($products_per_row > 1) {
                         }
                         ?>
                     </div>
+                    <div class="product_hover zt-product-content">
+                        <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
+                        <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                        <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
+                    </div>
                 </div>
                 <?php
                 if ($col == $products_per_row && $products_per_row && $last) {
                     echo '
-		</div><div class="clear"></div>
-		<ul  class="vmproduct' . $params->get('moduleclass_sfx') . ' productdetails">';
+                    </div><div class="clear"></div>
+                    <ul  class="vmproduct' . $params->get('moduleclass_sfx') . ' productdetails">';
                     $col = 1;
                 } else {
                     $col++;
                 }
                 $last--;
             endforeach; ?>
-        </div>>
+        </div>
         <div class="clear"></div>
 
     <?php
