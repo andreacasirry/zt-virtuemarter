@@ -103,11 +103,9 @@ if (!empty($prods)) {
 
             $row = 0;
             $tdclass[$col] = 'compare_prod_' . $product->virtuemart_product_id;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_name"><h5>' . JHTML::link($product->link, shopFunctionsF::limitStringByWord($product->product_name, '40', '...')) . '</h5></div>';
+            $table[$row][$col] = '<div class="comare_name"><h5>' . JHTML::link($product->link, shopFunctionsF::limitStringByWord($product->product_name, '40', '...')) . '</h5></div>';
             $row = 1;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_image">';
+            $table[$row][$col] = '<div class="comare_image">';
             $table[$row][$col] .= '<div class="browseImage ">';
             if (isset($product->override) && $product->override == 1 && ($product->product_price_publish_down > 0)) {
                 $table[$row][$col] .= '<div class="discount limited">' . JText::_('DR_LIMITED_OFFER') . '</div>';
@@ -123,9 +121,7 @@ if (!empty($prods)) {
             $showRating = $ratingModel->showRating($product->virtuemart_product_id);
             if ($showRating == 'true') {
                 $row = 2;
-                $table[$row][$col] = '';
-
-                $table[$row][$col] .= '<div class="comare_rating">';
+                $table[$row][$col] = '<div class="comare_rating">';
                 $table[$row][$col] .= '<div class="rating">';
                 $table[$row][$col] .= '<span class="vote">';
                 $table[$row][$col] .= '<span title="" class="vmicon ratingbox" style="display:inline-block;">';
@@ -137,8 +133,7 @@ if (!empty($prods)) {
                 $table[$row][$col] .= '</div>';
             }
             $row = 3;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_price">';
+            $table[$row][$col] = '<div class="comare_price">';
             if ((!empty($product->prices['salesPrice'])) && !$product->images[0]->file_is_downloadable) {
                 $table[$row][$col] .= '<div class="price"><div id="productPrice' . $product->virtuemart_product_id . '" class="product-price">';
                 if ($product->product_unit && VmConfig::get('vm_price_show_packaging_pricelabel')) {
@@ -160,15 +155,13 @@ if (!empty($prods)) {
             }
 
             $row = 4;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_desc">';
+            $table[$row][$col] = '<div class="comare_desc">';
             if (!empty($product->product_s_desc)) {
                 $table[$row][$col] .= '<div class="product_s_desc">' . shopFunctionsF::limitStringByWord($product->product_s_desc, 150, '...') . '</div>';
             }
             $table[$row][$col] .= '</div>';
             $row = 5;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_brand">';
+            $table[$row][$col] = '<div class="comare_brand">';
             if (!empty($text)) {
                 $table[$row][$col] .= $text;
             } else {
@@ -177,8 +170,7 @@ if (!empty($prods)) {
             $table[$row][$col] .= '</div>';
 
             $row = 6;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_stock">';
+            $table[$row][$col] = '<div class="comare_stock">';
             if ($product->product_in_stock >= 1) {
                 $table[$row][$col] .= '<div class="stock"></span><span class="green">' . JText::_('DR_IN_STOCK') . '</span> ' . $product->product_in_stock . ' ' . JText::_('DR_ITEMS') . '</div>';
             } else {
@@ -187,14 +179,12 @@ if (!empty($prods)) {
             $table[$row][$col] .= '</div>';
 
             $row = 7;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_code">';
+            $table[$row][$col] = '<div class="comare_code">';
             $table[$row][$col] .= '<div class="code"></span>' . $product->product_sku . '</div>';
             $table[$row][$col] .= '</div>';
 
             $row = 8;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_weight">';
+            $table[$row][$col] = '<div class="comare_weight">';
             if ($product->product_weight > 0) {
                 $table[$row][$col] .= '<div>' . $product->product_weight . $product->product_weight_uom . '</div>';
             } else {
@@ -202,16 +192,14 @@ if (!empty($prods)) {
             }
             $table[$row][$col] .= '</div>';
             $row = 9;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_dim">';
+            $table[$row][$col] = '<div class="comare_dim">';
             if (($product->product_length > 0) || ($product->product_width > 0) || ($product->product_height > 0)) {
                 $table[$row][$col] .= '<div>' . $product->product_length . $product->product_lwh_uom . ' x ' . $product->product_width . $product->product_lwh_uom . ' x ' . $product->product_height . $product->product_lwh_uom . '</div>';
             } else {
                 $table[$row][$col] .= '<div>' . JText::_('EMPTY') . '</div>';
             }
             $row = 10;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '</div>';
+            $table[$row][$col] = '</div>';
             $table[$row][$col] .= '<div class="comare_pack">';
             if ($product->product_packaging > 0) {
                 $table[$row][$col] .= '<div>' . $product->product_packaging . $product->product_unit . '</div>';
@@ -220,8 +208,7 @@ if (!empty($prods)) {
             }
             $table[$row][$col] .= '</div>';
             $row = 11;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_unit">';
+            $table[$row][$col] = '<div class="comare_unit">';
             if ($product->product_box) {
                 $table[$row][$col] .= '<div>' . $product->product_box . '</div>';
             } else {
@@ -230,9 +217,7 @@ if (!empty($prods)) {
             $table[$row][$col] .= '</div>';
 
             $row = 12;
-            $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_action">';
-
+            $table[$row][$col] = '<div class="comare_action">';
 
             if (!VmConfig::get('use_as_catalog', 0) and !empty($product->prices['salesPrice'])) {
                 $table[$row][$col] .= '<div class="addtocart-area2">';
