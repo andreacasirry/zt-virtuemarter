@@ -45,10 +45,8 @@ for ($i = 0; $i < $num; $i++) {
 <script type="text/javascript">
     jQuery(document).ready(function () {
         jQuery('.more_product').click(function () {
-
             var base_url = jQuery('.base_url').val();
             var num = jQuery('.num_plus').val();
-            alert(num);
             num = parseFloat(num);
             jQuery.ajax({
                 url: base_url,
