@@ -44,22 +44,17 @@ for ($i = 0; $i < $num; $i++) {
 <!--ajax-->
 <script type="text/javascript">
     jQuery(document).ready(function () {
+        var base_url = jQuery('.base_url').val();
+        var product_per_row = parseInt(jQuery('.num_plus').val());
         jQuery('.more_product').click(function () {
-            var base_url = jQuery('.base_url').val();
-            var num = jQuery('.num_plus').val();
-            num = parseFloat(num);
+            var num = parseInt(jQuery('.num_plus').val());
             jQuery.ajax({
                 url: base_url,
                 type: 'POST',
                 cache: false,
                 data: 'product=' + num,
                 success: function (string) {
-
-                    //----------------$$$-------------------------
-
-                    //----------------end $$$---------------------
-                    var num = parseFloat(jQuery('.num_plus').val());
-                    num = num + 4;
+                    num = num + product_per_row;
                     if (string) {
                         jQuery('#products_require').html('');
                         jQuery('#products_require').append(string);
