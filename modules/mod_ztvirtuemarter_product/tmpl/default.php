@@ -1,9 +1,11 @@
 <?php // no direct access
 defined ('_JEXEC') or die('Restricted access');
+
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
 vmJsApi::jPrice();
 $url_file = JURI::root(true);
 $product_number = 0;
+$productss = array();
 for($i=0; $i<strlen($url_file);$i++){
     if($url_file[$i] == '/'){
         $product_number = $i;

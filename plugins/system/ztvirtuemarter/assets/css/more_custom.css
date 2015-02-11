@@ -611,7 +611,7 @@
 #quick-view-scroll .mCSB_scrollTools .mCSB_buttonDown,
 #quick-view-scroll .mCSB_scrollTools .mCSB_buttonLeft,
 #quick-view-scroll .mCSB_scrollTools .mCSB_buttonRight {
-    background-image: url(../assets/mCSB_buttons.png);
+    background-image: url(../assets/css/mCSB_buttons.png);
     background-repeat: no-repeat;
     opacity: 0.4;
     filter: "alpha(opacity=40)";
