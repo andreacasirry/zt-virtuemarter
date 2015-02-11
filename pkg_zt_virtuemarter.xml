@@ -13,10 +13,10 @@
 
     <scriptfile>pkg_zt_virtuemarter.php</scriptfile>
     <files folder="source">
-        <folder type="plugin" id="zt_quickviewproduct" group="system">plg_zt_quickviewproduct</folder>
         <folder type="plugin" id="ztvirtuemarter" group="system">plg_ztvirtuemarter</folder>
         <folder type="component" id="com_ztvirtuemarter" client="site">com_ztvirtuemarter</folder>
         <folder type="module" id="mod_zt_comparelist" client="site">mod_zt_comparelist</folder>
         <folder type="module" id="mod_zt_wishlist" client="site">mod_zt_wishlist</folder>
+        <folder type="module" id="mod_ztvirtuemarter_product" client="site">mod_ztvirtuemarter_product</folder>
     </files>
 </extension>
