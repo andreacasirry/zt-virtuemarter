@@ -214,7 +214,7 @@ class plgSystemZtvirtuemarter extends JPlugin
                             if ($j > 1) {
                                 ?>
                                 <div id="gallery_01" class="additional-images <?php echo $class; ?>">
-                                    <ul id="carousel" class="paginat jcarousel-skin-tango">
+                                    <ul id="carousel" class=" quickview_carousel paginat jcarousel-skin-tango">
                                         <?php
                                         for ($i = 0; $i < $j; $i++) {
                                             ?>

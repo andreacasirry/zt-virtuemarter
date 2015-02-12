@@ -26,8 +26,9 @@ function quick_btn(product_id) {
             jQuery(function () {
                 jQuery('.product-custom select').styler().trigger('refresh');
             });
-            jQuery('#carousel').jcarousel({
-                scroll: 1
+            jQuery('.quickview_carousel').jcarousel({
+                scroll: 1,
+                itemFallbackDimension: 300
             });
             jQuery('.productdetails-view .addtocart-bar2 .hasTooltip').tooltip();
             jQuery('#quick-view').css({
