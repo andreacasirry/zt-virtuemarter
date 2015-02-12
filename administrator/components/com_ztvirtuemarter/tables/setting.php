@@ -19,16 +19,4 @@ class ZtvirtuemarterTableSetting extends JTable
     {
         parent::__construct('#__ztvirtuemarter', 'id', $db);
     }
-
-    function apply() {
-        echo 'lol';
-        die;
-    }
-
-    function save() {
-        echo 'lol2';
-        die;
-    }
-
-
 }

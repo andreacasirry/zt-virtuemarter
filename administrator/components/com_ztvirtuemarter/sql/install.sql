@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS `#__wishlists` (
 
 CREATE TABLE IF NOT EXISTS `#__ztvirtuemarter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `setting` varchar(25) NOT NULL,
+  `setting` LONGTEXT NOT NULL,
    PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
-

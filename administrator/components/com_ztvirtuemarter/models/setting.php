@@ -26,8 +26,7 @@ class ZtvirtuemarterModelSetting extends JModelAdmin
         // Get the form.
         $form = $this->loadForm('com_ztvirtuemarter.edit', 'setting',
             array('control' => 'jform', 'load_data' => $loadData));
-        var_dump($form);
-        //die;
+
         if (empty($form))
         {
             return false;
