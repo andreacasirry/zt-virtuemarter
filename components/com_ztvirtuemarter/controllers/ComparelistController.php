@@ -58,7 +58,8 @@ class ComparelistController extends JControllerLegacy
         if (empty($itemID) && !empty($items[0]->id)) {
             $itemID = $items[0]->id;
         }
-
+        VmConfig::loadConfig();
+        VmConfig::loadJLang('com_ztvirtuemarter', true);
         $product_model = VmModel::getModel('product');
         if (!isset($_SESSION['compare_ids'])) $_SESSION['compare_ids'] = array();
         if (isset($_SESSION['compare_ids']) && (!in_array($_POST['product_id'], $_SESSION['compare_ids'])) && (count($_SESSION['compare_ids']) <= 3)) {
@@ -155,8 +156,9 @@ class ComparelistController extends JControllerLegacy
 
     public function removed()
     {
-        error_reporting('E_ALL');
-
+        //error_reporting('E_ALL');
+        VmConfig::loadConfig();
+        VmConfig::loadJLang('com_ztvirtuemarter', true);
         if (isset($_SESSION['compare_ids'])) ;
         $product_model = VmModel::getModel('product');
         if (isset($_POST['remove_id'])) ;

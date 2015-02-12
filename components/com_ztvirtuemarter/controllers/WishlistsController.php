@@ -57,14 +57,17 @@ class WishlistsController extends JControllerLegacy
             $itemID = $items[0]->id;
         }
 
-
+        VmConfig::loadConfig();
+        VmConfig::loadJLang('com_ztvirtuemarter', true);
         $product_model = VmModel::getModel('product');
+
 
         $user = JFactory::getUser();
         if (!isset($_SESSION['wishlist_ids'])) $_SESSION['wishlist_ids'] = array();
         if ($user->guest) {
             if ((!in_array($_POST['product_id'], $_SESSION['wishlist_ids']))) {
                 $product = array($_POST['product_id']);
+
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
                 //var_dump($prods);
@@ -210,8 +213,9 @@ class WishlistsController extends JControllerLegacy
 
     public function removed()
     {
-        error_reporting('E_ALL');
-
+        //error_reporting('E_ALL');
+        VmConfig::loadConfig();
+        VmConfig::loadJLang('com_ztvirtuemarter', true);
         if (isset($_SESSION['wishlist_ids'])) ;
         $product_model = VmModel::getModel('product');
         if (isset($_POST['remove_id'])) ;

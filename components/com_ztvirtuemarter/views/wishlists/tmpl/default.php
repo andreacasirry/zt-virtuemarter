@@ -12,6 +12,8 @@ JHtml::_('behavior.modal');
 if (!class_exists('shopFunctionsF')) require(JPATH_SITE . '/components/com_virtuemart/helpers/shopfunctionsf.php');
 $user = JFactory::getUser();
 $mainframe = Jfactory::getApplication();
+VmConfig::loadConfig();
+VmConfig::loadJLang('com_ztvirtuemarter', true);
 $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id', 0));
 if (!$user->guest) {
     if (isset($_SESSION['wishlist_ids'])) {

@@ -81,7 +81,6 @@ class plgSystemZtvirtuemarter extends JPlugin
     function onAfterInitialise()
     {
         if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
-
         $input = JFactory::getApplication()->input;
         if ($input->getCmd('action') !== 'test') {
             return;
@@ -103,6 +102,8 @@ class plgSystemZtvirtuemarter extends JPlugin
             if (!class_exists('VirtueMartModelRatings')) {
                 JLoader::import('ratings', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models');
             }
+            VmConfig::loadConfig();
+            VmConfig::loadJLang('com_virtuemart', true);
             $product_model = VmModel::getModel('product');
             $prods = array($_GET['product_id']);
 
