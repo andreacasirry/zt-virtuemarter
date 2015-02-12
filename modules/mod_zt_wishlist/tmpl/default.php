@@ -25,10 +25,12 @@ foreach ( $items as $item ) {
 ?>
 <div class="ajax-dropdown vmgroup<?php echo $params->get('moduleclass_sfx') ?>" id="mod_wishlists">
     <div class="seldcomp" id="butseldwish" >
-        <a class="btn-wishlist" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid='.$itemid.''); ?>">
-            <i class="fa fa-heart-o hover-dropdown"></i>
-            <span><?php if ($user->guest) { echo count($_SESSION['wishlist_ids']);} else { echo count($allprod['id']); }?></span>
-        </a>
+        <?php if($ztvirtuemarter_params->enable_wishlist == '1') {?>
+            <a class="btn-wishlist" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid='.$itemid.''); ?>">
+                <i class="fa fa-heart-o hover-dropdown"></i>
+                <span><?php if ($user->guest) { echo count($_SESSION['wishlist_ids']);} else { echo count($allprod['id']); }?></span>
+            </a>
+        <?php } ?>
     </div>
     <div class="zt-cart-inner">
         <div class="vmproduct">

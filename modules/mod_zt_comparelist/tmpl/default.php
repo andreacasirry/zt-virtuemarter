@@ -25,6 +25,7 @@ foreach ($items as $item) {
 
 <div class="ajax-dropdown vmgroup<?php echo $params->get('moduleclass_sfx') ?>" id="mod_compare">
     <div class="seldcomp" id="butseldcomp">
+        <?php if($ztvirtuemarter_params->enable_compare == '1') { ?>
         <a class="btn-compare"
            href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
             <i class="fa fa-files-o hover-dropdown"></i>
@@ -33,6 +34,7 @@ foreach ($items as $item) {
            echo count($_SESSION['compare_ids']);
            ?></span>
         </a>
+        <?php } ?>
     </div>
     <div class="zt-cart-inner">
         <div class="vmproduct">
