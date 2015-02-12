@@ -22,22 +22,6 @@ $headerText = $params->get('headerText', ''); // Display a Header Text
 $footerText = $params->get('footerText', ''); // Display a footerText
 $Product_group = $params->get('product_group', 'featured'); // Display a footerText
 
-$db = JFactory::getDbo();
-$query = $db->getQuery(true);
-$query->select('*');
-$query->from($db->quoteName('#__ztvirtuemarter'));
-$query->where($db->quoteName('id') . ' = 1');
-$db->setQuery($query);
-$results = $db->loadObjectList();
-$ztvirtuemarter_params = array(
-    'enable_wishlist' => '1',
-    'enable_compare' => '1',
-    'enable_quickview' => '1'
-);
-if(isset($results[0]) && !empty($results[0]->setting)) {
-    $ztvirtuemarter_params = json_decode($results[0]->setting);
-}
-
 $mainframe = Jfactory::getApplication();
 $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', vRequest::getInt('virtuemart_currency_id', 0));
 

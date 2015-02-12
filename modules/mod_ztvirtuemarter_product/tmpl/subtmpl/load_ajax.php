@@ -107,9 +107,9 @@ if ($products_per_row > 1) {
                         echo '</div>';
                         ?>
                         <div class="product_hover zt-product-content">
-                            <?php if($ztvirtuemarter_params->enable_wishlist == '1') plgSystemZtvirtuemarter::addWishlistButton($product); ?>
-                            <?php if($ztvirtuemarter_params->enable_compare == '1') plgSystemZtvirtuemarter::addCompareButton($product); ?>
-                            <?php if($ztvirtuemarter_params->enable_quickview == '1') { ?><input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>"><?php } ?>
+                            <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
+                            <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                            <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
                         </div>
                     </div>
                 </div>
