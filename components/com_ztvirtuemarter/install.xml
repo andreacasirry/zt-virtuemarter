@@ -25,7 +25,7 @@
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.ini</language>
     </languages>
-    
+
     <install>
         <sql>
             <file charset="utf8" driver="mysql">sql/install.sql</file>
