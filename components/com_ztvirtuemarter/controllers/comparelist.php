@@ -1,7 +1,7 @@
 <?php
 /**
- * @package    VirtueMart Zooex
- * @subpackage VirtueMart Zooex Components
+ * @package    ZT VirtueMarter
+ * @subpackage ZT VirtueMarter Components
  * @author       ZooTemplate.com
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
@@ -23,7 +23,7 @@ if (!class_exists('VirtueMartModelRatings')) {
 }
 
 
-class ComparelistController extends JControllerLegacy
+class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 {
 
     public function add()

@@ -11,7 +11,7 @@
 // No direct access
 defined('_JEXEC') or die;
 
-class WishlistsModelWishlists extends JModelLegacy
+class ZtvirtuemarterModelWishlists extends JModelLegacy
 {
     /**
      * @var JInput|null

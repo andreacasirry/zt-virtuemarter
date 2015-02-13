@@ -1,7 +1,7 @@
 <?php
 /**
- * @package    VirtueMart Zooex
- * @subpackage VirtueMart Zooex Components
+ * @package    ZT VirtueMarter
+ * @subpackage ZT VirtueMarter Components
  * @author       ZooTemplate.com
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
@@ -24,7 +24,7 @@ if (!class_exists('VirtueMartModelRatings')) {
     JLoader::import('ratings', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models');
 }
 
-class WishlistsController extends JControllerLegacy
+class ZtvirtuemarterControllerWishlists extends JControllerLegacy
 {
 
     public function add()

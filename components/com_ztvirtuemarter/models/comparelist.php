@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die;
 
-class ComparelistModelComparelist extends JModelLegacy
+class ZtvirtuemarterModelComparelist extends JModelLegacy
 {
     private $input;
 

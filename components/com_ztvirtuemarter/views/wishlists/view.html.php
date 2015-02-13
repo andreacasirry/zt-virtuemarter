@@ -1,6 +1,6 @@
 <?php
 /**
- * @package    VirtueMart Zooex
+ * @package    ZT VirtueMarter
  * @subpackage Components
  * @author       ZooTemplate.com
  * @link http://zootemplate.com
@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
  *
  * @package    HelloWorld
  */
-class WishlistsViewWishlists extends JViewLegacy
+class ZtvirtuemarterViewWishlists extends JViewLegacy
 {
     function display($tpl = null)
     {

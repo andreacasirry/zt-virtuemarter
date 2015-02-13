@@ -1,7 +1,7 @@
 <?php
 defined( '_JEXEC' ) or die;
 
-class ComparelistViewComparelist extends JViewLegacy
+class ZtvirtuemarterViewComparelist extends JViewLegacy
 {
 	function display($tpl = null) 
 	{

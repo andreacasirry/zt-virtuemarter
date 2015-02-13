@@ -1,7 +1,7 @@
 <?php
 /**
- * @package    VirtueMart Zooex
- * @subpackage VirtueMart Zooex Components
+ * @package    ZT VirtueMarter
+ * @subpackage ZT VirtueMarter Components
  * @author       ZooTemplate.com
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
 $input = JFactory::getApplication()->input;
 $view = $input->getCmd('view');
 $task = $input->getCmd('task');
-$controllerClass = ucfirst($view) . 'Controller';
+$controllerClass =  'ZtvirtuemarterController' . ucfirst($view);
 $controllerPath = 'controllers/' . $view . '.php';
 require_once( $controllerPath );
 
@@ -24,4 +24,3 @@ if (class_exists($controllerClass)) {
     $controller->execute($task);
     $controller->redirect();
 }
-
