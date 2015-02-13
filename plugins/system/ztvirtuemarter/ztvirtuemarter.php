@@ -72,8 +72,8 @@ class plgSystemZtvirtuemarter extends JPlugin
                         });
                     });';
                 $doc->addScriptDeclaration($jsq);
-                $doc->addScript(JURI::root(true) . '/plugins/system/ztvirtuemarter/assets/js/custom.js');
-                $doc->addStyleSheet(JURI::root(true) . '/plugins/system/ztvirtuemarter/assets/css/more_custom.css');
+                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/custom.js');
+                $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/more_custom.css');
             }
         }
     }
@@ -82,7 +82,7 @@ class plgSystemZtvirtuemarter extends JPlugin
     {
         if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
         $input = JFactory::getApplication()->input;
-        if ($input->getCmd('action') !== 'test') {
+        if ($input->getCmd('action') !== 'quickview') {
             return;
         }
         $region = $input->getInt('product_id', 0);
@@ -146,8 +146,8 @@ class plgSystemZtvirtuemarter extends JPlugin
             <div id="quick-view-scroll">
 
             <div id="productdetailsview" class="productdetails-view quick">
-            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/ztvirtuemarter/assets/js/more_custom.js"></script>
-            <script type="text/javascript" src="<?php echo JUri::base(); ?>plugins/system/ztvirtuemarter/assets/js/shortcodes.js"></script>
+            <script type="text/javascript" src="<?php echo JUri::root(); ?>/plugins/system/ztvirtuemarter/assets/js/more_custom.js"></script>
+            <script type="text/javascript" src="<?php echo JUri::root(); ?>/plugins/system/ztvirtuemarter/assets/js/shortcodes.js"></script>
             <div class="wrapper2">
             <div class="fleft">
                 <div class="image_show_quick">

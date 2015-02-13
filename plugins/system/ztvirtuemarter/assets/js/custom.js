@@ -5,7 +5,7 @@ function quick_btn(product_id) {
     jQuery('#quick_view_overlay').show();
     jQuery('.AjaxPreloader').show();
     jQuery.ajax({
-        url: 'index.php?action=test',
+        url: 'index.php?action=quickview',
         type: 'get',
         data: 'product_id=' + product_id,
         success: function (data) {
