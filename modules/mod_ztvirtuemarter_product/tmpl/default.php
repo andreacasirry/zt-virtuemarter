@@ -13,6 +13,9 @@ for ($i = 0; $i < strlen($url_file); $i++) {
 }
 $url_file = substr($url_file, $product_number);
 $num = $products_per_row;
+if(!isset($_POST['product'])) {
+    $_POST['product'] = $_GET['product'];
+}
 if (isset($_POST['product'])) {
     $num = intval($_POST['product']) + $products_per_row;
     if ($num > count($products)) {
@@ -50,7 +53,7 @@ for ($i = 0; $i < $num; $i++) {
             jQuery.fancybox.showActivity();
             var num = parseInt(jQuery('.num_plus').val());
             jQuery.ajax({
-                url: base_url,
+                url: 'index.php?product='+num,
                 type: 'POST',
                 cache: false,
                 data: 'product=' + num,

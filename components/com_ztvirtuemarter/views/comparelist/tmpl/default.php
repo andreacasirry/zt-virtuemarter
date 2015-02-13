@@ -18,10 +18,10 @@ vmJsApi::jPrice();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
-$session = JFactory::getSession();
-$compare_ids = $session->get('compare_ids', array(), 'compare_product');
+if (isset($_SESSION['compare_ids']))
+    $products = $_SESSION['compare_ids'];
 
-$prods = $product_model->getProducts($compare_ids);
+$prods = $product_model->getProducts($products);
 $product_model->addImages($prods, 1);
 $currency = CurrencyDisplay::getInstance();
 ?>
@@ -100,7 +100,7 @@ if (!empty($prods)) {
         $maxrating = VmConfig::get('vm_maximum_rating_scale', 5);
         $ratingwidth = ($r * 100) / $maxrating;
         $text = $product->mf_name;
-        if (!empty($compare_ids)) {
+        if (!empty($products)) {
 
             $row = 0;
             $tdclass[$col] = 'compare_prod_' . $product->virtuemart_product_id;
