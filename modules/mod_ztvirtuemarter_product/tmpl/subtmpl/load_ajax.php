@@ -38,7 +38,9 @@ if ($products_per_row > 1) {
                                 $saleClass = ' product-sale';
                             }
 
-                            if ($date - $createddate <= 3) {
+                            $dateDiff = date_diff(date_create(), date_create($product->product_available_date));
+
+                            if ($dateDiff->days < $new_product_from) {
                                 $htmlLabel .= '<div class="label-product label-new">New</div>';
                             }
                             if ($sale > 0) {

@@ -21,7 +21,7 @@ $show_addtocart = (bool)$params->get('show_addtocart', 1); // Display the "Add-t
 $headerText = $params->get('headerText', ''); // Display a Header Text
 $footerText = $params->get('footerText', ''); // Display a footerText
 $Product_group = $params->get('product_group', 'featured'); // Display a footerText
-
+$new_product_from = $params->get('new_product_from', '7');
 $mainframe = Jfactory::getApplication();
 $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', vRequest::getInt('virtuemart_currency_id', 0));
 
