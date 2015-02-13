@@ -31,7 +31,7 @@ foreach ($items as $item) {
             <i class="fa fa-files-o hover-dropdown"></i>
             <span>
 		   <?php
-           echo count($_SESSION['compare_ids']);
+           echo count($compare_ids);
            ?></span>
         </a>
         <?php } ?>

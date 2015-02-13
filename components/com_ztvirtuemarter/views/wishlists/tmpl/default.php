@@ -14,10 +14,12 @@ $user = JFactory::getUser();
 $mainframe = Jfactory::getApplication();
 VmConfig::loadConfig();
 VmConfig::loadJLang('com_ztvirtuemarter', true);
+$session = JFactory::getSession();
+$wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
 $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id', 0));
 if (!$user->guest) {
-    if (isset($_SESSION['wishlist_ids'])) {
-        $dbIds = $_SESSION['wishlist_ids'];
+    if (!empty( $wishlist_ids)) {
+        $dbIds = $wishlist_ids;
         $db = JFactory::getDBO();
         $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
         $db->setQuery($q);
@@ -38,7 +40,7 @@ if (!$user->guest) {
                 $db->queryBatch();
             }
         }
-        //unset($_SESSION['wishlist_ids']);
+        //unset($wishlist_ids);
     }
 }
 
@@ -57,7 +59,7 @@ if (!$user->guest) {
     }
     $products = $allprod['id'];
 } else {
-    $products = $_SESSION['wishlist_ids'];
+    $products = $wishlist_ids;
 }
 
 

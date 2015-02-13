@@ -12,13 +12,14 @@ defined('_JEXEC') or die('Restricted access');
 $prods = array();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
-if (!empty($_SESSION['compare_ids'])) {
-    $products = $_SESSION['compare_ids'];
+
+$session = JFactory::getSession();
+$compare_ids = $session->get('compare_ids', array(), 'compare_product');
+if (!empty($compare_ids)) {
+    $products = $compare_ids;
     $prods = $product_model->getProducts($products);
     $product_model->addImages($prods, 1);
     $currency = CurrencyDisplay::getInstance();
-}else {
-    $_SESSION['compare_ids'] = null;
 }
 require JModuleHelper::getLayoutPath('mod_zt_comparelist', $params->get('layout', 'default'));
 ?>

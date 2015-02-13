@@ -28,7 +28,7 @@ foreach ( $items as $item ) {
         <?php if(plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_wishlist == '1') {?>
             <a class="btn-wishlist" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid='.$itemid.''); ?>">
                 <i class="fa fa-heart-o hover-dropdown"></i>
-                <span><?php if ($user->guest) { echo count($_SESSION['wishlist_ids']);} else { echo count($allprod['id']); }?></span>
+                <span><?php if ($user->guest) { echo count($wishlist_ids);} else { echo count($allprod['id']); }?></span>
             </a>
         <?php } ?>
     </div>

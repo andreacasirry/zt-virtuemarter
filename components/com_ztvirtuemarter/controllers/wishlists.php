@@ -35,6 +35,8 @@ class WishlistsController extends JControllerLegacy
         if (empty($lang)) $lang = '*';
 
         $component = JComponentHelper::getComponent('com_ztvirtuemarter');
+        $session = JFactory::getSession();
+        $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
 
         $db = JFactory::getDbo();
         $q = 'SELECT * FROM `#__menu` WHERE `component_id` = "' . $component->id . '" and `language` = "' . $lang . '"';
@@ -65,15 +67,14 @@ class WishlistsController extends JControllerLegacy
             $_POST['product_id'] = $_GET['product_id'];
         }
         $user = JFactory::getUser();
-        if (!isset($_SESSION['wishlist_ids'])) $_SESSION['wishlist_ids'] = array();
         if ($user->guest) {
-            if ((!in_array($_POST['product_id'], $_SESSION['wishlist_ids']))) {
+            if (!in_array($_POST['product_id'], $wishlist_ids)) {
                 $product = array($_POST['product_id']);
 
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
  ;
-                $_SESSION['wishlist_ids'][] = $_POST['product_id'];
+                $wishlist_ids[] = $_POST['product_id'];
                 foreach ($prods as $product) {
                     //var_dump($product);
                     $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
@@ -93,12 +94,12 @@ class WishlistsController extends JControllerLegacy
                     $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
                     $product_ids = $product->virtuemart_product_id;
-                    $totalwishlists = count($_SESSION['wishlist_ids']);
+                    $totalwishlists = count($wishlist_ids);
                 }
                 $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $img_prod, $prod_name, $product_ids);
 
             } else {
-                if (in_array($_POST['product_id'], $_SESSION['wishlist_ids'])) {
+                if (in_array($_POST['product_id'], $wishlist_ids)) {
                     $product = array($_POST['product_id']);
                     $prods = $product_model->getProducts($product);
                     $product_model->addImages($prods, 1);
@@ -205,12 +206,14 @@ class WishlistsController extends JControllerLegacy
 
             }
         }
+        $session->set('wishlist_ids', $wishlist_ids, 'wishlist_product');
+        exit;
     }
 
     public function showJSON($message = '', $title = '', $img_prod2 = '', $btnrem = '', $btnwishlists = '', $btnwishlistsback = '', $totalwishlists = '', $recent = '', $img_prod = '', $prod_name = '', $product_ids = '')
     {
         echo json_encode(array('message' => $message, 'title' => $title, 'totalwishlists' => $totalwishlists, 'recent' => $recent, 'img_prod' => $img_prod, 'img_prod2' => $img_prod2, 'btnrem' => $btnrem, 'prod_name' => $prod_name, 'product_ids' => $product_ids, 'btnwishlists' => $btnwishlists, 'btnwishlistsback' => $btnwishlistsback));
-        exit;
+
     }
 
     public function removed()
@@ -218,7 +221,10 @@ class WishlistsController extends JControllerLegacy
         //error_reporting('E_ALL');
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
-        if (isset($_SESSION['wishlist_ids'])) ;
+        $session = JFactory::getSession();
+        $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+
+        if (isset($wishlist_ids)) ;
         $product_model = VmModel::getModel('product');
         if (isset($_POST['remove_id'])) ;
         //var_dump($_SESSION['compare_ids']);
@@ -226,9 +232,9 @@ class WishlistsController extends JControllerLegacy
         if ($user->guest) {
 
             if ($_POST['remove_id']) {
-                foreach ($_SESSION['wishlist_ids'] as $k => $v) {
+                foreach ($wishlist_ids as $k => $v) {
                     if ($_POST['remove_id'] == $v) {
-                        unset($_SESSION['wishlist_ids'][$k]);
+                        unset($wishlist_ids[$k]);
                     }
 
                 }
@@ -237,8 +243,9 @@ class WishlistsController extends JControllerLegacy
                 foreach ($prods as $product) {
                     $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
                 }
-                $totalrem = count($_SESSION['wishlist_ids']);
+                $totalrem = count($wishlist_ids);
             }
+
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
 
         } else {
@@ -262,11 +269,12 @@ class WishlistsController extends JControllerLegacy
 
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
         }
+        $session->set('wishlist_ids', $wishlist_ids, 'wishlist_product');
+        exit;
     }
 
     public function removeJSON($rem = '', $totalrem = '')
     {
         echo json_encode(array('rem' => $rem, 'totalrem' => $totalrem));
-        exit;
     }
 }

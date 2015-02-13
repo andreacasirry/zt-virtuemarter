@@ -32,7 +32,12 @@ class ComparelistController extends JControllerLegacy
         $itemID = '';
 
         $lang = JFactory::getLanguage()->getTag();
+        $session = JFactory::getSession();
+        $compare_ids = $session->get('compare_ids', array(), 'compare_product');
         JFactory::getLanguage()->load('com_ztvirtuemarter');
+        VmConfig::loadConfig();
+        VmConfig::loadJLang('com_ztvirtuemarter', true);
+
         if (empty($lang))
             $lang = '*';
 
@@ -63,17 +68,16 @@ class ComparelistController extends JControllerLegacy
             $_POST['product_id'] = $_GET['product_id'];
         }
 
-        VmConfig::loadConfig();
-        VmConfig::loadJLang('com_ztvirtuemarter', true);
+
         $product_model = VmModel::getModel('product');
-        if (!isset($_SESSION['compare_ids'])) $_SESSION['compare_ids'] = array();
-        if (isset($_SESSION['compare_ids']) && (!in_array($_POST['product_id'], $_SESSION['compare_ids'])) && (count($_SESSION['compare_ids']) <= 3)) {
+
+        if (isset($compare_ids) && (!in_array($_POST['product_id'], $compare_ids)) && (count($compare_ids) <= 3)) {
 
             $product = array($_POST['product_id']);
             $prods = $product_model->getProducts($product);
             $product_model->addImages($prods, 1);
             //var_dump($prods);
-            $_SESSION['compare_ids'][] = $_POST['product_id'];
+            $compare_ids[] = $_POST['product_id'];
             foreach ($prods as $product) {
                 //var_dump($product);
                 $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
@@ -93,14 +97,14 @@ class ComparelistController extends JControllerLegacy
                 $btncompareback = '<a id="compare_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                 $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
                 $product_ids = $product->virtuemart_product_id;
-                if (!empty($_SESSION['compare_ids'])) {
-                    $totalcompare = count($_SESSION['compare_ids']);
+                if (!empty($compare_ids)) {
+                    $totalcompare = count($compare_ids);
                 }
             }
             $this->showJSON('<span class="successfully">' . JText::_('COM_COMPARE_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btncompare, $btncompareback, $totalcompare, $recent, $img_prod, $prod_name, $product_ids);
 
         } else {
-            if (isset($_SESSION['compare_ids']) && !in_array($_POST['product_id'], $_SESSION['compare_ids'])) {
+            if ( !in_array($_POST['product_id'], $compare_ids)) {
                 $product = array($_POST['product_id']);
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
@@ -119,8 +123,8 @@ class ComparelistController extends JControllerLegacy
                     $btncompare = '<a id="compare_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_COMPARE') . '</a>';
                     $btncompareback = '<a id="compare_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
-                    if (!empty($_SESSION['compare_ids'])) {
-                        $totalcompare = count($_SESSION['compare_ids']);
+                    if (!empty($compare_ids)) {
+                        $totalcompare = count($compare_ids);
                     }
                 }
                 $this->showJSON('<span class="warning">' . JText::_('COM_COMPARE_MASSEDGE_MORE') . '</span>', '', '', '', $btncompare, $btncompareback, $totalcompare);
@@ -143,20 +147,21 @@ class ComparelistController extends JControllerLegacy
                     $btncompare = '<a id="compare_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_COMPARE') . '</a>';
                     $btncompareback = '<a id="compare_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
-                    if (!empty($_SESSION['compare_ids'])) {
-                        $totalcompare = count($_SESSION['compare_ids']);
+                    if (!empty($compare_ids)) {
+                        $totalcompare = count($compare_ids);
                     }
 
                 }
                 $this->showJSON('<span class="notification">' . JText::_('COM_COMPARE_MASSEDGE_ALLREADY_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btncompare, $btncompareback, $totalcompare);
             }
         }
+        $session->set('compare_ids', $compare_ids, 'compare_product');
+        exit;
     }
 
     public function showJSON($message = '', $title = '', $img_prod2 = '', $btnrem = '', $btncompare = '', $btncompareback = '', $totalcompare = '', $recent = '', $img_prod = '', $prod_name = '', $product_ids = '')
     {
         echo json_encode(array('message' => $message, 'title' => $title, 'totalcompare' => $totalcompare, 'recent' => $recent, 'img_prod' => $img_prod, 'img_prod2' => $img_prod2, 'btnrem' => $btnrem, 'prod_name' => $prod_name, 'product_ids' => $product_ids, 'btncompare' => $btncompare, 'btncompareback' => $btncompareback));
-        exit;
     }
 
     public function removed()
@@ -164,14 +169,16 @@ class ComparelistController extends JControllerLegacy
         //error_reporting('E_ALL');
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
-        if (isset($_SESSION['compare_ids'])) ;
+        $session = JFactory::getSession();
+        $compare_ids = $session->get('compare_ids', array(), 'compare_product');
+
         $product_model = VmModel::getModel('product');
         if (isset($_POST['remove_id'])) ;
-        //var_dump($_SESSION['compare_ids']);
+        //var_dump($compare_ids);
         if ($_POST['remove_id']) {
-            foreach ($_SESSION['compare_ids'] as $k => $v) {
+            foreach ($compare_ids as $k => $v) {
                 if ($_POST['remove_id'] == $v) {
-                    unset($_SESSION['compare_ids'][$k]);
+                    unset($compare_ids[$k]);
                 }
             }
             $prod = array($_POST['remove_id']);
@@ -179,9 +186,11 @@ class ComparelistController extends JControllerLegacy
             foreach ($prods as $product) {
                 $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
             }
-            $totalrem = count($_SESSION['compare_ids']);
+            $totalrem = count($compare_ids);
         }
-        $this->removeJSON('' . JText::_('COM_COMPARE_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_COMPARE_MASSEDGE_REM2') . '', $totalrem, $recentrem);
+        $session->set('compare_ids', $compare_ids, 'compare_product');
+        $this->removeJSON('' . JText::_('COM_COMPARE_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_COMPARE_MASSEDGE_REM2') . '', $totalrem);
+        exit;
     }
 
 

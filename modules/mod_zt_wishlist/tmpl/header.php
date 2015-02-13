@@ -30,7 +30,7 @@ foreach ( $items as $item ) {
         <div id="wishlist_total">
             <a class="wishlist_total heading" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid='.$itemid.''); ?>">
                 <i class="fa fa-heart-o"></i>
-                <span><?php if ($user->guest) { echo count($_SESSION['wishlist_ids']);} else { echo count($allprod['id']); }?></span>
+                <span><?php if ($user->guest) { echo count($wishlist_ids);} else { echo count($allprod['id']); }?></span>
             </a>
         </div>
     </div>

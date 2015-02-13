@@ -14,16 +14,19 @@ $user = JFactory::getUser();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
+$session = JFactory::getSession();
+$wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+
 $prods = array();
 if ($user->guest) {
-    if (!empty($_SESSION['wishlist_ids'])) {
-        $products = $_SESSION['wishlist_ids'];
+    if (!empty($wishlist_ids)) {
+        $products = $wishlist_ids;
         $prods = $product_model->getProducts($products);
         $product_model->addImages($prods, 1);
         $currency = CurrencyDisplay::getInstance();
 
     } else {
-        $_SESSION['wishlist_ids'] = null;
+        $wishlist_ids = null;
     }
 
 } else {
