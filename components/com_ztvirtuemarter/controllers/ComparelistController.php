@@ -58,6 +58,11 @@ class ComparelistController extends JControllerLegacy
         if (empty($itemID) && !empty($items[0]->id)) {
             $itemID = $items[0]->id;
         }
+
+        if(!isset($_POST['product_id'])) {
+            $_POST['product_id'] = $_GET['product_id'];
+        }
+
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $product_model = VmModel::getModel('product');
@@ -76,7 +81,7 @@ class ComparelistController extends JControllerLegacy
                 if (!empty($product->file_url_thumb)) {
                     $img_url = $product->file_url_thumb;
                 } else {
-                    $img_url = 'images/stories/virtuemart/noimage.gif';
+                    $img_url =  JURI::base().'images/stories/virtuemart/noimage.gif';
                 }
                 $prod_id = $product->virtuemart_product_id;
                 $img_prod = '<div class="compare-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
@@ -107,7 +112,7 @@ class ComparelistController extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $img_url = $product->file_url_thumb;
                     } else {
-                        $img_url = 'images/stories/virtuemart/noimage.gif';
+                        $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                     }
                     $img_prod2 = '<div class="compare-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemID . '');
@@ -131,7 +136,7 @@ class ComparelistController extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $img_url = $product->file_url_thumb;
                     } else {
-                        $img_url = 'images/stories/virtuemart/noimage.gif';
+                        $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                     }
                     $img_prod2 = '<div class="compare-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemID . '');

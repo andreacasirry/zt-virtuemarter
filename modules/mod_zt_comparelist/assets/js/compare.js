@@ -34,7 +34,7 @@ function removeCompare(remove_id) {
 function addToCompare(product_id) {
     jQuery.fancybox.showActivity();
     jQuery.ajax({
-        url: 'index.php?option=com_ztvirtuemarter&view=comparelist&task=add',
+        url: 'index.php?option=com_ztvirtuemarter&view=comparelist&task=add&product_id=' + product_id,
         type: 'post',
         data: 'product_id=' + product_id,
         dataType: 'json',

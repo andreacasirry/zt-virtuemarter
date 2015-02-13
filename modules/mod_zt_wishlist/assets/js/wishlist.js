@@ -35,7 +35,7 @@ function addToWishlists(product_id) {
     jQuery.fancybox.showActivity();
     jQuery('body > :first-child').prepend('<div class="overlay"></div><div class="loading"></div>');
     jQuery.ajax({
-        url: 'index.php?option=com_ztvirtuemarter&view=wishlists&task=add',
+        url: 'index.php?option=com_ztvirtuemarter&view=wishlists&task=add&product_id=' + product_id,
         type: 'post',
         data: 'product_id=' + product_id,
         dataType: 'json',

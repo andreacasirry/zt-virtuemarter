@@ -61,7 +61,9 @@ class WishlistsController extends JControllerLegacy
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $product_model = VmModel::getModel('product');
 
-
+        if(!isset($_POST['product_id'])) {
+            $_POST['product_id'] = $_GET['product_id'];
+        }
         $user = JFactory::getUser();
         if (!isset($_SESSION['wishlist_ids'])) $_SESSION['wishlist_ids'] = array();
         if ($user->guest) {
@@ -70,7 +72,7 @@ class WishlistsController extends JControllerLegacy
 
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
-                //var_dump($prods);
+ ;
                 $_SESSION['wishlist_ids'][] = $_POST['product_id'];
                 foreach ($prods as $product) {
                     //var_dump($product);
@@ -79,7 +81,7 @@ class WishlistsController extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $img_url = $product->file_url_thumb;
                     } else {
-                        $img_url = 'images/stories/virtuemart/noimage.gif';
+                        $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                     }
                     $prod_id = $product->virtuemart_product_id;
                     $img_prod = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
@@ -108,7 +110,7 @@ class WishlistsController extends JControllerLegacy
                         if (!empty($product->file_url_thumb)) {
                             $img_url = $product->file_url_thumb;
                         } else {
-                            $img_url = 'images/stories/virtuemart/noimage.gif';
+                            $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                         }
                         $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                         $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid=' . $itemID . '');
@@ -163,7 +165,7 @@ class WishlistsController extends JControllerLegacy
                         if (!empty($product->file_url_thumb)) {
                             $img_url = $product->file_url_thumb;
                         } else {
-                            $img_url = 'images/stories/virtuemart/noimage.gif';
+                            $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                         }
                         $prod_id = $product->virtuemart_product_id;
                         $img_prod = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
@@ -191,7 +193,7 @@ class WishlistsController extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $img_url = $product->file_url_thumb;
                     } else {
-                        $img_url = 'images/stories/virtuemart/noimage.gif';
+                        $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                     }
                     $img_prod2 = '<div class="image fleft"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid=' . $itemID . '');

@@ -36,7 +36,7 @@ for ($i = 0; $i < $num; $i++) {
     require('subtmpl/load_ajax.php');
     ?>
 </div>
-<input type="hidden" class="base_url" value="<?php JURI::root(); ?>"/>
+<input type="hidden" class="base_url" value="<?php echo JURI::root(); ?>"/>
 <input type="hidden" class="num_plus" value="<?php echo $products_per_row;?>"/>
 <div class="more-product">
     <a class="more_product readmore" style="cursor:pointer">More Products...</a>
