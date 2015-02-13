@@ -24,7 +24,7 @@ if (!class_exists('VirtueMartModelRatings')) {
     JLoader::import('ratings', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models');
 }
 
-class ZtvirtuemarterControllerWishlists extends JControllerLegacy
+class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 {
 
     public function add()
@@ -50,7 +50,7 @@ class ZtvirtuemarterControllerWishlists extends JControllerLegacy
         }
 
         foreach ($items as $item) {
-            if (strstr($item->link, 'view=wishlists')) {
+            if (strstr($item->link, 'view=wishlist')) {
                 $itemID = $item->id;
                 break;
             }
@@ -87,7 +87,7 @@ class ZtvirtuemarterControllerWishlists extends JControllerLegacy
                     $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
 
                     $prod_name = '<div class="wishlist-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div></div>';
-                    $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid=' . $itemID . '');
+                    $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                     $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                     $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
@@ -112,7 +112,7 @@ class ZtvirtuemarterControllerWishlists extends JControllerLegacy
                             $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                         }
                         $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-                        $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid=' . $itemID . '');
+                        $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                         $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                         $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                         $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
@@ -171,7 +171,7 @@ class ZtvirtuemarterControllerWishlists extends JControllerLegacy
                         $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
 
                         $prod_name = '<div class="wishlist-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');">' . JText::_('REMOVE') . '</a></div></div>';
-                        $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid=' . $itemID . '');
+                        $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                         $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                         $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                         $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
@@ -195,7 +195,7 @@ class ZtvirtuemarterControllerWishlists extends JControllerLegacy
                         $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
                     }
                     $img_prod2 = '<div class="image fleft"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-                    $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid=' . $itemID . '');
+                    $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                     $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                     $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i></a></div>';

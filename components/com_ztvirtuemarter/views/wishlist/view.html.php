@@ -17,13 +17,13 @@ defined('_JEXEC') or die;
  *
  * @package    HelloWorld
  */
-class ZtvirtuemarterViewWishlists extends JViewLegacy
+class ZtvirtuemarterViewWishlist extends JViewLegacy
 {
     function display($tpl = null)
     {
         $app = JFactory::getApplication();
         $pathway = $app->getPathway();
-        $pathway->addItem(JText::_('COM_WISHLISTS_PRODUCT'), JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists'));
+        $pathway->addItem(JText::_('COM_WISHLISTS_PRODUCT'), JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist'));
         parent::display($tpl);
     }
 }

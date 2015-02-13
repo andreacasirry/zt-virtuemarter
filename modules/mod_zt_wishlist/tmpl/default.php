@@ -26,7 +26,7 @@ foreach ( $items as $item ) {
 <div class="ajax-dropdown vmgroup<?php echo $params->get('moduleclass_sfx') ?>" id="mod_wishlists">
     <div class="seldcomp" id="butseldwish" >
         <?php if(plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_wishlist == '1') {?>
-            <a class="btn-wishlist" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid='.$itemid.''); ?>">
+            <a class="btn-wishlist" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid='.$itemid.''); ?>">
                 <i class="fa fa-heart-o hover-dropdown"></i>
                 <span><?php if ($user->guest) { echo count($wishlist_ids);} else { echo count($allprod['id']); }?></span>
             </a>

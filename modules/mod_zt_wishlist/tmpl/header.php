@@ -28,7 +28,7 @@ foreach ( $items as $item ) {
 <div class="mod-wishlist mod-wishlist-header">
     <div id="cur-lang" class="header-button-wishlist">
         <div id="wishlist_total">
-            <a class="wishlist_total heading" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlists&Itemid='.$itemid.''); ?>">
+            <a class="wishlist_total heading" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid='.$itemid.''); ?>">
                 <i class="fa fa-heart-o"></i>
                 <span><?php if ($user->guest) { echo count($wishlist_ids);} else { echo count($allprod['id']); }?></span>
             </a>

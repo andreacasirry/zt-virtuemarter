@@ -45,7 +45,7 @@ if (!$user->guest) {
 }
 
 $document = JFactory::getDocument();
-$document->addScript(Juri::root() . '/components/com_ztvirtuemarter/views/wishlists/tmpl/js/jquery.lazyload.min.js');
+$document->addScript(Juri::root() . '/components/com_ztvirtuemarter/views/wishlist/tmpl/js/jquery.lazyload.min.js');
 vmJsApi::jPrice();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
