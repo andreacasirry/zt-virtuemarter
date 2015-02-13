@@ -13,32 +13,28 @@ $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_curren
 VmConfig::loadConfig();
 VmConfig::loadJLang('com_ztvirtuemarter', true);
 $document = JFactory::getDocument();
+$session = JFactory::getSession();
+$compare_ids = $session->get('compare_ids', array(), 'compare_product');
+
 vmJsApi::jPrice();
 
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
-if (isset($_SESSION['compare_ids']))
-    $products = $_SESSION['compare_ids'];
 
-$prods = $product_model->getProducts($products);
+$prods = $product_model->getProducts($compare_ids);
+
 $product_model->addImages($prods, 1);
 $currency = CurrencyDisplay::getInstance();
+
+// Back To Category Button
+$catURL = JRoute::_('index.php?option=com_virtuemart&view=virtuemart');
+$categoryName = jText::_('COM_VIRTUEMART_SHOP_HOME');
 ?>
 <div class="compare_box">
 <h3 class="module-title">
     <?php echo JText::_('COM_COMPARE_COMPARE_PRODUCT') ?>
 </h3>
-
-<?php // Back To Category Button
-if ( isset($product->virtuemart_category_id)) {
-    $catURL = JRoute::_('index.php?option=com_virtuemart&view=category&virtuemart_category_id=' . $product->virtuemart_category_id);
-    $categoryName = $product->category_name;
-} else {
-    $catURL = JRoute::_('index.php?option=com_virtuemart&view=virtuemart');
-    $categoryName = jText::_('COM_VIRTUEMART_SHOP_HOME');
-}
-?>
 
 <div class="back-to-category">
     <a href="<?php echo $catURL ?>" class="button_back button reset2" title="<?php echo $categoryName ?>">
@@ -100,7 +96,7 @@ if (!empty($prods)) {
         $maxrating = VmConfig::get('vm_maximum_rating_scale', 5);
         $ratingwidth = ($r * 100) / $maxrating;
         $text = $product->mf_name;
-        if (!empty($products)) {
+        if (!empty($compare_ids)) {
 
             $row = 0;
             $tdclass[$col] = 'compare_prod_' . $product->virtuemart_product_id;

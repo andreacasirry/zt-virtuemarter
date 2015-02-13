@@ -3,21 +3,16 @@ defined('_JEXEC') or die('Restricted access');
 
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
 vmJsApi::jPrice();
-$url_file = JURI::root(true);
-$product_number = 0;
+
+$product_number = $jinput->get('product', 0, 'INT');
 $productss = array();
-for ($i = 0; $i < strlen($url_file); $i++) {
-    if ($url_file[$i] == '/') {
-        $product_number = $i;
-    }
-}
-$url_file = substr($url_file, $product_number);
+
 $num = $products_per_row;
-if(!isset($_POST['product'])) {
-    $_POST['product'] = $_GET['product'];
-}
-if (isset($_POST['product'])) {
-    $num = intval($_POST['product']) + $products_per_row;
+
+
+
+if ($product_number != 0) {
+    $num = intval($product_number) + $products_per_row;
     if ($num > count($products)) {
         $num = count($products);
     }

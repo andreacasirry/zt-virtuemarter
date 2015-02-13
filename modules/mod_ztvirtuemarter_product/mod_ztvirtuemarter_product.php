@@ -8,6 +8,7 @@ if (!class_exists('VmConfig')) require(JPATH_ROOT . DS . 'administrator' . DS . 
 
 VmConfig::loadConfig();
 VmConfig::loadJLang('mod_ztvirtuemarter_product', true);
+$jinput = JFactory::getApplication()->input;
 
 // Setting
 $max_items = $params->get('max_items', 2); //maximum number of items to display

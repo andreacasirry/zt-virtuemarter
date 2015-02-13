@@ -107,7 +107,7 @@ class plgSystemZtvirtuemarter extends JPlugin
             VmConfig::loadConfig();
             VmConfig::loadJLang('com_virtuemart', true);
             $product_model = VmModel::getModel('product');
-            $prods = array($_GET['product_id']);
+            $prods = array($region);
 
             $product = $product_model->getProduct($prods);
             $product_model->addImages($product);

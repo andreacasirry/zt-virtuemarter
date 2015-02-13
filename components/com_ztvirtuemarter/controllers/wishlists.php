@@ -34,6 +34,7 @@ class WishlistsController extends JControllerLegacy
         $recent = '';
         if (empty($lang)) $lang = '*';
 
+        $jinput = JFactory::getApplication()->input;
         $component = JComponentHelper::getComponent('com_ztvirtuemarter');
         $session = JFactory::getSession();
         $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
@@ -63,18 +64,15 @@ class WishlistsController extends JControllerLegacy
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $product_model = VmModel::getModel('product');
 
-        if(!isset($_POST['product_id'])) {
-            $_POST['product_id'] = $_GET['product_id'];
-        }
         $user = JFactory::getUser();
         if ($user->guest) {
-            if (!in_array($_POST['product_id'], $wishlist_ids)) {
-                $product = array($_POST['product_id']);
+            if (!in_array($jinput->get('product_id', null, 'INT'), $wishlist_ids)) {
+                $product = array($jinput->get('product_id', null, 'INT'));
 
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
  ;
-                $wishlist_ids[] = $_POST['product_id'];
+                $wishlist_ids[] = $jinput->get('product_id', null, 'INT');
                 foreach ($prods as $product) {
                     //var_dump($product);
                     $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
@@ -99,8 +97,8 @@ class WishlistsController extends JControllerLegacy
                 $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $img_prod, $prod_name, $product_ids);
 
             } else {
-                if (in_array($_POST['product_id'], $wishlist_ids)) {
-                    $product = array($_POST['product_id']);
+                if (in_array($jinput->get('product_id', null, 'INT'), $wishlist_ids)) {
+                    $product = array($jinput->get('product_id', null, 'INT'));
                     $prods = $product_model->getProducts($product);
                     $product_model->addImages($prods, 1);
                     //var_dump($prods);
@@ -134,18 +132,18 @@ class WishlistsController extends JControllerLegacy
                 $allprod['ids'][] = $productbd['virtuemart_product_id'];
             }
             //var_dump ($allproducts);
-            if ((!in_array($_POST['product_id'], $allprod['ids']))) {
+            if ((!in_array($jinput->get('product_id', null, 'INT'), $allprod['ids']))) {
                 $q = "";
                 $q = "INSERT INTO `#__wishlists`
 					(virtuemart_product_id,userid )
 					VALUES
-					('" . $_POST['product_id'] . "','" . $user->id . "') ";
+					('" . $jinput->get('product_id', null, 'INT') . "','" . $user->id . "') ";
 
                 $db->setQuery($q);
                 //$db->queryBatch();
                 $db->query();
                 //var_dump ($db);
-                if ((!in_array($_POST['product_id'], $allprod['id']))) {
+                if ((!in_array($jinput->get('product_id', null, 'INT'), $allprod['id']))) {
                     $db =& JFactory::getDBO();
                     $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
                     $db->setQuery($q);
@@ -155,7 +153,7 @@ class WishlistsController extends JControllerLegacy
                     }
                     //var_dump ($allproducts);
                     //var_dump (count($allprod['id']));
-                    $product = array($_POST['product_id']);
+                    $product = array($jinput->get('product_id', null, 'INT'));
                     $prods = $product_model->getProducts($product);
                     $product_model->addImages($prods, 1);
                     //var_dump($prods);
@@ -183,7 +181,7 @@ class WishlistsController extends JControllerLegacy
                     $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_REG') . '</span>', $title, $img_prod2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $img_prod, $prod_name, $product_ids);
                 }
             } else {
-                $product = array($_POST['product_id']);
+                $product = array($jinput->get('product_id', null, 'INT'));
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
                 //var_dump($prods);
@@ -223,22 +221,22 @@ class WishlistsController extends JControllerLegacy
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $session = JFactory::getSession();
         $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+        $jinput = JFactory::getApplication()->input;
 
         if (isset($wishlist_ids)) ;
         $product_model = VmModel::getModel('product');
-        if (isset($_POST['remove_id'])) ;
-        //var_dump($_SESSION['compare_ids']);
+
         $user =& JFactory::getUser();
         if ($user->guest) {
 
-            if ($_POST['remove_id']) {
+            if ($jinput->get('remove_id', null, 'INT')) {
                 foreach ($wishlist_ids as $k => $v) {
-                    if ($_POST['remove_id'] == $v) {
+                    if ($jinput->get('remove_id', null, 'INT') == $v) {
                         unset($wishlist_ids[$k]);
                     }
 
                 }
-                $prod = array($_POST['remove_id']);
+                $prod = array($jinput->get('remove_id', null, 'INT'));
                 $prods = $product_model->getProducts($prod);
                 foreach ($prods as $product) {
                     $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
@@ -250,7 +248,7 @@ class WishlistsController extends JControllerLegacy
 
         } else {
             $db =& JFactory::getDBO();
-            $q = "DELETE  FROM `#__wishlists` WHERE virtuemart_product_id=" . $_POST['remove_id'] . " AND  userid =" . $user->id;
+            $q = "DELETE  FROM `#__wishlists` WHERE virtuemart_product_id=" . $jinput->get('remove_id', null, 'INT') . " AND  userid =" . $user->id;
             $db->setQuery($q);
             $db->query();
             $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
@@ -260,7 +258,7 @@ class WishlistsController extends JControllerLegacy
                 $allprod['ids'][] = $productbd['virtuemart_product_id'];
             }
             //var_dump($allprod['ids']);
-            $prod = array($_POST['remove_id']);
+            $prod = array($jinput->get('remove_id', null, 'INT'));
             $prods = $product_model->getProducts($prod);
             foreach ($prods as $product) {
                 $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';

@@ -34,6 +34,7 @@ class ComparelistController extends JControllerLegacy
         $lang = JFactory::getLanguage()->getTag();
         $session = JFactory::getSession();
         $compare_ids = $session->get('compare_ids', array(), 'compare_product');
+        $jinput = JFactory::getApplication()->input;
         JFactory::getLanguage()->load('com_ztvirtuemarter');
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
@@ -64,20 +65,15 @@ class ComparelistController extends JControllerLegacy
             $itemID = $items[0]->id;
         }
 
-        if(!isset($_POST['product_id'])) {
-            $_POST['product_id'] = $_GET['product_id'];
-        }
-
-
         $product_model = VmModel::getModel('product');
 
-        if (isset($compare_ids) && (!in_array($_POST['product_id'], $compare_ids)) && (count($compare_ids) <= 3)) {
+        if (isset($compare_ids) && (!in_array($jinput->get('product_id', null, 'INT'), $compare_ids)) && (count($compare_ids) <= 3)) {
 
-            $product = array($_POST['product_id']);
+            $product = array($jinput->get('product_id', null, 'INT'));
             $prods = $product_model->getProducts($product);
             $product_model->addImages($prods, 1);
             //var_dump($prods);
-            $compare_ids[] = $_POST['product_id'];
+            $compare_ids[] = $jinput->get('product_id', null, 'INT');
             foreach ($prods as $product) {
                 //var_dump($product);
                 $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
@@ -101,11 +97,11 @@ class ComparelistController extends JControllerLegacy
                     $totalcompare = count($compare_ids);
                 }
             }
-            $this->showJSON('<span class="successfully">' . JText::_('COM_COMPARE_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btncompare, $btncompareback, $totalcompare, $recent, $img_prod, $prod_name, $product_ids);
+            $this->showJSON('<span class="successfully">' . JText::_('COM_COMPARE_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btncompare, $btncompareback, $totalcompare, '', $img_prod, $prod_name, $product_ids);
 
         } else {
-            if ( !in_array($_POST['product_id'], $compare_ids)) {
-                $product = array($_POST['product_id']);
+            if ( !in_array($jinput->get('product_id', null, 'INT'), $compare_ids)) {
+                $product = array($jinput->get('product_id', null, 'INT'));
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
                 //var_dump($prods);
@@ -129,7 +125,7 @@ class ComparelistController extends JControllerLegacy
                 }
                 $this->showJSON('<span class="warning">' . JText::_('COM_COMPARE_MASSEDGE_MORE') . '</span>', '', '', '', $btncompare, $btncompareback, $totalcompare);
             } else {
-                $product = array($_POST['product_id']);
+                $product = array($jinput->get('product_id', null, 'INT'));
                 $prods = $product_model->getProducts($product);
                 $product_model->addImages($prods, 1);
                 //var_dump($prods);
@@ -171,17 +167,17 @@ class ComparelistController extends JControllerLegacy
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $session = JFactory::getSession();
         $compare_ids = $session->get('compare_ids', array(), 'compare_product');
+        $jinput = JFactory::getApplication()->input;
 
         $product_model = VmModel::getModel('product');
-        if (isset($_POST['remove_id'])) ;
-        //var_dump($compare_ids);
-        if ($_POST['remove_id']) {
+
+        if ($jinput->get('remove_id', null, 'INT')) {
             foreach ($compare_ids as $k => $v) {
-                if ($_POST['remove_id'] == $v) {
+                if ($jinput->get('remove_id', null, 'INT') == $v) {
                     unset($compare_ids[$k]);
                 }
             }
-            $prod = array($_POST['remove_id']);
+            $prod = array($jinput->get('remove_id', null, 'INT'));
             $prods = $product_model->getProducts($prod);
             foreach ($prods as $product) {
                 $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
