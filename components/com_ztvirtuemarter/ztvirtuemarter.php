@@ -10,21 +10,17 @@
 // No direct access
 
 defined('_JEXEC') or die;
-if(!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
-define('VZ_BASE_PATH', JPATH_BASE . DS . 'components' . DS . 'com_ztvirtuemarter');
 
 // Require the base controller
 $input = JFactory::getApplication()->input;
-$_controller = $input->getCmd('view');
-$_class = ucfirst($_controller) . 'Controller';
-if (file_exists(VZ_BASE_PATH . DS . 'controllers' . DS . $_class . '.php')) {
-    if (!class_exists($_class)) {
-        require(VZ_BASE_PATH . DS . 'controllers' . DS . $_class . '.php');
-    }
-}
+$view = $input->getCmd('view');
 $task = $input->getCmd('task');
-if (class_exists($_class)) {
-    $controller = new $_class();
+$controllerClass = ucfirst($view) . 'Controller';
+$controllerPath = 'controllers/' . $view . '.php';
+require_once( $controllerPath );
+
+if (class_exists($controllerClass)) {
+    $controller = new $controllerClass();
     $controller->execute($task);
     $controller->redirect();
 }
