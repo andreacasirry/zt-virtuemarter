@@ -74,8 +74,9 @@ class plgSystemZtvirtuemarter extends JPlugin
                         });
                     });';
                 $doc->addScriptDeclaration($jsq);
-                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/custom.js');
-                $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/more_custom.css');
+                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ajax-cart.js');
+                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/quickview.js');
+                $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/quickview.css');
             }
         }
     }
