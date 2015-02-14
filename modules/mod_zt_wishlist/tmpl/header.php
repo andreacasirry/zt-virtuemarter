@@ -6,7 +6,7 @@
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
-//error_reporting('E_ALL');
+
 defined('_JEXEC') or die('Restricted access');
 JFactory::getLanguage()->load('com_ztvirtuemarter');
 

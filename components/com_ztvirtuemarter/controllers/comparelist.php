@@ -6,7 +6,7 @@
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
-//error_reporting('E_ALL');
+
 defined('_JEXEC') or die;
 if (!class_exists('VmConfig')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/config.php');
 if (!class_exists('calculationHelper')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/calculationh.php');
@@ -28,7 +28,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 
     public function add()
     {
-        error_reporting('E_ALL');
+
         $itemID = '';
 
         $lang = JFactory::getLanguage()->getTag();
@@ -162,7 +162,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 
     public function removed()
     {
-        //error_reporting('E_ALL');
+
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $session = JFactory::getSession();

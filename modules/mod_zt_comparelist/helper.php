@@ -6,7 +6,7 @@
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
-//error_reporting('E_ALL');
+
 // No direct access.
 defined('_JEXEC') or  die( 'Direct Access to '.basename(__FILE__).' is not allowed.' );
 if (!class_exists( 'VmConfig' )) require(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_virtuemart'.DS.'helpers'.DS.'config.php');

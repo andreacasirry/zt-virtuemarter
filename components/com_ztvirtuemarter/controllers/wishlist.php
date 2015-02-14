@@ -6,7 +6,7 @@
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
-//error_reporting('E_ALL');
+
 defined('_JEXEC') or die;
 JFactory::getLanguage()->load('com_wishlists');
 
@@ -29,7 +29,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
     public function add()
     {
-        //error_reporting('E_ALL');
+
         $itemID = '';
         $recent = '';
         if (empty($lang)) $lang = '*';
@@ -216,7 +216,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
     public function removed()
     {
-        //error_reporting('E_ALL');
+
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $session = JFactory::getSession();

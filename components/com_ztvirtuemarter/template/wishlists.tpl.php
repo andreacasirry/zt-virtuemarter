@@ -1,6 +1,6 @@
 <?php
 $user = JFactory::getUser();
-error_reporting('E_ALL');
+
 if ($user->guest) {
     ?>
     <a class="add_wishlist hasTooltip <?php if (  in_array($product->virtuemart_product_id, $wishlist_ids)) {echo 'go_to_whishlist active';} ?>"
