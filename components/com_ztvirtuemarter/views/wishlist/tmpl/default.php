@@ -17,32 +17,7 @@ VmConfig::loadJLang('com_ztvirtuemarter', true);
 $session = JFactory::getSession();
 $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
 $virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id', 0));
-if (!$user->guest) {
-    if (!empty( $wishlist_ids)) {
-        $dbIds = $wishlist_ids;
-        $db = JFactory::getDBO();
-        $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-        $db->setQuery($q);
-        $allproducts = $db->loadAssocList();
-        foreach ($allproducts as $productbd) {
-            $allprod['ids'][] = $productbd['virtuemart_product_id'];
-        }
 
-        for ($r = 0; $r < count($dbIds); $r++) {
-            if (!in_array($dbIds[$r], $allprod['ids'])) {
-                $q = "";
-                $q = "INSERT INTO `#__wishlists`
-								(virtuemart_product_id,userid )
-								VALUES
-								('" . $dbIds[$r] . "','" . $user->id . "') ";
-                //var_dump ($dbIds[$r]);
-                $db->setQuery($q);
-                $db->queryBatch();
-            }
-        }
-        //unset($wishlist_ids);
-    }
-}
 
 $document = JFactory::getDocument();
 $document->addScript(Juri::root() . '/components/com_ztvirtuemarter/views/wishlist/tmpl/js/jquery.lazyload.min.js');

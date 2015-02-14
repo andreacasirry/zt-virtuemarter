@@ -28,4 +28,68 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         $this->input = JFactory::getApplication()->input;
     }
 
+    public function updateCurrentWishlist( ) {
+        $session        = JFactory::getSession();
+        $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
+        if(count($wishlistIds) > 0) {
+            $user = JFactory::getUser();
+            if (!$user->guest) {
+                $db             = JFactory::getDBO();
+                $query          = $db->getQuery(true);
+
+                $query->select($db->quoteName('virtuemart_product_id') )
+                    ->from($db->quoteName('#__wishlists'))
+                    ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
+
+                $db->setQuery($query);
+                $allProducts = $db->loadAssocList();
+                foreach ($allProducts as $productbd) {
+                    $prodIds['ids'][] = $productbd['virtuemart_product_id'];
+                }
+
+                foreach($wishlistIds as $id) {
+                    if (!in_array($id, $prodIds['ids'])) {
+                        $query = $db->getQuery(true);
+                        $query->insert($db->quoteName('#__wishlists'))
+                            ->columns($db->quoteName('virtuemart_product_id'))
+                            ->values( $id)
+                            ->columns($db->quoteName('userid'))
+                            ->values( $user->id);
+
+                        $db->setQuery($query);
+                        $db->execute();
+                    }
+                }
+            }
+        }
+    }
+
+    public function getProducts() {
+        $user = JFactory::getUser();
+        $prodIds = array();
+        if (!$user->guest) {
+            $db             = JFactory::getDBO();
+            $query          = $db->getQuery(true);
+
+            $query->select($db->quoteName('virtuemart_product_id') )
+                ->from($db->quoteName('#__wishlists'))
+                ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
+
+            $db->setQuery($query);
+            $allProducts = $db->loadAssocList();
+            foreach ($allProducts as $productbd) {
+                $prodIds[] = $productbd['virtuemart_product_id'];
+            }
+        } else {
+            $session        = JFactory::getSession();
+            $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
+            $prodIds = $wishlistIds;
+        }
+        $product_model = VmModel::getModel('product');
+
+        $products = $product_model->getProducts($prodIds);
+        $product_model->addImages($products, 1);
+        
+        return $products;
+    }
 }
