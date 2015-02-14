@@ -4,9 +4,11 @@ function genderCartItem() {
         function (datas, textStatus) {
             mod.find(".vm_cart_products .content-top").html("");
 
-            jQuery('#zt_top_cart .total-price').html(datas.billTotal);
-            jQuery('#cart span').html(datas.totalProduct);
+            jQuery('#zt_top_cart .total-price').html(datas.billTotal.replace('Total', ''));
+            jQuery('#cart .total-item').html('(' + datas.totalProduct + ')items - ');
 
+            var cart_item = '<p class="add-product">Recently added item(s)</p>';
+            jQuery('.vm_cart_products .content-top').append(cart_item);
             jQuery.each(datas.products, function(key, product) {
                 var item_quantity = '';
                 if(product.quantity > 1) {
@@ -14,7 +16,6 @@ function genderCartItem() {
                 }
 
                 var cart_item = '<div class="cart-row cart-row-item-'+key+' clearfix">';
-                cart_item += '<p class="add-product">Recently added item(s)</p>';
                 cart_item += '<div class="cart-product-img">';
                 cart_item += product.image;
                 cart_item += '</div>';
