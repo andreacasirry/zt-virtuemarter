@@ -8,40 +8,6 @@
  */
 
 defined('_JEXEC') or die;
-JHtml::_('behavior.modal');
-if (!class_exists('shopFunctionsF')) require(JPATH_SITE . '/components/com_virtuemart/helpers/shopfunctionsf.php');
-$user = JFactory::getUser();
-$mainframe = Jfactory::getApplication();
-VmConfig::loadConfig();
-VmConfig::loadJLang('com_ztvirtuemarter', true);
-$session = JFactory::getSession();
-$wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
-$virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id', 0));
-
-
-$document = JFactory::getDocument();
-$document->addScript(Juri::root() . '/components/com_ztvirtuemarter/views/wishlist/tmpl/js/jquery.lazyload.min.js');
-vmJsApi::jPrice();
-$ratingModel = VmModel::getModel('ratings');
-$product_model = VmModel::getModel('product');
-if (!$user->guest) {
-    $db =& JFactory::getDBO();
-    $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-    $db->setQuery($q);
-    $allproducts = $db->loadAssocList();
-    foreach ($allproducts as $productbd) {
-        $allprod['id'][] = $productbd['virtuemart_product_id'];
-    }
-    $products = $allprod['id'];
-} else {
-    $products = $wishlist_ids;
-}
-
-
-$prods = $product_model->getProducts($products);
-$product_model->addImages($prods, 1);
-$currency = CurrencyDisplay::getInstance();
-//var_dump ($prods);
 
 ?>
 <div class="wishlist_box">
@@ -50,31 +16,22 @@ $currency = CurrencyDisplay::getInstance();
         <?php echo JText::_('COM_WISHLIST_PRODUCT') ?>
     </h3>
 </div>
-<?php // Back To Category Button
-if (isset($virtuemart_category_id)) {
-    $catURL = JRoute::_('index.php?option=com_virtuemart&view=category&virtuemart_category_id=' . $virtuemart_category_id);
-    $categoryName = $product->category_name;
-} else {
-    $catURL = JRoute::_('index.php?option=com_virtuemart&view=virtuemart');
-    $categoryName = jText::_('COM_VIRTUEMART_SHOP_HOME');
-}
-?>
 
 <div class="back-to-category">
-    <a href="<?php echo $catURL ?>" class="button_back button reset2" title="<?php echo $categoryName ?>">
-        <i class="fa fa-reply"></i><?php echo JText::sprintf('COM_VIRTUEMART_CATEGORY_BACK_TO', $categoryName) ?>
+    <a href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=virtuemart'); ?>" class="button_back button reset2" title="<?php echo jText::_('COM_VIRTUEMART_SHOP_HOME'); ?>">
+        <i class="fa fa-reply"></i><?php echo JText::sprintf('COM_VIRTUEMART_CATEGORY_BACK_TO', jText::_('COM_VIRTUEMART_SHOP_HOME')) ?>
     </a>
 </div>
 <div class="clear"></div>
 <?php
-if (!empty($prods)) {
+if (!empty($this->products)) {
     ?>
 
     <div id="product_list" class="list">
     <ul id="slider" class="vmproduct layout">
     <li>
     <?php // Start the Output
-    foreach ($prods as $product) {
+    foreach ($this->products as $product) {
         //var_dump ($product);
         if (isset($product->step_order_level))
             $step = $product->step_order_level;
@@ -93,6 +50,7 @@ if (!empty($prods)) {
         ?>
         <div class="prod-row wishlists_prods_<?php echo $product->virtuemart_product_id ?>">
         <div class="product-box hover spacer <?php if ($discont > 0) {
+            echo 'disc';
             echo 'disc';
         } ?> ">
         <input type="hidden" class="quick_ids" name="virtuemart_product_id"
@@ -196,6 +154,7 @@ if (!empty($prods)) {
             </div>
             <div class="clear"></div>
             <?php
+            $ratingModel = VmModel::getModel('ratings');
             $rating = $ratingModel->getRatingByProduct($product->virtuemart_product_id);
             if (!empty($rating)) {
                 $r = $rating->rating;
