@@ -35,7 +35,7 @@ class ZtvirtuemarterViewWishlist extends JViewLegacy
         $document = JFactory::getDocument();
         $document->addScript(Juri::root() . '/components/com_ztvirtuemarter/views/wishlist/tmpl/js/jquery.lazyload.min.js');
 
-        $this->products = $this->get('Products');;
+        $this->products = $this->get('Products');
         parent::display($tpl);
     }
 }

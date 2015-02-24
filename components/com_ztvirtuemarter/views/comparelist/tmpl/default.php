@@ -8,28 +8,6 @@
  */
 
 defined('_JEXEC') or die;
-$mainframe = Jfactory::getApplication();
-$virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', JRequest::getInt('virtuemart_currency_id', 0));
-VmConfig::loadConfig();
-VmConfig::loadJLang('com_ztvirtuemarter', true);
-$document = JFactory::getDocument();
-$session = JFactory::getSession();
-$compare_ids = $session->get('compare_ids', array(), 'compare_product');
-
-vmJsApi::jPrice();
-
-$ratingModel = VmModel::getModel('ratings');
-$product_model = VmModel::getModel('product');
-
-
-$prods = $product_model->getProducts($compare_ids);
-
-$product_model->addImages($prods, 1);
-$currency = CurrencyDisplay::getInstance();
-
-// Back To Category Button
-$catURL = JRoute::_('index.php?option=com_virtuemart&view=virtuemart');
-$categoryName = jText::_('COM_VIRTUEMART_SHOP_HOME');
 ?>
 <div class="compare_box">
 <h3 class="module-title">
@@ -37,17 +15,19 @@ $categoryName = jText::_('COM_VIRTUEMART_SHOP_HOME');
 </h3>
 
 <div class="back-to-category">
-    <a href="<?php echo $catURL ?>" class="button_back button reset2" title="<?php echo $categoryName ?>">
-        <i class="fa fa-reply"></i><?php echo JText::sprintf('COM_VIRTUEMART_CATEGORY_BACK_TO', $categoryName) ?>
+    <a href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=virtuemart'); ?>" class="button_back button reset2" title="<?php echo jText::_('COM_VIRTUEMART_SHOP_HOME'); ?>">
+        <i class="fa fa-reply"></i><?php echo JText::sprintf('COM_VIRTUEMART_CATEGORY_BACK_TO', jText::_('COM_VIRTUEMART_SHOP_HOME')) ?>
         <span></span></a>
 </div>
 <div class="clear"></div>
 <?php
-if (!empty($prods)) {
+$currency = CurrencyDisplay::getInstance();
+$ratingModel = VmModel::getModel('ratings');
+if (!empty($this->products)) {
     ?>
     <div class="browseview browscompare_list">
     <?php
-    foreach ($prods as $product) {
+    foreach ($this->products as $product) {
 
         if (isset($product->customfields)) {
             foreach ($product->customfields as $field) {
@@ -85,7 +65,8 @@ if (!empty($prods)) {
     $rowall = $row;
     $col = 1;
     $tdclass[0] = '';
-    foreach ($prods as $product) {
+
+    foreach ($this->products as $product) {
 
         $rating = $ratingModel->getRatingByProduct($product->virtuemart_product_id);
         if (!empty($rating)) {
@@ -96,7 +77,7 @@ if (!empty($prods)) {
         $maxrating = VmConfig::get('vm_maximum_rating_scale', 5);
         $ratingwidth = ($r * 100) / $maxrating;
         $text = $product->mf_name;
-        if (!empty($compare_ids)) {
+        if (!empty($this->products)) {
 
             $row = 0;
             $tdclass[$col] = 'compare_prod_' . $product->virtuemart_product_id;
@@ -104,7 +85,7 @@ if (!empty($prods)) {
             $table[$row][$col] .= '<div class="comare_name"><h5>' . JHTML::link($product->link, shopFunctionsF::limitStringByWord($product->product_name, '40', '...')) . '</h5></div>';
             $row = 1;
             $table[$row][$col] = '';
-            $table[$row][$col] .= '<div class="comare_image">';
+            $table[$row][$col] .= '<div class="compare_image">';
             $table[$row][$col] .= '<div class="browseImage ">';
             if (isset($product->override) && $product->override == 1 && ($product->product_price_publish_down > 0)) {
                 $table[$row][$col] .= '<div class="discount limited">' . JText::_('DR_LIMITED_OFFER') . '</div>';
