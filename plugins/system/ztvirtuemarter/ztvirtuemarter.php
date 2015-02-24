@@ -31,11 +31,11 @@ class plgSystemZtvirtuemarter extends JPlugin
         $doc = JFactory::getDocument();
         $user = JFactory::getUser();
         $session = JFactory::getSession();
-        $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
         if (!($app->isAdmin())) {
             if (!$user->guest) {
-                if (!empty($wishlist_ids)) {
-                    $dbIds = $wishlist_ids;
+                if (!empty($wishlistIds)) {
+                    $dbIds = $wishlistIds;
                     $db = JFactory::getDBO();
                     $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
                     $db->setQuery($q);
@@ -556,7 +556,7 @@ class plgSystemZtvirtuemarter extends JPlugin
     public static function addCompareButton($product, $type = null)
     {
         $session = JFactory::getSession();
-        $compare_ids = $session->get('compare_ids', array(), 'compare_product');
+        $compareIds = $session->get('compare_ids', array(), 'compare_product');
         if(self::getZtvirtuemarterSetting()->enable_compare == '1')
             if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/comparelist.tpl" . $type . ".php")) {
                 ?>
@@ -570,7 +570,7 @@ class plgSystemZtvirtuemarter extends JPlugin
     public static function addWishlistButton($product, $type = null)
     {
         $session = JFactory::getSession();
-        $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
         if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php")) {
             ?>
             <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">

@@ -15,11 +15,11 @@ class ZtvirtuemarterModelComparelist extends JModelLegacy
     public function getProducts()
     {
         $session = JFactory::getSession();
-        $compare_ids = $session->get('compare_ids', array(), 'compare_product');
-        $product_model = VmModel::getModel('product');
+        $compareIds = $session->get('compare_ids', array(), 'compare_product');
+        $productModel = VmModel::getModel('product');
 
-        $prods = $product_model->getProducts($compare_ids);
-        $product_model->addImages($prods, 1);
+        $prods = $productModel->getProducts($compareIds);
+        $productModel->addImages($prods, 1);
 
         return $prods;
     }

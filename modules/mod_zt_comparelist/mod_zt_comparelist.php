@@ -14,9 +14,9 @@ $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
 $session = JFactory::getSession();
-$compare_ids = $session->get('compare_ids', array(), 'compare_product');
-if (!empty($compare_ids)) {
-    $products = $compare_ids;
+$compareIds = $session->get('compare_ids', array(), 'compare_product');
+if (!empty($compareIds)) {
+    $products = $compareIds;
     $prods = $product_model->getProducts($products);
     $product_model->addImages($prods, 1);
     $currency = CurrencyDisplay::getInstance();

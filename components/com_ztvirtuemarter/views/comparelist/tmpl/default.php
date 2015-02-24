@@ -32,12 +32,12 @@ if (!empty($this->products)) {
         if (isset($product->customfields)) {
             foreach ($product->customfields as $field) {
                 if (($field->field_type == 'E' && $field->custom_value !== 'youtube') || $field->field_type == 'P' || $field->field_type == 'S' || $field->field_type == 'I' || $field->field_type == 'B') {
-                    $compare_fields[$field->virtuemart_custom_id] = $field->custom_title;
+                    $compareFields[$field->virtuemart_custom_id] = $field->custom_title;
                 }
-                if (isset($compare_fields[$field->virtuemart_custom_id]) && $field->display) {
-                    $compare_fields_product[$product->virtuemart_product_id][$field->virtuemart_custom_id] = $field->display;
+                if (isset($compareFields[$field->virtuemart_custom_id]) && $field->display) {
+                    $compareFieldsProduct[$product->virtuemart_product_id][$field->virtuemart_custom_id] = $field->display;
                 } else {
-                    $compare_fields_product[$product->virtuemart_product_id][$field->virtuemart_custom_id] = null;
+                    $compareFieldsProduct[$product->virtuemart_product_id][$field->virtuemart_custom_id] = null;
                 }
             }
         }
@@ -56,8 +56,8 @@ if (!empty($this->products)) {
     $table[11][0] = '<div class="comare_unit">' . JText::_('DR_PRODUCT_UNITS_BOX') . '</div>';
     $table[12][0] = '<div class="comare_action">' . JText::_('DR_PRODUCT_ACTION') . '</div>';
     $row = 13;
-    if (isset($compare_fields)) {
-        foreach ($compare_fields as $field_no => $field_name) {
+    if (isset($compareFields)) {
+        foreach ($compareFields as $field_no => $field_name) {
             $table[$row][0] = $field_name;
             $row++;
         }
@@ -268,11 +268,11 @@ if (!empty($this->products)) {
             $table[$row][$col] .= '</div>';
 
             $row = 13;
-            if (isset($compare_fields)) {
+            if (isset($compareFields)) {
                 $pfld = "@";
-                foreach ($compare_fields as $field_no => $field_name) {
-                    if (isset($compare_fields_product[$product->virtuemart_product_id][$field_no])) {
-                        $fld = $compare_fields_product[$product->virtuemart_product_id][$field_no];
+                foreach ($compareFields as $field_no => $field_name) {
+                    if (isset($compareFieldsProduct[$product->virtuemart_product_id][$field_no])) {
+                        $fld = $compareFieldsProduct[$product->virtuemart_product_id][$field_no];
                         $table[$row][$col] = $fld;
                     } else {
                         $table[$row][$col] = '';

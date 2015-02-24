@@ -37,7 +37,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $jinput = JFactory::getApplication()->input;
         $component = JComponentHelper::getComponent('com_ztvirtuemarter');
         $session = JFactory::getSession();
-        $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
 
         $db = JFactory::getDbo();
         $q = 'SELECT * FROM `#__menu` WHERE `component_id` = "' . $component->id . '" and `language` = "' . $lang . '"';
@@ -62,56 +62,56 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
-        $product_model = VmModel::getModel('product');
+        $productModel = VmModel::getModel('product');
 
         $user = JFactory::getUser();
         if ($user->guest) {
-            if (!in_array($jinput->get('product_id', null, 'INT'), $wishlist_ids)) {
+            if (!in_array($jinput->get('product_id', null, 'INT'), $wishlistIds)) {
                 $product = array($jinput->get('product_id', null, 'INT'));
 
-                $prods = $product_model->getProducts($product);
-                $product_model->addImages($prods, 1);
+                $prods = $productModel->getProducts($product);
+                $productModel->addImages($prods, 1);
  ;
-                $wishlist_ids[] = $jinput->get('product_id', null, 'INT');
+                $wishlistIds[] = $jinput->get('product_id', null, 'INT');
                 foreach ($prods as $product) {
                     //var_dump($product);
                     $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
-                    $prod_url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
+                    $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
                     if (!empty($product->file_url_thumb)) {
-                        $img_url = $product->file_url_thumb;
+                        $imgUrl = $product->file_url_thumb;
                     } else {
-                        $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
+                        $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
                     }
                     $prod_id = $product->virtuemart_product_id;
-                    $img_prod = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-                    $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                    $img_prod = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                    $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
 
                     $prod_name = '<div class="wishlist-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                     $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                     $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                     $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
-                    $product_ids = $product->virtuemart_product_id;
-                    $totalwishlists = count($wishlist_ids);
+                    $productIds = $product->virtuemart_product_id;
+                    $totalwishlists = count($wishlistIds);
                 }
-                $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $img_prod, $prod_name, $product_ids);
+                $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $img_prod2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $img_prod, $prod_name, $productIds);
 
             } else {
-                if (in_array($jinput->get('product_id', null, 'INT'), $wishlist_ids)) {
+                if (in_array($jinput->get('product_id', null, 'INT'), $wishlistIds)) {
                     $product = array($jinput->get('product_id', null, 'INT'));
-                    $prods = $product_model->getProducts($product);
-                    $product_model->addImages($prods, 1);
+                    $prods = $productModel->getProducts($product);
+                    $productModel->addImages($prods, 1);
                     //var_dump($prods);
                     foreach ($prods as $product) {
                         //var_dump($product);
                         $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
-                        $prod_url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
+                        $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
                         if (!empty($product->file_url_thumb)) {
-                            $img_url = $product->file_url_thumb;
+                            $imgUrl = $product->file_url_thumb;
                         } else {
-                            $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
+                            $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
                         }
-                        $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                        $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                         $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                         $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                         $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
@@ -154,47 +154,47 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                     //var_dump ($allproducts);
                     //var_dump (count($allprod['id']));
                     $product = array($jinput->get('product_id', null, 'INT'));
-                    $prods = $product_model->getProducts($product);
-                    $product_model->addImages($prods, 1);
+                    $prods = $productModel->getProducts($product);
+                    $productModel->addImages($prods, 1);
                     //var_dump($prods);
                     foreach ($prods as $product) {
                         //var_dump($product);
                         $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
-                        $prod_url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
+                        $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
                         if (!empty($product->file_url_thumb)) {
-                            $img_url = $product->file_url_thumb;
+                            $imgUrl = $product->file_url_thumb;
                         } else {
-                            $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
+                            $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
                         }
                         $prod_id = $product->virtuemart_product_id;
-                        $img_prod = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-                        $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                        $img_prod = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                        $img_prod2 = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
 
                         $prod_name = '<div class="wishlist-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');">' . JText::_('REMOVE') . '</a></div></div>';
                         $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                         $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                         $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
                         $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
-                        $product_ids = $product->virtuemart_product_id;
+                        $productIds = $product->virtuemart_product_id;
                         $totalwishlists = count($allprod['id']);
                     }
-                    $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_REG') . '</span>', $title, $img_prod2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $img_prod, $prod_name, $product_ids);
+                    $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_REG') . '</span>', $title, $img_prod2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $img_prod, $prod_name, $productIds);
                 }
             } else {
                 $product = array($jinput->get('product_id', null, 'INT'));
-                $prods = $product_model->getProducts($product);
-                $product_model->addImages($prods, 1);
+                $prods = $productModel->getProducts($product);
+                $productModel->addImages($prods, 1);
                 //var_dump($prods);
                 foreach ($prods as $product) {
                     //var_dump($product);
                     $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
-                    $prod_url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
+                    $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
                     if (!empty($product->file_url_thumb)) {
-                        $img_url = $product->file_url_thumb;
+                        $imgUrl = $product->file_url_thumb;
                     } else {
-                        $img_url = JURI::base().'images/stories/virtuemart/noimage.gif';
+                        $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
                     }
-                    $img_prod2 = '<div class="image fleft"><a href="' . $prod_url . '"><img src="' . JURI::base() . $img_url . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+                    $img_prod2 = '<div class="image fleft"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
                     $btnwishlists = '<a id="wishlists_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_WISHLISTS') . '</a>';
                     $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
@@ -204,13 +204,13 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             }
         }
-        $session->set('wishlist_ids', $wishlist_ids, 'wishlist_product');
+        $session->set('wishlist_ids', $wishlistIds, 'wishlist_product');
         exit;
     }
 
-    public function showJSON($message = '', $title = '', $img_prod2 = '', $btnrem = '', $btnwishlists = '', $btnwishlistsback = '', $totalwishlists = '', $recent = '', $img_prod = '', $prod_name = '', $product_ids = '')
+    public function showJSON($message = '', $title = '', $img_prod2 = '', $btnrem = '', $btnwishlists = '', $btnwishlistsback = '', $totalwishlists = '', $recent = '', $img_prod = '', $prod_name = '', $productIds = '')
     {
-        echo json_encode(array('message' => $message, 'title' => $title, 'totalwishlists' => $totalwishlists, 'recent' => $recent, 'img_prod' => $img_prod, 'img_prod2' => $img_prod2, 'btnrem' => $btnrem, 'prod_name' => $prod_name, 'product_ids' => $product_ids, 'btnwishlists' => $btnwishlists, 'btnwishlistsback' => $btnwishlistsback));
+        echo json_encode(array('message' => $message, 'title' => $title, 'totalwishlists' => $totalwishlists, 'recent' => $recent, 'img_prod' => $img_prod, 'img_prod2' => $img_prod2, 'btnrem' => $btnrem, 'prod_name' => $prod_name, 'product_ids' => $productIds, 'btnwishlists' => $btnwishlists, 'btnwishlistsback' => $btnwishlistsback));
 
     }
 
@@ -220,28 +220,28 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $session = JFactory::getSession();
-        $wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
         $jinput = JFactory::getApplication()->input;
 
-        if (isset($wishlist_ids)) ;
-        $product_model = VmModel::getModel('product');
+        if (isset($wishlistIds)) ;
+        $productModel = VmModel::getModel('product');
 
         $user =& JFactory::getUser();
         if ($user->guest) {
 
             if ($jinput->get('remove_id', null, 'INT')) {
-                foreach ($wishlist_ids as $k => $v) {
+                foreach ($wishlistIds as $k => $v) {
                     if ($jinput->get('remove_id', null, 'INT') == $v) {
-                        unset($wishlist_ids[$k]);
+                        unset($wishlistIds[$k]);
                     }
 
                 }
                 $prod = array($jinput->get('remove_id', null, 'INT'));
-                $prods = $product_model->getProducts($prod);
+                $prods = $productModel->getProducts($prod);
                 foreach ($prods as $product) {
                     $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
                 }
-                $totalrem = count($wishlist_ids);
+                $totalrem = count($wishlistIds);
             }
 
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
@@ -259,7 +259,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
             }
             //var_dump($allprod['ids']);
             $prod = array($jinput->get('remove_id', null, 'INT'));
-            $prods = $product_model->getProducts($prod);
+            $prods = $productModel->getProducts($prod);
             foreach ($prods as $product) {
                 $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
             }
@@ -267,7 +267,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
         }
-        $session->set('wishlist_ids', $wishlist_ids, 'wishlist_product');
+        $session->set('wishlist_ids', $wishlistIds, 'wishlist_product');
         exit;
     }
 

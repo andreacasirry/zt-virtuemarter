@@ -119,27 +119,27 @@ if (!empty($this->products)) {
                 <div class="img-wrapper">
                     <?php
                     $images = $product->images;
-                    $main_image_title = $images[0]->file_title;
-                    $main_image_alt = $images[0]->file_meta;
+                    $mainImageTitle = $images[0]->file_title;
+                    $mainImageAlt = $images[0]->file_meta;
                     if (!empty($images[0]->file_url_thumb)) {
-                        $main_image_url1 = JURI::root() . '' . $images[0]->file_url_thumb;
+                        $mainImageUrl1 = JURI::root() . '' . $images[0]->file_url_thumb;
                     } else {
-                        $main_image_url1 = JURI::root() . 'images/stories/virtuemart/noimage.gif';
+                        $mainImageUrl1 = JURI::root() . 'images/stories/virtuemart/noimage.gif';
                     }
                     if (!empty($images[1]->file_url_thumb)) {
-                        $main_image_url2 = JURI::root() . '' . $images[1]->file_url_thumb;
+                        $mainImageUrl2 = JURI::root() . '' . $images[1]->file_url_thumb;
                     } else {
-                        $main_image_url2 = JURI::root() . 'images/stories/virtuemart/noimage.gif';
+                        $mainImageUrl2 = JURI::root() . 'images/stories/virtuemart/noimage.gif';
                     }
-                    $image = '<img data-original="' . $main_image_url1 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $main_image_title . '"   alt="' . $main_image_alt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
+                    $image = '<img data-original="' . $mainImageUrl1 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $mainImageTitle . '"   alt="' . $mainImageAlt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
                     ?>
 
                     <?php
                     // $image = $product->images[0]->displayMediaThumb('class="browseProductImage featuredProductImageFirst" id="Img_to_Js_'.$product->virtuemart_product_id.'" border="0"',false) ;
                     if (!empty($product->images[1])) {
-                        $image2 = '<img data-original="' . $main_image_url2 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $main_image_title . '"   alt="' . $main_image_alt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
+                        $image2 = '<img data-original="' . $mainImageUrl2 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $mainImageTitle . '"   alt="' . $mainImageAlt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
                     } else {
-                        $image2 = '<img data-original="' . $main_image_url1 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $main_image_title . '"   alt="' . $main_image_alt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
+                        $image2 = '<img data-original="' . $mainImageUrl1 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $mainImageTitle . '"   alt="' . $mainImageAlt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
                     }
 
                     echo JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemart_category_id), '<div class="front">' . $image . '</div><div class="back">' . $image2 . '</div>');
@@ -318,14 +318,14 @@ if (!empty($this->products)) {
                                             </span>
                                         </span>
                                         <?php // Add the button
-                                        $button_lbl = JText::_('COM_VIRTUEMART_CART_ADD_TO');
-                                        $button_cls = 'addtocart-button cart-click'; //$button_cls = 'addtocart_button';
+                                        $buttonLbl = JText::_('COM_VIRTUEMART_CART_ADD_TO');
+                                        $buttonCls = 'addtocart-button cart-click'; //$buttonCls = 'addtocart_button';
                                         ?>
                                         <?php // Display the add to cart button ?>
                                         <div class="clear"></div>
                                         <span class="addtocart_button2">
 												<?php if ($product->orderable) { ?>
-                                                    <input type="submit" value="<?php echo $button_lbl ?>"
+                                                    <input type="submit" value="<?php echo $buttonLbl ?>"
                                                             title="<?php echo JText::_('COM_VIRTUEMART_CART_ADD_TO'); ?>"
                                                             class="addtocart-button cart-click">
                                                 <?php } else { ?>

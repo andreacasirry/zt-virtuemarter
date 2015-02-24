@@ -85,10 +85,10 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
             $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
             $prodIds = $wishlistIds;
         }
-        $product_model = VmModel::getModel('product');
+        $productModel = VmModel::getModel('product');
 
-        $products = $product_model->getProducts($prodIds);
-        $product_model->addImages($products, 1);
+        $products = $productModel->getProducts($prodIds);
+        $productModel->addImages($products, 1);
         
         return $products;
     }

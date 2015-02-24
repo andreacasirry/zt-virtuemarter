@@ -30,7 +30,7 @@ foreach ($items as $item) {
                 <i class="fa fa-files-o"></i>
             <span>
 		   <?php
-           echo count($compare_ids);
+           echo count($compareIds);
            ?></span>
             </a>
         </div>

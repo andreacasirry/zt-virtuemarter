@@ -15,18 +15,18 @@ $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
 $session = JFactory::getSession();
-$wishlist_ids = $session->get('wishlist_ids', array(), 'wishlist_product');
+$wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
 
 $prods = array();
 if ($user->guest) {
-    if (!empty($wishlist_ids)) {
-        $products = $wishlist_ids;
+    if (!empty($wishlistIds)) {
+        $products = $wishlistIds;
         $prods = $product_model->getProducts($products);
         $product_model->addImages($prods, 1);
         $currency = CurrencyDisplay::getInstance();
 
     } else {
-        $wishlist_ids = null;
+        $wishlistIds = null;
     }
 
 } else {
