@@ -104,7 +104,7 @@ if ($products_per_row > 1) {
                             $url_link = str_replace($abc, "", $url);
 
 
-                            echo mod_ztvirtuemarter_product::addtocart($product);
+                            echo ModZtvirtuemarterProductHelper::addtocart($product);
                         }
                         echo '</div>';
                         ?>
@@ -176,7 +176,7 @@ if ($products_per_row > 1) {
                             echo '</div>';
                         }
                         if ($show_addtocart) {
-                            echo mod_ztvirtuemarter_product::addtocart($product);
+                            echo ModZtvirtuemarterProductHelper::addtocart($product);
                         }
                         ?>
                     </div>
