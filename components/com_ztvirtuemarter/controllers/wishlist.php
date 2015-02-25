@@ -39,13 +39,24 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $session = JFactory::getSession();
         $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
 
-        $db = JFactory::getDbo();
-        $q = 'SELECT * FROM `#__menu` WHERE `component_id` = "' . $component->id . '" and `language` = "' . $lang . '"';
-        $db->setQuery($q);
+        $db = JFactory::getDBO();
+        $query = $db->getQuery(true);
+
+        $query->select('menu.*')
+            ->from($db->quoteName('#__menu', 'menu'))
+            ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
+            ->where($db->quoteName('language') . '=' . $db->quote($lang));
+
+        $db->setQuery($query);
         $items = $db->loadObjectList();
         if (empty($items)) {
-            $q = 'SELECT * FROM `#__menu` WHERE `component_id` = "' . $component->id . '" and `language` = "*"';
-            $db->setQuery($q);
+            $query = $db->getQuery(true);
+
+            $query->select('menu.*')
+                ->from($db->quoteName('#__menu', 'menu'))
+                ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
+                ->where($db->quoteName('language') . '=' . $db->quote('*'));
+
             $items = $db->loadObjectList();
         }
 
@@ -71,7 +82,6 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
                 $prods = $productModel->getProducts($product);
                 $productModel->addImages($prods, 1);
- ;
                 $wishlistIds[] = $jinput->get('product_id', null, 'INT');
                 foreach ($prods as $product) {
                     //var_dump($product);
@@ -121,29 +131,39 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
             }
 
         } else {
+            $db = JFactory::getDBO();
+            $query = $db->getQuery(true);
 
-            $db =& JFactory::getDBO();
-            $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-            $db->setQuery($q);
-            $allproducts = $db->loadAssocList();
-            foreach ($allproducts as $productbd) {
+            $query->select($db->quoteName('virtuemart_product_id'))
+                ->from($db->quoteName('#__wishlists'))
+                ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
+
+            $db->setQuery($query);
+            $allProducts = $db->loadAssocList();
+            foreach ($allProducts as $productbd) {
                 $allprod['ids'][] = $productbd['virtuemart_product_id'];
             }
             if ((!in_array($jinput->get('product_id', null, 'INT'), $allprod['ids']))) {
-                $q = "";
-                $q = "INSERT INTO `#__wishlists`
-					(virtuemart_product_id,userid )
-					VALUES
-					('" . $jinput->get('product_id', null, 'INT') . "','" . $user->id . "') ";
+                $query = $db->getQuery(true);
+                $query->insert($db->quoteName('#__wishlists'))
+                    ->columns($db->quoteName('virtuemart_product_id'))
+                    ->values( $jinput->get('product_id', null, 'INT'))
+                    ->columns($db->quoteName('userid'))
+                    ->values( $user->id);
 
-                $db->setQuery($q);
-                $db->query();
+                $db->setQuery($query);
+                $db->execute();
+
                 if ((!in_array($jinput->get('product_id', null, 'INT'), $allprod['id']))) {
-                    $db =& JFactory::getDBO();
-                    $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-                    $db->setQuery($q);
-                    $allproducts = $db->loadAssocList();
-                    foreach ($allproducts as $productbd) {
+                    $query = $db->getQuery(true);
+
+                    $query->select($db->quoteName('virtuemart_product_id'))
+                        ->from($db->quoteName('#__wishlists'))
+                        ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
+
+                    $db->setQuery($query);
+                    $allProducts = $db->loadAssocList();
+                    foreach ($allProducts as $productbd) {
                         $allprod['id'][] = $productbd['virtuemart_product_id'];
                     }
 
@@ -227,7 +247,6 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                     if ($jinput->get('remove_id', null, 'INT') == $v) {
                         unset($wishlistIds[$k]);
                     }
-
                 }
                 $prod = array($jinput->get('remove_id', null, 'INT'));
                 $prods = $productModel->getProducts($prod);
@@ -236,18 +255,28 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                 }
                 $totalrem = count($wishlistIds);
             }
-
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
-
         } else {
-            $db =& JFactory::getDBO();
-            $q = "DELETE  FROM `#__wishlists` WHERE virtuemart_product_id=" . $jinput->get('remove_id', null, 'INT') . " AND  userid =" . $user->id;
-            $db->setQuery($q);
-            $db->query();
-            $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-            $db->setQuery($q);
-            $allproducts = $db->loadAssocList();
-            foreach ($allproducts as $productbd) {
+            $db = JFactory::getDbo();
+            $query = $db->getQuery(true);
+            $conditions = array(
+                $db->quoteName('virtuemart_product_id') . '=' . $jinput->get('remove_id', null, 'INT'),
+                $db->quoteName('userid') . '=' . $user->id
+            );
+
+            $query->delete($db->quoteName('#__user_profiles'));
+            $query->where($conditions);
+            $db->setQuery($query);
+            $db->execute();
+
+            $query = $db->getQuery(true);
+            $query->select($db->quoteName('virtuemart_product_id'))
+                ->from($db->quoteName('#__wishlists'))
+                ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
+
+            $db->setQuery($query);
+            $allProducts = $db->loadAssocList();
+            foreach ($allProducts as $productbd) {
                 $allprod['ids'][] = $productbd['virtuemart_product_id'];
             }
             //var_dump($allprod['ids']);
