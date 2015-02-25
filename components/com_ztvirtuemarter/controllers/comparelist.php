@@ -44,13 +44,24 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 
         $component = JComponentHelper::getComponent('com_ztvirtuemarter');
 
-        $db = JFactory::getDbo();
-        $q = 'SELECT * FROM `#__menu` WHERE `component_id` = "' . $component->id . '" and `language` = "' . $lang . '"';
-        $db->setQuery($q);
+        $db = JFactory::getDBO();
+        $query = $db->getQuery(true);
+
+        $query->select('menu.*')
+            ->from($db->quoteName('#__menu', 'menu'))
+            ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
+            ->where($db->quoteName('language') . '=' . $db->quote($lang));
+
+        $db->setQuery($query);
         $items = $db->loadObjectList();
         if (empty($items)) {
-            $q = 'SELECT * FROM `#__menu` WHERE `component_id` = "' . $component->id . '" and `language` = "*"';
-            $db->setQuery($q);
+            $query = $db->getQuery(true);
+
+            $query->select('menu.*')
+                ->from($db->quoteName('#__menu', 'menu'))
+                ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
+                ->where($db->quoteName('language') . '=' . $db->quote('*'));
+
             $items = $db->loadObjectList();
         }
 
