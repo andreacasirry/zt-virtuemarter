@@ -29,32 +29,38 @@ class plgSystemZtvirtuemarter extends JPlugin
     {
         $app = JFactory::getApplication();
         $doc = JFactory::getDocument();
-        $user = JFactory::getUser();
-        $session = JFactory::getSession();
-        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
         if (!($app->isAdmin())) {
-            if (!$user->guest) {
-                if (!empty($wishlistIds)) {
-                    $dbIds = $wishlistIds;
-                    $db = JFactory::getDBO();
-                    $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-                    $db->setQuery($q);
-                    $allproducts = $db->loadAssocList();
-                    foreach ($allproducts as $productbd) {
-                        $allprod['ids'][] = $productbd['virtuemart_product_id'];
+            $session        = JFactory::getSession();
+            $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
+            if(count($wishlistIds) > 0) {
+                $user = JFactory::getUser();
+                if (!$user->guest) {
+                    $db             = JFactory::getDBO();
+                    $query          = $db->getQuery(true);
+
+                    $query->select($db->quoteName('virtuemart_product_id') )
+                        ->from($db->quoteName('#__wishlists'))
+                        ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
+
+                    $db->setQuery($query);
+                    $allProducts = $db->loadAssocList();
+                    foreach ($allProducts as $productbd) {
+                        $prodIds['ids'][] = $productbd['virtuemart_product_id'];
                     }
-                    for ($r = 0; $r < count($dbIds); $r++) {
-                        if (!in_array($dbIds[$r], $allprod['ids'])) {
-                            $q = "INSERT INTO `#__wishlists`
-								(virtuemart_product_id,userid )
-								VALUES
-								('" . $dbIds[$r] . "','" . $user->id . "') ";
-                            //var_dump ($dbIds[$r]);
-                            $db->setQuery($q);
-                            $db->queryBatch();
+
+                    foreach($wishlistIds as $id) {
+                        if (!in_array($id, $prodIds['ids'])) {
+                            $query = $db->getQuery(true);
+                            $query->insert($db->quoteName('#__wishlists'))
+                                ->columns($db->quoteName('virtuemart_product_id'))
+                                ->values( $id)
+                                ->columns($db->quoteName('userid'))
+                                ->values( $user->id);
+
+                            $db->setQuery($query);
+                            $db->execute();
                         }
                     }
-                    $session->set('wishlist_ids', array(), 'wishlist_product');
                 }
             }
 
