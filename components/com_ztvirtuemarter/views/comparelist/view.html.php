@@ -5,7 +5,7 @@ class ZtvirtuemarterViewComparelist extends JViewLegacy
 {
     public $products;
 
-	function display($tpl = null)
+	public function display($tpl = null)
 	{
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);

@@ -5,7 +5,7 @@ defined( '_JEXEC' ) or die;
 class plgSystemZtvirtuemarterInstallerScript
 {
 
-	function postflight( $type, $parent )
+	public function postflight( $type, $parent )
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery( true );

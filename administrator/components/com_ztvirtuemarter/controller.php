@@ -15,7 +15,7 @@ class ZtvirtuemarterController extends JControllerLegacy
 	 *
 	 * @return void
 	 */
-	function display($cachable = false, $urlparams = false)
+	public function display($cachable = false, $urlparams = false)
 	{
 		// set default view if not set
 		$input = JFactory::getApplication()->input;

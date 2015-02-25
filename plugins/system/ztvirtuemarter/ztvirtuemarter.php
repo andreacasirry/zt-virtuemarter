@@ -25,7 +25,7 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     }
 
-    function onBeforeRender()
+    public function onBeforeRender()
     {
         $app = JFactory::getApplication();
         $doc = JFactory::getDocument();
@@ -81,7 +81,7 @@ class plgSystemZtvirtuemarter extends JPlugin
         }
     }
 
-    function onAfterInitialise()
+    public function onAfterInitialise()
     {
         if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
         $input = JFactory::getApplication()->input;

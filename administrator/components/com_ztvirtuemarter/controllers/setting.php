@@ -17,7 +17,7 @@ class ZtvirtuemarterControllerSetting extends JControllerAdmin
     }
 
 
-    function apply(){
+    public function apply(){
         $settings = $this->input->post->get('jform', array(), 'array');
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
         if(count($settings) > 0 ){

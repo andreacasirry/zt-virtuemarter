@@ -21,7 +21,7 @@ class ZtvirtuemarterViewWishlist extends JViewLegacy
 {
     public $products;
 
-    function display($tpl = null)
+    public function display($tpl = null)
     {
 
         vmJsApi::jPrice();

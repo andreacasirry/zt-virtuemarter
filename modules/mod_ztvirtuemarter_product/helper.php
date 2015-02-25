@@ -47,7 +47,7 @@ if (!class_exists ('calculationHelper')) {
 
 class mod_ztvirtuemarter_product {
 
-	static function addtocart ($product) {
+	public static function addtocart ($product) {
 
 		if (!VmConfig::get ('use_as_catalog', 0)) {
 			$stockhandle = VmConfig::get ('stockhandle', 'none');
