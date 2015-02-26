@@ -9,20 +9,20 @@ VmConfig::loadJLang('mod_ztvirtuemarter_product', true);
 $jinput = JFactory::getApplication()->input;
 
 // Setting
-$max_items = $params->get('max_items', 2); //maximum number of items to display
+$maxItems = $params->get('max_items', 2); //maximum number of items to display
 $layout = $params->get('layout', 'default');
-$category_id = $params->get('virtuemart_category_id', null); // Display products from this category only
-$filter_category = (bool)$params->get('filter_category', 0); // Filter the category
-$display_style = $params->get('display_style', "div"); // Display Style
-$products_per_row = $params->get('products_per_row', 1); // Display X products per Row
-$show_price = (bool)$params->get('show_price', 1); // Display the Product Price?
-$show_addtocart = (bool)$params->get('show_addtocart', 1); // Display the "Add-to-Cart" Link?
+$categoryId = $params->get('virtuemart_category_id', null); // Display products from this category only
+$filterCategory = (bool)$params->get('filter_category', 0); // Filter the category
+$displayStyle = $params->get('display_style', "div"); // Display Style
+$productsPerRow = $params->get('products_per_row', 1); // Display X products per Row
+$showPrice = (bool)$params->get('show_price', 1); // Display the Product Price?
+$showAddtocart = (bool)$params->get('show_addtocart', 1); // Display the "Add-to-Cart" Link?
 $headerText = $params->get('headerText', ''); // Display a Header Text
 $footerText = $params->get('footerText', ''); // Display a footerText
-$Product_group = $params->get('product_group', 'featured'); // Display a footerText
-$new_product_from = $params->get('new_product_from', '7');
+$productGroup = $params->get('product_group', 'featured'); // Display a footerText
+$newProductFrom = $params->get('new_product_from', '7');
 $mainframe = Jfactory::getApplication();
-$virtuemart_currency_id = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', vRequest::getInt('virtuemart_currency_id', 0));
+$virtuemartCurrencyId = $mainframe->getUserStateFromRequest("virtuemart_currency_id", 'virtuemart_currency_id', vRequest::getInt('virtuemart_currency_id', 0));
 
 
 /* Load  VM fonction */
@@ -30,18 +30,18 @@ if (!class_exists('mod_ztvirtuemarter_product')) require('helper.php');
 
 $vendorId = vRequest::getInt('vendorid', 1);
 
-if ($filter_category) $filter_category = TRUE;
+if ($filterCategory) $filterCategory = TRUE;
 
 $productModel = VmModel::getModel('Product');
 
-$products = $productModel->getProductListing($Product_group, $max_items, $show_price, true, false, $filter_category, $category_id);
+$products = $productModel->getProductListing($productGroup, $maxItems, $showPrice, true, false, $filterCategory, $categoryId);
 $productModel->addImages($products);
 
 $totalProd = count($products);
 if (empty($products)) return false;
 $currency = CurrencyDisplay::getInstance();
 
-if ($show_addtocart) {
+if ($showAddtocart) {
     vmJsApi::jPrice();
     vmJsApi::cssSite();
 }

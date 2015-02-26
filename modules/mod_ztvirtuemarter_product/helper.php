@@ -88,37 +88,24 @@ class ModZtvirtuemarterProductHelper {
 						</div>
 						<?php } ?>
 
-					<div class="addtocart-bar">
+                    <div class="addtocart-bar">
 
-						<?php
-						// Display the quantity box
-						?>
-						<!-- <label for="quantity<?php echo $product->virtuemart_product_id;?>" class="quantity_box"><?php echo vmText::_ ('COM_VIRTUEMART_CART_QUANTITY'); ?>: </label> -->
-			<span class="quantity-box">
-			<input type="text" class="quantity-input" name="quantity[]" value="1"/>
-			</span>
-			<span class="quantity-controls">
-			<input type="button" class="quantity-controls quantity-plus"/>
-			<input type="button" class="quantity-controls quantity-minus"/>
-			</span>
+                        <span class="quantity-box">
+                        <input type="text" class="quantity-input" name="quantity[]" value="1"/>
+                        </span>
+                        <span class="quantity-controls">
+                        <input type="button" class="quantity-controls quantity-plus"/>
+                        <input type="button" class="quantity-controls quantity-minus"/>
+                        </span>
 
+                        <span class="addtocart-button">
+                            <?php echo shopFunctionsF::getAddToCartButton($product->orderable); ?>
+                        </span>
 
-						<?php
-						// Add the button
-						$button_lbl = vmText::_ ('COM_VIRTUEMART_CART_ADD_TO');
-						$button_cls = ''; //$button_cls = 'addtocart_button';
+                        <div class="clear"></div>
+                    </div>
 
-
-						?>
-						<?php // Display the add to cart button ?>
-						<span class="addtocart-button">
-							<?php echo shopFunctionsF::getAddToCartButton($product->orderable); ?>
-			</span>
-
-						<div class="clear"></div>
-					</div>
-
-					<input type="hidden" class="pname" value="<?php echo $product->product_name ?>"/>
+                    <input type="hidden" class="pname" value="<?php echo $product->product_name ?>"/>
 					<input type="hidden" name="option" value="com_virtuemart"/>
 					<input type="hidden" name="view" value="cart"/>
 					<noscript><input type="hidden" name="task" value="add"/></noscript>
@@ -131,4 +118,18 @@ class ModZtvirtuemarterProductHelper {
 			}
 		}
 	}
+
+    public static function label($product, $newProductFrom = 5){
+        $createddate = $product->created_on;
+        $sale = $product->prices['product_override_price'];
+        $date = strtotime("now");
+        $htmlLabel = '';
+        if ($date - $createddate <= $newProductFrom) {
+            $htmlLabel .= '<div class="label-product label-new">New</div>';
+        }
+        if ($sale > 0) {
+            $htmlLabel .= '<div class="label-product label-sale">Sale</div>';
+        }
+        return $htmlLabel;
+    }
 }

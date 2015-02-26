@@ -23,13 +23,13 @@ vmJsApi::jPrice();
                         $product->virtuemart_category_id); ?>        <a
                         href="<?php echo $url ?>"><?php echo $product->product_name ?></a>        <?php    echo '<div class="clear"></div>';
                     // $product->prices is not set when show_prices in config is unchecked
-                    if ($show_price and isset($product->prices)) {
+                    if ($showPrice and isset($product->prices)) {
                         // 		echo $currency->priceDisplay($product->prices['salesPrice']);
                         if (!empty($product->prices['salesPrice'])) echo $currency->createPriceDiv('salesPrice', '', $product->prices, true);
                         // 		if ($product->prices['salesPriceWithDiscount']>0) echo $currency->priceDisplay($product->prices['salesPriceWithDiscount']);
                         if (!empty($product->prices['salesPriceWithDiscount'])) echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, true);
                     }
-                    if ($show_addtocart) echo mod_ztvirtuemarter_product::addtocart($product);
+                    if ($showAddtocart) echo mod_ztvirtuemarter_product::addtocart($product);
                     ?>
                 </div>
             </div>

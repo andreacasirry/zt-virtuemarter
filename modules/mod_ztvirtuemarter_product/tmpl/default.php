@@ -7,12 +7,12 @@ vmJsApi::jPrice();
 $product_number = $jinput->get('product', 0, 'INT');
 $productss = array();
 
-$num = $products_per_row;
+$num = $productsPerRow;
 
 
 
 if ($product_number != 0) {
-    $num = intval($product_number) + $products_per_row;
+    $num = intval($product_number) + $productsPerRow;
     if ($num > count($products)) {
         $num = count($products);
     }
@@ -35,7 +35,7 @@ for ($i = 0; $i < $num; $i++) {
     ?>
 </div>
 <input type="hidden" class="base_url" value="<?php echo JURI::root(); ?>"/>
-<input type="hidden" class="num_plus" value="<?php echo $products_per_row;?>"/>
+<input type="hidden" class="num_plus" value="<?php echo $productsPerRow;?>"/>
 <div class="more-product">
     <a class="more_product readmore" style="cursor:pointer">More Products...</a>
 </div>
