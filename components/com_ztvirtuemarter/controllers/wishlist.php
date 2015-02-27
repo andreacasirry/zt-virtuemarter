@@ -223,7 +223,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
     public function showJSON($message = '', $title = '', $imgProd2 = '', $btnrem = '', $btnwishlists = '', $btnwishlistsback = '', $totalwishlists = '', $recent = '', $imgProd = '', $prodName = '', $productIds = '')
     {
-        echo json_encode(array('message' => $message, 'title' => $title, 'totalwishlists' => $totalwishlists, 'recent' => $recent, 'imgProd' => $imgProd, 'imgProd2' => $imgProd2, 'btnrem' => $btnrem, 'prod_name' => $prodName, 'product_ids' => $productIds, 'btnwishlists' => $btnwishlists, 'btnwishlistsback' => $btnwishlistsback));
+        echo json_encode(array('message' => $message, 'title' => $title, 'totalwishlists' => $totalwishlists, 'recent' => $recent, 'img_prod' => $imgProd, 'img_prod2' => $imgProd2, 'btnrem' => $btnrem, 'prod_name' => $prodName, 'product_ids' => $productIds, 'btnwishlists' => $btnwishlists, 'btnwishlistsback' => $btnwishlistsback));
 
     }
 

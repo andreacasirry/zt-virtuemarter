@@ -51,8 +51,8 @@ function addToWishlists(product_id) {
                 +json.btnrem
                 +json.message
                 +json.btnwishlists
-
                 +json.btnwishlistsback;
+
             jQuery.fancybox({
                     "titlePosition" : 	"inside",
                     "transitionIn"	:	"fade",
@@ -66,7 +66,7 @@ function addToWishlists(product_id) {
                 }
             );
             if(json.totalwishlists != '') {
-                jQuery('.wishlist_total span').html(json.totalwishlists);
+                jQuery('.btn-wishlist span').html(json.totalwishlists);
                 jQuery('#mod_wishlists .vmproduct .not_text').remove();
             }
 
@@ -75,7 +75,6 @@ function addToWishlists(product_id) {
                 jQuery('#mod_wishlists .vmproduct').append(wishlist_item);
             }
 
-            jQuery('.btn-wishlist span').html(json.totalwishlists);
             jQuery('#wishlists_continue').click( jQuery.fancybox.close);
         }
     });
