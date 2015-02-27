@@ -4,12 +4,12 @@ defined('_JEXEC') or die('Restricted access');
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
 vmJsApi::jPrice();
 
-$product_number = $jinput->get('product', 0, 'INT');
+$productNumber = $jinput->get('product', 0, 'INT');
 $productss = array();
 
 $num = $productsPerRow;
-if ($product_number != 0) {
-    $num = intval($product_number) + $productsPerRow;
+if ($productNumber != 0) {
+    $num = intval($productNumber) + $productsPerRow;
     if ($num > count($products)) {
         $num = count($products);
     }

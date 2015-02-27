@@ -40,18 +40,18 @@ endif;
                             }
                             $maxrating = VmConfig::get('vm_maximum_rating_scale', 5);
                             $ratingwidth = ($r * 100) / $maxrating;
-                            $rate_star = '';
-                            $rate_star .= '<div class="comare_rating">';
-                            $rate_star .= '<div class="rating">';
-                            $rate_star .= '<span class="vote">';
-                            $rate_star .= '<span title="" class="vmicon ratingbox" style="display:inline-block;">';
-                            $rate_star .= '<span class="stars-orange" style="width:' . $ratingwidth . '%">';
-                            $rate_star .= '</span>';
-                            $rate_star .= '</span>';
-                            $rate_star .= '</span>';
-                            $rate_star .= '</div>';
-                            $rate_star .= '</div>';
-                            echo $rate_star;
+                            $rateStar = '';
+                            $rateStar .= '<div class="comare_rating">';
+                            $rateStar .= '<div class="rating">';
+                            $rateStar .= '<span class="vote">';
+                            $rateStar .= '<span title="" class="vmicon ratingbox" style="display:inline-block;">';
+                            $rateStar .= '<span class="stars-orange" style="width:' . $ratingwidth . '%">';
+                            $rateStar .= '</span>';
+                            $rateStar .= '</span>';
+                            $rateStar .= '</span>';
+                            $rateStar .= '</div>';
+                            $rateStar .= '</div>';
+                            echo $rateStar;
                         }
                         echo '<div class="vm-product-media-container">';
                         if (!empty($product->images[0])) {
@@ -79,7 +79,7 @@ endif;
                                 }
                             }
                             $abc = substr($url, $oder);
-                            $url_link = str_replace($abc, "", $url);
+                            $urlLink = str_replace($abc, "", $url);
                             echo ModZtvirtuemarterProductHelper::addtocart($product);
                         }
                         echo '</div>';
