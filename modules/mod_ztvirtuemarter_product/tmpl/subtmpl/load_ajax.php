@@ -105,14 +105,13 @@ endif;
     else :
         $last = count($productss) - 1;
         ?>
-        <div id="vmproduct" class="vmproduct<?php echo $params->get('moduleclass_sfx'); ?> productdetails ">
+        <ul id="vmproduct" class="vmproduct<?php echo $params->get('moduleclass_sfx'); ?> productdetails ">
             <?php foreach ($productss as $product) : ?>
-                <div class="col-md-3 col-sm-3 product-item">
-                    <div class="spacer zt-product-content">
+                <li class="col-md-3 col-sm-3 product-item">
+                    <div class="spacer">
+                        <h3><a href="<?php echo $url ?>"><?php echo $product->product_name ?></a></h3>
                         <?php
-                            echo ModZtvirtuemarterProductHelper::label($product, $newProductFrom);
-                        ?>
-                        <?php
+                        echo ModZtvirtuemarterProductHelper::label($product, $newProductFrom);
                         if (!empty($product->images[0])) {
                             $image = $product->images[0]->displayMediaThumb('class="featuredProductImage" border="0"', FALSE);
                         } else {
@@ -123,8 +122,8 @@ endif;
                         $url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
                             $product->virtuemart_category_id);
                         ?>
-                        <a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>
-                        <?php    echo '<div class="clear"></div>';
+                        <div class="clear"></div>
+                        <?php
                         // $product->prices is not set when show_prices in config is unchecked
                         if ($showPrice and isset($product->prices)) {
                             echo '<div class="product-price">' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
@@ -137,17 +136,17 @@ endif;
                             echo ModZtvirtuemarterProductHelper::addtocart($product);
                         }
                         ?>
+                        <div class="product_hover zt-product-content">
+                            <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
+                            <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                            <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
+                        </div>
                     </div>
-                    <div class="product_hover zt-product-content">
-                        <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
-                        <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
-                        <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
-                    </div>
-                </div>
+                </li>
                 <?php
                 if ($col == $productsPerRow && $productsPerRow && $last) {
                     echo '
-                    </div><div class="clear"></div>
+                    </ul><div class="clear"></div>
                     <ul  class="vmproduct' . $params->get('moduleclass_sfx') . ' productdetails">';
                     $col = 1;
                 } else {
@@ -157,7 +156,6 @@ endif;
             endforeach; ?>
         </div>
         <div class="clear"></div>
-
     <?php
     endif;
     if ($footerText) : ?>
