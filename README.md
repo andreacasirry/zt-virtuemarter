@@ -1,9 +1,10 @@
-#VirtueMart-Ext
+#ZTVirtuemarter
 
-VirtueMart-Ext is a Joomla package contain component, plugin, module.
+ZTVirtuemarter is a Joomla package contain component, plugin, module.
+
 All of extensions in this package are required VirtueMart 3.0
 
-#Feature
+## Key Features
 
 * Product Compare
 * Product Wishlist
