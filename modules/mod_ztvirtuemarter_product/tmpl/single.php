@@ -29,7 +29,7 @@ vmJsApi::jPrice();
                         // 		if ($product->prices['salesPriceWithDiscount']>0) echo $currency->priceDisplay($product->prices['salesPriceWithDiscount']);
                         if (!empty($product->prices['salesPriceWithDiscount'])) echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, true);
                     }
-                    if ($showAddtocart) echo mod_ztvirtuemarter_product::addtocart($product);
+                    if ($showAddtocart) echo ModZtvirtuemarterProductHelper::addtocart($product);
                     ?>
                 </div>
             </div>

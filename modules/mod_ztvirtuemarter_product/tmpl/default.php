@@ -8,9 +8,6 @@ $product_number = $jinput->get('product', 0, 'INT');
 $productss = array();
 
 $num = $productsPerRow;
-
-
-
 if ($product_number != 0) {
     $num = intval($product_number) + $productsPerRow;
     if ($num > count($products)) {

@@ -119,17 +119,17 @@ class ModZtvirtuemarterProductHelper {
 		}
 	}
 
-    public static function label($product, $newProductFrom = 5){
-        $createddate = $product->created_on;
+    public static function label($product, $newProductFrom = 7){
         $sale = $product->prices['product_override_price'];
-        $date = strtotime("now");
         $htmlLabel = '';
-        if ($date - $createddate <= $newProductFrom) {
+        $dateDiff = date_diff(date_create(), date_create($product->product_available_date));
+        if ($dateDiff->days < $newProductFrom) {
             $htmlLabel .= '<div class="label-product label-new">New</div>';
         }
         if ($sale > 0) {
             $htmlLabel .= '<div class="label-product label-sale">Sale</div>';
         }
+
         return $htmlLabel;
     }
 }
