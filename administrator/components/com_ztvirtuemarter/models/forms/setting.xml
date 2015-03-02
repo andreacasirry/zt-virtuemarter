@@ -4,7 +4,7 @@
         <field name="enable_wishlist" type="radio" label="Enable wishlist"
                description="Enable wishlist" class="inputbox btn-group"
                size="1" default="1"
-        >
+                >
             <option value="0">
                 JNO
             </option>
@@ -15,7 +15,7 @@
         <field name="enable_compare" type="radio" label="Enable compare"
                description="Enable compare" class="inputbox btn-group"
                size="1" default="1"
-        >
+                >
             <option value="0">
                 JNO
             </option>
@@ -26,7 +26,7 @@
         <field name="enable_quickview" type="radio" label="Enable quickview"
                description="Enable quickview" class="inputbox btn-group"
                size="1" default="1"
-        >
+                >
             <option value="0">
                 JNO
             </option>
