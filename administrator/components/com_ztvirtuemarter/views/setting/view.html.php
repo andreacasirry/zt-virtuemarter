@@ -26,34 +26,17 @@ class ZtvirtuemarterViewSetting extends JViewLegacy
     public function display($tpl = null)
     {
         $this->form = $this->get('Form');
-        /**
-         * @todo Move query to model
-         */
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query->select('*');
-        $query->from($db->quoteName('#__ztvirtuemarter'));
-        $query->where($db->quoteName('id') . ' = 1');
-        $db->setQuery($query);
-        $results = $db->loadObjectList();
-        if (isset($results[0]))
-        {
-            if (!empty($results[0]->setting))
-                $this->params = json_decode($results[0]->setting);
-        }
-
-        $this->addToolbar();
-
+        $model = $this->getModel();
+        $item = $model->getItem(1);
+        $this->params = json_decode($item->get('setting'));
+        $this->_addToolbar();
         parent::display($tpl);
     }
 
-    protected function addToolbar()
+    protected function _addToolbar()
     {
-        defined('_JEXEC') or die();
-        JToolBarHelper::title(JText::_('Component ZT VirtueMarter '));
+        JToolBarHelper::title(JText::_('COM_ZTVIRTUEMARTER_ADMIN_TITLE'));
         JToolBarHelper::apply('setting.apply');
     }
 
 }
-
-?>
