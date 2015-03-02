@@ -23,6 +23,9 @@ jimport('joomla.database.table');
 class ZtvirtuemarterTableSetting extends JTable
 {
 
+    public $id = null;
+    public $setting = null;
+
     /**
      * Constructor
      *
@@ -31,6 +34,20 @@ class ZtvirtuemarterTableSetting extends JTable
     public function __construct(&$db)
     {
         parent::__construct('#__ztvirtuemarter', 'id', $db);
+    }
+
+    /**
+     * Table fields checking
+     * @return type
+     */
+    public function check()
+    {
+        if (trim((string) $this->setting) == '')
+        {
+            return false;
+        }
+        $this->setting = json_encode($this->setting);
+        return parent::check();
     }
 
 }

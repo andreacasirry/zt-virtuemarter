@@ -34,39 +34,42 @@ class ZtvirtuemarterControllerSetting extends JControllerAdmin
     }
 
     /**
-     * 
+     * Save setting to database
      */
     public function apply()
     {
-        $settings = $this->input->post->get('jform', array(), 'array');
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-        if (count($settings) > 0)
+        // Get data
+        $settings = $this->input->post->get('jform', array(), 'array');
+        // Get model
+        $model = $this->getModel('setting');
+        /**
+         * Setup data array for saving
+         * @todo It must be implemented in form
+         */
+        $data['setting'] = $settings;
+        // Save data
+        if (!$model->save($data))
         {
-            /**
-             * @todo Move query to model
-             */
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true);
-            $query->select('*');
-            $query->from($db->quoteName('#__ztvirtuemarter'));
-            $query->where($db->quoteName('id') . ' = 1');
-            $db->setQuery($query);
-            $results = $db->loadObjectList();
-            if (isset($results[0]))
-            {
-                $results[0]->setting = json_encode($settings);
-                //print_r($settings);
-                var_dump(JFactory::getDbo()->updateObject('#__ztvirtuemarter', $results[0], 'id'));
-                // die;
-            } else
-            {
-                $settingModel = new stdClass();
-                $settingModel->id = 1;
-                $settingModel->setting = json_encode($settings);
-                $db->insertObject('#__ztvirtuemarter', $settingModel);
-            }
+            $this->setMessage(JText::_('COM_ZTVIRTUEMARTER_SETTING_SAVE_FAILED'), 'error');
+        } else
+        {
+            $this->setMessage(JText::_('COM_ZTVIRTUEMARTER_SETTING_SAVE_SUCCESSED'));
         }
+        // Redirect back
         $this->setRedirect(JRoute::_('index.php?option=' . $this->option, false));
+    }
+
+    /**
+     * Wrapped method to get model
+     * @param type $name
+     * @param type $prefix
+     * @param type $config
+     * @return type
+     */
+    public function getModel($name = '', $prefix = 'ZtvirtuemarterModel', $config = array())
+    {
+        return parent::getModel($name, $prefix, $config);
     }
 
 }
