@@ -66,4 +66,20 @@ class ZtvirtuemarterModelSetting extends JModelAdmin
         return $data;
     }
 
+    /**
+     * 
+     * @param int $data
+     * @return boolean
+     */
+    public function save($data)
+    {
+        $item = $this->getItem(1);
+        if ($item->id == 1)
+        {
+            // Record exists than do UPDATE
+            $data['id'] = 1;
+        }
+        return parent::save($data);
+    }
+
 }
