@@ -1,9 +1,24 @@
 <?php
-// No direct access
-defined('_JEXEC') or die;
+
+/**
+ * Zt Virtuemarter
+ * 
+ * @package     Joomla
+ * @subpackage  Component
+ * @version     1.0.0
+ * @author      ZooTemplate 
+ * @email       support@zootemplate.com 
+ * @link        http://www.zootemplate.com 
+ * @copyright   Copyright (c) 2015 ZooTemplate
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.modeladmin');
 
+/**
+ * 
+ */
 class ZtvirtuemarterModelSetting extends JModelAdmin
 {
 
@@ -24,8 +39,7 @@ class ZtvirtuemarterModelSetting extends JModelAdmin
     public function getForm($data = array(), $loadData = true)
     {
         // Get the form.
-        $form = $this->loadForm('com_ztvirtuemarter.edit', 'setting',
-            array('control' => 'jform', 'load_data' => $loadData));
+        $form = $this->loadForm('com_ztvirtuemarter.edit', 'setting', array('control' => 'jform', 'load_data' => $loadData));
 
         if (empty($form))
         {
@@ -33,6 +47,7 @@ class ZtvirtuemarterModelSetting extends JModelAdmin
         }
         return $form;
     }
+
     /**
      * Method to get the data that should be injected in the form.
      *
@@ -50,4 +65,5 @@ class ZtvirtuemarterModelSetting extends JModelAdmin
         }
         return $data;
     }
+
 }
