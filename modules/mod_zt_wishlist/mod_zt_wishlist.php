@@ -32,8 +32,15 @@ if ($user->guest) {
 } else {
 
     $db = JFactory::getDBO();
-    $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-    $db->setQuery($q);
+    $db             = JFactory::getDBO();
+    $query          = $db->getQuery(true);
+
+    $query->select($db->quoteName('virtuemart_product_id') )
+        ->from($db->quoteName('#__wishlists'))
+        ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
+
+    $db->setQuery($query);
+
     $allproducts = $db->loadAssocList();
     foreach ($allproducts as $productbd) {
         $allprod['id'][] = $productbd['virtuemart_product_id'];

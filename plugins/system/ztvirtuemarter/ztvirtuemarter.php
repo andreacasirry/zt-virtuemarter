@@ -475,13 +475,14 @@ class plgSystemZtvirtuemarter extends JPlugin
     {
         $session = JFactory::getSession();
         $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
-        if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php")) {
-            ?>
-            <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
-                <?php require(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php"); ?>
-            </div>
-        <?php
-        }
+        if(self::getZtvirtuemarterSetting()->enable_wishlist == '1')
+            if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php")) {
+                ?>
+                <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
+                    <?php require(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php"); ?>
+                </div>
+            <?php
+            }
     }
 
     public static function getZtvirtuemarterSetting() {

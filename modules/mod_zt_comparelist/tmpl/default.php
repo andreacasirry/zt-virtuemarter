@@ -21,29 +21,24 @@ foreach ($items as $item) {
         $itemid = $item->id;
     }
 }
+if(plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare == '1') :
 ?>
-
 <div class="ajax-dropdown vmgroup<?php echo $params->get('moduleclass_sfx') ?>" id="mod_compare">
     <div class="seldcomp" id="butseldcomp">
-        <?php if(plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare == '1') {?>
+        <?php if(plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare == '1') : ?>
         <a class="btn-compare"
-           href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
+           href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid ); ?>">
             <i class="fa fa-files-o hover-dropdown"></i>
             <span>
-		   <?php
-           echo count($compareIds);
-           ?></span>
+		   <?php echo count($compareIds); ?></span>
         </a>
-        <?php } ?>
+        <?php endif; ?>
     </div>
     <div class="zt-cart-inner">
         <div class="vmproduct">
             <?php
-            if (count($prods) > 0) {
-                ?>
-                <?php
-                foreach ($prods as $product) {
-                    ?>
+            if (count($prods) > 0) :
+                foreach ($prods as $product) : ?>
                     <div id="compare_prod_<?php echo $product->virtuemart_product_id; ?>"
                          class="modcompareprod clearfix">
                         <div class="compare-product-img">
@@ -68,17 +63,14 @@ foreach ($items as $item) {
                             </div>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
-            <?php
-            } else {
-                ?>
+                <?php endforeach; ?>
+            <?php else : ?>
                 <div class="not_text compare"><?php echo JText::_('YOU_HAVE_NO_PRODUCT_TO_COMPARE'); ?></div>
             <?php
-            }
+            endif;
             ?>
         </div>
     </div>
 </div>
+<?php endif; ?>
 	
