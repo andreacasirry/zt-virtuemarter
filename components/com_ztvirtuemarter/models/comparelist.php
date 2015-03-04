@@ -9,7 +9,6 @@ class ZtvirtuemarterModelComparelist extends JModelLegacy
     public function __construct($config = array())
     {
         parent::__construct($config);
-        $this->input = JFactory::getApplication()->input;
     }
 
     public function getProducts()
