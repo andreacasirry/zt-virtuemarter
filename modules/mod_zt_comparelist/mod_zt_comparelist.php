@@ -9,6 +9,9 @@
 
 // No direct access.
 defined('_JEXEC') or die('Restricted access');
+VmConfig::loadConfig();
+// Load the language file of com_virtuemart.
+JFactory::getLanguage()->load('com_virtuemart');
 $prods = array();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
