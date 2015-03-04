@@ -10,13 +10,13 @@ defined('_JEXEC') or die;
 
 class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 {
+    public function __construct(){
+        ZtvituemarterHelper::loadVMLibrary();
+        parent::__construct();
+    }
 
     public function add()
     {
-
-        $itemID = '';
-        ZtvituemarterHelper::loadVMLibrary();
-        $lang = JFactory::getLanguage()->getTag();
         $session = JFactory::getSession();
         $compareIds = $session->get('compare_ids', array(), 'compare_product');
         $jinput = JFactory::getApplication()->input;
@@ -24,42 +24,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
 
-        if (empty($lang))
-            $lang = '*';
-
-        $component = JComponentHelper::getComponent('com_ztvirtuemarter');
-
-        $db = JFactory::getDBO();
-        $query = $db->getQuery(true);
-
-        $query->select('menu.*')
-            ->from($db->quoteName('#__menu', 'menu'))
-            ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
-            ->where($db->quoteName('language') . '=' . $db->quote($lang));
-
-        $db->setQuery($query);
-        $items = $db->loadObjectList();
-        if (empty($items)) {
-            $query = $db->getQuery(true);
-
-            $query->select('menu.*')
-                ->from($db->quoteName('#__menu', 'menu'))
-                ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
-                ->where($db->quoteName('language') . '=' . $db->quote('*'));
-
-            $items = $db->loadObjectList();
-        }
-
-        foreach ($items as $item) {
-            if (strstr($item->link, 'view=comparelist')) {
-                $itemID = $item->id;
-                break;
-            }
-        }
-
-        if (empty($itemID) && !empty($items[0]->id)) {
-            $itemID = $items[0]->id;
-        }
+        $itemId = ZtvituemarterHelper::getItemId('comparelist');
 
         $productModel = VmModel::getModel('product');
 

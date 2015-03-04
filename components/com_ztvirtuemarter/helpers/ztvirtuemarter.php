@@ -16,4 +16,44 @@ class ZtvituemarterHelper {
             JLoader::import('ratings', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models');
         }
     }
+
+    public static function getItemId($view) {
+        $itemID = '';
+        $component = JComponentHelper::getComponent('com_ztvirtuemarter');
+        $lang = JFactory::getLanguage()->getTag();
+        if (empty($lang))
+            $lang = '*';
+
+        $db = JFactory::getDBO();
+        $query = $db->getQuery(true);
+        $query->select('menu.*')
+            ->from($db->quoteName('#__menu', 'menu'))
+            ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
+            ->where($db->quoteName('language') . '=' . $db->quote($lang));
+
+        $db->setQuery($query);
+        $items = $db->loadObjectList();
+        if (empty($items)) {
+            $query = $db->getQuery(true);
+
+            $query->select('menu.*')
+                ->from($db->quoteName('#__menu', 'menu'))
+                ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
+                ->where($db->quoteName('language') . '=' . $db->quote('*'));
+
+            $items = $db->loadObjectList();
+        }
+
+        foreach ($items as $item) {
+            if (strstr($item->link, 'view=' . $view)) {
+                $itemID = $item->id;
+                break;
+            }
+        }
+
+        if (empty($itemID) && !empty($items[0]->id)) {
+            $itemID = $items[0]->id;
+        }
+        return $itemID;
+    }
 }

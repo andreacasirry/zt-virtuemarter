@@ -23,7 +23,6 @@ class ZtvirtuemarterViewWishlist extends JViewLegacy
 
     public function display($tpl = null)
     {
-
         vmJsApi::jPrice();
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);

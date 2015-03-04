@@ -12,50 +12,18 @@ JFactory::getLanguage()->load('com_wishlists');
 
 class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 {
+    public function __construct(){
+        ZtvituemarterHelper::loadVMLibrary();
+        parent::__construct();
+    }
     public function add()
     {
-
-        $itemID = '';
         $recent = '';
-        ZtvituemarterHelper::loadVMLibrary();
-        if (empty($lang)) $lang = '*';
-
         $jinput = JFactory::getApplication()->input;
-        $component = JComponentHelper::getComponent('com_ztvirtuemarter');
         $session = JFactory::getSession();
         $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
 
-        $db = JFactory::getDBO();
-        $query = $db->getQuery(true);
-
-        $query->select('menu.*')
-            ->from($db->quoteName('#__menu', 'menu'))
-            ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
-            ->where($db->quoteName('language') . '=' . $db->quote($lang));
-
-        $db->setQuery($query);
-        $items = $db->loadObjectList();
-        if (empty($items)) {
-            $query = $db->getQuery(true);
-
-            $query->select('menu.*')
-                ->from($db->quoteName('#__menu', 'menu'))
-                ->where($db->quoteName('component_id') . '=' . $db->quote($component->id))
-                ->where($db->quoteName('language') . '=' . $db->quote('*'));
-
-            $items = $db->loadObjectList();
-        }
-
-        foreach ($items as $item) {
-            if (strstr($item->link, 'view=wishlist')) {
-                $itemID = $item->id;
-                break;
-            }
-        }
-
-        if (empty($itemID) && !empty($items[0]->id)) {
-            $itemID = $items[0]->id;
-        }
+        $itemID = ZtvituemarterHelper::getItemId('wishlist');
 
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
@@ -91,7 +59,6 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                     $totalwishlists = count($wishlistIds);
                 }
                 $this->showJSON('<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $imgProd2, $btnrem, $btnwishlists, $btnwishlistsback, $totalwishlists, $recent, $imgProd, $prodName, $productIds);
-
             } else {
                 if (in_array($jinput->get('product_id', null, 'INT'), $wishlistIds)) {
                     $product = array($jinput->get('product_id', null, 'INT'));
@@ -112,50 +79,21 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                         $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="removeWishlists(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
                     }
                     $this->showJSON('<span class="notification">' . JText::_('COM_WHISHLISTS_MASSEDGE_ALLREADY_NOTREG') . '</span>', $title, $imgProd2, $btnrem, $btnwishlists, $btnwishlistsback);
-
                 }
             }
-
         } else {
-            $db = JFactory::getDBO();
-            $query = $db->getQuery(true);
-
-            $query->select($db->quoteName('virtuemart_product_id'))
-                ->from($db->quoteName('#__wishlists'))
-                ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
-
-            $db->setQuery($query);
-            $allProducts = $db->loadAssocList();
+            $wishlistModel = new ZtvirtuemarterModelWishlist();
+            $allProducts = $wishlistModel->getProducts();
             foreach ($allProducts as $productbd) {
                 $allprod['ids'][] = $productbd['virtuemart_product_id'];
             }
             if ((!in_array($jinput->get('product_id', null, 'INT'), $allprod['ids']))) {
-                $query = $db->getQuery(true);
-                $query->insert($db->quoteName('#__wishlists'))
-                    ->columns($db->quoteName('virtuemart_product_id'))
-                    ->values( $jinput->get('product_id', null, 'INT'))
-                    ->columns($db->quoteName('userid'))
-                    ->values( $user->id);
-
-                $db->setQuery($query);
-                $db->execute();
+                //Insert new wishlist item
+                $wishlistModel->insert($jinput->get('product_id', null, 'INT'));
 
                 if ((!in_array($jinput->get('product_id', null, 'INT'), $allprod['id']))) {
-                    $query = $db->getQuery(true);
 
-                    $query->select($db->quoteName('virtuemart_product_id'))
-                        ->from($db->quoteName('#__wishlists'))
-                        ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
-
-                    $db->setQuery($query);
-                    $allProducts = $db->loadAssocList();
-                    foreach ($allProducts as $productbd) {
-                        $allprod['id'][] = $productbd['virtuemart_product_id'];
-                    }
-
-                    $product = array($jinput->get('product_id', null, 'INT'));
-                    $prods = $productModel->getProducts($product);
-                    $productModel->addImages($prods, 1);
+                    $prods = $wishlistModel->getProducts();
                     foreach ($prods as $product) {
 
                         $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
@@ -215,6 +153,8 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
     public function removed()
     {
+        error_reporting(E_ALL);
+        ini_set("display_errors", "On");
 
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
@@ -222,10 +162,9 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
         $jinput = JFactory::getApplication()->input;
 
-        if (isset($wishlistIds)) ;
         $productModel = VmModel::getModel('product');
 
-        $user =& JFactory::getUser();
+        $user = JFactory::getUser();
         if ($user->guest) {
 
             if ($jinput->get('remove_id', null, 'INT')) {
@@ -243,25 +182,10 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
             }
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
         } else {
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true);
-            $conditions = array(
-                $db->quoteName('virtuemart_product_id') . '=' . $jinput->get('remove_id', null, 'INT'),
-                $db->quoteName('userid') . '=' . $user->id
-            );
+            $wishlistModel = new ZtvirtuemarterModelWishlist();
+            $wishlistModel->remove($jinput->get('remove_id', null, 'INT'));
 
-            $query->delete($db->quoteName('#__user_profiles'));
-            $query->where($conditions);
-            $db->setQuery($query);
-            $db->execute();
-
-            $query = $db->getQuery(true);
-            $query->select($db->quoteName('virtuemart_product_id'))
-                ->from($db->quoteName('#__wishlists'))
-                ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
-
-            $db->setQuery($query);
-            $allProducts = $db->loadAssocList();
+            $allProducts = $wishlistModel->getProducts();
             foreach ($allProducts as $productbd) {
                 $allprod['ids'][] = $productbd['virtuemart_product_id'];
             }

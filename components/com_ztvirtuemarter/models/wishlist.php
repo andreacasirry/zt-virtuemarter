@@ -28,6 +28,22 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         $this->input = JFactory::getApplication()->input;
     }
 
+    /**
+     * Method to get a table object, load it if necessary.
+     *
+     * @param   string  $type    The table name. Optional.
+     * @param   string  $prefix  The class prefix. Optional.
+     * @param   array   $config  Configuration array for model. Optional.
+     *
+     * @return  JTable  A JTable object
+     *
+     * @since   1.6
+     */
+    public function getTable($type = 'Wishlist', $prefix = 'ZtvirtuemarterTable', $config = array())
+    {
+        return JTable::getInstance($type, $prefix, $config);
+    }
+
     public function updateCurrentWishlist( ) {
         $session        = JFactory::getSession();
         $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
@@ -91,5 +107,34 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         $productModel->addImages($products, 1);
         
         return $products;
+    }
+
+    public function insert($productId) {
+        $user = JFactory::getUser();
+        $db = JFactory::getDBO();
+        $query = $db->getQuery(true);
+        $query->insert($db->quoteName('#__wishlists'))
+            ->columns($db->quoteName('virtuemart_product_id'))
+            ->values( $productId)
+            ->columns($db->quoteName('userid'))
+            ->values( $user->id);
+
+        $db->setQuery($query);
+        return $db->execute();
+    }
+
+    public function remove($productId){
+        $user = JFactory::getUser();
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $conditions = array(
+            $db->quoteName('virtuemart_product_id') . '=' . $productId,
+            $db->quoteName('userid') . '=' . $user->id
+        );
+
+        $query->delete($db->quoteName('#__user_profiles'));
+        $query->where($conditions);
+        $db->setQuery($query);
+        return $db->execute();
     }
 }

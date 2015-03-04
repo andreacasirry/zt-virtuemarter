@@ -12,8 +12,7 @@
 defined('_JEXEC') or die;
 
 // Register helper class
-include dirname(__FILE__) . '/helpers/ztvirtuemarter.php';
-
+require_once dirname(__FILE__) . '/helpers/ztvirtuemarter.php';
 // Require the base controller
 $input = JFactory::getApplication()->input;
 $view = $input->getCmd('view');
