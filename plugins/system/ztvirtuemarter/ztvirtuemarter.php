@@ -21,48 +21,18 @@ class plgSystemZtvirtuemarter extends JPlugin
         $this->loadLanguage();
         $jlang = JFactory::getLanguage();
         $jlang->load('com_virtuemart', JPATH_SITE, $jlang->getDefault(), true);
-        $jlang->load('com_virtuemart', JPATH_SITE, null, true);
-
     }
 
     public function onBeforeRender()
     {
+        error_reporting(E_ALL);
+        ini_set("display_errors", "On");
+        if (!class_exists('ZtvirtuemarterModelWishlist')) require(JPATH_SITE .'/components/com_ztvirtuemarter/models/wishlist.php');
         $app = JFactory::getApplication();
         $doc = JFactory::getDocument();
         if (!($app->isAdmin())) {
-            $session       = JFactory::getSession();
-            $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
-            if(count($wishlistIds) > 0) {
-                $user = JFactory::getUser();
-                if (!$user->guest) {
-                    $db    = JFactory::getDBO();
-                    $query = $db->getQuery(true);
-
-                    $query->select($db->quoteName('virtuemart_product_id'))
-                        ->from($db->quoteName('#__wishlists'))
-                        ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
-
-                    $db->setQuery($query);
-                    $allProducts = $db->loadAssocList();
-                    foreach ($allProducts as $productbd) {
-                        $prodIds['ids'][] = $productbd['virtuemart_product_id'];
-                    }
-
-                    foreach ($wishlistIds as $id) {
-                        if (!in_array($id, $prodIds['ids'])) {
-                            $query = $db->getQuery(true);
-                            $query->insert($db->quoteName('#__wishlists'))
-                                ->columns($db->quoteName('virtuemart_product_id'))
-                                ->values($id)
-                                ->columns($db->quoteName('userid'))
-                                ->values($user->id);
-
-                            $db->setQuery($query);
-                            $db->execute();
-                        }
-                    }
-                }
-            }
+            $wishlistModel = new ZtvirtuemarterModelWishlist();
+            $prods = $wishlistModel->updateCurrentWishlist();
 
             if (self::getZtvirtuemarterSetting()->enable_quickview == '1') {
                 $show_quicktext = JText::_('COM_VIRTUEMART_QUICK');
