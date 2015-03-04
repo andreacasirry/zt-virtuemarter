@@ -25,8 +25,6 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public function onBeforeRender()
     {
-        error_reporting(E_ALL);
-        ini_set("display_errors", "On");
         if (!class_exists('ZtvirtuemarterModelWishlist')) require(JPATH_SITE . '/components/com_ztvirtuemarter/models/wishlist.php');
         $app = JFactory::getApplication();
         $doc = JFactory::getDocument();
