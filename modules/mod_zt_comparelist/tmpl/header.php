@@ -21,16 +21,17 @@ foreach ($items as $item) {
 
     }
 }
-if(plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare == '1') :
-?>
-<div class="mod-compare">
-    <div id="cur-lang" class="header-button-compare">
-        <div id="compare_total">
-            <a class="compare_total heading" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
-                <i class="fa fa-files-o"></i>
-            <span><?php echo count($compareIds);?></span>
-            </a>
+if (plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare == '1') :
+    ?>
+    <div class="mod-compare">
+        <div id="cur-lang" class="header-button-compare">
+            <div id="compare_total">
+                <a class="compare_total heading"
+                   href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
+                    <i class="fa fa-files-o"></i>
+                    <span><?php echo count($compareIds); ?></span>
+                </a>
+            </div>
         </div>
     </div>
-</div>
 <?php endif; ?>

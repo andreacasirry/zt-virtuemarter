@@ -3,9 +3,11 @@ $user = JFactory::getUser();
 
 if ($user->guest) {
     ?>
-    <a class="add_wishlist hasTooltip <?php if (  in_array($product->virtuemart_product_id, $wishlistIds)) {echo 'go_to_whishlist active';} ?>"
-        title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
-        onclick="addToWishlists('<?php echo $product->virtuemart_product_id; ?>');">
+    <a class="add_wishlist hasTooltip <?php if (in_array($product->virtuemart_product_id, $wishlistIds)) {
+        echo 'go_to_whishlist active';
+    } ?>"
+       title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
+       onclick="addToWishlists('<?php echo $product->virtuemart_product_id; ?>');">
         <i class="fa fa-heart-o"></i>
         <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
     </a>
@@ -26,10 +28,12 @@ if ($user->guest) {
         //var_dump($allproducts);
     }
     ?>
-    <a class="add_wishlist hasTooltip <?php if (in_array($product->virtuemart_product_id, $allprod['id'])) {echo 'go_to_whishlist active';} ?>"
-        title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
-        data-toggle="tooltip"
-        onclick="addToWishlists('<?php echo $product->virtuemart_product_id; ?>');">
+    <a class="add_wishlist hasTooltip <?php if (in_array($product->virtuemart_product_id, $allprod['id'])) {
+        echo 'go_to_whishlist active';
+    } ?>"
+       title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
+       data-toggle="tooltip"
+       onclick="addToWishlists('<?php echo $product->virtuemart_product_id; ?>');">
         <i class="fa fa-heart-o"></i>
         <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
     </a>

@@ -10,7 +10,8 @@
         display: inline-block;
         margin-left: 5px;
     }
-    .quick_btn i{
+
+    .quick_btn i {
         background-color: rgba(255, 255, 255, 0.8);
         border: 1px solid #eee;
         border-radius: 4px;
@@ -22,6 +23,7 @@
         transition: all 0.3s ease 0s;
         width: 40px;
     }
+
     ul.layout .product-box:hover:hover .quick_btn,
     ul.layout2 .product-box:hover:hover .quick_btn {
         left: 33%;
@@ -34,7 +36,7 @@
         left: 10%;
     }
 
-    .quick_btn:hover i{
+    .quick_btn:hover i {
         background: #5b9cf6;
         border-color: #5b9cf6;
         color: #fff;

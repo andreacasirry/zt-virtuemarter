@@ -10,7 +10,8 @@ defined('_JEXEC') or die;
 
 class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 {
-    public function __construct(){
+    public function __construct()
+    {
         ZtvituemarterHelper::loadVMLibrary();
         parent::__construct();
     }
@@ -40,7 +41,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
                 if (!empty($product->file_url_thumb)) {
                     $imgUrl = $product->file_url_thumb;
                 } else {
-                    $imgUrl =  JURI::base().'images/stories/virtuemart/noimage.gif';
+                    $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
                 }
 
                 $imgProd = '<div class="compare-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
@@ -59,7 +60,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
             $this->showJSON('<span class="successfully">' . JText::_('COM_COMPARE_MASSEDGE_ADDED_NOTREG') . '</span>', $title, $imgProd2, $btnrem, $btncompare, $btncompareback, $totalcompare, '', $imgProd, $prod_name, $productIds);
 
         } else {
-            if ( !in_array($jinput->get('product_id', null, 'INT'), $compareIds)) {
+            if (!in_array($jinput->get('product_id', null, 'INT'), $compareIds)) {
                 $product = array($jinput->get('product_id', null, 'INT'));
                 $prods = $productModel->getProducts($product);
                 $productModel->addImages($prods, 1);
@@ -69,7 +70,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $imgUrl = $product->file_url_thumb;
                     } else {
-                        $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
+                        $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
                     }
                     $imgProd2 = '<div class="compare-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemID . '');
@@ -93,7 +94,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $imgUrl = $product->file_url_thumb;
                     } else {
-                        $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
+                        $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
                     }
                     $imgProd2 = '<div class="compare-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemID . '');

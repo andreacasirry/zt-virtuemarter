@@ -12,10 +12,12 @@ JFactory::getLanguage()->load('com_wishlists');
 
 class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 {
-    public function __construct(){
+    public function __construct()
+    {
         ZtvituemarterHelper::loadVMLibrary();
         parent::__construct();
     }
+
     public function add()
     {
         $recent = '';
@@ -44,7 +46,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $imgUrl = $product->file_url_thumb;
                     } else {
-                        $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
+                        $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
                     }
                     $prodId = $product->virtuemart_product_id;
                     $imgProd = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
@@ -70,7 +72,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                         if (!empty($product->file_url_thumb)) {
                             $imgUrl = $product->file_url_thumb;
                         } else {
-                            $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
+                            $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
                         }
                         $imgProd2 = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                         $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');
@@ -101,7 +103,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                         if (!empty($product->file_url_thumb)) {
                             $imgUrl = $product->file_url_thumb;
                         } else {
-                            $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
+                            $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
                         }
                         $prodId = $product->virtuemart_product_id;
                         $imgProd = '<div class="wishlist-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
@@ -129,7 +131,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                     if (!empty($product->file_url_thumb)) {
                         $imgUrl = $product->file_url_thumb;
                     } else {
-                        $imgUrl = JURI::base().'images/stories/virtuemart/noimage.gif';
+                        $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
                     }
                     $imgProd2 = '<div class="image fleft"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
                     $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=wishlist&Itemid=' . $itemID . '');

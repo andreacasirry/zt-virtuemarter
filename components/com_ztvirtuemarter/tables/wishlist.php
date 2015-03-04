@@ -19,7 +19,7 @@ class ZtvirtuemarterTableWishlist extends JTable
     /**
      * Constructor
      *
-     * @param   JDatabaseDriver  &$db  A database connector object
+     * @param   JDatabaseDriver &$db A database connector object
      */
     function __construct(&$db)
     {

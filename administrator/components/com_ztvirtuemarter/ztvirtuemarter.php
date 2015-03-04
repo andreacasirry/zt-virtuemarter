@@ -2,13 +2,13 @@
 
 /**
  * Zt Virtuemarter
- * 
+ *
  * @package     Joomla
  * @subpackage  Component
  * @version     1.0.0
- * @author      ZooTemplate 
- * @email       support@zootemplate.com 
- * @link        http://www.zootemplate.com 
+ * @author      ZooTemplate
+ * @email       support@zootemplate.com
+ * @link        http://www.zootemplate.com
  * @copyright   Copyright (c) 2015 ZooTemplate
  * @license     GPL v2
  */

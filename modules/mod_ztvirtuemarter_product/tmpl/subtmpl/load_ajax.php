@@ -87,7 +87,8 @@ endif;
                         <div class="product_hover zt-product-content">
                             <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
                             <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
-                            <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
+                            <input class="quick_ids" type="hidden"
+                                   value="<?php echo $product->virtuemart_product_id; ?>">
                         </div>
                     </div>
                 </div>
@@ -103,66 +104,66 @@ endif;
         <br style='clear:both;'/>
     <?php
     else :
-        $last = count($productss) - 1;
-        ?>
-        <ul id="vmproduct" class="vmproduct<?php echo $params->get('moduleclass_sfx'); ?> productdetails ">
-            <?php foreach ($productss as $product) : ?>
-                <li class="col-md-3 col-sm-3 product-item">
-                    <div class="spacer">
-                        <h3><a href="<?php echo $url ?>"><?php echo $product->product_name ?></a></h3>
-                        <?php
-                        echo ModZtvirtuemarterProductHelper::label($product, $newProductFrom);
-                        if (!empty($product->images[0])) {
-                            $image = $product->images[0]->displayMediaThumb('class="featuredProductImage" border="0"', FALSE);
-                        } else {
-                            $image = '';
+    $last = count($productss) - 1;
+    ?>
+    <ul id="vmproduct" class="vmproduct<?php echo $params->get('moduleclass_sfx'); ?> productdetails ">
+        <?php foreach ($productss as $product) : ?>
+            <li class="col-md-3 col-sm-3 product-item">
+                <div class="spacer">
+                    <h3><a href="<?php echo $url ?>"><?php echo $product->product_name ?></a></h3>
+                    <?php
+                    echo ModZtvirtuemarterProductHelper::label($product, $newProductFrom);
+                    if (!empty($product->images[0])) {
+                        $image = $product->images[0]->displayMediaThumb('class="featuredProductImage" border="0"', FALSE);
+                    } else {
+                        $image = '';
+                    }
+                    echo JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id), $image, array('title' => $product->product_name));
+                    echo '<div class="clear"></div>';
+                    $url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
+                        $product->virtuemart_category_id);
+                    ?>
+                    <div class="clear"></div>
+                    <?php
+                    // $product->prices is not set when show_prices in config is unchecked
+                    if ($showPrice and isset($product->prices)) {
+                        echo '<div class="product-price">' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
+                        if ($product->prices['salesPriceWithDiscount'] > 0) {
+                            echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         }
-                        echo JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id), $image, array('title' => $product->product_name));
-                        echo '<div class="clear"></div>';
-                        $url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
-                            $product->virtuemart_category_id);
-                        ?>
-                        <div class="clear"></div>
-                        <?php
-                        // $product->prices is not set when show_prices in config is unchecked
-                        if ($showPrice and isset($product->prices)) {
-                            echo '<div class="product-price">' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
-                            if ($product->prices['salesPriceWithDiscount'] > 0) {
-                                echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
-                            }
-                            echo '</div>';
-                        }
-                        if ($showAddtocart) {
-                            echo ModZtvirtuemarterProductHelper::addtocart($product);
-                        }
-                        ?>
-                        <div class="product_hover zt-product-content">
-                            <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
-                            <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
-                            <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
-                        </div>
+                        echo '</div>';
+                    }
+                    if ($showAddtocart) {
+                        echo ModZtvirtuemarterProductHelper::addtocart($product);
+                    }
+                    ?>
+                    <div class="product_hover zt-product-content">
+                        <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
+                        <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                        <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
                     </div>
-                </li>
-                <?php
-                if ($col == $productsPerRow && $productsPerRow && $last) {
-                    echo '
+                </div>
+            </li>
+            <?php
+            if ($col == $productsPerRow && $productsPerRow && $last) {
+                echo '
                     </ul><div class="clear"></div>
                     <ul  class="vmproduct' . $params->get('moduleclass_sfx') . ' productdetails">';
-                    $col = 1;
-                } else {
-                    $col++;
-                }
-                $last--;
-            endforeach; ?>
-        </div>
-        <div class="clear"></div>
-    <?php
-    endif;
-    if ($footerText) : ?>
-        <div class="vmfooter<?php echo $params->get('moduleclass_sfx') ?>">
-            <?php echo $footerText ?>
-        </div>
-    <?php endif; ?>
+                $col = 1;
+            } else {
+                $col++;
+            }
+            $last--;
+        endforeach; ?>
+</div>
+    <div class="clear"></div>
+<?php
+endif;
+if ($footerText) : ?>
+    <div class="vmfooter<?php echo $params->get('moduleclass_sfx') ?>">
+        <?php echo $footerText ?>
+    </div>
+<?php endif; ?>
 </div>
 
 <!--ajax-->

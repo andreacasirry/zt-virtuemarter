@@ -15,7 +15,8 @@ defined('_JEXEC') or die;
 </h3>
 
 <div class="back-to-category">
-    <a href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=virtuemart'); ?>" class="button_back button reset2" title="<?php echo jText::_('COM_VIRTUEMART_SHOP_HOME'); ?>">
+    <a href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=virtuemart'); ?>"
+       class="button_back button reset2" title="<?php echo jText::_('COM_VIRTUEMART_SHOP_HOME'); ?>">
         <i class="fa fa-reply"></i><?php echo JText::sprintf('COM_VIRTUEMART_CATEGORY_BACK_TO', jText::_('COM_VIRTUEMART_SHOP_HOME')) ?>
         <span></span></a>
 </div>

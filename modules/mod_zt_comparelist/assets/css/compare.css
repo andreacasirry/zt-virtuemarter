@@ -1,7 +1,8 @@
 .compare_cat {
     margin-left: 5px;
 }
-.compare_cat i{
+
+.compare_cat i {
     border: 1px solid #eee;
     border-radius: 4px;
     font-size: 17px;
@@ -9,40 +10,48 @@
     line-height: 40px;
     text-align: center;
     width: 40px;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     cursor: pointer;
     -webkit-transition: all 0.3s ease 0s;
     -ms-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
-.compare_cat span{ display:none;}
+
+.compare_cat span {
+    display: none;
+}
 
 .compare_cat:hover i, .compare_cat.active i, .compare_cat:focus i {
-    background:#5b9cf6;
+    background: #5b9cf6;
     border-color: #5b9cf6;
     color: #fff;
 }
+
 .ajax-dropdown .modcompareprod {
     border-bottom: 1px solid #eee;
     margin-bottom: 10px;
     padding-bottom: 10px;
 }
+
 .ajax-dropdown .modcompareprod:last-child {
     border-bottom: 0 none;
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
 .ajax-dropdown .modcompareprod .compare-product-img,
 .ajax-dropdown .modcompareprod .cart-product-img {
     float: left;
     width: 30%;
 }
+
 .ajax-dropdown .btn-compare {
     display: block;
     margin: 0 8px;
     position: relative;
 }
+
 .ajax-dropdown .btn-compare i {
     border: 1px solid #eee;
     border-radius: 4px;
@@ -52,6 +61,7 @@
     text-align: center;
     width: 40px;
 }
+
 .ajax-dropdown .btn-compare span {
     border-radius: 50%;
     color: #fff;
@@ -70,7 +80,7 @@
 }
 
 #fancybox-content .notification,
-#fancybox-content .successfully{
+#fancybox-content .successfully {
     display: block;
     margin: 13px 0;
 }

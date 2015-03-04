@@ -2,13 +2,13 @@
 
 /**
  * Zt Virtuemarter
- * 
+ *
  * @package     Joomla
  * @subpackage  Component
  * @version     1.0.0
- * @author      ZooTemplate 
- * @email       support@zootemplate.com 
- * @link        http://www.zootemplate.com 
+ * @author      ZooTemplate
+ * @email       support@zootemplate.com
+ * @link        http://www.zootemplate.com
  * @copyright   Copyright (c) 2015 ZooTemplate
  * @license     GPL v2
  */
@@ -24,7 +24,7 @@ class ZtvirtuemarterControllerSetting extends JControllerAdmin
 {
 
     /**
-     * 
+     *
      * @param array $config
      */
     public function __construct($config = array())
@@ -49,11 +49,9 @@ class ZtvirtuemarterControllerSetting extends JControllerAdmin
          */
         $data['setting'] = $settings;
         // Save data
-        if (!$model->save($data))
-        {
+        if (!$model->save($data)) {
             $this->setMessage(JText::_('COM_ZTVIRTUEMARTER_SETTING_SAVE_FAILED'), 'error');
-        } else
-        {
+        } else {
             $this->setMessage(JText::_('COM_ZTVIRTUEMARTER_SETTING_SAVE_SUCCESSED'));
         }
         // Redirect back

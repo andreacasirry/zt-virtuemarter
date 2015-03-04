@@ -1,7 +1,10 @@
 <?php
-class ZtvituemarterHelper {
 
-    public static function loadVMLibrary(){
+class ZtvituemarterHelper
+{
+
+    public static function loadVMLibrary()
+    {
         if (!class_exists('VmConfig')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/config.php');
         if (!class_exists('calculationHelper')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/calculationh.php');
         if (!class_exists('CurrencyDisplay')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/currencydisplay.php');
@@ -17,7 +20,8 @@ class ZtvituemarterHelper {
         }
     }
 
-    public static function getItemId($view) {
+    public static function getItemId($view)
+    {
         $itemID = '';
         $component = JComponentHelper::getComponent('com_ztvirtuemarter');
         $lang = JFactory::getLanguage()->getTag();
