@@ -57,8 +57,6 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public function onAfterInitialise()
     {
-        error_reporting(E_ALL);
-        ini_set("display_errors", "On");
         $input = JFactory::getApplication()->input;
         if ($input->getCmd('action') !== 'quickview') {
             return;
