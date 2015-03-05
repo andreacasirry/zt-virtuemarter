@@ -14,11 +14,11 @@ if ($user->guest) {
 <?php
 } else {
     JPluginHelper::importPlugin('System');
-    $dispatcher =& JDispatcher::getInstance();
+    $dispatcher = JDispatcher::getInstance();
     $results = $dispatcher->trigger('onBeforeRender');
 
     if ($results[0] == 'true') {
-        $db =& JFactory::getDBO();
+        $db = JFactory::getDBO();
         $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id . " AND virtuemart_product_id=" . $product->virtuemart_product_id;
         $db->setQuery($q);
         $allproducts = $db->loadAssocList();
