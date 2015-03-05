@@ -18,8 +18,9 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 
     public function add()
     {
-        $session = JFactory::getSession();
-        $compareIds = $session->get('compare_ids', array(), 'compare_product');
+        $mainframe =& JFactory::getApplication();
+        $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
+
         $jinput = JFactory::getApplication()->input;
         JFactory::getLanguage()->load('com_ztvirtuemarter');
         VmConfig::loadConfig();
@@ -109,7 +110,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
                 $this->showJSON('<span class="notification">' . JText::_('COM_COMPARE_MASSEDGE_ALLREADY_NOTREG') . '</span>', $title, $imgProd2, $btnrem, $btncompare, $btncompareback, $totalcompare);
             }
         }
-        $session->set('compare_ids', $compareIds, 'compare_product');
+        $mainframe->setUserState( "compare_ids.state_variable", $compareIds );
         exit;
     }
 
@@ -123,8 +124,8 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
-        $session = JFactory::getSession();
-        $compareIds = $session->get('compare_ids', array(), 'compare_product');
+        $mainframe =& JFactory::getApplication();
+        $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
         $jinput = JFactory::getApplication()->input;
 
         $productModel = VmModel::getModel('product');
@@ -142,7 +143,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
             }
             $totalrem = count($compareIds);
         }
-        $session->set('compare_ids', $compareIds, 'compare_product');
+        $mainframe->setUserState( "compare_ids.state_variable", $compareIds );
         $this->removeJSON('' . JText::_('COM_COMPARE_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_COMPARE_MASSEDGE_REM2') . '', $totalrem);
         exit;
     }

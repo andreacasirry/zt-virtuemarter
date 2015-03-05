@@ -472,8 +472,8 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public static function addCompareButton($product, $type = null)
     {
-        $session = JFactory::getSession();
-        $compareIds = $session->get('compare_ids', array(), 'compare_product');
+        $mainframe =& JFactory::getApplication();
+        $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
         if (self::getZtvirtuemarterSetting()->enable_compare == '1')
             if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/comparelist.tpl" . $type . ".php")) {
                 ?>
@@ -486,8 +486,8 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public static function addWishlistButton($product, $type = null)
     {
-        $session = JFactory::getSession();
-        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
+        $mainframe =& JFactory::getApplication();
+        $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
         if (self::getZtvirtuemarterSetting()->enable_wishlist == '1')
             if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php")) {
                 ?>

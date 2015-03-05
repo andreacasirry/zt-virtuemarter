@@ -11,8 +11,9 @@ class ZtvirtuemarterModelComparelist extends JModelLegacy
 
     public function getProducts()
     {
-        $session = JFactory::getSession();
-        $compareIds = $session->get('compare_ids', array(), 'compare_product');
+        $mainframe =& JFactory::getApplication();
+        $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
+
         $productModel = VmModel::getModel('product');
 
         $prods = $productModel->getProducts($compareIds);

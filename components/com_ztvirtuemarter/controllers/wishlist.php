@@ -22,8 +22,9 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
     {
         $recent = '';
         $jinput = JFactory::getApplication()->input;
-        $session = JFactory::getSession();
-        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
+
+        $mainframe =& JFactory::getApplication();
+        $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
 
         $itemID = ZtvituemarterHelper::getItemId('wishlist');
 
@@ -143,7 +144,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             }
         }
-        $session->set('wishlist_ids', $wishlistIds, 'wishlist_product');
+        $mainframe->setUserState( "wishlist_ids.state_variable", $wishlistIds );
         exit;
     }
 
@@ -155,13 +156,10 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
     public function removed()
     {
-        error_reporting(E_ALL);
-        ini_set("display_errors", "On");
-
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
-        $session = JFactory::getSession();
-        $wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
+        $mainframe =& JFactory::getApplication();
+        $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
         $jinput = JFactory::getApplication()->input;
 
         $productModel = VmModel::getModel('product');
@@ -201,7 +199,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
         }
-        $session->set('wishlist_ids', $wishlistIds, 'wishlist_product');
+        $mainframe->setUserState( "wishlist_ids.state_variable", $wishlistIds );
         exit;
     }
 
