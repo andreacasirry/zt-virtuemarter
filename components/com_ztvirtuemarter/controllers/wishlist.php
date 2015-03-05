@@ -24,7 +24,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $jinput = JFactory::getApplication()->input;
 
         $mainframe = JFactory::getApplication();
-        $wishlistIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
+        $wishlistIds = $mainframe->getUserState("com_ztvirtuemarter.site.wishlistIds", array());
 
         $itemID = ZtvituemarterHelper::getItemId('wishlist');
 
@@ -124,9 +124,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                 $product = array($jinput->get('product_id', null, 'INT'));
                 $prods = $productModel->getProducts($product);
                 $productModel->addImages($prods, 1);
-                //var_dump($prods);
                 foreach ($prods as $product) {
-                    //var_dump($product);
                     $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
                     $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
                     if (!empty($product->file_url_thumb)) {
@@ -144,7 +142,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             }
         }
-        $mainframe->setUserState( "com_ztvirtuemarter.site.wishlistIds", $wishlistIds );
+        $mainframe->setUserState("com_ztvirtuemarter.site.wishlistIds", $wishlistIds);
         exit;
     }
 
@@ -159,7 +157,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $mainframe = JFactory::getApplication();
-        $wishlistIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
+        $wishlistIds = $mainframe->getUserState("com_ztvirtuemarter.site.wishlistIds", array());
         $jinput = JFactory::getApplication()->input;
 
         $productModel = VmModel::getModel('product');
@@ -199,7 +197,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
         }
-        $mainframe->setUserState( "com_ztvirtuemarter.site.wishlistIds", $wishlistIds );
+        $mainframe->setUserState("com_ztvirtuemarter.site.wishlistIds", $wishlistIds);
         exit;
     }
 

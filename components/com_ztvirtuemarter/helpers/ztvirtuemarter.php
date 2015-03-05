@@ -2,7 +2,10 @@
 
 class ZtvituemarterHelper
 {
-
+    /**
+     * void
+     * @param null
+     */
     public static function loadVMLibrary()
     {
         if (!class_exists('VmConfig')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/config.php');
@@ -20,6 +23,11 @@ class ZtvituemarterHelper
         }
     }
 
+    /**
+     * Class hepler
+     * return $itemid
+     * @param String $view
+     */
     public static function getItemId($view)
     {
         $itemid = '';

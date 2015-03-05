@@ -4,11 +4,20 @@ defined('_JEXEC') or die;
 
 class ZtvirtuemarterModelComparelist extends JModelLegacy
 {
+    /**
+     * Class constructor
+     * @param array $config
+     */
     public function __construct($config = array())
     {
         parent::__construct($config);
     }
 
+    /**
+     *
+     * @param null
+     * @return Array object
+     */
     public function getProducts()
     {
         $mainframe = JFactory::getApplication();

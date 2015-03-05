@@ -16,10 +16,11 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
         ZtvituemarterHelper::loadVMLibrary();
     }
 
+
     public function add()
     {
         $mainframe = JFactory::getApplication();
-        $compareIds = $mainframe->getUserState( "com_ztvirtuemarter.site.compareIds", array() );
+        $compareIds = $mainframe->getUserState("com_ztvirtuemarter.site.compareIds", array());
 
         $jinput = JFactory::getApplication()->input;
         JFactory::getLanguage()->load('com_ztvirtuemarter');
@@ -110,7 +111,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
                 $this->showJSON('<span class="notification">' . JText::_('COM_COMPARE_MASSEDGE_ALLREADY_NOTREG') . '</span>', $title, $imgProd2, $btnrem, $btncompare, $btncompareback, $totalcompare);
             }
         }
-        $mainframe->setUserState( "com_ztvirtuemarter.site.compareIds", $compareIds );
+        $mainframe->setUserState("com_ztvirtuemarter.site.compareIds", $compareIds);
         exit;
     }
 
@@ -125,7 +126,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $mainframe = JFactory::getApplication();
-        $compareIds = $mainframe->getUserState( "com_ztvirtuemarter.site.compareIds", array() );
+        $compareIds = $mainframe->getUserState("com_ztvirtuemarter.site.compareIds", array());
         $jinput = JFactory::getApplication()->input;
 
         $productModel = VmModel::getModel('product');
@@ -143,7 +144,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
             }
             $totalrem = count($compareIds);
         }
-        $mainframe->setUserState( "com_ztvirtuemarter.site.compareIds", $compareIds );
+        $mainframe->setUserState("com_ztvirtuemarter.site.compareIds", $compareIds);
         $this->removeJSON('' . JText::_('COM_COMPARE_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_COMPARE_MASSEDGE_REM2') . '', $totalrem);
         exit;
     }
