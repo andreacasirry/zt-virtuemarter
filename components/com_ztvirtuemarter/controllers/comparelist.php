@@ -12,8 +12,8 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 {
     public function __construct()
     {
-        ZtvituemarterHelper::loadVMLibrary();
         parent::__construct();
+        ZtvituemarterHelper::loadVMLibrary();
     }
 
     public function add()
