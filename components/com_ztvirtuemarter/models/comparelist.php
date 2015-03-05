@@ -12,7 +12,7 @@ class ZtvirtuemarterModelComparelist extends JModelLegacy
     public function getProducts()
     {
         $mainframe = JFactory::getApplication();
-        $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
+        $compareIds = $mainframe->getUserState( "com_ztvirtuemarter.site.compareIds", array() );
 
         $productModel = VmModel::getModel('product');
 

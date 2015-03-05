@@ -18,7 +18,7 @@ $ratingModel = VmModel::getModel('ratings');
 $productModel = VmModel::getModel('product');
 
 $mainframe = JFactory::getApplication();
-$wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
+$wishlistIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
 
 $prods = array();
 if ($user->guest) {

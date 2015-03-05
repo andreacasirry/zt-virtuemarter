@@ -24,7 +24,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $jinput = JFactory::getApplication()->input;
 
         $mainframe = JFactory::getApplication();
-        $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
+        $wishlistIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
 
         $itemID = ZtvituemarterHelper::getItemId('wishlist');
 
@@ -144,7 +144,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             }
         }
-        $mainframe->setUserState( "wishlist_ids.state_variable", $wishlistIds );
+        $mainframe->setUserState( "com_ztvirtuemarter.site.wishlistIds", $wishlistIds );
         exit;
     }
 
@@ -159,7 +159,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
         $mainframe = JFactory::getApplication();
-        $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
+        $wishlistIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
         $jinput = JFactory::getApplication()->input;
 
         $productModel = VmModel::getModel('product');
@@ -199,7 +199,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
             $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
         }
-        $mainframe->setUserState( "wishlist_ids.state_variable", $wishlistIds );
+        $mainframe->setUserState( "com_ztvirtuemarter.site.wishlistIds", $wishlistIds );
         exit;
     }
 

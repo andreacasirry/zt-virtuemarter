@@ -17,7 +17,7 @@ $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
 $mainframe = JFactory::getApplication();
-$compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
+$compareIds = $mainframe->getUserState( "com_ztvirtuemarter.site.compareIds", array() );
 if (!empty($compareIds)) {
     $products = $compareIds;
     $prods = $product_model->getProducts($products);
