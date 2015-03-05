@@ -44,6 +44,10 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         return JTable::getInstance($type, $prefix, $config);
     }
 
+    /**
+     *
+     * @return boolean
+     */
     public function updateCurrentWishlist()
     {
         $mainframe = JFactory::getApplication();
@@ -81,6 +85,11 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         }
     }
 
+    /**
+     *
+     * @param null
+     * @return Array object
+     */
     public function getProducts()
     {
         $user = JFactory::getUser();
@@ -110,34 +119,30 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         return $products;
     }
 
+    /**
+     *
+     * @param int $productId
+     * @return boolean
+     */
     public function insert($productId)
     {
         $user = JFactory::getUser();
-        $db = JFactory::getDBO();
-        $query = $db->getQuery(true);
-        $query->insert($db->quoteName('#__wishlists'))
-            ->columns($db->quoteName('virtuemart_product_id'))
-            ->values($productId)
-            ->columns($db->quoteName('userid'))
-            ->values($user->id);
-
-        $db->setQuery($query);
-        return $db->execute();
-    }
-
-    public function remove($productId)
-    {
-        $user = JFactory::getUser();
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $conditions = array(
-            $db->quoteName('virtuemart_product_id') . '=' . $productId,
-            $db->quoteName('userid') . '=' . $user->id
+        $data = array(
+            'virtuemart_product_id' => $productId,
+            'userid' => $user->id
         );
 
-        $query->delete($db->quoteName('#__user_profiles'));
-        $query->where($conditions);
-        $db->setQuery($query);
-        return $db->execute();
+        return parent::save($data);
     }
+
+    /**
+     *
+     * @param int $productId
+     * @return boolean
+     */
+    public function remove($productId)
+    {
+        return parent::delete($productId);
+    }
+
 }
