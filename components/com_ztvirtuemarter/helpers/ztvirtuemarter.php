@@ -23,10 +23,10 @@ class ZtvituemarterHelper
     public static function getItemId($view)
     {
         $itemid = '';
-        $items = JFactory::getApplication()->getMenu( 'site' )->getItems( 'component', 'com_ztvirtuemarter' );
-        foreach ( $items as $item ) {
-            if($item->query['view'] == $view){
-                $itemid= $item->id;
+        $items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_ztvirtuemarter');
+        foreach ($items as $item) {
+            if ($item->query['view'] == $view) {
+                $itemid = $item->id;
             }
         }
         return $itemid;
