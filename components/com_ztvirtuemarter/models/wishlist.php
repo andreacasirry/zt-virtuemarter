@@ -46,7 +46,7 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
 
     public function updateCurrentWishlist()
     {
-        $mainframe =& JFactory::getApplication();
+        $mainframe = JFactory::getApplication();
         $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
         if (count($wishlistIds) > 0) {
             $user = JFactory::getUser();
@@ -99,7 +99,7 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
                 $prodIds[] = $productbd['virtuemart_product_id'];
             }
         } else {
-            $mainframe =& JFactory::getApplication();
+            $mainframe = JFactory::getApplication();
             $prodIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
         }
         $productModel = VmModel::getModel('product');

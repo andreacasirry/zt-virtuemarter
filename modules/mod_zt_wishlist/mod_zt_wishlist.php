@@ -17,7 +17,7 @@ $user = JFactory::getUser();
 $ratingModel = VmModel::getModel('ratings');
 $productModel = VmModel::getModel('product');
 
-$mainframe =& JFactory::getApplication();
+$mainframe = JFactory::getApplication();
 $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
 
 $prods = array();

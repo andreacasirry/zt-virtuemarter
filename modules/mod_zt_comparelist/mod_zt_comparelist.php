@@ -16,7 +16,7 @@ $prods = array();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
-$mainframe =& JFactory::getApplication();
+$mainframe = JFactory::getApplication();
 $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
 if (!empty($compareIds)) {
     $products = $compareIds;

@@ -18,7 +18,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 
     public function add()
     {
-        $mainframe =& JFactory::getApplication();
+        $mainframe = JFactory::getApplication();
         $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
 
         $jinput = JFactory::getApplication()->input;
@@ -124,7 +124,7 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
 
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
-        $mainframe =& JFactory::getApplication();
+        $mainframe = JFactory::getApplication();
         $compareIds = $mainframe->getUserState( "compare_ids.state_variable", array() );
         $jinput = JFactory::getApplication()->input;
 

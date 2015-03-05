@@ -23,7 +23,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $recent = '';
         $jinput = JFactory::getApplication()->input;
 
-        $mainframe =& JFactory::getApplication();
+        $mainframe = JFactory::getApplication();
         $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
 
         $itemID = ZtvituemarterHelper::getItemId('wishlist');
@@ -158,7 +158,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
     {
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_ztvirtuemarter', true);
-        $mainframe =& JFactory::getApplication();
+        $mainframe = JFactory::getApplication();
         $wishlistIds = $mainframe->getUserState( "wishlist_ids.state_variable", array() );
         $jinput = JFactory::getApplication()->input;
 
