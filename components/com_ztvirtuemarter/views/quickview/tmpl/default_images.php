@@ -69,17 +69,4 @@ if (!empty($this->product->images)) :
         <div class="clear"></div>
     </div>
 <?php endif; ?>
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        jQuery('.owl-item a ').removeAttr('href');
-        jQuery('.owl-item a ').removeAttr('rel');
 
-        jQuery('.owl-item').click(function () {
-
-
-            var url = jQuery(this).find('img').attr('src');
-            jQuery('.main-image img').attr('src', url);
-            jQuery('#fancybox-wrap').attr('style', 'display:none!important');
-        });
-    });
-</script>

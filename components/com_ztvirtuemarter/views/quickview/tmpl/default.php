@@ -37,10 +37,8 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 		Virtuemart.updateDynamicUpdateListeners();
 
 }); ");
-
-if (vRequest::getInt('print', false)) :?>
-    <body onload="javascript:print();">
-<?php endif; ?>
+?>
+<script src=""></script>
     <div class="productdetails-view productdetails">
         <?php
         // Product Navigation
@@ -228,80 +226,21 @@ if (vRequest::getInt('print', false)) :?>
         ?>
 
     </div>
-    <script>
-        // GALT
-        /*
-         * Notice for Template Developers!
-         * Templates must set a Virtuemart.container variable as it takes part in
-         * dynamic content update.
-         * This variable points to a topmost element that holds other content.
-         */
-        // If this <script> block goes right after the element itself there is no
-        // need in ready() handler, which is much better.
-        //jQuery(document).ready(function() {
-        Virtuemart.container = jQuery('.productdetails-view');
-        Virtuemart.containerSelector = '.productdetails-view';
-        //Virtuemart.container = jQuery('.main');
-        //Virtuemart.containerSelector = '.main';
-        //});
-
-        // Open print and manufacturer link to Modal window
-        <?php if(VmConfig::get('usefancy',1)) :
-        $manulink = JRoute::_('index.php?option=com_virtuemart&view=manufacturer&virtuemart_manufacturer_id=' . $this->product->virtuemart_manufacturer_id[0] . '&tmpl=component', FALSE);
-        ?>
-        jQuery('a.printModal').click(function (e) {
-            jQuery.fancybox({
-                href: '<?php echo $link.'&print=1'; ?>',
-                type: 'iframe',
-                height: '500'
-            });
-            e.preventDefault();
-        });
-
-        jQuery('a.manuModal').click(function (e) {
-            jQuery.fancybox({
-                href: '<?php echo $manulink ?>',
-                type: 'iframe'
-            });
-            e.preventDefault();
-        });
-
-        <?php else :
-        $manulink = JRoute::_('index.php?option=com_virtuemart&view=manufacturer&virtuemart_manufacturer_id=' . $this->product->virtuemart_manufacturer_id[0] . '&tmpl=component', FALSE);
-        ?>
-
-        jQuery('a.printModal').click(function (e) {
-            jQuery.facebox({
-                iframe: '<?php echo $link.'&print=1'; ?>',
-                rev: 'iframe|550|550'
-            });
-            e.preventDefault();
-        });
-
-        jQuery('a.manuModal').click(function (e) {
-            jQuery.facebox({
-                iframe: '<?php echo $manulink; ?>',
-                rev: 'iframe|550|550'
-            });
-            e.preventDefault();
-        });
-
-        <?php endif; ?>
-    </script>
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-
-            jQuery('.owl-item a ').removeAttr('href');
-            jQuery('.owl-item a ').removeAttr('rel');
-
-            jQuery('.owl-item').click(function () {
-
-
-                var url = jQuery(this).find('img').attr('src');
-
-                jQuery('.main-image img').attr('src', url);
-                jQuery('#fancybox-wrap').attr('style', 'display:none!important');
-            });
-        });
-    </script>
+<script>
+    // GALT
+    /*
+     * Notice for Template Developers!
+     * Templates must set a Virtuemart.container variable as it takes part in
+     * dynamic content update.
+     * This variable points to a topmost element that holds other content.
+     */
+    // If this <script> block goes right after the element itself there is no
+    // need in ready() handler, which is much better.
+    //jQuery(document).ready(function() {
+    Virtuemart.container = jQuery('.productdetails-view');
+    Virtuemart.containerSelector = '.productdetails-view';
+    //Virtuemart.container = jQuery('.main');
+    //Virtuemart.containerSelector = '.main';
+    //});
+</script>
 <?php die; ?>
