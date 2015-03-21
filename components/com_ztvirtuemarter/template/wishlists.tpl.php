@@ -5,7 +5,7 @@ if ($user->guest) :
     ?>
     <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $wishlistIds) ? 'go_to_whishlist active' : ''; ?>"
        title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
-       onclick="addToWishlists('<?php echo $product->virtuemart_product_id; ?>');">
+       onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
         <i class="fa fa-heart-o"></i>
         <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
     </a>
@@ -26,7 +26,7 @@ else :
     <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $allprod['id']) ? 'go_to_whishlist active' : ''; ?>"
        title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
        data-toggle="tooltip"
-       onclick="addToWishlists('<?php echo $product->virtuemart_product_id; ?>');">
+       onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
         <i class="fa fa-heart-o"></i>
         <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
     </a>
