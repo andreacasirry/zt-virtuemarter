@@ -57,7 +57,7 @@ if (plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare == '1') 
                                 </div>
                                 <div class="remcompare">
                                     <a class="tooltip-1" title="remove"
-                                       onclick="removeCompare('<?php echo $product->virtuemart_product_id; ?>');">
+                                       onclick="zo2.compare.remove('<?php echo $product->virtuemart_product_id; ?>');">
                                         <i class="fa fa-times"></i><?php echo JText::_('REMOVE'); ?>
                                     </a>
                                 </div>

@@ -265,7 +265,7 @@ if (!empty($this->products)) {
 
 
             $table[$row][$col] .= '<div class="clear"></div>';
-            $table[$row][$col] .= '<div class="remcompare"><a class="compare_del" title="remove"  onclick="removeCompare(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>remove</a></div>';
+            $table[$row][$col] .= '<div class="remcompare"><a class="compare_del" title="remove"  onclick="zo2.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>remove</a></div>';
             $table[$row][$col] .= '</div>';
 
             $row = 13;
