@@ -18,8 +18,6 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
-error_reporting(E_ALL);
-
 /* Let's see if we found the product */
 if (empty($this->product)) {
     echo vmText::_('COM_VIRTUEMART_PRODUCT_NOT_FOUND');
@@ -38,29 +36,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 
 }); ");
 ?>
-<script src=""></script>
     <div class="productdetails-view productdetails">
-        <?php
-        // Product Navigation
-        if (VmConfig::get('product_navigation', 1)) :
-            ?>
-            <div class="product-neighbours">
-                <?php
-                if (!empty($this->product->neighbours ['previous'][0])) :
-                    $prev_link = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $this->product->neighbours ['previous'][0] ['virtuemart_product_id'] . '&virtuemart_category_id=' . $this->product->virtuemart_category_id, FALSE);
-                    echo JHtml::_('link', $prev_link, $this->product->neighbours ['previous'][0]
-                    ['product_name'], array('rel' => 'prev', 'class' => 'previous-page fa fa-angle-left', 'data-dynamic-update' => '1'));
-                endif;
-                if (!empty($this->product->neighbours ['next'][0])) :
-                    $next_link = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $this->product->neighbours ['next'][0] ['virtuemart_product_id'] . '&virtuemart_category_id=' . $this->product->virtuemart_category_id, FALSE);
-                    echo JHtml::_('link', $next_link, $this->product->neighbours ['next'][0] ['product_name'], array('rel' => 'next', 'class' => 'next-page fa fa-angle-right', 'data-dynamic-update' => '1'));
-                endif;
-                ?>
-                <div class="clear"></div>
-            </div>
-        <?php
-        endif; // Product Navigation END
-        ?>
 
         <?php // Back To Category Button
         if ($this->product->virtuemart_category_id) :
@@ -242,5 +218,13 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
     //Virtuemart.container = jQuery('.main');
     //Virtuemart.containerSelector = '.main';
     //});
+</script>
+<script>
+    jQuery(function(){
+        jQuery("#zt_list_product").owlCarousel({
+            items : 3,
+            navigation : true
+        });
+    });
 </script>
 <?php die; ?>
