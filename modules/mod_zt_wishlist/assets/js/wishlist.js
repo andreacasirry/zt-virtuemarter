@@ -5,7 +5,7 @@
  * @returns {undefined}
  */
 (function (w, $) {
-    
+
     /**
      * Whishlist local object
      * @type object
@@ -46,19 +46,7 @@
                 data: 'product_id=' + id,
                 dataType: 'json',
                 success: function (json) {
-                    if (json.img_prod !== '') {
-                        var image = json.img_prod;
-                    } else {
-                        var image = json.img_prod2;
-                    }
-                    var content =
-                            image
-                            + json.title
-                            + json.btnrem
-                            + json.message
-                            + json.btnwishlists
-                            + json.btnwishlistsback;
-
+                    var image = (json.img_prod !== '') ? json.img_prod : json.img_prod2;
                     $.fancybox({
                         "titlePosition": "inside",
                         "transitionIn": "fade",
@@ -68,7 +56,12 @@
                         "autoCenter": true,
                         "closeBtn": false,
                         "closeClick": false,
-                        "content": content
+                        "content": image
+                                + json.title
+                                + json.btnrem
+                                + json.message
+                                + json.btnwishlists
+                                + json.btnwishlistsback
                     });
                     if (json.totalwishlists !== '') {
                         _self.updateItemCount(json.totalwishlists);
