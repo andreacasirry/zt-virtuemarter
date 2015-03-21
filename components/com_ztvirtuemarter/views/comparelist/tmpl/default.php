@@ -134,6 +134,9 @@ defined('_JEXEC') or die;
                             $action .= '<a class="addtocart-button" title="' . JText::_('COM_VIRTUEMART_CART_NOTIFY') . '" href="' . JRoute::_('index.php?option=com_virtuemart&view=productdetails&layout=notify&virtuemart_product_id=' . $product->virtuemart_product_id) . '">' . JText::_('COM_VIRTUEMART_CART_NOTIFY') . '<span></span></a>';
                         } else {
 
+            $table[$row][$col] .= '<div class="clear"></div>';
+            $table[$row][$col] .= '<div class="remcompare"><a class="compare_del" title="remove"  onclick="zo2.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>remove</a></div>';
+            $table[$row][$col] .= '</div>';
                             $action .= '<form method="post" class="product" action="index.php" id="addtocartproduct' . $product->virtuemart_product_id . '">';
 
                             $action .= '';
@@ -190,7 +193,46 @@ defined('_JEXEC') or die;
     } else {
         echo '<h3 class="module-title compare no-products" ><i class="fa fa-info-circle"></i>' . JText::_('COM_VIRTUEMART_ITEMS_NO_PRODUCTS_COMPARE') . '</h3>';
     }
+    for ($r = 0; $r < $rowall; $r++) {
+        $trclass[$r] = '';
+        for ($c = 2; $c < $col; $c++) {
+            if ($table[$r][$c] != $table[$r][$c - 1]) {
+                $trclass[$r] = ' tr_diff';
+            }
 
+        }
+
+    }
     ?>
+    <table id="compare_list_prod">
+        <tbody>
+        <?php
+        for ($r = 0; $r < $rowall; $r++) {
+            echo '<tr class="items' . $r . '">';
+            for ($c = 0; $c < $col; $c++) {
+                $class = $tdclass[$c];
+                if ($c > 0) $class .= $trclass[$r];
+                echo '<td class="cp ' . $class . '" >';
+                if (isset($table[$r][$c]))
+                    echo $table[$r][$c];
+                else
+                    echo '';
+                echo '</td>';
+            }
+            echo '</tr>';
+        }
+        ?>
+        </tbody>
+    </table>
+    </div>
+    <h3 class="module-title compare no-products" style="display:none;">
+        <i class="fa fa-info-circle"></i><?php echo JText::_('COM_VIRTUEMART_ITEMS_NO_PRODUCTS_COMPARE'); ?>
+    </h3>
+<?php
+} else {
+    echo '<h3 class="module-title compare no-products" ><i class="fa fa-info-circle"></i>' . JText::_('COM_VIRTUEMART_ITEMS_NO_PRODUCTS_COMPARE') . '</h3>';
+}
+
+?>
 </div>
     
