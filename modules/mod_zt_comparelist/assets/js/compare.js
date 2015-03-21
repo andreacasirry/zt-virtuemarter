@@ -32,7 +32,7 @@
             );
         },
         /**
-         * Add item to whishlist
+         * Add item to compare
          * @param {type} id
          * @returns {undefined}
          */
@@ -74,7 +74,7 @@
             });
         },
         /**
-         * Remove item from whishlist
+         * Remove item from compare
          * @param {type} id
          * @returns {undefined}
          */
