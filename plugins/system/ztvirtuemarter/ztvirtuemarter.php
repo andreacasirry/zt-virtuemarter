@@ -60,27 +60,61 @@ class plgSystemZtvirtuemarter extends JPlugin
     {
         $mainframe = JFactory::getApplication();
         $compareIds = $mainframe->getUserState("com_ztvirtuemarter.site.compareIds", array());
-        if (self::getZtvirtuemarterSetting()->enable_compare == '1')
-            if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/comparelist.tpl" . $type . ".php")) :?>
-                <div class="compare_cat list_compare<?php echo $product->virtuemart_product_id; ?>">
-                    <?php require(JPATH_BASE . "/components/com_ztvirtuemarter/template/comparelist.tpl" . $type . ".php"); ?>
-                </div>
-            <?php
-            endif;
+        if (self::getZtvirtuemarterSetting()->enable_compare == '1'): ?>
+            <div class="compare_cat list_compare<?php echo $product->virtuemart_product_id; ?>">
+                <a class="compare-label add_compare hasTooltip <?php echo in_array($product->virtuemart_product_id, $compareIds) ? 'go_to_compare active' : ''; ?>"
+                   title="<?php echo JText::_('DR_ADD_TO_COMPARE'); ?>"
+                   onclick="zo2.compare.add('<?php echo $product->virtuemart_product_id; ?>');">
+                    <i class="fa fa-files-o"></i>
+                    <span><?php echo JText::_("DR_ADD_TO_COMPARE"); ?></span>
+                </a>
+            </div>
+        <?php endif;
     }
 
-    public static function addWishlistButton($product, $type = null)
+    public static function addWishlistButton($product)
     {
         if (!class_exists('ZtvirtuemarterModelWishlist')) require(JPATH_SITE . '/components/com_ztvirtuemarter/models/wishlist.php');
         $mainframe = JFactory::getApplication();
         $wishlistIds = $mainframe->getUserState("com_ztvirtuemarter.site.wishlistIds", array());
-        if (self::getZtvirtuemarterSetting()->enable_wishlist == '1')
-            if (is_file(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php")) : ?>
+        if (self::getZtvirtuemarterSetting()->enable_wishlist == '1'): ?>
+
                 <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
-                    <?php require(JPATH_BASE . "/components/com_ztvirtuemarter/template/wishlists.tpl" . $type . ".php"); ?>
+                    <?php
+                    $user = JFactory::getUser();
+
+                    if ($user->guest) :
+                        ?>
+                        <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $wishlistIds) ? 'go_to_whishlist active' : ''; ?>"
+                           title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
+                           onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
+                            <i class="fa fa-heart-o"></i>
+                            <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
+                        </a>
+                    <?php
+                    else :
+                        JPluginHelper::importPlugin('System');
+                        $dispatcher = JDispatcher::getInstance();
+                        $results = $dispatcher->trigger('onBeforeRender');
+
+                        if ($results[0] == 'true') {
+                            $wishlistModel = new ZtvirtuemarterModelWishlist();
+                            $allproducts = $wishlistModel->getProducts();
+                            foreach ($allproducts as $productbd) {
+                                $allprod['id'][] = $productbd['virtuemart_product_id'];
+                            }
+                        }
+                        ?>
+                        <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $allprod['id']) ? 'go_to_whishlist active' : ''; ?>"
+                           title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
+                           data-toggle="tooltip"
+                           onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
+                            <i class="fa fa-heart-o"></i>
+                            <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
+                        </a>
+                    <?php endif; ?>
                 </div>
-            <?php
-            endif;
+            <?php endif;
     }
 
     public static function getZtvirtuemarterSetting()

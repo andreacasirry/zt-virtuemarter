@@ -66,7 +66,7 @@ defined('_JEXEC') or die;
 
                     $table['unit'][] .= '<div class="compare_unit">' . ($product->product_box) ? '<div>' . $product->product_box . '</div></div>' : JText::_('EMPTY') . '</div>';
 
-
+                    //show compare image
                     $image = '<div class="compare_image"><div class="browseImage">';
                     if (isset($product->override) && $product->override == 1 && ($product->product_price_publish_down > 0)) {
                         $image .= '<div class="discount limited">' . JText::_('DR_LIMITED_OFFER') . '</div>';
@@ -79,7 +79,9 @@ defined('_JEXEC') or die;
                     $image .= JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id), $imageThumb);
                     $image .= '</div></div>';
                     $table['image'][] = $image;
+                    //end of show compare image
 
+                    //show compare rating
                     if ($showRating == 'true') {
                         $rate = 0;
                         $rating = $ratingModel->getRatingByProduct($product->virtuemart_product_id);
@@ -95,7 +97,9 @@ defined('_JEXEC') or die;
 
                     }
                     $table['rating'][] = $rating;
+                    //end of show compare rating
 
+                    //show compare price
                     $price = '<div class="compare_price">';
                     if ((!empty($product->prices['salesPrice'])) && !$product->images[0]->file_is_downloadable) {
                         $price .= '<div class="price"><div id="productPrice' . $product->virtuemart_product_id . '" class="product-price">';
@@ -117,7 +121,9 @@ defined('_JEXEC') or die;
                         }
                     }
                     $table['price'][] = $price;
+                    //end of show compare price
 
+                    //show compare Dimensions
                     $dim = '<div class="compare_dim">';
                     if (($product->product_length > 0) || ($product->product_width > 0) || ($product->product_height > 0)) {
                         $dim .= '<div>' . $product->product_length . $product->product_lwh_uom . ' x ' . $product->product_width . $product->product_lwh_uom . ' x ' . $product->product_height . $product->product_lwh_uom . '</div>';
@@ -125,8 +131,9 @@ defined('_JEXEC') or die;
                         $dim .= '<div>' . JText::_('EMPTY') . '</div>';
                     }
                     $table['dim'][] = $dim . '<div>';
+                    //end of show compare Dimensions
 
-
+                    //action for item
                     $action = '<div class="compare_action">';
                     if (!VmConfig::get('use_as_catalog', 0) and !empty($product->prices['salesPrice'])) {
                         $action .= '<div class="addtocart-area2">';
@@ -168,9 +175,11 @@ defined('_JEXEC') or die;
                     $action .= '</div>';
 
                     $table['action'][] = $action;
+                    //end of action
                 }
             }
             ?>
+            <!-- Render table of content -->
             <table id="compare_list_prod">
                 <tbody>
                 <?php foreach ($table as $name => $tr) : ?>
@@ -182,6 +191,7 @@ defined('_JEXEC') or die;
                 <?php endforeach; ?>
                 </tbody>
             </table>
+            <!-- End table of content -->
         </div>
         <h3 class="module-title compare no-products" style="display:none;">
             <i class="fa fa-info-circle"></i><?php echo JText::_('COM_VIRTUEMART_ITEMS_NO_PRODUCTS_COMPARE'); ?>
