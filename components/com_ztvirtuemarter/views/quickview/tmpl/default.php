@@ -134,8 +134,8 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 
         <div id="zt_tabs" class="tabs">
             <ul class="nav nav-tabs" role="tablist" id="myTab">
-                <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><?php echo 'DESCRIPTION'; ?></a></li>
-                <li class=""><a href="#tab2" role="tab" data-toggle="tab"><?php echo 'Reviews'; ?></a></li>
+                <li class=""><a href="#tab1" role="tab" data-toggle="tab"><?php echo 'DESCRIPTION'; ?></a></li>
+                <li class="active"><a href="#tab2" role="tab" data-toggle="tab"><?php echo 'REVIEWS'; ?></a></li>
             </ul>
 
 
