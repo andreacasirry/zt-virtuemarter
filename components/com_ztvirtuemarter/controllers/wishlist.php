@@ -84,12 +84,6 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         exit;
     }
 
-    public function showJSON($message = '', $title = '', $imgProd2 = '', $btnrem = '', $btnwishlists = '', $btnwishlistsback = '', $totalwishlists = '', $recent = '', $imgProd = '', $prodName = '', $productIds = '')
-    {
-
-
-    }
-
     public function removed()
     {
         VmConfig::loadConfig();
