@@ -64,8 +64,10 @@
                     if (json.totalcompare !== '') {
                         $('#mod_compare .zt-cart-inner .vmproduct .not_text').remove();
                     }
-                    var compare_item = '<div id="compare_prod_' + json.product_ids + '" class="modcompareprod clearfix">' + json.img_prod + json.prod_name + '</div><div class="clear"></div>';
-                    $('#mod_compare .zt-cart-inner .vmproduct').append(compare_item);
+                    if (json.exists != 1) {
+                        var compare_item = '<div id="compare_prod_' + json.product_ids + '" class="modcompareprod clearfix">' + json.img_prod + json.prod_name + '</div><div class="clear"></div>';
+                        $('#mod_compare .zt-cart-inner .vmproduct').append(compare_item);
+                    }
                     _self.updateItemCount(json.totalcompare);
                     $('#compare_continue').click($.fancybox.close);
                 }
