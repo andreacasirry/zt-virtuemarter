@@ -46,7 +46,6 @@
                 data: 'product_id=' + id,
                 dataType: 'json',
                 success: function (json) {
-                    var image = (json.img_prod !== '') ? json.img_prod : json.img_prod2;
                     $.fancybox({
                         "titlePosition": "inside",
                         "transitionIn": "fade",
@@ -56,7 +55,7 @@
                         "autoCenter": true,
                         "closeBtn": false,
                         "closeClick": false,
-                        "content": image
+                        "content": json.img_prod
                                 + json.title
                                 + json.btnrem
                                 + json.message
