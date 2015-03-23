@@ -1,19 +1,10 @@
 <?php
 /**
- *
- * Show the product details page
- *
- * @package    VirtueMart
- * @subpackage
- * @author Max Milbers, Eugen Stranz, Max Galt
- * @link http://www.virtuemart.net
- * @copyright Copyright (c) 2004 - 2014 VirtueMart Team. All rights reserved.
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.php
- * VirtueMart is free software. This version may have been modified pursuant
- * to the GNU General Public License, and as distributed it includes or
- * is derivative of works licensed under the GNU General Public License or
- * other free or open source software licenses.
- * @version $Id: default.php 8341 2014-09-29 16:40:31Z Milbo $
+ * @package    ZT VirtueMarter
+ * @subpackage Components
+ * @author       ZooTemplate.com
+ * @link http://zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');

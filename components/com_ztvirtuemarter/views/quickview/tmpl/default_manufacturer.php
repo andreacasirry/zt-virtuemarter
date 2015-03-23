@@ -1,14 +1,10 @@
 <?php
 /**
- *
- * Show the product details page
- *
- * @package    VirtueMart
- * @author Max Milbers, Valerie Isaksen
- * @link http://www.virtuemart.net
- * @copyright Copyright (c) 2004 - 2014 VirtueMart Team. All rights reserved.
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL, see LICENSE.php
- * @version $Id: default_manufacturer.php 8621 2014-12-14 20:00:45Z Milbo $
+ * @package    ZT VirtueMarter
+ * @subpackage Components
+ * @author       ZooTemplate.com
+ * @link http://zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
