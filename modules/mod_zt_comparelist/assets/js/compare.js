@@ -45,7 +45,6 @@
                 data: 'product_id=' + id,
                 dataType: 'json',
                 success: function (json) {
-                    var item_thumb = (json.img_prod !== '') ? json.img_prod : json.img_prod2;
                     $.fancybox({
                         "titlePosition": "inside",
                         "transitionIn": "fade",
@@ -55,7 +54,7 @@
                         "autoCenter": true,
                         "closeBtn": false,
                         "closeClick": false,
-                        "content": item_thumb
+                        "content": json.img_prod
                                 + json.title
                                 + json.btnrem
                                 + json.message
@@ -65,7 +64,7 @@
                     if (json.totalcompare !== '') {
                         $('#mod_compare .zt-cart-inner .vmproduct .not_text').remove();
                     }
-                    var compare_item = '<div id="compare_prod_' + json.product_ids + '" class="modcompareprod clearfix">' + item_thumb + json.prod_name + '</div><div class="clear"></div>';
+                    var compare_item = '<div id="compare_prod_' + json.product_ids + '" class="modcompareprod clearfix">' + json.img_prod + json.prod_name + '</div><div class="clear"></div>';
                     $('#mod_compare .zt-cart-inner .vmproduct').append(compare_item);
                     _self.updateItemCount(json.totalcompare);
                     $('#compare_continue').click($.fancybox.close);

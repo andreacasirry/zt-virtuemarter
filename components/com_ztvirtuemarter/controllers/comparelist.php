@@ -57,11 +57,12 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
             $message = '<span class="notification">' . JText::_('COM_COMPARE_MASSEDGE_ALLREADY_NOTREG') . '</span>';
         }
         $totalcompare = count($compareIds);
-        //return data json
-        echo json_encode(array('message' => $message, 'title' => $title, 'totalcompare' => $totalcompare, 'img_prod' => $imgProd, 'btnrem' => $btnrem, 'prod_name' => $prodName, 'product_ids' => $productIds, 'btncompare' => $btncompare, 'btncompareback' => $btncompareback));
 
         //update compare list to user state
         $mainframe->setUserState("com_ztvirtuemarter.site.compareIds", $compareIds);
+
+        //return data json
+        echo json_encode(array('message' => $message, 'title' => $title, 'totalcompare' => $totalcompare, 'img_prod' => $imgProd, 'btnrem' => $btnrem, 'prod_name' => $prodName, 'product_ids' => $productIds, 'btncompare' => $btncompare, 'btncompareback' => $btncompareback));
         exit;
     }
 
