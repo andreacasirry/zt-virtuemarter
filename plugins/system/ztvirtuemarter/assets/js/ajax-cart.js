@@ -15,7 +15,7 @@ function genderCartItem() {
                     item_quantity = '(x' + product.quantity + ')';
                 }
 
-                var cart_item = '<div class="cart-row cart-row-item-' + key + ' clearfix">';
+                var cart_item = '<div class="ajax-cart-product cart-row cart-row-item-' + key + ' clearfix">';
                 cart_item += '<div class="cart-product-img">';
                 cart_item += product.image;
                 cart_item += '</div>';

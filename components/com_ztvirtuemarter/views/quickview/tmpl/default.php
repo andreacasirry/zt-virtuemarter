@@ -27,7 +27,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 
 }); ");
 ?>
-    <div class="productdetails-view productdetails">
+    <div class="productdetails-view productdetails quickview-product">
 
         <?php // Back To Category Button
         if ($this->product->virtuemart_category_id) :

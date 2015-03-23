@@ -55,12 +55,15 @@
                         "autoCenter": true,
                         "closeBtn": false,
                         "closeClick": false,
-                        "content": json.img_prod
+                        "content":
+                                '<div class="wishlist-product-detail">'
+                                + json.img_prod
                                 + json.title
                                 + json.btnrem
                                 + json.message
                                 + json.btnwishlists
                                 + json.btnwishlistsback
+                                + '</div>'
                     });
                     if (json.totalwishlists !== '') {
                         _self.updateItemCount(json.totalwishlists);

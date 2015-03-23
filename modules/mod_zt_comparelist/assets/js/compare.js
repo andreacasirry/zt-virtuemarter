@@ -54,12 +54,15 @@
                         "autoCenter": true,
                         "closeBtn": false,
                         "closeClick": false,
-                        "content": json.img_prod
+                        "content":
+                            '<div class="compare-product-detail">'
+                                + json.img_prod
                                 + json.title
                                 + json.btnrem
                                 + json.message
                                 + json.btncompare
                                 + json.btncompareback
+                                + '</div>'
                     });
                     if (json.totalcompare !== '') {
                         $('#mod_compare .zt-cart-inner .vmproduct .not_text').remove();
