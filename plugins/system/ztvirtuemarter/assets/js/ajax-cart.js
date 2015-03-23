@@ -24,25 +24,21 @@
                         $('#zt_top_cart .total-price').html(datas.billTotal.replace('Total', ''));
                         $('#cart .total-item').html('(' + datas.totalProduct + ')items - ');
 
-                        var cart_item = '<p class="add-product">Recently added item(s)</p>';
-                        $('.vm_cart_products .content-top').append(cart_item);
+                        var cartItem = '<p class="add-product">Recently added item(s)</p>';
+                        $('.vm_cart_products .content-top').append(cartItem);
                         $.each(datas.products, function (key, product) {
-                            var item_quantity = '';
-                            if (product.quantity > 1) {
-                                item_quantity = '(x' + product.quantity + ')';
-                            }
-
-                            var cart_item = '<div class="ajax-cart-product cart-row cart-row-item-' + key + ' clearfix">';
-                            cart_item += '<div class="cart-product-img">';
-                            cart_item += product.image;
-                            cart_item += '</div>';
-                            cart_item += '<div class="cart-product-detail">';
-                            cart_item += '<h4>' + product.product_name + item_quantity + '</h4>';
-                            cart_item += '<p class="product-price">' + product.subtotal_with_tax + '</p>';
-                            cart_item += '<a href="#" onclick="zo2.cart.generate(' + key + ')" class="cart-ajax-del" data-type="cart-view"><i class="fa fa-times"></i>Remove</a>';
-                            cart_item += '</div>';
-                            cart_item += '</div>';
-                            $('.vm_cart_products .content-top').append(cart_item);
+                            var item_quantity = (product.quantity > 1) ? '(x' + product.quantity + ')' : '';
+                            cartItem = '<div class="ajax-cart-product cart-row cart-row-item-' + key + ' clearfix">';
+                            cartItem += '<div class="cart-product-img">';
+                            cartItem += product.image;
+                            cartItem += '</div>';
+                            cartItem += '<div class="cart-product-detail">';
+                            cartItem += '<h4>' + product.product_name + item_quantity + '</h4>';
+                            cartItem += '<p class="product-price">' + product.subtotal_with_tax + '</p>';
+                            cartItem += '<a href="#" onclick="zo2.cart.generate(' + key + ')" class="cart-ajax-del" data-type="cart-view"><i class="fa fa-times"></i>Remove</a>';
+                            cartItem += '</div>';
+                            cartItem += '</div>';
+                            $('.vm_cart_products .content-top').append(cartItem);
 
                         });
                         if (datas.totalProduct > 0) {
