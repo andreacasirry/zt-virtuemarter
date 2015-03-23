@@ -55,7 +55,7 @@
             );
         },
         /**
-         * Remove item from whishlist
+         * Remove item from cart
          * @param {type} cart_id
          * @returns {undefined}
          */
@@ -75,7 +75,7 @@
         }
     };
 
-    /* Append wishlist to zo2 */
+    /* Append cart to zo2 */
     $(document).ready(function () {
         w.zo2.cart = _cart;
     });
