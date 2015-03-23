@@ -121,10 +121,10 @@ if (!empty($this->products)) :
                 <div class="Price">
                     <div class="product-price marginbottom12"
                          id="productPrice<?php echo $this->product->virtuemart_product_id; ?>">
-                        <?php if ($product->prices['basePriceWithTax'] > 0 && $discont > 0)
+                        <?php
+                        if ($product->prices['basePriceWithTax'] > 0 && $discont > 0)
                             echo '<span class="PricebasePriceWithTax">' . $currency->createPriceDiv('basePriceWithTax', '', $product->prices, true) . '</span>';
-                        ?>
-                        <?php if ($product->prices['salesPrice'] > 0)
+                        if ($product->prices['salesPrice'] > 0)
                             echo '<span class="PricesalesPrice">' . $currency->createPriceDiv('salesPrice', '', $product->prices, true) . '</span>';
                         ?>
                     </div>
@@ -152,15 +152,13 @@ if (!empty($this->products)) :
                 <div class="Price product-price list marginbottom12"
                      id="productPrice<?php echo $product->virtuemart_product_id ?>">
                     <?php
-                    if ($product->product_unit && VmConfig::get('vm_price_show_packaging_pricelabel')) :
+                    if ($product->product_unit && VmConfig::get('vm_price_show_packaging_pricelabel'))
                         echo "<strong>" . JText::_('COM_VIRTUEMART_CART_PRICE_PER_UNIT') . ' (' . $product->product_unit . "):</strong>";
-                    endif;
 
                     if ($discont > 0)
                         echo $currency->createPriceDiv('basePriceWithTax', '', $product->prices);
                     else
                         echo $currency->createPriceDiv('salesPrice', '', $product->prices);
-
                     ?>
                 </div>
             <?php
