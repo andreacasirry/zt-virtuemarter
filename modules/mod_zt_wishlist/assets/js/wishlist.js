@@ -66,7 +66,7 @@
                         _self.updateItemCount(json.totalwishlists);
                         $('#mod_wishlists .vmproduct .not_text').remove();
                     }
-                    if (json.img_prod !== '' && json.prod_name !== '') {
+                    if (json.exists != 1) {
                         var wishlist_item = '<div class="modwishlistsprod clearfix" id="wishlists_prod_' + json.product_ids + '">' + json.img_prod + json.prod_name + '</div><div class="clear"></div>';
                         $('#mod_wishlists .vmproduct').append(wishlist_item);
                     }

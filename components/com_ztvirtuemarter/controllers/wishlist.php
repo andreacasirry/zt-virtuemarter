@@ -20,7 +20,6 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
     public function add()
     {
-        $recent = '';
         $jinput = JFactory::getApplication()->input;
 
         $mainframe = JFactory::getApplication();
@@ -35,7 +34,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
         $prods = $productModel->getProducts($product);
         $productModel->addImages($prods, 1);
-        $product = $prods[0];
+        $product = isset($prods[0]) ? $prods[0] : null;
 
         $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
         $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
@@ -51,7 +50,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $btnwishlistsback = '<a id="wishlists_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
         $btnrem = '<div class="remwishlists"><a class="tooltip-1" title="remove"  onclick="zo2.wishlist.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
         $productIds = $product->virtuemart_product_id;
-
+        $exists = 0;
         $user = JFactory::getUser();
         if ($user->guest) {
             if (!in_array($jinput->get('product_id', null, 'INT'), $wishlistIds)) {
@@ -59,9 +58,8 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                 $wishlistIds[] = $jinput->get('product_id', null, 'INT');
                 $message = '<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_NOTREG') . '</span>';
             } else {
-                if (in_array($jinput->get('product_id', null, 'INT'), $wishlistIds)) {
-                   $message = '<span class="notification">' . JText::_('COM_WHISHLISTS_MASSEDGE_ALLREADY_NOTREG') . '</span>';
-                }
+                $exists = 1;
+                $message = '<span class="notification">' . JText::_('COM_WHISHLISTS_MASSEDGE_ALLREADY_NOTREG') . '</span>';
             }
         } else {
             $wishlistModel = new ZtvirtuemarterModelWishlist();
@@ -73,6 +71,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
                 $wishlistIds[] = $jinput->get('product_id', null, 'INT');
                 $message = '<span class="successfully">' . JText::_('COM_WHISHLISTS_MASSEDGE_ADDED_REG') . '</span>';
             } else {
+                $exists = 1;
                 $message = '<span class="notification">' . JText::_('COM_WHISHLISTS_MASSEDGE_ALLREADY_REG') . '</span>';
             }
         }
@@ -80,7 +79,7 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
 
         $mainframe->setUserState("com_ztvirtuemarter.site.wishlistIds", $wishlistIds);
 
-        echo json_encode(array('message' => $message, 'title' => $title, 'totalwishlists' => $totalwishlists, 'recent' => $recent, 'img_prod' => $imgProd, 'btnrem' => $btnrem, 'prod_name' => $prodName, 'product_ids' => $productIds, 'btnwishlists' => $btnwishlists, 'btnwishlistsback' => $btnwishlistsback));
+        echo json_encode(array('message' => $message, 'title' => $title, 'totalwishlists' => $totalwishlists, 'exists' => $exists, 'img_prod' => $imgProd, 'btnrem' => $btnrem, 'prod_name' => $prodName, 'product_ids' => $productIds, 'btnwishlists' => $btnwishlists, 'btnwishlistsback' => $btnwishlistsback));
         exit;
     }
 
@@ -93,42 +92,30 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $jinput = JFactory::getApplication()->input;
 
         $productModel = VmModel::getModel('product');
+        $prods = $productModel->getProducts(array($jinput->get('remove_id', null, 'INT')));
 
         $user = JFactory::getUser();
-        if ($user->guest) {
+        if ($jinput->get('remove_id', null, 'INT')) {
+            if ($user->guest) {
+                $title = '<span>' . JHTML::link($prods[0]->link, $prods[0]->product_name) . '</span>';
+                $message = JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2');
+            } else {
+                $wishlistModel = new ZtvirtuemarterModelWishlist();
+                $wishlistModel->remove($jinput->get('remove_id', null, 'INT'));
+                $title = '<span>' . JHTML::link($prods[0]->link, $prods[0]->product_name) . '</span>';
+                $message = JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2');
+            }
 
-            if ($jinput->get('remove_id', null, 'INT')) {
-                foreach ($wishlistIds as $k => $v) {
-                    if ($jinput->get('remove_id', null, 'INT') == $v) {
-                        unset($wishlistIds[$k]);
-                    }
+            foreach ($wishlistIds as $k => $v) {
+                if ($jinput->get('remove_id', null, 'INT') == $v) {
+                    unset($wishlistIds[$k]);
                 }
-                $prod = array($jinput->get('remove_id', null, 'INT'));
-                $prods = $productModel->getProducts($prod);
-                foreach ($prods as $product) {
-                    $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
-                }
-                $totalrem = count($wishlistIds);
             }
-            $this->removeJSON('' . JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2') . '', $totalrem);
-        } else {
-            $wishlistModel = new ZtvirtuemarterModelWishlist();
-            $wishlistModel->remove($jinput->get('remove_id', null, 'INT'));
-
-            $allProducts = $wishlistModel->getProducts();
-            foreach ($allProducts as $productbd) {
-                $allprod['ids'][] = $productbd['virtuemart_product_id'];
-            }
-            //var_dump($allprod['ids']);
-            $prod = array($jinput->get('remove_id', null, 'INT'));
-            $prods = $productModel->getProducts($prod);
-            foreach ($prods as $product) {
-                $title = '<span>' . JHTML::link($product->link, $product->product_name) . '</span>';
-            }
-            $totalrem = count($allprod['ids']);
         }
+
+        $totalrem = count($wishlistIds);
         $mainframe->setUserState("com_ztvirtuemarter.site.wishlistIds", $wishlistIds);
-        echo json_encode(array('rem' => JText::_('COM_WHISHLISTS_MASSEDGE_REM') . ' ' . $title . ' ' . JText::_('COM_WHISHLISTS_MASSEDGE_REM2'), 'totalrem' => $totalrem));
+        echo json_encode(array('rem' => $message, 'totalrem' => $totalrem));
         exit;
     }
 }

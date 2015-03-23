@@ -32,17 +32,10 @@ if (!empty($this->products)) :
     <li>
     <?php // Start the Output
     foreach ($this->products as $product) :
-        if (isset($product->step_order_level))
-            $step = $product->step_order_level;
-        else
-            $step = 1;
-        if ($step == 0)
-            $step = 1;
-        $alert = JText::sprintf('COM_VIRTUEMART_WRONG_AMOUNT_ADDED', $step);
-        $discont = $product->prices['discountAmount'];
-        $discont = abs($discont);
+        $alert = JText::sprintf('COM_VIRTUEMART_WRONG_AMOUNT_ADDED', $product->step_order_level);
+        $discont = abs($product->prices['discountAmount']);
         foreach ($product->categoryItem as $key => $prod_cat) :
-            $virtuemart_category_id = $prod_cat['virtuemart_category_id'];
+            $virtuemartCategoryId = $prod_cat['virtuemart_category_id'];
         endforeach;
         $currency = CurrencyDisplay::getInstance();
         $show_price = $currency->createPriceDiv('salesPrice', '', $product->prices, true);
@@ -85,27 +78,9 @@ if (!empty($this->products)) :
                 <div class="img-wrapper">
                     <?php
                     $images = $product->images;
-                    $mainImageTitle = $images[0]->file_title;
-                    $mainImageAlt = $images[0]->file_meta;
-                    if (!empty($images[0]->file_url_thumb)) :
-                        $mainImageUrl1 = JURI::root() . '' . $images[0]->file_url_thumb;
-                    else :
-                        $mainImageUrl1 = JURI::root() . 'images/stories/virtuemart/noimage.gif';
-                    endif;
-                    if (!empty($images[1]->file_url_thumb)) :
-                        $mainImageUrl2 = JURI::root() . '' . $images[1]->file_url_thumb;
-                    else :
-                        $mainImageUrl2 = JURI::root() . 'images/stories/virtuemart/noimage.gif';
-                    endif;
-                    $image = '<img data-original="' . $mainImageUrl1 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $mainImageTitle . '"   alt="' . $mainImageAlt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
-
-                    if (!empty($product->images[1])) :
-                        $image2 = '<img data-original="' . $mainImageUrl2 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $mainImageTitle . '"   alt="' . $mainImageAlt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
-                    else :
-                        $image2 = '<img data-original="' . $mainImageUrl1 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $mainImageTitle . '"   alt="' . $mainImageAlt . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
-                    endif;
-
-                    echo JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemart_category_id), '<div class="front">' . $image . '</div><div class="back">' . $image2 . '</div>');
+                    $mainImageUrl1 = !empty($images[0]->file_url_thumb) ?  JURI::root() . '' . $images[0]->file_url_thumb : JURI::root() . 'images/stories/virtuemart/noimage.gif';
+                    $image = '<img data-original="' . $mainImageUrl1 . '"  src="modules/mod_virtuemart_product/js/images/preloader.gif"  title="' . $images[0]->file_title . '"   alt="' . $images[0]->file_meta . '" class="lazy browseProductImage featuredProductImageFirst" id="Img_to_Js_' . $product->virtuemart_product_id . '"/>';
+                    echo JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemartCategoryId), '<div class="front">' . $image . '</div>');
                     ?>
                 </div>
             </div>
@@ -113,17 +88,14 @@ if (!empty($this->products)) :
         <div class="slide-hover">
         <div class="wrapper">
             <div class="Title">
-                <?php echo JHTML::link(JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemart_category_id), shopFunctionsF::limitStringByWord($product->product_name, '40', '...'), array('title' => $product->product_name)); ?>
+                <?php echo JHTML::link(JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemartCategoryId), shopFunctionsF::limitStringByWord($product->product_name, '40', '...'), array('title' => $product->product_name)); ?>
             </div>
             <div class="clear"></div>
             <?php
             $ratingModel = VmModel::getModel('ratings');
             $rating = $ratingModel->getRatingByProduct($product->virtuemart_product_id);
-            if (!empty($rating)) :
-                $r = $rating->rating;
-            else :
-                $r = 0;
-            endif;
+            $r = !empty($rating) ? $rating->rating : 0;
+
             $maxrating = VmConfig::get('vm_maximum_rating_scale', 5);
             $ratingwidth = ($r * 100) / $maxrating; //I don't use round as percetntage
             if (!empty($rating)) : ?>
@@ -163,7 +135,7 @@ if (!empty($this->products)) :
                     ?>
                     <div class="call-a-question">
                         <a class="call modal" rel="{handler: 'iframe', size: {x: 460, y: 550}}"
-                           href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=productdetails&task=askquestion&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemart_category_id . '&tmpl=component'); ?>"><?php echo JText::_('COM_VIRTUEMART_PRODUCT_ASKPRICE') ?></a>
+                           href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=productdetails&task=askquestion&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemartCategoryId . '&tmpl=component'); ?>"><?php echo JText::_('COM_VIRTUEMART_PRODUCT_ASKPRICE') ?></a>
                     </div>
                 <?php
                 endif;
@@ -183,10 +155,12 @@ if (!empty($this->products)) :
                     if ($product->product_unit && VmConfig::get('vm_price_show_packaging_pricelabel')) :
                         echo "<strong>" . JText::_('COM_VIRTUEMART_CART_PRICE_PER_UNIT') . ' (' . $product->product_unit . "):</strong>";
                     endif;
-                    if ($discont > 0) :
+
+                    if ($discont > 0)
                         echo $currency->createPriceDiv('basePriceWithTax', '', $product->prices);
-                    endif;
-                    echo $currency->createPriceDiv('salesPrice', '', $product->prices);
+                    else
+                        echo $currency->createPriceDiv('salesPrice', '', $product->prices);
+
                     ?>
                 </div>
             <?php
@@ -195,7 +169,7 @@ if (!empty($this->products)) :
                     ?>
                     <div class="call-a-question list">
                         <a class="call modal addtocart-button" rel="{handler: 'iframe', size: {x: 460, y: 550}}"
-                           href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=productdetails&task=askquestion&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemart_category_id . '&tmpl=component'); ?>"><?php echo JText::_('COM_VIRTUEMART_PRODUCT_ASKPRICE') ?></a>
+                           href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=productdetails&task=askquestion&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $virtuemartCategoryId . '&tmpl=component'); ?>"><?php echo JText::_('COM_VIRTUEMART_PRODUCT_ASKPRICE') ?></a>
                     </div>
                 <?php
                 endif;
@@ -296,7 +270,7 @@ if (!empty($this->products)) :
                                         <input type="hidden" class="item_id" name="virtuemart_product_id[]"
                                                value="<?php echo $product->virtuemart_product_id ?>"/>
                                         <input type="hidden" name="virtuemart_category_id[]"
-                                               value="<?php echo $virtuemart_category_id ?>"/>
+                                               value="<?php echo $virtuemartCategoryId ?>"/>
                                     <?php endif; ?>
                                 </div>
                             </form>
