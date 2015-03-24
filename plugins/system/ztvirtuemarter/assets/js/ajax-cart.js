@@ -80,4 +80,17 @@
         w.zo2.cart = _cart;
     });
 
+    /* add item to cart header */
+    jQuery.fn.updateVirtueMartCartModule = function (arg) {
+        var options = jQuery.extend({}, jQuery.fn.updateVirtueMartCartModule.defaults, arg);
+        return this.each(function () {
+            jQuery.ajaxSetup({ cache: false })
+            zo2.cart.generate();
+        });
+    };
+
+    /* Definition Of Defaults */
+    jQuery.fn.updateVirtueMartCartModule.defaults = {
+        name1: 'value1'
+    };
 })(window, window.jQuery);
