@@ -35,7 +35,7 @@
                             cartItem += '<div class="cart-product-detail">';
                             cartItem += '<h4>' + product.product_name + item_quantity + '</h4>';
                             cartItem += '<p class="product-price">' + product.subtotal_with_tax + '</p>';
-                            cartItem += '<a href="#" onclick="zo2.cart.generate(' + key + ')" class="cart-ajax-del" data-type="cart-view"><i class="fa fa-times"></i>Remove</a>';
+                            cartItem += '<a href="#" onclick="zo2.cart.remove(' + key + ')" class="cart-ajax-del" data-type="cart-view"><i class="fa fa-times"></i>Remove</a>';
                             cartItem += '</div>';
                             cartItem += '</div>';
                             $('.vm_cart_products .content-top').append(cartItem);
@@ -81,16 +81,16 @@
     });
 
     /* add item to cart header */
-    jQuery.fn.updateVirtueMartCartModule = function (arg) {
-        var options = jQuery.extend({}, jQuery.fn.updateVirtueMartCartModule.defaults, arg);
+    $.fn.updateVirtueMartCartModule = function (arg) {
+        var options = $.extend({}, $.fn.updateVirtueMartCartModule.defaults, arg);
         return this.each(function () {
-            jQuery.ajaxSetup({ cache: false })
+            $.ajaxSetup({ cache: false })
             zo2.cart.generate();
         });
     };
 
     /* Definition Of Defaults */
-    jQuery.fn.updateVirtueMartCartModule.defaults = {
+    $.fn.updateVirtueMartCartModule.defaults = {
         name1: 'value1'
     };
 })(window, window.jQuery);
