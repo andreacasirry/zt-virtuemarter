@@ -9,10 +9,10 @@ All of extensions in this package are required VirtueMart 3.0
 * __[done]__ Product Compare 
 * __[done]__ Product Wishlist
 * __[done]__ Product QuickView
-* __[updating]__Product Photo Zoom
+* __[updating]__ Product Photo Zoom
 * __[done]__ Sale/Hot/New labels 
 * __[done]__ Pre/Next Item Navigation
-* __[ongoing]__One page checkout
+* __[ongoing]__ One page checkout
 * Ajax Filter Price
 * Deal of the day
 * Best Seller Products
