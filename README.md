@@ -6,13 +6,13 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Key Features
 
-* [done] Product Compare 
-* [done] Product Wishlist
-* [done] Product QuickView
+* __[done]__ Product Compare 
+* __[done]__ Product Wishlist
+* __[done]__ Product QuickView
 * Product Photo Zoom
 * One page checkout
 * Sale/Hot/New labels 
-* [done] Pre/Next Item Navigation
+* __[done]__ Pre/Next Item Navigation
 * Ajax Filter Price
 * Deal of the day
 * Best Seller Products
