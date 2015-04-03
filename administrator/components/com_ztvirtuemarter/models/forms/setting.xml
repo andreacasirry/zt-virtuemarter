@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-    <fieldset>
+    <fieldsets name="setting">
         <field name="enable_wishlist" type="radio" label="Enable wishlist"
                description="Enable wishlist" class="inputbox btn-group"
-               size="1" default="1"
-                >
-            <option value="0">
-                JNO
-            </option>
-            <option value="1">
-                JYES
-            </option>
+               size="1" default="1">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
         </field>
         <field name="enable_compare" type="radio" label="Enable compare"
                description="Enable compare" class="inputbox btn-group"
-               size="1" default="1"
-                >
-            <option value="0">
-                JNO
-            </option>
-            <option value="1">
-                JYES
-            </option>
+               size="1" default="1">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
         </field>
         <field name="enable_quickview" type="radio" label="Enable quickview"
                description="Enable quickview" class="inputbox btn-group"
-               size="1" default="1"
-                >
-            <option value="0">
-                JNO
-            </option>
-            <option value="1">
-                JYES
-            </option>
+               size="1" default="1">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
         </field>
-    </fieldset>
+        <field name="enable_countdown" type="radio" label="Enable countdown"
+               description="Enable countdown" class="inputbox btn-group"
+               size="1" default="1">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field name="enable_photozoom" type="radio" label="Enable photozoom"
+               description="Enable photozoom" class="inputbox btn-group"
+               size="1" default="1">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+    </fieldsets>
 </form>

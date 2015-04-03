@@ -18,17 +18,14 @@ class ZtvirtuemarterViewSetting extends JViewLegacy
 {
 
     protected $form;
-    protected $params = null;
-
+    protected $item;
     /**
      * Display the view
      */
     public function display($tpl = null)
     {
         $this->form = $this->get('Form');
-        $model = $this->getModel();
-        $item = $model->getItem(1);
-        $this->params = json_decode($item->get('setting'));
+        $this->item = $this->get('Item');
         $this->_addToolbar();
         parent::display($tpl);
     }
@@ -37,6 +34,8 @@ class ZtvirtuemarterViewSetting extends JViewLegacy
     {
         JToolBarHelper::title(JText::_('COM_ZTVIRTUEMARTER_ADMIN_TITLE'));
         JToolBarHelper::apply('setting.apply');
+        JToolBarHelper::cancel();
+        JToolbarHelper::preferences('com_ztvirtuemarter');
     }
 
 }

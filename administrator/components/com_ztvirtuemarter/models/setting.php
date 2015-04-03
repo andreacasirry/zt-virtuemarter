@@ -36,6 +36,15 @@ class ZtvirtuemarterModelSetting extends JModelAdmin
         return JTable::getInstance($type, $prefix, $config);
     }
 
+
+    public function getItem($pk = null)
+    {
+        if($pk == null) {
+            $pk = 1;
+        }
+        return parent::getItem($pk);
+    }
+
     public function getForm($data = array(), $loadData = true)
     {
         // Get the form.
@@ -45,23 +54,6 @@ class ZtvirtuemarterModelSetting extends JModelAdmin
             return false;
         }
         return $form;
-    }
-
-    /**
-     * Method to get the data that should be injected in the form.
-     *
-     * @return    mixed    The data for the form.
-     * @since    2.5
-     */
-    protected function loadFormData()
-    {
-        // Check the session for previously entered form data.
-        $data = JFactory::getApplication()->getUserState('com_ztvirtuemarter.edit.ztvirtuemarter.data', array());
-
-        if (empty($data)) {
-            $data = $this->getItem();
-        }
-        return $data;
     }
 
     /**
