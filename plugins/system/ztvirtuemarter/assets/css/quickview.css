@@ -107,3 +107,12 @@
 #fancybox-content #zt_tabs ul {
     margin-left: 0;
 }
+
+#fancybox-content .vm-product-media-container:before{
+    position: initial;
+    position: unset;
+}
+
+.zoomContainer {
+    z-index: 10000;
+}

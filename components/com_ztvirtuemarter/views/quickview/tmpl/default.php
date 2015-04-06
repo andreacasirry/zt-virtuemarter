@@ -59,7 +59,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
                 // event onContentBeforeDisplay
                 echo $this->product->event->beforeDisplayContent;
 
-                $sale = $this->product->prices['product_override_price'];
+                $sale = isset($this->product->prices['product_override_price']) ? $this->product->prices['product_override_price'] : '';
                 $saleClass = ($sale > 0) ? 'product-sale' : '';
                 ?>
             </div>
@@ -193,29 +193,41 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
         ?>
 
     </div>
-<script>
-    // GALT
-    /*
-     * Notice for Template Developers!
-     * Templates must set a Virtuemart.container variable as it takes part in
-     * dynamic content update.
-     * This variable points to a topmost element that holds other content.
-     */
-    // If this <script> block goes right after the element itself there is no
-    // need in ready() handler, which is much better.
-    //jQuery(document).ready(function() {
-    Virtuemart.container = jQuery('.productdetails-view');
-    Virtuemart.containerSelector = '.productdetails-view';
-    //Virtuemart.container = jQuery('.main');
-    //Virtuemart.containerSelector = '.main';
-    //});
-</script>
-<script>
-    jQuery(function(){
-        jQuery("#zt_list_product").owlCarousel({
-            items : 3,
-            navigation : true
-        });
-    });
-</script>
-<?php die; ?>
+    <script>
+        // GALT
+        /*
+         * Notice for Template Developers!
+         * Templates must set a Virtuemart.container variable as it takes part in
+         * dynamic content update.
+         * This variable points to a topmost element that holds other content.
+         */
+        // If this <script> block goes right after the element itself there is no
+        // need in ready() handler, which is much better.
+        //jQuery(document).ready(function() {
+        Virtuemart.container = jQuery('.productdetails-view');
+        Virtuemart.containerSelector = '.productdetails-view';
+        //Virtuemart.container = jQuery('.main');
+        //Virtuemart.containerSelector = '.main';
+        //});
+    </script>
+<?php if (plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_countdown == '1') : ?>
+    <script>
+        (function ($) {
+            $("#image-zoom-product").elevateZoom({
+                gallery: 'gallery_image-zoom-product',
+                zoomType	: "inner",
+                cursor: "crosshair",
+                galleryActiveClass: 'active',
+                loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'});
+            $("#image-zoom-product").bind("click", function (e) {
+                var ez = $('#image-zoom-product').data('elevateZoom');
+                $.fancybox(ez.getGalleryList());
+                return false;
+            });
+
+        })(jQuery)
+    </script>
+<?php
+endif;
+die;
+?>

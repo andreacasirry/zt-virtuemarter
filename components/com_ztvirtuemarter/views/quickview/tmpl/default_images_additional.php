@@ -9,24 +9,17 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 ?>
-<div class="additional-images" id="zt_list_product">
+<div class="additional-images" id="gallery_image-zoom-product">
     <?php
     $start_image = VmConfig::get('add_img_main', 0) ? 0 : 1;
 
     for ($i = $start_image - 1; $i < count($this->product->images); $i++) :
         $image = $this->product->images[$i];
         ?>
-        <div class="floatleft">
-            <?php
-            if (VmConfig::get('add_img_main', 1)) :
-                echo $image->displayMediaThumb('class="product-image" style="cursor: pointer"', false, "");
-            else :
-                echo $image->displayMediaThumb("", true, "rel='vm-additional-images'");
-            endif;
-            ?>
-        </div>
+        <a href="#" class="elevatezoom-gallery" data-image="<?php echo JUri::root().$image->file_url_thumb?>" data-zoom-image="<?php echo JUri::root().$image->file_url?>">
+            <img id="image-zoom-product_<?php echo  $i; ?>" src="<?php echo JUri::root().$image->file_url_thumb?>"/>
+        </a>
     <?php
     endfor;
     ?>
-    <div class="clear"></div>
 </div>
