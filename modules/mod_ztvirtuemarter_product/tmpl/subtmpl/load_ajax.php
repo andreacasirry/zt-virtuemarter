@@ -90,6 +90,7 @@ endif;
                             <input class="quick_ids" type="hidden"
                                    value="<?php echo $product->virtuemart_product_id; ?>">
                         </div>
+                        <?php plgSystemZtvirtuemarter::getCountdown($product); ?>
                     </div>
                 </div>
                 <?php

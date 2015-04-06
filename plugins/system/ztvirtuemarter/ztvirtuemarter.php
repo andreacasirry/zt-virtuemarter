@@ -48,10 +48,13 @@ class plgSystemZtvirtuemarter extends JPlugin
                         });
                     });';
                 $doc->addScriptDeclaration($jsq);
-
                 $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/quickview.js');
                 $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/quickview.css');
             }
+            if (self::getZtvirtuemarterSetting()->enable_countdown == '1')
+                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.countdown.min.js');
+            if (self::getZtvirtuemarterSetting()->enable_photozoom == '1')
+                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.elevateZoom-3.0.8.min.js');
         }
     }
 
@@ -79,42 +82,42 @@ class plgSystemZtvirtuemarter extends JPlugin
         $wishlistIds = $mainframe->getUserState("com_ztvirtuemarter.site.wishlistIds", array());
         if (self::getZtvirtuemarterSetting()->enable_wishlist == '1'): ?>
 
-                <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
-                    <?php
-                    $user = JFactory::getUser();
+            <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
+                <?php
+                $user = JFactory::getUser();
 
-                    if ($user->guest) :
-                        ?>
-                        <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $wishlistIds) ? 'go_to_whishlist active' : ''; ?>"
-                           title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
-                           onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
-                            <i class="fa fa-heart-o"></i>
-                            <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
-                        </a>
-                    <?php
-                    else :
-                        JPluginHelper::importPlugin('System');
-                        $dispatcher = JDispatcher::getInstance();
-                        $results = $dispatcher->trigger('onBeforeRender');
+                if ($user->guest) :
+                    ?>
+                    <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $wishlistIds) ? 'go_to_whishlist active' : ''; ?>"
+                       title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
+                       onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
+                        <i class="fa fa-heart-o"></i>
+                        <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
+                    </a>
+                <?php
+                else :
+                    JPluginHelper::importPlugin('System');
+                    $dispatcher = JDispatcher::getInstance();
+                    $results = $dispatcher->trigger('onBeforeRender');
 
-                        if ($results[0] == 'true') {
-                            $wishlistModel = new ZtvirtuemarterModelWishlist();
-                            $allproducts = $wishlistModel->getProducts();
-                            foreach ($allproducts as $productbd) {
-                                $allprod['id'][] = $productbd['virtuemart_product_id'];
-                            }
+                    if ($results[0] == 'true') {
+                        $wishlistModel = new ZtvirtuemarterModelWishlist();
+                        $allproducts = $wishlistModel->getProducts();
+                        foreach ($allproducts as $productbd) {
+                            $allprod['id'][] = $productbd['virtuemart_product_id'];
                         }
-                        ?>
-                        <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $allprod['id']) ? 'go_to_whishlist active' : ''; ?>"
-                           title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
-                           data-toggle="tooltip"
-                           onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
-                            <i class="fa fa-heart-o"></i>
-                            <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
-                        </a>
-                    <?php endif; ?>
-                </div>
-            <?php endif;
+                    }
+                    ?>
+                    <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $allprod['id']) ? 'go_to_whishlist active' : ''; ?>"
+                       title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
+                       data-toggle="tooltip"
+                       onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
+                        <i class="fa fa-heart-o"></i>
+                        <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
+                    </a>
+                <?php endif; ?>
+            </div>
+        <?php endif;
     }
 
     public static function getZtvirtuemarterSetting()
@@ -129,9 +132,31 @@ class plgSystemZtvirtuemarter extends JPlugin
         $results = $db->loadObjectList();
 
         if (isset($results[0]) && !empty($results[0]->setting)) {
+
             return json_decode($results[0]->setting);
         }
         return json_decode('{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1"}');
+    }
+
+    public static function getCountdown($product)
+    {
+        if (self::getZtvirtuemarterSetting()->enable_countdown == '1' && ($product->prices['product_price_publish_down'] > 0)): ?>
+            <div class="countdown-<?php echo $product->virtuemart_product_id; ?>">
+                <?php $time = strtotime($product->prices['product_price_publish_down']); ?>
+                <div class="count_holder">
+                    <div id="product-countdown-<?php echo $product->virtuemart_product_id ?>"></div>
+                    <script type="text/javascript">
+                        (function ($) {
+                            $('#product-countdown-<?php echo $product->virtuemart_product_id ?>').countdown("<?php echo date('Y/m/d', $time)?>", function (event) {
+                                $(this).text(event.strftime('%D days %H:%M:%S')
+                                );
+                            });
+                        })(jQuery)
+                    </script>
+                </div>
+            </div>
+        <?php
+        endif;
     }
 }
 
