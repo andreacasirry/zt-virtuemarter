@@ -122,20 +122,24 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public static function getZtvirtuemarterSetting()
     {
+        $application = JFactory::getApplication();
+        $setting = $application->getUserState("com_ztvirtuemarter.site.setting");
+        if(!empty($setting)) {
+            return json_decode($setting);
+        } else {
+            $db = JFactory::getDbo();
+            $query = $db->getQuery(true);
+            $query->select('*');
+            $query->from($db->quoteName('#__ztvirtuemarter'));
+            $query->where($db->quoteName('id') . ' = 1');
+            $db->setQuery($query);
+            $results = $db->loadObjectList();
 
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query->select('*');
-        $query->from($db->quoteName('#__ztvirtuemarter'));
-        $query->where($db->quoteName('id') . ' = 1');
-        $db->setQuery($query);
-        $results = $db->loadObjectList();
-
-        if (isset($results[0]) && !empty($results[0]->setting)) {
-
-            return json_decode($results[0]->setting);
+            if (isset($results[0]) && !empty($results[0]->setting)) {
+                $application->setUserState("com_ztvirtuemarter.site.setting", $results[0]->setting);
+                return json_decode($results[0]->setting);
+            }
         }
-        return json_decode('{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1"}');
     }
 
     public static function getCountdown($product)

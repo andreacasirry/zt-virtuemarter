@@ -213,6 +213,10 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 <?php if (plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_countdown == '1') : ?>
     <script>
         (function ($) {
+            jQuery("#gallery_image-zoom-product").owlCarousel({
+                items: 3,
+                navigation: true
+            });
             $("#image-zoom-product").elevateZoom({
                 gallery: 'gallery_image-zoom-product',
                 zoomType	: "inner",
