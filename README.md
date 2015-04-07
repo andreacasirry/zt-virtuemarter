@@ -20,7 +20,7 @@ All of extensions in this package are required VirtueMart 3.0
 ## One Step Checkout
 
 * Responsive One Page Checkout Plugin for VirtueMart 3
-* Compatible to both Joomla! 3
+* Compatible with Joomla! 3.x
 * No hacks or manual installation needed. Just install the plugin through your Joomla Extension Installer and you are ready to go.
 * Works with all Joomla Templates.
 * Fully ajax based system. Complete checkout within 1 min.
