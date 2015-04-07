@@ -15,8 +15,8 @@
     <files>
         <folder>models</folder>
         <folder>views</folder>
+        <folder>tables</folder>
         <folder>controllers</folder>
-        <folder>template</folder>
         <filename>index.html</filename>
         <filename>router.php</filename>
         <filename>ztvirtuemarter.php</filename>
