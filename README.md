@@ -6,8 +6,8 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Key Features
 
-* __[ongoing]__ One page checkout
-* __[ongoing]_ Ajax Filter Price
+* __[on going]__ One page checkout
+* __[on going]__ Ajax Filter Price
 * __[done]__ Product Compare 
 * __[done]__ Product Wishlist
 * __[done]__ Product QuickView
