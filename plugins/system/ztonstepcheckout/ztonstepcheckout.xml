@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="3.0" group="system" method="upgrade">
+    <name>plg_system_ztonstepcheckout</name>
+    <creationDate>Feb 27, 2015</creationDate>
+    <author>Zootemplate</author>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <copyright>Copyright (c) 2015 ztonestepcheckout. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <version>1.0.0</version>
+    <description>
+        <![CDATA[
+
+                ]]>
+    </description>
+
+    <files>
+        <filename plugin="ztonstepcheckout">ztonstepcheckout.php</filename>
+        <filename>index.html</filename>
+    </files>
+
+    <languages>
+        <language tag="en-GB">languages/en-GB.plg_system_ztonstepcheckout.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_system_ztonstepcheckout.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="style"
+                       type="list"
+                       default="1"
+                       label="Layout Style"
+                       description="Select your layout style">
+                    <option value="1">Style 1</option>
+                    <option value="2">Style 2</option>
+                </field>
+                <field name="color"
+                       type="list"
+                       default="1"
+                       label="Color Style"
+                       description="Select your color style">
+                    <option value="1">Light</option>
+                    <option value="2">Dark</option>
+                </field>
+                <field name="responsive"
+                       type="radio"
+                       default="1"
+                       label="Responsive Layout"
+                       description="Confirm if your Joomla Template is responsive."
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="only_guest"
+                       type="radio"
+                       default="0"
+                       label="Hide Registration and &lt;br/&gt;Login Area"
+                       description=""
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="show_full_pricelist_firststage"
+                       type="radio"
+                       default="0"
+                       class="btn-group btn-group-yesno"
+                       label=""
+                       description="In enabled, cart discount, cart tax, selected payment method, selected shipment method and cart total rows also will be displayed in the initial registration / login screen.">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="registration_by_default"
+                       type="radio"
+                       default="0"
+                       label="Registration Form&lt;br/&gt;Displayed by Default"
+                       description="In the cart page guest checkout option is selected by default. If you enable this option then user registration option will be selected by default."
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="ajax_validation"
+                       type="radio"
+                       default="0"
+                       label="Instant Username and &lt;br/&gt;Email Verification"
+                       description="If yes, username availability and email address verification will be done as user key-in the fields during user registration."
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="live_validation"
+                       type="radio"
+                       default="1"
+                       label="Live Username, Email &lt;br/&gt;and Password Field&lt;br/&gt;Validation"
+                       description="If no, live username, email and password strength validation will be disabled."
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="auto_generate_username"
+                       type="radio"
+                       default="0"
+                       class="btn-group btn-group-yesno"
+                       label="Auto Generate Username &lt;br/&gt;during Registration"
+                       description="If yes, Username will be generated automatically from E-Mail address.">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="hide_name_field"
+                       type="radio"
+                       default="0"
+                       class="btn-group btn-group-yesno"
+                       label="Hide Name Field &lt;br/&gt;in Registration Form"
+                       description="If yes, Username will be generated automatically from E-Mail address.">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="registration_message"
+                       type="textarea"
+                       rows="10"
+                       cols="21"
+                       default=""
+                       label="Custom Registration &lt;br/&gt;Advantage Message"
+                       description="Registration advantage message displayed to guests. Keep it empty to show the default message."
+                       filter="safehtml"/>
+                <field name="email_as_username"
+                       type="list"
+                       default="2"
+                       label="Email as Username - Login"
+                       description="If yes, only E-Mail address can be used login. If both, Username or E-Mail address can be used to login.">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                    <option value="2">Both</option>
+                </field>
+                <field name="oncheckout_show_steps"
+                       type="radio"
+                       default="1"
+                       label="Show Checkout Steps"
+                       description="Disable checkout steps during checkout"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="hide_discount"
+                       type="radio"
+                       default="0"
+                       label="Hide Discount"
+                       description="Hide discount column in cart table"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="hide_sku"
+                       type="radio"
+                       default="0"
+                       label="Hide SKU"
+                       description="Hide SKU column in cart table"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="field_grouping"
+                       type="radio"
+                       default="1"
+                       label="Address Field Grouping"
+                       description="If this is enabled then the address fields like name prefix, first name, last name, middle name, city, zip etc will be grouped together and displayed side by side."
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="check_shipto_address"
+                       type="radio"
+                       default="1"
+                       label="BT as ST by Default"
+                       description="If this is enabled the checkbox for user bill to as ship to will be checked by default."
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="module_position"
+                       type="modpositions"
+                       default="cart-promo"
+                       label="Cart Module Position"
+                       description="Select the module position that you want to display in the cart page."/>
+                <field name="checkout_advertisement"
+                       type="radio"
+                       default="1"
+                       label="Show VirtueMart Checkout &lt;br/&gt;Advertisements"
+                       description="If yes, checkout advertisements set by coupon plugin, payment plugin and shipments."
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
