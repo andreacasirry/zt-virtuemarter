@@ -10,12 +10,12 @@ defined('_JEXEC') or die;
 jimport('joomla.plugin.plugin');
 
 /**
- * system - ZtOnStepCheckOut Plugin
+ * system - ZTONESTEPCHECKOUT Plugin
  *
  * @package		Joomla.Plugin
- * @subpakage	ztonestepcheckout.ZtOnStepCheckOut
+ * @subpakage	ztonestepcheckout.ZTONESTEPCHECKOUT
  */
-class plgsystemZtOnStepCheckOut extends JPlugin {
+class plgsystemZTONESTEPCHECKOUT extends JPlugin {
 
 	/**
 	 * Constructor.

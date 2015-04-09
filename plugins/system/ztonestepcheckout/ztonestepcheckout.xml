@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.0" group="system" method="upgrade">
-    <name>plg_system_ztonstepcheckout</name>
+    <name>Plg System Ztonestepcheckout</name>
     <creationDate>Feb 27, 2015</creationDate>
     <author>Zootemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
@@ -14,13 +14,13 @@
     </description>
 
     <files>
-        <filename plugin="ztonstepcheckout">ztonstepcheckout.php</filename>
+        <filename plugin="ztonestepcheckout">ztonestepcheckout.php</filename>
         <filename>index.html</filename>
     </files>
 
     <languages>
-        <language tag="en-GB">languages/en-GB.plg_system_ztonstepcheckout.ini</language>
-        <language tag="en-GB">languages/en-GB.plg_system_ztonstepcheckout.sys.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_system_ZTONESTEPCHECKOUT.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_system_ZTONESTEPCHECKOUT.sys.ini</language>
     </languages>
 
     <config>
@@ -29,24 +29,24 @@
                 <field name="style"
                        type="list"
                        default="1"
-                       label="Layout Style"
-                       description="Select your layout style">
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LAYOUT_STYLE_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LAYOUT_STYLE_DESC">
                     <option value="1">Style 1</option>
                     <option value="2">Style 2</option>
                 </field>
                 <field name="color"
                        type="list"
                        default="1"
-                       label="Color Style"
-                       description="Select your color style">
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_COLOR_STYLE_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_COLOR_STYLE_DESC">
                     <option value="1">Light</option>
                     <option value="2">Dark</option>
                 </field>
                 <field name="responsive"
                        type="radio"
                        default="1"
-                       label="Responsive Layout"
-                       description="Confirm if your Joomla Template is responsive."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_RESPONSIVE_LAYOUT_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_RESPONSIVE_LAYOUT_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -54,8 +54,8 @@
                 <field name="only_guest"
                        type="radio"
                        default="0"
-                       label="Hide Registration and &lt;br/&gt;Login Area"
-                       description=""
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_REGISTRATION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_REGISTRATION_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -64,16 +64,16 @@
                        type="radio"
                        default="0"
                        class="btn-group btn-group-yesno"
-                       label=""
-                       description="In enabled, cart discount, cart tax, selected payment method, selected shipment method and cart total rows also will be displayed in the initial registration / login screen.">
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_FULL_CART_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_FULL_CART_DESC">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
                 <field name="registration_by_default"
                        type="radio"
                        default="0"
-                       label="Registration Form&lt;br/&gt;Displayed by Default"
-                       description="In the cart page guest checkout option is selected by default. If you enable this option then user registration option will be selected by default."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_REGISTRATION_FORM_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_REGISTRATION_FORM_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -81,8 +81,8 @@
                 <field name="ajax_validation"
                        type="radio"
                        default="0"
-                       label="Instant Username and &lt;br/&gt;Email Verification"
-                       description="If yes, username availability and email address verification will be done as user key-in the fields during user registration."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_INSTANT_USERNAME_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_INSTANT_USERNAME_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -90,8 +90,8 @@
                 <field name="live_validation"
                        type="radio"
                        default="1"
-                       label="Live Username, Email &lt;br/&gt;and Password Field&lt;br/&gt;Validation"
-                       description="If no, live username, email and password strength validation will be disabled."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LIVE_VALIDATION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LIVE_VALIDATION_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -100,8 +100,8 @@
                        type="radio"
                        default="0"
                        class="btn-group btn-group-yesno"
-                       label="Auto Generate Username &lt;br/&gt;during Registration"
-                       description="If yes, Username will be generated automatically from E-Mail address.">
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_AUTO_GENERATE_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_AUTO_GENERATE_DESC">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
@@ -109,8 +109,8 @@
                        type="radio"
                        default="0"
                        class="btn-group btn-group-yesno"
-                       label="Hide Name Field &lt;br/&gt;in Registration Form"
-                       description="If yes, Username will be generated automatically from E-Mail address.">
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_NAME_FIELD_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_NAME_FIELD_DESC">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
@@ -119,14 +119,14 @@
                        rows="10"
                        cols="21"
                        default=""
-                       label="Custom Registration &lt;br/&gt;Advantage Message"
-                       description="Registration advantage message displayed to guests. Keep it empty to show the default message."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CUSTOM_REGISTRATION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CUSTOM_REGISTRATION_DESC"
                        filter="safehtml"/>
                 <field name="email_as_username"
                        type="list"
                        default="2"
-                       label="Email as Username - Login"
-                       description="If yes, only E-Mail address can be used login. If both, Username or E-Mail address can be used to login.">
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_EMAIL_AS_USERNAME_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_EMAIL_AS_USERNAME_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                     <option value="2">Both</option>
@@ -134,8 +134,8 @@
                 <field name="oncheckout_show_steps"
                        type="radio"
                        default="1"
-                       label="Show Checkout Steps"
-                       description="Disable checkout steps during checkout"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_CHECKOUT_STEP_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_CHECKOUT_STEP_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -143,8 +143,8 @@
                 <field name="hide_discount"
                        type="radio"
                        default="0"
-                       label="Hide Discount"
-                       description="Hide discount column in cart table"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_DISCOUNT_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_DISCOUNT_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -152,8 +152,8 @@
                 <field name="hide_sku"
                        type="radio"
                        default="0"
-                       label="Hide SKU"
-                       description="Hide SKU column in cart table"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_SKU_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_SKU_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -161,8 +161,8 @@
                 <field name="field_grouping"
                        type="radio"
                        default="1"
-                       label="Address Field Grouping"
-                       description="If this is enabled then the address fields like name prefix, first name, last name, middle name, city, zip etc will be grouped together and displayed side by side."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_ADDRESS_FIELD_GROUP_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_ADDRESS_FIELD_GROUP_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -170,8 +170,8 @@
                 <field name="check_shipto_address"
                        type="radio"
                        default="1"
-                       label="BT as ST by Default"
-                       description="If this is enabled the checkbox for user bill to as ship to will be checked by default."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_BT_AS_ST_BY_DEFAULT_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_BT_AS_ST_BY_DEFAULT_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -179,13 +179,13 @@
                 <field name="module_position"
                        type="modpositions"
                        default="cart-promo"
-                       label="Cart Module Position"
-                       description="Select the module position that you want to display in the cart page."/>
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CART_MODULE_POSITION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CART_MODULE_POSITION_DESC"/>
                 <field name="checkout_advertisement"
                        type="radio"
                        default="1"
-                       label="Show VirtueMart Checkout &lt;br/&gt;Advertisements"
-                       description="If yes, checkout advertisements set by coupon plugin, payment plugin and shipments."
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_VIRTUEMART_CHECKOUT_ADVERTISEMENTS_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_VIRTUEMART_CHECKOUT_ADVERTISEMENTS_DESC"
                        class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
