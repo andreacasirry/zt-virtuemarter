@@ -16,6 +16,8 @@ All of extensions in this package are required VirtueMart 3.0
 * __[done]__ Pre/Next Item Navigation
 * __[done]__ Deal of the day
 * __[done]__ Best Seller Products
+* __[done]__ Products Slider
+* __[done]__ Products Ajax Load
 
 ## One Step Checkout
 
