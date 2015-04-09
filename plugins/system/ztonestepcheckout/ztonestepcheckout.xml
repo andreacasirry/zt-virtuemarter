@@ -19,8 +19,8 @@
     </files>
 
     <languages>
-        <language tag="en-GB">languages/en-GB.plg_system_ZTONESTEPCHECKOUT.ini</language>
-        <language tag="en-GB">languages/en-GB.plg_system_ZTONESTEPCHECKOUT.sys.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_system_ztonestepcheckout.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_system_ztonestepcheckout.sys.ini</language>
     </languages>
 
     <config>
