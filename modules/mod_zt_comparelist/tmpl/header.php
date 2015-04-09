@@ -8,11 +8,6 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
-
-$doc = JFactory::getDocument();
-$doc->addStyleSheet(JURI::root() . 'modules/mod_zt_comparelist/assets/css/compare.css');
-$doc->addScript(JURI::root() . 'modules/mod_zt_comparelist/assets/js/compare.js');
-
 JFactory::getLanguage()->load('com_ztvirtuemarter');
 $items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_ztvirtuemarter');
 foreach ($items as $item) {

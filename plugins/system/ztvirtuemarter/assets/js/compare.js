@@ -1,5 +1,5 @@
 /**
- * Zena compare
+ * Cena compare
  * @param {type} w Windows pointer
  * @param {type} $ jQuery pointer
  * @returns {undefined}
@@ -15,22 +15,7 @@
         _elements: {
             itemCount: '.btn-compare span'
         },
-        /**
-         * Init function
-         * @returns {undefined}
-         */
-        _init: function () {
-            $('#zo2-left').find('.hover-dropdown').removeClass('hover-dropdown');
-            var $iconDropdown = $('body').find('.hover-dropdown').closest('.ajax-dropdown');
-            $iconDropdown.hover(
-                    function () {
-                        $(this).find('.zt-cart-inner').delay(500).slideDown(500);
-                    },
-                    function () {
-                        $(this).find('.zt-cart-inner').slideUp(500);
-                    }
-            );
-        },
+
         /**
          * Add item to compare
          * @param {type} id
@@ -119,10 +104,9 @@
         }
     };
 
-    /* Append wishlist to zo2 */
+    /* Append wishlist to ZtVirtuemarter */
     $(document).ready(function () {
-        w.zo2.compare = _compare;
-        w.zo2.compare._init();
+        w.ZtVirtuemarter.compare = _compare;
     });
 
 })(window, window.jQuery);

@@ -3,11 +3,11 @@
     margin-left: 5px;
 }
 
-.add_wishlist {
+.add-wishlist {
 
 }
 
-.add_wishlist i {
+.add-wishlist i {
     border: 1px solid #eee;
     border-radius: 4px;
     font-size: 17px;
@@ -23,11 +23,11 @@
     transition: all 0.3s ease 0s;
 }
 
-.add_wishlist span {
+.add-wishlist span {
     display: none;
 }
 
-.add_wishlist:hover i, .add_wishlist.active i, .add_wishlist:focus i {
+.add-wishlist:hover i, .add-wishlist.active i, .add-wishlist:focus i {
     background: #5b9cf6;
     border-color: #5b9cf6;
     color: #fff;

@@ -25,45 +25,41 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public function onBeforeRender()
     {
-        if (!class_exists('ZtvirtuemarterModelWishlist')) require(JPATH_SITE . '/components/com_ztvirtuemarter/models/wishlist.php');
-        $app = JFactory::getApplication();
         $doc = JFactory::getDocument();
-        if (!($app->isAdmin())) {
-            $wishlistModel = new ZtvirtuemarterModelWishlist();
-            $wishlistModel->updateCurrentWishlist();
-            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ajax-cart.js');
-            if (self::getZtvirtuemarterSetting()->enable_quickview == '1') {
-                $show_quicktext = JText::_('COM_VIRTUEMART_QUICK');
-                $jsq = 'jQuery(document).ready(function () {
-                        var show_quicktext="' . $show_quicktext . '";
-                        //jQuery("ul.layout .product-box , ul.layout2 .product-box").each(function(indx, element){
-                        jQuery(".zt-product-content").each(function(indx, element){
-                            var my_product_id = jQuery(this).find(".quick_ids").val();
-                            if(my_product_id){
-                                if(jQuery(this).find(".quick_btn").length < 1) {
-                                    jQuery(this).append("<div class=\'quick_btn\' onClick =\'quick_btn("+my_product_id+")\'><i class=\'fa fa-search\'></i><span>"+show_quicktext+"</span></div>");
-                                }
-                            }
-                            jQuery(this).find(".quick_id").remove();
-                        });
-                    });';
-                $doc->addScriptDeclaration($jsq);
-                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/quickview.js');
-                $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/quickview.css');
-            }
-            if (self::getZtvirtuemarterSetting()->enable_countdown == '1')
-                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.countdown.min.js');
-            if (self::getZtvirtuemarterSetting()->enable_photozoom == '1')
-                $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.elevateZoom-3.0.8.min.js');
+        $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ztvirtuemarter.js');
+        $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ajax-cart.js');
+
+        if (self::getZtvirtuemarterSetting()->enable_countdown == '1')
+            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.countdown.min.js');
+        if (self::getZtvirtuemarterSetting()->enable_photozoom == '1')
+            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.elevateZoom-3.0.8.min.js');
+
+        if (self::getZtvirtuemarterSetting()->enable_quickview == '1') {
+            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/quickview.js');
+            $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.quickview.css');
         }
+        if (self::getZtvirtuemarterSetting()->enable_compare == '1') {
+            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/compare.js');
+            $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.compare.css');
+        }
+        if (self::getZtvirtuemarterSetting()->enable_wishlist == '1') {
+            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/wishlist.js');
+            $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.wishlist.css');
+        }
+
+        $scriptAction = 'jQuery(document).ready(function () {
+                       ZtVirtuemarter.actionButtons('.self::getZtvirtuemarterSetting()->enable_quickview.', '.self::getZtvirtuemarterSetting()->enable_compare.', '.self::getZtvirtuemarterSetting()->enable_wishlist.');
+                   });';
+        $doc->addScriptDeclaration($scriptAction);
     }
 
 
     public static function addCompareButton($product, $type = null)
     {
-        $mainframe = JFactory::getApplication();
-        $compareIds = $mainframe->getUserState("com_ztvirtuemarter.site.compareIds", array());
-        if (self::getZtvirtuemarterSetting()->enable_compare == '1'): ?>
+        if (self::getZtvirtuemarterSetting()->enable_compare == '1'):
+            $mainframe = JFactory::getApplication();
+            $compareIds = $mainframe->getUserState("com_ztvirtuemarter.site.compareIds", array());
+            ?>
             <div class="compare_cat list_compare<?php echo $product->virtuemart_product_id; ?>">
                 <a class="compare-label add_compare hasTooltip <?php echo in_array($product->virtuemart_product_id, $compareIds) ? 'go_to_compare active' : ''; ?>"
                    title="<?php echo JText::_('DR_ADD_TO_COMPARE'); ?>"
@@ -77,10 +73,11 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public static function addWishlistButton($product)
     {
-        if (!class_exists('ZtvirtuemarterModelWishlist')) require(JPATH_SITE . '/components/com_ztvirtuemarter/models/wishlist.php');
-        $mainframe = JFactory::getApplication();
-        $wishlistIds = $mainframe->getUserState("com_ztvirtuemarter.site.wishlistIds", array());
-        if (self::getZtvirtuemarterSetting()->enable_wishlist == '1'): ?>
+        if (self::getZtvirtuemarterSetting()->enable_wishlist == '1'):
+            if (!class_exists('ZtvirtuemarterModelWishlist')) require(JPATH_SITE . '/components/com_ztvirtuemarter/models/wishlist.php');
+            $mainframe = JFactory::getApplication();
+            $wishlistIds = $mainframe->getUserState("com_ztvirtuemarter.site.wishlistIds", array());
+            ?>
 
             <div class="wishlist list_wishlists<?php echo $product->virtuemart_product_id; ?>">
                 <?php
@@ -124,7 +121,7 @@ class plgSystemZtvirtuemarter extends JPlugin
     {
         $application = JFactory::getApplication();
         $setting = $application->getUserState("com_ztvirtuemarter.site.setting");
-        if(!empty($setting)) {
+        if (!empty($setting)) {
             return json_decode($setting);
         } else {
             $db = JFactory::getDbo();

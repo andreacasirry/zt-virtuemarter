@@ -1,0 +1,78 @@
+(function (w, $) {
+    if (typeof w.ZtVirtuemarter === 'undefined') {
+        var _ZtVirtuemarter = {
+            /* Internal jQuery */
+            jQuery: $,
+
+            _elements: {
+                vm3Product: '.product .spacer'
+            },
+
+            /**
+             * Init function
+             * @returns {undefined}
+             */
+            _init: function () {
+                $('#zo2-left').find('.hover-dropdown').removeClass('hover-dropdown');
+                var $iconDropdown = $('body').find('.hover-dropdown').closest('.ajax-dropdown');
+                $iconDropdown.hover(
+                    function () {
+                        $(this).find('.zt-cart-inner').delay(500).slideDown(500);
+                    },
+                    function () {
+                        $(this).find('.zt-cart-inner').slideUp(500);
+                    }
+                );
+            },
+
+            actionButtons: function (quickviewEnable, compareEnable, wishlistEnable) {
+                var $this = this;
+                $($this._elements.vm3Product).each(function () {
+                    var priceId = $(this).find('.product-price').attr('id');
+                    var productId = priceId.replace('productPrice', '');
+                    var html = '<div class="zt-product-action">';
+                    if (quickviewEnable == 1)
+                        html += $this.buttonQuickView(productId);
+                    if (compareEnable == 1)
+                        html += $this.buttonCompare(productId);
+                    if (wishlistEnable == 1)
+                        html += $this.buttonWishlist(productId);
+                    html += '</div>';
+                    $(this).append(html);
+                });
+            },
+
+            buttonWishlist: function (id) {
+                return '<div class="wishlist wishlists'+id+'">'
+                    + '<a class="wishlist-label add-wishlist hasTooltip " title="Add To Wishlist" onclick="ZtVirtuemarter.wishlist.add('+id+');">'
+                    + '    <i class="fa fa-heart-o"></i>'
+                    + '</a>'
+                    + '</div>';
+            },
+
+            buttonCompare: function (id) {
+                return '<div class="compare compare'+id+'">'
+                    + '<a class="compare-label add-compare hasTooltip " title="Add To Compare" onclick="ZtVirtuemarter.compare.add('+id+');">'
+                    + '<i class="fa fa-files-o"></i>'
+                    + '</a>'
+                    + '</div>';
+            },
+
+            buttonQuickView: function (id) {
+                return '<div class="quickview quickview'+id+'">'
+                    + '<a class="quickview-label add-quickview hasTooltip " title="Show Quickview" onclick="ZtVirtuemarter.quickview.show('+id+');">'
+                    + '<i class="fa fa-search"></i>'
+                    + '</a>'
+                    + '</div>';
+            },
+
+            countdown: function() {
+
+            }
+        };
+
+        w.ZtVirtuemarter = _ZtVirtuemarter;
+        w.ZtVirtuemarter._init();
+
+    }
+})(window, jQuery.noConflict());

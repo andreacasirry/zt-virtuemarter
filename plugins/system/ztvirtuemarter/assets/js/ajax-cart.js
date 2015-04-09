@@ -35,7 +35,7 @@
                             cartItem += '<div class="cart-product-detail">';
                             cartItem += '<h4>' + product.product_name + item_quantity + '</h4>';
                             cartItem += '<p class="product-price">' + product.subtotal_with_tax + '</p>';
-                            cartItem += '<a href="#" onclick="zo2.cart.remove(' + key + ')" class="cart-ajax-del" data-type="cart-view"><i class="fa fa-times"></i>Remove</a>';
+                            cartItem += '<a href="#" onclick="ZtVirtuemarter.cart.remove(' + key + ')" class="cart-ajax-del" data-type="cart-view"><i class="fa fa-times"></i>Remove</a>';
                             cartItem += '</div>';
                             cartItem += '</div>';
                             $('.vm_cart_products .content-top').append(cartItem);
@@ -68,16 +68,16 @@
                 url: base_url + 'index.php?option=com_virtuemart&view=cart&task=delete',
                 data: 'cart_virtuemart_product_id=' + cart_id,
                 success: function (html) {
-                    zo2.cart.generate();
+                    ZtVirtuemarter.cart.generate();
                     container.removeClass('add-position');
                 }
             });
         }
     };
 
-    /* Append cart to zo2 */
+    /* Append cart to ZtVirtuemarter */
     $(document).ready(function () {
-        w.zo2.cart = _cart;
+        w.ZtVirtuemarter.cart = _cart;
     });
 
     /* add item to cart header */
@@ -85,7 +85,7 @@
         var options = $.extend({}, $.fn.updateVirtueMartCartModule.defaults, arg);
         return this.each(function () {
             $.ajaxSetup({ cache: false })
-            zo2.cart.generate();
+            ZtVirtuemarter.cart.generate();
         });
     };
 

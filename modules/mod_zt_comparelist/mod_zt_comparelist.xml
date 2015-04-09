@@ -16,7 +16,6 @@
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <folder>tmpl</folder>
-        <folder>assets</folder>
     </files>
     <config>
         <fields name="params">
