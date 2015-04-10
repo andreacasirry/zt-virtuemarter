@@ -39,8 +39,11 @@
     </uninstall>
     <administration>
         <menu link="index.php?option=com_ztvirtuemarter">COM_ZTVIRTUEMARTER_MENU</menu>
+        <languages folder="admin">
+            <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.sys.ini</language>
+            <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.ini</language>
+        </languages>
         <files folder="admin">
-
             <filename>ztvirtuemarter.php</filename>
             <filename>controller.php</filename>
             <filename>index.html</filename>
@@ -49,11 +52,6 @@
             <folder>sql</folder>
             <folder>tables</folder>
             <folder>views</folder>
-
-            <languages folder="language">
-                <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.sys.ini</language>
-                <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.ini</language>
-            </languages>
         </files>
     </administration>
 </extension>
