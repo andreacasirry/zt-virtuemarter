@@ -13,7 +13,7 @@
 
     <scriptfile>pkg_zt_virtuemarter.php</scriptfile>
     <files folder="source">
-        <folder type="plugin" id="ztvirtuemarter" group="system">plg_ztvirtuemarter.zip</folder>
+        <folder type="plugin" id="ztvirtuemarter" group="system">plg_system_ztvirtuemarter.zip</folder>
         <folder type="component" id="com_ztvirtuemarter" client="site">com_ztvirtuemarter.zip</folder>
         <folder type="module" id="mod_zt_comparelist" client="site">mod_zt_comparelist.zip</folder>
         <folder type="module" id="mod_zt_wishlist" client="site">mod_zt_wishlist.zip</folder>
