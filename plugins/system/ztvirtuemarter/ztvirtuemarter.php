@@ -26,13 +26,14 @@ class plgSystemZtvirtuemarter extends JPlugin
     public function onBeforeRender()
     {
         $doc = JFactory::getDocument();
-        $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ztvirtuemarter.js');
-        $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ajax-cart.js');
 
         if (self::getZtvirtuemarterSetting()->enable_countdown == '1')
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.countdown.min.js');
         if (self::getZtvirtuemarterSetting()->enable_photozoom == '1')
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.elevateZoom-3.0.8.min.js');
+
+        $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ztvirtuemarter.js');
+        $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ajax-cart.js');
 
         if (self::getZtvirtuemarterSetting()->enable_quickview == '1') {
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/quickview.js');
@@ -46,15 +47,43 @@ class plgSystemZtvirtuemarter extends JPlugin
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/wishlist.js');
             $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.wishlist.css');
         }
-
-        $scriptAction = 'jQuery(document).ready(function () {
-                       ZtVirtuemarter.actionButtons('.self::getZtvirtuemarterSetting()->enable_quickview.', '.self::getZtvirtuemarterSetting()->enable_compare.', '.self::getZtvirtuemarterSetting()->enable_wishlist.');
-                   });';
-        $doc->addScriptDeclaration($scriptAction);
+        $scriptAction = array();
+        $scriptAction[] = 'jQuery(document).ready(function () {';
+        $scriptAction[] = 'ZtVirtuemarter.actionButtons('.self::getZtvirtuemarterSetting()->enable_quickview.', '.self::getZtvirtuemarterSetting()->enable_compare.', '.self::getZtvirtuemarterSetting()->enable_wishlist.');';
+        $scriptAction[] = 'ZtVirtuemarter.countdown('.self::getZtvirtuemarterSetting()->enable_countdown.');';
+        $scriptAction[] = '});';
+        $doc->addScriptDeclaration(implode($scriptAction));
     }
 
+    public function onAfterInitialise(){
+        $times = array();
+        $jinput = JFactory::getApplication()->input;
 
-    public static function addCompareButton($product, $type = null)
+        if($jinput->getCmd('action') == 'countdown'){
+            $productIds = $jinput->get('countdownProductIds', '');
+            if(!empty($productIds)) {
+                $ids = explode('-', $productIds);
+                if (!class_exists( 'VirtueMartModelProduct' )){
+                    JLoader::import( 'product', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models' );
+                }
+                $productModel = VmModel::getModel('product');
+                $products = $productModel->getProducts($ids);
+                if(count($products) > 0) {
+                    foreach($products as $product) {
+                        if($product->prices['product_price_publish_down'] > 0) {
+                            $time = strtotime($product->prices['product_price_publish_down']);
+                            $times[$product->virtuemart_product_id] = date('Y/m/d', $time);
+                        }
+                    }
+                }
+                echo json_encode($times);
+                die;
+            }
+        }
+        return;
+    }
+
+    public static function addCompareButton($product)
     {
         if (self::getZtvirtuemarterSetting()->enable_compare == '1'):
             $mainframe = JFactory::getApplication();

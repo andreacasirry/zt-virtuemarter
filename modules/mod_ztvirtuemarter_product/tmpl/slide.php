@@ -35,11 +35,10 @@ if ($productsPerRow > 1) {
                     <a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>        <?php    echo '<div class="clear"></div>';
                     // $product->prices is not set when show_prices in config is unchecked
                     if ($show_price and isset($product->prices)) {
-                        echo '<div class="product-price">' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
+                        echo  $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         if ($product->prices['salesPriceWithDiscount'] > 0) {
                             echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         }
-                        echo '</div>';
                     }
                     if ($show_addtocart) {
                         echo shopFunctionsF::renderVmSubLayout('addtocart', array('product' => $product));

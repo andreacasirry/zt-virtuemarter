@@ -5,7 +5,7 @@
             jQuery: $,
 
             _elements: {
-                vm3Product: '.product .spacer'
+                vm3Product: '.product .spacer, .product-item .spacer'
             },
 
             /**
@@ -66,13 +66,53 @@
                     + '</div>';
             },
 
-            countdown: function() {
+            countdown: function(enable) {
+                if(enable != 1)
+                    return false;
 
+                var $this = this;
+                var ids = [];
+                $($this._elements.vm3Product).each(function (index) {
+                    var priceId = $(this).find('.product-price').attr('id');
+                    ids[index] = priceId.replace('productPrice', '');
+                });
+                jQuery.ajax({
+                    url: 'index.php?action=countdown',
+                    type: 'POST',
+                    cache: false,
+                    data: 'countdownProductIds=' + ids.join('-'),
+                    success: function (data) {
+                        var countdownData = JSON.parse(data);
+                        console.log(countdownData);
+
+                        $($this._elements.vm3Product).each(function () {
+                            var priceId = $(this).find('.product-price').attr('id');
+                            var id = priceId.replace('productPrice', '');
+                            if(typeof countdownData[id] != 'undefined') {
+                                var countdownHtml = '<div class="product-countdown-wrap countdown-'+id+'">'
+                                    +'<div class="count_holder">'
+                                    +'<div id="product-countdown-'+id+'"></div>'
+                                    +'</div>'
+                                    +'</div>';
+                                $(this).append(countdownHtml);
+
+                                $('#product-countdown-'+id).countdown(countdownData[id], function (event) {
+                                    $(this).text(event.strftime('%D days %H:%M:%S')
+                                    );
+                                });
+                            }
+                        });
+                    }
+                });
             }
         };
 
         w.ZtVirtuemarter = _ZtVirtuemarter;
-        w.ZtVirtuemarter._init();
+
+
+        $(document).ready(function(){
+            ZtVirtuemarter._init();
+        });
 
     }
 })(window, jQuery.noConflict());

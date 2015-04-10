@@ -68,7 +68,7 @@ endif;
                         echo '</div>';
                         echo '<div class="clear"></div>';
                         echo '<div class="product-bottom"><div class="price">';
-                        echo '<div class="product-price' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
+                        echo shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency));
 
                         echo '</div>';
                         if ($showAddtocart) {
@@ -128,11 +128,10 @@ endif;
                     <?php
                     // $product->prices is not set when show_prices in config is unchecked
                     if ($showPrice and isset($product->prices)) {
-                        echo '<div class="product-price">' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
+                        echo $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         if ($product->prices['salesPriceWithDiscount'] > 0) {
                             echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         }
-                        echo '</div>';
                     }
                     if ($showAddtocart) {
                         echo ModZtvirtuemarterProductHelper::addtocart($product);
@@ -166,5 +165,12 @@ if ($footerText) : ?>
     </div>
 <?php endif; ?>
 </div>
-
+<?php if ($productNumber != 0) :?>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        ZtVirtuemarter.actionButtons(<?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_quickview; ?>, <?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare; ?>, <?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_wishlist; ?>);
+        ZtVirtuemarter.countdown(<?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_countdown; ?>);
+    });
+</script>
+<?php endif; ?>
 <!--ajax-->

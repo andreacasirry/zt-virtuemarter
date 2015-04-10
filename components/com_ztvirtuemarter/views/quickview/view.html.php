@@ -15,9 +15,6 @@ class ZtvirtuemarterViewQuickview extends JViewLegacy
     public function display($tpl = null)
     {
 
-        error_reporting(E_ALL);
-        ini_set("display_errors", "On");
-
         VmConfig::loadConfig();
         $document = JFactory::getDocument();
         $mainframe = JFactory::getApplication();
