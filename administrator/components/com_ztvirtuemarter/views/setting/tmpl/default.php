@@ -78,6 +78,14 @@ $settings = json_decode($this->item->setting);
                                 <?php echo $this->form->getInput('enable_photozoom', '', $settings->enable_photozoom); ?>
                             </div>
                         </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <?php echo $this->form->getLabel('enable_auto_insert'); ?>
+                            </div>
+                            <div class="controls">
+                                <?php echo $this->form->getInput('enable_auto_insert', '', $settings->enable_auto_insert); ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

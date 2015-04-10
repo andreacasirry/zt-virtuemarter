@@ -165,7 +165,7 @@ if ($footerText) : ?>
     </div>
 <?php endif; ?>
 </div>
-<?php if ($productNumber != 0) :?>
+<?php if ($productNumber != 0 && plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_auto_insert == '1') :?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         ZtVirtuemarter.actionButtons(<?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_quickview; ?>, <?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare; ?>, <?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_wishlist; ?>);

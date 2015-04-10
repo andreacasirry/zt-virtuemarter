@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
-    <name>ZtVirtuemarter</name>
+    <name>COM_ZTVIRTUEMARTER</name>
     <creationDate>Feb 27, 2015</creationDate>
     <author>Zootemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
@@ -10,22 +10,20 @@
 
     <version>1.1.1</version>
 
-    <description>Description of Zoo Virtuemart Component</description>
+    <description>COM_ZTVIRTUEMARTER_DESCRIPTION</description>
 
     <files>
-        <folder>controllers</folder>
-        <folder>helpers</folder>
-        <folder>models</folder>
-        <folder>views</folder>
         <folder>models</folder>
         <folder>views</folder>
         <folder>tables</folder>
+        <folder>controllers</folder>
         <filename>index.html</filename>
         <filename>router.php</filename>
         <filename>ztvirtuemarter.php</filename>
     </files>
 
     <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.sys.ini</language>
         <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.ini</language>
     </languages>
 
@@ -40,8 +38,9 @@
         </sql>
     </uninstall>
     <administration>
-        <menu link="index.php?option=com_ztvirtuemarter">Zt Virtuemarter</menu>
+        <menu link="index.php?option=com_ztvirtuemarter">COM_ZTVIRTUEMARTER_MENU</menu>
         <files folder="admin">
+
             <filename>ztvirtuemarter.php</filename>
             <filename>controller.php</filename>
             <filename>index.html</filename>
@@ -50,6 +49,11 @@
             <folder>sql</folder>
             <folder>tables</folder>
             <folder>views</folder>
+
+            <languages folder="language">
+                <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.sys.ini</language>
+                <language tag="en-GB">en-GB/en-GB.com_ztvirtuemarter.ini</language>
+            </languages>
         </files>
     </administration>
 </extension>

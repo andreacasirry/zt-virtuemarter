@@ -83,8 +83,6 @@
                     data: 'countdownProductIds=' + ids.join('-'),
                     success: function (data) {
                         var countdownData = JSON.parse(data);
-                        console.log(countdownData);
-
                         $($this._elements.vm3Product).each(function () {
                             var priceId = $(this).find('.product-price').attr('id');
                             var id = priceId.replace('productPrice', '');

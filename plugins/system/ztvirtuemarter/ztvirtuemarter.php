@@ -47,12 +47,14 @@ class plgSystemZtvirtuemarter extends JPlugin
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/wishlist.js');
             $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.wishlist.css');
         }
-        $scriptAction = array();
-        $scriptAction[] = 'jQuery(document).ready(function () {';
-        $scriptAction[] = 'ZtVirtuemarter.actionButtons('.self::getZtvirtuemarterSetting()->enable_quickview.', '.self::getZtvirtuemarterSetting()->enable_compare.', '.self::getZtvirtuemarterSetting()->enable_wishlist.');';
-        $scriptAction[] = 'ZtVirtuemarter.countdown('.self::getZtvirtuemarterSetting()->enable_countdown.');';
-        $scriptAction[] = '});';
-        $doc->addScriptDeclaration(implode($scriptAction));
+        if(self::getZtvirtuemarterSetting()->enable_auto_insert == '1') {
+            $scriptAction = array();
+            $scriptAction[] = 'jQuery(document).ready(function () {';
+            $scriptAction[] = 'ZtVirtuemarter.actionButtons('.self::getZtvirtuemarterSetting()->enable_quickview.', '.self::getZtvirtuemarterSetting()->enable_compare.', '.self::getZtvirtuemarterSetting()->enable_wishlist.');';
+            $scriptAction[] = 'ZtVirtuemarter.countdown('.self::getZtvirtuemarterSetting()->enable_countdown.');';
+            $scriptAction[] = '});';
+            $doc->addScriptDeclaration(implode($scriptAction));
+        }
     }
 
     public function onAfterInitialise(){
