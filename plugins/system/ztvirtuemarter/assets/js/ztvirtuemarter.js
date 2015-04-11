@@ -13,14 +13,19 @@
              * @returns {undefined}
              */
             _init: function () {
-                $('#zo2-left').find('.hover-dropdown').removeClass('hover-dropdown');
+                if($( window ).width() < 768 ) {
+                    $('body').addClass('zt-mobile');
+                }
+                $('#zo2-position-0 .zt-cart-inner').hide();
                 var $iconDropdown = $('body').find('.hover-dropdown').closest('.ajax-dropdown');
                 $iconDropdown.hover(
                     function () {
-                        $(this).find('.zt-cart-inner').delay(500).slideDown(500);
+                        if(!$('body').hasClass('zt-mobile'))
+                            $(this).find('.zt-cart-inner').delay(200).slideDown(500);
                     },
                     function () {
-                        $(this).find('.zt-cart-inner').slideUp(500);
+                        if(!$('body').hasClass('zt-mobile'))
+                            $(this).find('.zt-cart-inner').slideUp(500);
                     }
                 );
             },
