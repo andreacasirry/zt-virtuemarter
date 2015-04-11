@@ -81,16 +81,19 @@
     });
 
     /* add item to cart header */
-    $.fn.updateVirtueMartCartModule = function (arg) {
-        var options = $.extend({}, $.fn.updateVirtueMartCartModule.defaults, arg);
-        return this.each(function () {
-            $.ajaxSetup({ cache: false })
-            ZtVirtuemarter.cart.generate();
-        });
-    };
+    $(document).ready(function() {
+        $.fn.updateVirtueMartCartModule = function (arg) {
+            var options = $.extend({}, $.fn.updateVirtueMartCartModule.defaults, arg);
+            return this.each(function () {
+                $.ajaxSetup({ cache: false })
+                ZtVirtuemarter.cart.generate();
+            });
+        };
 
-    /* Definition Of Defaults */
-    $.fn.updateVirtueMartCartModule.defaults = {
-        name1: 'value1'
-    };
+        /* Definition Of Defaults */
+        $.fn.updateVirtueMartCartModule.defaults = {
+            name1: 'value1'
+        };
+    });
+
 })(window, window.jQuery);
