@@ -84,13 +84,6 @@ endif;
                         }
                         echo '</div>';
                         ?>
-                        <div class="product_hover zt-product-content">
-                            <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
-                            <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
-                            <input class="quick_ids" type="hidden"
-                                   value="<?php echo $product->virtuemart_product_id; ?>">
-                        </div>
-                        <?php plgSystemZtvirtuemarter::getCountdown($product); ?>
                     </div>
                 </div>
                 <?php
