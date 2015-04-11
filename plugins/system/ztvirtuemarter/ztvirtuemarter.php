@@ -47,32 +47,34 @@ class plgSystemZtvirtuemarter extends JPlugin
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/wishlist.js');
             $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.wishlist.css');
         }
-        if(self::getZtvirtuemarterSetting()->enable_auto_insert == '1') {
+        if (self::getZtvirtuemarterSetting()->enable_auto_insert == '1') {
             $scriptAction = array();
             $scriptAction[] = 'jQuery(document).ready(function () {';
-            $scriptAction[] = 'ZtVirtuemarter.actionButtons('.self::getZtvirtuemarterSetting()->enable_quickview.', '.self::getZtvirtuemarterSetting()->enable_compare.', '.self::getZtvirtuemarterSetting()->enable_wishlist.');';
-            $scriptAction[] = 'ZtVirtuemarter.countdown('.self::getZtvirtuemarterSetting()->enable_countdown.');';
+            $scriptAction[] = 'ZtVirtuemarter.actionButtons(' . self::getZtvirtuemarterSetting()->enable_quickview . ', ' . self::getZtvirtuemarterSetting()->enable_compare . ', ' . self::getZtvirtuemarterSetting()->enable_wishlist . ');';
+            $scriptAction[] = 'ZtVirtuemarter.countdown(' . self::getZtvirtuemarterSetting()->enable_countdown . ');';
             $scriptAction[] = '});';
             $doc->addScriptDeclaration(implode($scriptAction));
         }
     }
 
-    public function onAfterInitialise(){
+    public function onAfterInitialise()
+    {
         $times = array();
         $jinput = JFactory::getApplication()->input;
 
-        if($jinput->getCmd('action') == 'countdown'){
+        if ($jinput->getCmd('action') == 'countdown') {
             $productIds = $jinput->get('countdownProductIds', '');
-            if(!empty($productIds)) {
+            if (!empty($productIds)) {
                 $ids = explode('-', $productIds);
-                if (!class_exists( 'VirtueMartModelProduct' )){
-                    JLoader::import( 'product', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models' );
+                if (!class_exists('VmConfig')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/config.php');
+                if (!class_exists('VirtueMartModelProduct')) {
+                    JLoader::import('product', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models');
                 }
                 $productModel = VmModel::getModel('product');
                 $products = $productModel->getProducts($ids);
-                if(count($products) > 0) {
-                    foreach($products as $product) {
-                        if($product->prices['product_price_publish_down'] > 0) {
+                if (count($products) > 0) {
+                    foreach ($products as $product) {
+                        if ($product->prices['product_price_publish_down'] > 0) {
                             $time = strtotime($product->prices['product_price_publish_down']);
                             $times[$product->virtuemart_product_id] = date('Y/m/d', $time);
                         }
@@ -91,12 +93,26 @@ class plgSystemZtvirtuemarter extends JPlugin
             $mainframe = JFactory::getApplication();
             $compareIds = $mainframe->getUserState("com_ztvirtuemarter.site.compareIds", array());
             ?>
-            <div class="compare_cat list_compare<?php echo $product->virtuemart_product_id; ?>">
-                <a class="compare-label add_compare hasTooltip <?php echo in_array($product->virtuemart_product_id, $compareIds) ? 'go_to_compare active' : ''; ?>"
+            <div class="compare compare<?php echo $product->virtuemart_product_id; ?>">
+                <a class="compare-label add-compare hasTooltip <?php echo in_array($product->virtuemart_product_id, $compareIds) ? 'go_to_compare active' : ''; ?>"
                    title="<?php echo JText::_('DR_ADD_TO_COMPARE'); ?>"
-                   onclick="zo2.compare.add('<?php echo $product->virtuemart_product_id; ?>');">
+                   onclick="ZtVirtuemarter.compare.add('<?php echo $product->virtuemart_product_id; ?>');">
                     <i class="fa fa-files-o"></i>
                     <span><?php echo JText::_("DR_ADD_TO_COMPARE"); ?></span>
+                </a>
+            </div>
+        <?php endif;
+    }
+
+    public static function addQuickviewButton($product)
+    {
+        if (self::getZtvirtuemarterSetting()->enable_quickview == '1'):?>
+            <div class="quickview quickview<?php echo $product->virtuemart_product_id; ?>">
+                <a class="quickview-label add-quickview hasTooltip"
+                   title="<?php echo JText::_('PLG_ZT_QUICKVIEW_PRODUCT'); ?>"
+                   onclick="ZtVirtuemarter.quickview.show('<?php echo $product->virtuemart_product_id; ?>');">
+                    <i class="fa fa-search"></i>
+                    <span><?php echo JText::_("PLG_ZT_QUICKVIEW_PRODUCT"); ?></span>
                 </a>
             </div>
         <?php endif;
@@ -118,7 +134,7 @@ class plgSystemZtvirtuemarter extends JPlugin
                     ?>
                     <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $wishlistIds) ? 'go_to_whishlist active' : ''; ?>"
                        title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
-                       onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
+                       onclick="ZtVirtuemarter.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
                         <i class="fa fa-heart-o"></i>
                         <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
                     </a>
@@ -139,7 +155,7 @@ class plgSystemZtvirtuemarter extends JPlugin
                     <a class="add_wishlist hasTooltip <?php echo in_array($product->virtuemart_product_id, $allprod['id']) ? 'go_to_whishlist active' : ''; ?>"
                        title="<?php echo JText::_('ADD_TO_WHISHLIST'); ?>"
                        data-toggle="tooltip"
-                       onclick="zo2.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
+                       onclick="ZtVirtuemarter.wishlist.add('<?php echo $product->virtuemart_product_id; ?>');">
                         <i class="fa fa-heart-o"></i>
                         <span><?php echo JText::_("ADD_TO_WHISHLIST"); ?></span>
                     </a>
@@ -151,7 +167,7 @@ class plgSystemZtvirtuemarter extends JPlugin
     public static function getZtvirtuemarterSetting()
     {
         $application = JFactory::getApplication();
-        $setting = $application->getUserState("com_ztvirtuemarter.site.setting");
+        //$setting = $application->getUserState("com_ztvirtuemarter.site.setting");
         if (!empty($setting)) {
             return json_decode($setting);
         } else {
@@ -164,7 +180,7 @@ class plgSystemZtvirtuemarter extends JPlugin
             $results = $db->loadObjectList();
 
             if (isset($results[0]) && !empty($results[0]->setting)) {
-                $application->setUserState("com_ztvirtuemarter.site.setting", $results[0]->setting);
+                //$application->setUserState("com_ztvirtuemarter.site.setting", $results[0]->setting);
                 return json_decode($results[0]->setting);
             }
         }
