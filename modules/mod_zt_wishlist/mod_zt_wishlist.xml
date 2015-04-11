@@ -7,7 +7,7 @@
     <authorUrl>http://www.zootemplate.com/</authorUrl>
     <copyright>Copyright (c) 2008 - 2015 ZooTemplate.com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
     <description>Description of module Wishlist</description>
     <files>
         <filename module="mod_zt_wishlist">mod_zt_wishlist.php</filename>
@@ -15,7 +15,6 @@
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <folder>tmpl</folder>
-        <folder>assets</folder>
     </files>
     <config>
         <fields name="params">
@@ -33,6 +32,6 @@
                        default="default" hide_default="1" hide_none="1"
                        stripext="1" filter="\.php$" exclude="^_"/>
             </fieldset>
-	</fields>
-		</config>
+        </fields>
+    </config>
 </extension>

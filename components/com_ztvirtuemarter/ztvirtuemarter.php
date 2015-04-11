@@ -11,13 +11,15 @@
 
 defined('_JEXEC') or die;
 
+// Register helper class
+require_once dirname(__FILE__) . '/helpers/ztvirtuemarter.php';
 // Require the base controller
 $input = JFactory::getApplication()->input;
 $view = $input->getCmd('view');
 $task = $input->getCmd('task');
-$controllerClass =  'ZtvirtuemarterController' . ucfirst($view);
+$controllerClass = 'ZtvirtuemarterController' . ucfirst($view);
 $controllerPath = 'controllers/' . $view . '.php';
-require_once( $controllerPath );
+require_once($controllerPath);
 
 if (class_exists($controllerClass)) {
     $controller = new $controllerClass();

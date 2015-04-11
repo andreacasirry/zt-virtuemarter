@@ -28,16 +28,37 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         $this->input = JFactory::getApplication()->input;
     }
 
-    public function updateCurrentWishlist( ) {
-        $session        = JFactory::getSession();
-        $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
-        if(count($wishlistIds) > 0) {
+    /**
+     * Method to get a table object, load it if necessary.
+     *
+     * @param   string $type The table name. Optional.
+     * @param   string $prefix The class prefix. Optional.
+     * @param   array $config Configuration array for model. Optional.
+     *
+     * @return  JTable  A JTable object
+     *
+     * @since   1.6
+     */
+    public function getTable($type = 'Wishlist', $prefix = 'ZtvirtuemarterTable', $config = array())
+    {
+        return JTable::getInstance($type, $prefix, $config);
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function updateCurrentWishlist()
+    {
+        $mainframe = JFactory::getApplication();
+        $wishlistIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
+        if (count($wishlistIds) > 0) {
             $user = JFactory::getUser();
             if (!$user->guest) {
-                $db             = JFactory::getDBO();
-                $query          = $db->getQuery(true);
+                $db = JFactory::getDBO();
+                $query = $db->getQuery(true);
 
-                $query->select($db->quoteName('virtuemart_product_id') )
+                $query->select($db->quoteName('virtuemart_product_id'))
                     ->from($db->quoteName('#__wishlists'))
                     ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
 
@@ -47,14 +68,14 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
                     $prodIds['ids'][] = $productbd['virtuemart_product_id'];
                 }
 
-                foreach($wishlistIds as $id) {
+                foreach ($wishlistIds as $id) {
                     if (!in_array($id, $prodIds['ids'])) {
                         $query = $db->getQuery(true);
                         $query->insert($db->quoteName('#__wishlists'))
                             ->columns($db->quoteName('virtuemart_product_id'))
-                            ->values( $id)
+                            ->values($id)
                             ->columns($db->quoteName('userid'))
-                            ->values( $user->id);
+                            ->values($user->id);
 
                         $db->setQuery($query);
                         $db->execute();
@@ -64,14 +85,20 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
         }
     }
 
-    public function getProducts() {
+    /**
+     *
+     * @param null
+     * @return Array object
+     */
+    public function getProducts()
+    {
         $user = JFactory::getUser();
         $prodIds = array();
         if (!$user->guest) {
-            $db             = JFactory::getDBO();
-            $query          = $db->getQuery(true);
+            $db = JFactory::getDBO();
+            $query = $db->getQuery(true);
 
-            $query->select($db->quoteName('virtuemart_product_id') )
+            $query->select($db->quoteName('virtuemart_product_id'))
                 ->from($db->quoteName('#__wishlists'))
                 ->where($db->quoteName('userid') . '=' . $db->quote($user->id));
 
@@ -81,15 +108,41 @@ class ZtvirtuemarterModelWishlist extends JModelLegacy
                 $prodIds[] = $productbd['virtuemart_product_id'];
             }
         } else {
-            $session        = JFactory::getSession();
-            $wishlistIds   = $session->get('wishlist_ids', array(), 'wishlist_product');
-            $prodIds = $wishlistIds;
+            $mainframe = JFactory::getApplication();
+            $prodIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
         }
         $productModel = VmModel::getModel('product');
 
         $products = $productModel->getProducts($prodIds);
         $productModel->addImages($products, 1);
-        
+
         return $products;
     }
+
+    /**
+     *
+     * @param int $productId
+     * @return boolean
+     */
+    public function insert($productId)
+    {
+        $user = JFactory::getUser();
+        $data = array(
+            'virtuemart_product_id' => $productId,
+            'userid' => $user->id
+        );
+
+        return parent::save($data);
+    }
+
+    /**
+     *
+     * @param int $productId
+     * @return boolean
+     */
+    public function remove($productId)
+    {
+        return parent::delete($productId);
+    }
+
 }

@@ -8,11 +8,6 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
-
-$doc = JFactory::getDocument();
-$doc->addStyleSheet(JURI::root() . 'modules/mod_zt_comparelist/assets/css/compare.css');
-$doc->addScript(JURI::root() . 'modules/mod_zt_comparelist/assets/js/compare.js');
-
 JFactory::getLanguage()->load('com_ztvirtuemarter');
 $items = JFactory::getApplication()->getMenu('site')->getItems('component', 'com_ztvirtuemarter');
 foreach ($items as $item) {
@@ -21,18 +16,17 @@ foreach ($items as $item) {
 
     }
 }
-?>
-
-<div class="mod-compare">
-    <div id="cur-lang" class="header-button-compare">
-        <div id="compare_total">
-            <a class="compare_total heading" href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
-                <i class="fa fa-files-o"></i>
-            <span>
-		   <?php
-           echo count($compareIds);
-           ?></span>
-            </a>
+if (plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare == '1') :
+    ?>
+    <div class="mod-compare">
+        <div id="cur-lang" class="header-button-compare">
+            <div id="compare_total">
+                <a class="compare_total heading"
+                   href="<?php echo JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemid . ''); ?>">
+                    <i class="fa fa-files-o"></i>
+                    <span><?php echo count($compareIds); ?></span>
+                </a>
+            </div>
         </div>
     </div>
-</div>
+<?php endif; ?>

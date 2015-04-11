@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="3.0" group="system" method="upgrade">
+    <name>Plg System Ztonestepcheckout</name>
+    <creationDate>Feb 27, 2015</creationDate>
+    <author>Zootemplate</author>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <copyright>Copyright (c) 2015 ztonestepcheckout. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <version>1.0.0</version>
+    <description>
+        <![CDATA[
+
+                ]]>
+    </description>
+
+    <files>
+        <filename plugin="ztonestepcheckout">ztonestepcheckout.php</filename>
+        <filename>index.html</filename>
+    </files>
+
+    <languages>
+        <language tag="en-GB">languages/en-GB.plg_system_ztonestepcheckout.ini</language>
+        <language tag="en-GB">languages/en-GB.plg_system_ztonestepcheckout.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="style"
+                       type="list"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LAYOUT_STYLE_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LAYOUT_STYLE_DESC">
+                    <option value="1">Style 1</option>
+                    <option value="2">Style 2</option>
+                </field>
+                <field name="color"
+                       type="list"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_COLOR_STYLE_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_COLOR_STYLE_DESC">
+                    <option value="1">Light</option>
+                    <option value="2">Dark</option>
+                </field>
+                <field name="responsive"
+                       type="radio"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_RESPONSIVE_LAYOUT_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_RESPONSIVE_LAYOUT_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="only_guest"
+                       type="radio"
+                       default="0"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_REGISTRATION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_REGISTRATION_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="show_full_pricelist_firststage"
+                       type="radio"
+                       default="0"
+                       class="btn-group btn-group-yesno"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_FULL_CART_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_FULL_CART_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="registration_by_default"
+                       type="radio"
+                       default="0"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_REGISTRATION_FORM_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_REGISTRATION_FORM_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="ajax_validation"
+                       type="radio"
+                       default="0"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_INSTANT_USERNAME_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_INSTANT_USERNAME_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="live_validation"
+                       type="radio"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LIVE_VALIDATION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_LIVE_VALIDATION_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="auto_generate_username"
+                       type="radio"
+                       default="0"
+                       class="btn-group btn-group-yesno"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_AUTO_GENERATE_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_AUTO_GENERATE_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="hide_name_field"
+                       type="radio"
+                       default="0"
+                       class="btn-group btn-group-yesno"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_NAME_FIELD_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_NAME_FIELD_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="registration_message"
+                       type="textarea"
+                       rows="10"
+                       cols="21"
+                       default=""
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CUSTOM_REGISTRATION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CUSTOM_REGISTRATION_DESC"
+                       filter="safehtml"/>
+                <field name="email_as_username"
+                       type="list"
+                       default="2"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_EMAIL_AS_USERNAME_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_EMAIL_AS_USERNAME_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                    <option value="2">Both</option>
+                </field>
+                <field name="oncheckout_show_steps"
+                       type="radio"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_CHECKOUT_STEP_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_CHECKOUT_STEP_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="hide_discount"
+                       type="radio"
+                       default="0"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_DISCOUNT_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_DISCOUNT_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="hide_sku"
+                       type="radio"
+                       default="0"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_SKU_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_HIDE_SKU_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="field_grouping"
+                       type="radio"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_ADDRESS_FIELD_GROUP_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_ADDRESS_FIELD_GROUP_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="check_shipto_address"
+                       type="radio"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_BT_AS_ST_BY_DEFAULT_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_BT_AS_ST_BY_DEFAULT_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="module_position"
+                       type="modpositions"
+                       default="cart-promo"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CART_MODULE_POSITION_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_CART_MODULE_POSITION_DESC"/>
+                <field name="checkout_advertisement"
+                       type="radio"
+                       default="1"
+                       label="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_VIRTUEMART_CHECKOUT_ADVERTISEMENTS_LABEL"
+                       description="PLG_SYSTEM_ZTONESTEPCHECKOUT_BASIC_SHOW_VIRTUEMART_CHECKOUT_ADVERTISEMENTS_DESC"
+                       class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

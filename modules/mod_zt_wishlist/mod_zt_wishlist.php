@@ -9,38 +9,31 @@
 
 // No direct access.
 defined('_JEXEC') or die('Direct Access to ' . basename(__FILE__) . ' is not allowed.');
-if (!class_exists('mod_zt_wishlist')) require('helper.php');
+VmConfig::loadConfig();
+// Load the language file of com_virtuemart.
+JFactory::getLanguage()->load('com_virtuemart');
+require('helper.php');
 $user = JFactory::getUser();
 $ratingModel = VmModel::getModel('ratings');
-$product_model = VmModel::getModel('product');
+$productModel = VmModel::getModel('product');
 
-$session = JFactory::getSession();
-$wishlistIds = $session->get('wishlist_ids', array(), 'wishlist_product');
+$mainframe = JFactory::getApplication();
+$wishlistIds = $mainframe->getUserState( "com_ztvirtuemarter.site.wishlistIds", array() );
 
 $prods = array();
 if ($user->guest) {
     if (!empty($wishlistIds)) {
         $products = $wishlistIds;
-        $prods = $product_model->getProducts($products);
-        $product_model->addImages($prods, 1);
+        $prods = $productModel->getProducts($products);
+        $productModel->addImages($prods, 1);
         $currency = CurrencyDisplay::getInstance();
 
     } else {
         $wishlistIds = null;
     }
-
 } else {
-
-    $db = JFactory::getDBO();
-    $q = "SELECT virtuemart_product_id FROM #__wishlists WHERE userid =" . $user->id;
-    $db->setQuery($q);
-    $allproducts = $db->loadAssocList();
-    foreach ($allproducts as $productbd) {
-        $allprod['id'][] = $productbd['virtuemart_product_id'];
-    }
-    $product = $allprod['id'];
-    $prods = $product_model->getProducts($product);
-    $product_model->addImages($prods, 1);
+    $wishlistModel = new ZtvirtuemarterModelWishlist();
+    $prods = $wishlistModel->getProducts();
     $currency = CurrencyDisplay::getInstance();
 }
 require JModuleHelper::getLayoutPath('mod_zt_wishlist', $params->get('layout', 'default'));

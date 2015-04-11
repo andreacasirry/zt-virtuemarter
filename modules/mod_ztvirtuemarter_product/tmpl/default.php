@@ -32,7 +32,7 @@ for ($i = 0; $i < $num; $i++) {
     ?>
 </div>
 <input type="hidden" class="base_url" value="<?php echo JURI::root(); ?>"/>
-<input type="hidden" class="num_plus" value="<?php echo $productsPerRow;?>"/>
+<input type="hidden" class="num_plus" value="<?php echo $productsPerRow; ?>"/>
 <div class="more-product">
     <a class="more_product readmore" style="cursor:pointer">More Products...</a>
 </div>
@@ -45,7 +45,7 @@ for ($i = 0; $i < $num; $i++) {
             jQuery.fancybox.showActivity();
             var num = parseInt(jQuery('.num_plus').val());
             jQuery.ajax({
-                url: 'index.php?product='+num,
+                url: 'index.php?product=' + num,
                 type: 'POST',
                 cache: false,
                 data: 'product=' + num,

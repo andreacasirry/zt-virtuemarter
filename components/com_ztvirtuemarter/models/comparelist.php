@@ -4,18 +4,25 @@ defined('_JEXEC') or die;
 
 class ZtvirtuemarterModelComparelist extends JModelLegacy
 {
-    private $input;
-
+    /**
+     * Class constructor
+     * @param array $config
+     */
     public function __construct($config = array())
     {
         parent::__construct($config);
-        $this->input = JFactory::getApplication()->input;
     }
 
+    /**
+     *
+     * @param null
+     * @return Array object
+     */
     public function getProducts()
     {
-        $session = JFactory::getSession();
-        $compareIds = $session->get('compare_ids', array(), 'compare_product');
+        $mainframe = JFactory::getApplication();
+        $compareIds = $mainframe->getUserState( "com_ztvirtuemarter.site.compareIds", array() );
+
         $productModel = VmModel::getModel('product');
 
         $prods = $productModel->getProducts($compareIds);

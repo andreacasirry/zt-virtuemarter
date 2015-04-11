@@ -9,12 +9,15 @@
 
 // No direct access.
 defined('_JEXEC') or die('Restricted access');
+VmConfig::loadConfig();
+// Load the language file of com_virtuemart.
+JFactory::getLanguage()->load('com_virtuemart');
 $prods = array();
 $ratingModel = VmModel::getModel('ratings');
 $product_model = VmModel::getModel('product');
 
-$session = JFactory::getSession();
-$compareIds = $session->get('compare_ids', array(), 'compare_product');
+$mainframe = JFactory::getApplication();
+$compareIds = $mainframe->getUserState( "com_ztvirtuemarter.site.compareIds", array() );
 if (!empty($compareIds)) {
     $products = $compareIds;
     $prods = $product_model->getProducts($products);
