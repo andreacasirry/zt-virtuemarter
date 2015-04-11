@@ -16,10 +16,10 @@
          * @returns {undefined}
          */
         generate: function () {
-            var mod = $(".vmCartModule");
+            var $cartModule = $(".vmCartModule");
             $.getJSON(window.vmSiteurl + "index.php?option=com_virtuemart&nosef=1&view=cart&task=viewJS&format=json" + window.vmLang,
                     function (datas, textStatus) {
-                        mod.find(".vm_cart_products .content-top").html("");
+                        $cartModule.find(".vm_cart_products .content-top").html("");
 
                         $('#zt_top_cart .total-price').html(datas.billTotal.replace('Total', ''));
                         $('#cart .total-item').html('(' + datas.totalProduct + ')items - ');
@@ -44,13 +44,13 @@
                         if (datas.totalProduct > 0) {
                             $('.cart-header-info').show();
                         } else {
-                            mod.find(".vm_cart_products .content-top").html("<p>You have no items in your shopping cart.</p>");
+                            $cartModule.find(".vm_cart_products .content-top").html("<p>You have no items in your shopping cart.</p>");
                             $('.cart-header-info').hide();
                         }
 
-                        mod.find(".show_cart").html(datas.cart_show);
-                        mod.find(".total_products").html(datas.totalProductTxt);
-                        mod.find(".total").html(datas.billTotal);
+                        $cartModule.find(".show_cart").html(datas.cart_show);
+                        $cartModule.find(".total_products").html(datas.totalProductTxt);
+                        $cartModule.find(".total").html(datas.billTotal);
                     }
             );
         },
@@ -96,4 +96,4 @@
         };
     });
 
-})(window, window.jQuery);
+})(window, jQuery);

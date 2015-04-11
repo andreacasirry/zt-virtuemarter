@@ -43,4 +43,4 @@ function quick_btn(product_id) {
         w.ZtVirtuemarter.quickview = _quickview;
     });
 
-})(window, window.jQuery);
+})(window, jQuery);

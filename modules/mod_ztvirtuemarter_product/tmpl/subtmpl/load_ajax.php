@@ -68,7 +68,7 @@ endif;
                         echo '</div>';
                         echo '<div class="clear"></div>';
                         echo '<div class="product-bottom"><div class="price">';
-                        echo shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency));
+                        echo '<div class="' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)).'</div>';
 
                         echo '</div>';
                         if ($showAddtocart) {

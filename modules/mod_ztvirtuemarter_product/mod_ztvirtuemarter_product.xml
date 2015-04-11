@@ -13,6 +13,7 @@
         <filename module="mod_ztvirtuemarter_product">mod_ztvirtuemarter_product.php</filename>
         <filename>index.html</filename>
         <filename>helper.php</filename>
+        <folder>assets</folder>
         <folder>tmpl</folder>
         <folder>language</folder>
     </files>

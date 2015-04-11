@@ -5,7 +5,7 @@
             jQuery: $,
 
             _elements: {
-                vm3Product: '.product .spacer, .product-item .spacer'
+                vm3Product: '.product .spacer, .product-item .spacer, .products .spacer'
             },
 
             /**
@@ -16,7 +16,7 @@
                 if($( window ).width() < 768 ) {
                     $('body').addClass('zt-mobile');
                 }
-                var $iconDropdown = $('#mod_wishlists, #zt_top_cart, #mod_compare ');
+                var $iconDropdown = $('#mod_wishlists, #zt_top_cart, #mod_compare');
                 $iconDropdown.find('.zt-cart-inner').hide();
                 $iconDropdown.hover(
                     function () {
@@ -81,7 +81,7 @@
                     var priceId = $(this).find('.product-price').attr('id');
                     ids[index] = priceId.replace('productPrice', '');
                 });
-                jQuery.ajax({
+                $.ajax({
                     url: 'index.php?action=countdown',
                     type: 'POST',
                     cache: false,

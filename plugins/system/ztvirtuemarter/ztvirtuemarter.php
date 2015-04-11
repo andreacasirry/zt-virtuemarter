@@ -26,6 +26,7 @@ class plgSystemZtvirtuemarter extends JPlugin
     public function onBeforeRender()
     {
         $doc = JFactory::getDocument();
+        $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.ajax-cart.css');
 
         if (self::getZtvirtuemarterSetting()->enable_countdown == '1')
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.countdown.min.js');

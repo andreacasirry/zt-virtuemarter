@@ -1,9 +1,8 @@
 <?php // no direct access
 defined ('_JEXEC') or die('Restricted access');
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
-vmJsApi::jPrice();
-
-
+$doc = JFactory::getDocument();
+$doc->addScript(JURI::root() . 'modules/mod_ztvirtuemarter_product/assets/js/owl.carousel.min.js');
 $col = 1;
 $pwidth = ' width' . floor (100 / $productsPerRow);
 if ($productsPerRow > 1) {
@@ -15,7 +14,7 @@ if ($productsPerRow > 1) {
 $number = $params->get ('products_per_row');
 ?>
 
-<div class="vmgroup<?php echo $params->get ('moduleclass_sfx') ?>" id="slide-product">
+<div class="vmgroup <?php echo $params->get ('moduleclass_sfx') ?>" id="slide-product-<?php echo $module->id; ?>">
 
 	<?php if ($headerText) { ?>
 	<div class="vmheader"><?php echo $headerText ?></div>
@@ -23,7 +22,7 @@ $number = $params->get ('products_per_row');
 }
 	if ($display_style == "div") {
 		?>
-		<ul class="vmproduct<?php echo $params->get ('moduleclass_sfx'); ?> productdetails">
+		<ul class="vmproduct <?php echo $params->get ('moduleclass_sfx'); ?> productdetails" id="slide-list-vmproduct-<?php echo $module->id; ?>">
 			<?php foreach ($products as $product) : ?>
 			<li class="item">
 				<?php
@@ -38,7 +37,7 @@ $number = $params->get ('products_per_row');
 					$product->virtuemart_category_id); ?>
 				<a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>        <?php    echo '<div class="clear"></div>';
 				// $product->prices is not set when show_prices in config is unchecked
-				echo '<div class="product-price' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
+				echo '<div class="' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency));
 
 				if ($show_addtocart) {
 					echo shopFunctionsF::renderVmSubLayout('addtocart',array('product'=>$product));
@@ -66,7 +65,7 @@ $number = $params->get ('products_per_row');
 		
 
 
-		<div class="vmproduct <?php echo $params->get ('moduleclass_sfx'); ?> productdetails">
+		<div class="vmproduct productdetails" id="slide-vmproduct-<?php echo $module->id; ?>">
 
 			<?php foreach ($products as $product) { ?>
 			<div class="products">
@@ -83,8 +82,6 @@ $number = $params->get ('products_per_row');
 							echo '<div class="clear"></div>';
 							$url = JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
 								$product->virtuemart_category_id); ?>
-
-							<input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
 						</div>
 						<h3 class="product-name">
 							<a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>        
@@ -114,13 +111,12 @@ $number = $params->get ('products_per_row');
 		                ?>
 						<?php    echo '<div class="clear"></div>';
 
-						 echo '<div class="product-price' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
+						 echo '<div class="' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
 					    
 					 
 					?>
 					<div class="product_hover add-to-link">
-						<?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
-						<?php    
+						<?php
 							if ($showAddtocart) {
 	                            $oder = 0;
 	                            for ($i = 0; $i < strlen($url); $i++) {
@@ -133,9 +129,6 @@ $number = $params->get ('products_per_row');
 	                            echo ModZtvirtuemarterProductHelper::addtocart($product);
 	                        }
 	                    ?>
-
-						
-	                    <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
 	                </div>
 				</div>
 			</div>
@@ -162,7 +155,7 @@ $number = $params->get ('products_per_row');
 
 <script>
     jQuery(document).ready(function(){
-        var owl = jQuery(".<?php echo $params->get ('moduleclass_sfx'); ?> .<?php echo $params->get ('moduleclass_sfx'); ?>");
+        var owl = jQuery('#slide-vmproduct-<?php echo $module->id; ?>, #slide-list-vmproduct-<?php echo $module->id; ?>');
         owl.owlCarousel({
             autoPlay: 50000,
             items : <?php echo $number;?>,
