@@ -26,28 +26,14 @@ class plgSystemZtvirtuemarter extends JPlugin
     public function onBeforeRender()
     {
         $doc = JFactory::getDocument();
-        $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.ajax-cart.css');
-
         if (self::getZtvirtuemarterSetting()->enable_countdown == '1')
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.countdown.min.js');
         if (self::getZtvirtuemarterSetting()->enable_photozoom == '1')
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.elevateZoom-3.0.8.min.js');
 
+        $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.ztvirtuemarter.css');
         $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ztvirtuemarter.js');
-        $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ajax-cart.js');
 
-        if (self::getZtvirtuemarterSetting()->enable_quickview == '1') {
-            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/quickview.js');
-            $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.quickview.css');
-        }
-        if (self::getZtvirtuemarterSetting()->enable_compare == '1') {
-            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/compare.js');
-            $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.compare.css');
-        }
-        if (self::getZtvirtuemarterSetting()->enable_wishlist == '1') {
-            $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/wishlist.js');
-            $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.wishlist.css');
-        }
         if (self::getZtvirtuemarterSetting()->enable_auto_insert == '1') {
             $scriptAction = array();
             $scriptAction[] = 'jQuery(document).ready(function () {';
