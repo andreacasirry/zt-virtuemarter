@@ -16,8 +16,8 @@
                 if($( window ).width() < 768 ) {
                     $('body').addClass('zt-mobile');
                 }
-                $('#zo2-position-0 .zt-cart-inner').hide();
-                var $iconDropdown = $('body').find('.hover-dropdown').closest('.ajax-dropdown');
+                var $iconDropdown = $('#mod_wishlists, #zt_top_cart, #mod_compare ');
+                $iconDropdown.find('.zt-cart-inner').hide();
                 $iconDropdown.hover(
                     function () {
                         if(!$('body').hasClass('zt-mobile'))
