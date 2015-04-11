@@ -7,7 +7,7 @@
 
 }
 
-.add-wishlist i {
+.wishlist i {
     border: 1px solid #eee;
     border-radius: 4px;
     font-size: 17px;
@@ -15,14 +15,15 @@
     line-height: 40px;
     text-align: center;
     width: 40px;
-    background-color: rgba(255, 255, 255, 0.8);
+    color: #fff;
+    background-color: #2389d7;
     cursor: pointer;
     -webkit-transition: all 0.3s ease 0s;
     -ms-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
-
+.wishlist{display: inline-block;}
 .add-wishlist span {
     display: none;
 }
