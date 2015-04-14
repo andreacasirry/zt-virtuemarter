@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * @package    ZT VirtueMarter
+ * @subpackage ZT VirtueMarter Product Module
+ * @author       ZooTemplate.com
+ * @link http://zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
+ */
 defined('_JEXEC') or die('Direct Access to ' . basename(__FILE__) . ' is not allowed.');
 
 if (!class_exists('VmConfig')) require(JPATH_ROOT . '/administrator/components/com_virtuemart/helpers/config.php');

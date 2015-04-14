@@ -6,7 +6,7 @@
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
-
+defined('_JEXEC') or die('Restricted access');
 if (!class_exists('VmConfig')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/config.php');
 if (!class_exists('calculationHelper')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/calculationh.php');
 if (!class_exists('CurrencyDisplay')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/currencydisplay.php');
