@@ -171,7 +171,9 @@ class plgSystemZtvirtuemarter extends JPlugin
                 $application->setUserState("com_ztvirtuemarter.site.setting", $results[0]->setting);
                 return json_decode($results[0]->setting);
             } else {
-                return json_decode('{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1","enable_countdown":"1","enable_photozoom":"1","enable_auto_insert":"1"}{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1","enable_countdown":"1","enable_photozoom":"1","enable_auto_insert":"1"}');
+                $setting = '{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1","enable_countdown":"1","enable_photozoom":"1","enable_auto_insert":"1"}{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1","enable_countdown":"1","enable_photozoom":"1","enable_auto_insert":"1"}';
+                $application->setUserState("com_ztvirtuemarter.site.setting", $setting);
+                return json_decode($setting);
             }
         }
     }
