@@ -335,10 +335,6 @@
 
 })(window, window.jQuery);
 
-
-function quick_btn(product_id) {
-
-}
 /**
  * Zt Virtuemarter quickview
  * @param {type} w Windows pointer
@@ -370,6 +366,18 @@ function quick_btn(product_id) {
                         "closeClick": false,
                         "content": data
                     });
+                    $.fn.updateVirtueMartCartModule = function (arg) {
+                        var options = $.extend({}, $.fn.updateVirtueMartCartModule.defaults, arg);
+                        return this.each(function () {
+                            $.ajaxSetup({ cache: false })
+                            ZtVirtuemarter.cart.generate();
+                        });
+                    };
+
+                    /* Definition Of Defaults */
+                    $.fn.updateVirtueMartCartModule.defaults = {
+                        name1: 'value1'
+                    };
                 }
             });
         }

@@ -189,7 +189,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
         // onContentAfterDisplay event
         echo $this->product->event->afterDisplayContent;
 
-        //echo vmJsApi::writeJS();
+        echo vmJsApi::writeJS();
         ?>
 
     </div>
