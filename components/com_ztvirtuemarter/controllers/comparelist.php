@@ -46,11 +46,11 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
             $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
         }
         $imgProd = '<div class="compare-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
-        $prodName = '<div class="compare-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remcompare"><a class="tooltip-1" title="remove"  onclick="zo2.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div></div>';
+        $prodName = '<div class="compare-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remcompare"><a class="tooltip-1" title="remove"  onclick="ZtVirtuemarter.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div></div>';
         $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemId . '');
         $btncompare = '<a id="compare_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_COMPARE') . '</a>';
         $btncompareback = '<a id="compare_continue" class="continue button reset2" rel="nofollow" href="javascript:;">' . JText::_('CONTINUE_SHOPPING') . '</a>';
-        $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="zo2.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
+        $btnrem = '<div class="remcompare"><a class="tooltip-1" title="remove"  onclick="ZtVirtuemarter.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div>';
         if (isset($compareIds) && (!in_array($jinput->get('product_id', null, 'INT'), $compareIds))) {
             $compareIds[] = $jinput->get('product_id', null, 'INT');
             $message = '<span class="successfully">' . JText::_('COM_COMPARE_MASSEDGE_ADDED_NOTREG') . '</span>';

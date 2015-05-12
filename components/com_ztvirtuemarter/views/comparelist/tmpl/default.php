@@ -171,7 +171,7 @@ defined('_JEXEC') or die;
                         $action .= ' </div>';
                     }
                     $action .= '<div class="clear"></div>';
-                    $action .= '<div class="remcompare"><a class="compare_del" title="remove"  onclick="zo2.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>remove</a></div>';
+                    $action .= '<div class="remcompare"><a class="compare_del" title="remove"  onclick="ZtVirtuemarter.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>remove</a></div>';
                     $action .= '</div>';
 
                     $table['action'][] = $action;

@@ -280,7 +280,7 @@ if (!empty($this->products)) :
             <div class="clear"></div>
             <div class="remwishlists">
                 <a class="wishlist_del" title="remove"
-                   onclick="zo2.wishlist.remove('<?php echo $product->virtuemart_product_id; ?>');">
+                   onclick="ZtVirtuemarter.wishlist.remove('<?php echo $product->virtuemart_product_id; ?>');">
                     <i class="fa fa-times"></i><?php echo JText::_('REMOVE'); ?>
                 </a>
             </div>
