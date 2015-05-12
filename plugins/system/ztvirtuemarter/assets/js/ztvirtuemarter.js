@@ -140,7 +140,7 @@
          */
         generate: function () {
             var $cartModule = $(".vmCartModule");
-            $.getJSON(window.vmSiteurl + "index.php?option=com_virtuemart&nosef=1&view=cart&task=viewJS&format=json" + window.vmLang,
+            $.getJSON(window.vmSiteurl + "index.php?option=com_ztvirtuemarter&view=ajaxcart" + window.vmLang,
                 function (datas, textStatus) {
                     $cartModule.find(".vm_cart_products .content-top").html("");
 
