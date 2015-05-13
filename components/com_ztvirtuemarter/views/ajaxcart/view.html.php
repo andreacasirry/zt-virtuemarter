@@ -41,7 +41,14 @@ class ZtvirtuemarterViewAjaxcart extends JViewLegacy
             $data->products[$i]['customProductData'] = VirtueMartModelCustomfields::CustomsFieldCartModDisplay($product);
             $data->products[$i]['product_sku'] = $product->product_sku;
             $data->products[$i]['prices'] = $currencyDisplay->priceDisplay( $product->allPrices[$product->selectedPrice]['subtotal']);
-            $data->products[$i]['image'] = $product->images[0]->displayMediaThumb ('class="featuredProductImage" border="0"', FALSE);
+            if(!isset($product->images[0])){
+                $productModel = VmModel::getModel('Product');
+                $productModel->addImages($product, 1);
+                $data->products[$i]['image'] = $product->images[0]->displayMediaThumb ('class="featuredProductImage" border="0"', FALSE);
+                // other possible option to use for display
+            } else {
+                    $data->products[$i]['image'] = $product->images[0]->displayMediaThumb ('class="featuredProductImage" border="0"', FALSE);
+                }
             // other possible option to use for display
             $data->products[$i]['subtotal'] = $currencyDisplay->priceDisplay($product->allPrices[$product->selectedPrice]['subtotal']);
             $data->products[$i]['subtotal_tax_amount'] = $currencyDisplay->priceDisplay($product->allPrices[$product->selectedPrice]['subtotal_tax_amount']);
