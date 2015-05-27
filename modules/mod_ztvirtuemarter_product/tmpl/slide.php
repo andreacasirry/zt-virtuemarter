@@ -95,25 +95,7 @@ $number = $params->get ('products_per_row');
 						</h3>
 						 <?php
 
-							$createddate = $product->created_on;
-							$sale = $product->prices['product_override_price'];
-							$timeCreateddate = strtotime($createddate);
-							$date = strtotime("now");
-
-							$htmlLabel = '';
-							$saleClass = '';
-							if ($sale > 0) {
-								$saleClass = ' product-sale';
-							}
-
-							if ($date - $createddate <= 3) {
-								$htmlLabel .= '<div class="label-product label-new">New</div>';
-							}
-							if ($sale > 0) {
-								$htmlLabel .= '<div class="label-product label-sale">Sale</div>';
-							}
-
-							echo $htmlLabel;
+                         echo ModZtvirtuemarterProductHelper::label($product, $newProductFrom);
 
 		                ?>
 						<?php    echo '<div class="clear"></div>';
