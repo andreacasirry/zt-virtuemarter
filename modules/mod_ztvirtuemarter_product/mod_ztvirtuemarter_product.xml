@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="2.5.0">
+<extension type="module" version="2.5.0" method="upgrade">
     <name>Ztvirtuemarter Product</name>
     <creationDate>Feb 27, 2015</creationDate>
     <author>Zootemplate</author>
