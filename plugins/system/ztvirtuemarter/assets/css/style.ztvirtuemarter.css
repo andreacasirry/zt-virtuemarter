@@ -368,3 +368,37 @@
 
 
 #fancybox-outer #fancybox-close{top: 7px;}
+.tabs-product .ui-tabs-panel .products{
+    width: 25%;float: left;
+}
+.tabs-product .ui-tabs .ui-tabs-panel {
+    display: inline-block;
+    margin: 0;
+    border-top: 1px solid #eaeaea;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    width: 100%;
+}
+h3.product-name{font-size: 20px;}
+.product .quantity-box, .product .quantity-controls{display: none;}
+.tabs-product .ui-tabs .ui-tabs-nav{background: none;border: none;position: relative;z-index: 1;padding: 0;}
+.tabs-product .ui-tabs {
+    padding: 0;border: none;
+}
+
+.tabs-product .ui-tabs-panel .products .item{
+    border: 1px solid #eaeaea; border: 1px solid #eaeaea;
+    margin-right: 15px;
+    padding: 0 10px;
+    position: relative;
+}
+.tabs-product .ui-tabs li{
+    border: none;
+}
+.tabs-product .ui-tabs li.ui-state-active a{background: #b6b6b6;color: #fff;    border-top-left-radius: 4px;    border-top-right-radius: 4px;}
+.tabs-product .ui-tabs li:hover a{background: #b6b6b6;color: #fff;}
+.label-product.label-sale{
+    position: absolute;
+    top: 0;
+}

@@ -14,25 +14,25 @@ $doc->addStyleSheet( 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-
 
 ?>
 
-<div class="vmgroup <?php echo $params->get ('moduleclass_sfx') ?>" id="slide-product-<?php echo $module->id; ?>">
+<div class="vmgroup <?php echo $params->get ('moduleclass_sfx') ?> tabs-product">
 
     <?php if ($headerText) : ?>
         <div class="vmheader"><?php echo $headerText ?></div>
     <?php endif; ?>
-        <div class="vmproduct productdetails" id="tab-vmproduct-<?php echo $module->id; ?>">
-            <ul>
+    <div class="vmproduct " id="tab-vmproduct-<?php echo $module->id; ?>">
+        <ul>
             <?php
             foreach($products as $key => $value):
                 ?>
                 <li><a href="#producttabs-<?php echo $key ?>-<?php echo $module->id; ?>"><?php echo ModZtvirtuemarterProductHelper::getTabsText($key); ?></a></li>
-                <?php
+            <?php
             endforeach;
             ?>
-            </ul>
-            <?php
-            foreach ($products as $key => $items) :
+        </ul>
+        <?php
+        foreach ($products as $key => $items) :
             ?>
-                <div id="producttabs-<?php echo $key ?>-<?php echo $module->id; ?>">
+            <div id="producttabs-<?php echo $key ?>-<?php echo $module->id; ?>">
                 <?php foreach ($items as $product) : ?>
                     <div class="products  product-<?php echo $product->virtuemart_product_id; ?>">
                         <div class="item">
@@ -48,20 +48,21 @@ $doc->addStyleSheet( 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-
                                     echo '<div class="clear"></div>';
                                     $url = JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
                                         $product->virtuemart_category_id); ?>
+                                    <?php
+                                    echo ModZtvirtuemarterProductHelper::label($product, $newProductFrom);
+                                    ?>
                                 </div>
                                 <h3 class="product-name">
                                     <a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>
                                 </h3>
+
+                                <div class="clear"></div>
                                 <?php
-
-                                echo ModZtvirtuemarterProductHelper::label($product, $newProductFrom);
-
-                                ?>
-                                <?php    echo '<div class="clear"></div>';
-
+                                $saleClass = '';
+                                if ($product->prices['product_override_price'] > 0) {
+                                    $saleClass = ' product-sale';
+                                }
                                 echo '<div class="' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
-
-
                                 ?>
                                 <div class="product_hover add-to-link">
                                     <?php
@@ -82,10 +83,10 @@ $doc->addStyleSheet( 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-
                         </div>
                     </div>
                 <?php endforeach; ?>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <div class="clear"></div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="clear"></div>
     <?php
     if ($footerText) : ?>
         <div class="vmfooter<?php echo $params->get ('moduleclass_sfx') ?>">
