@@ -130,7 +130,9 @@ if (!class_exists('ModZtvirtuemarterProductHelper')) {
 
         public static function label($product, $newProductFrom = 7)
         {
-            $sale = $product->prices['product_override_price'];
+        
+            $sale = (isset($product->prices['product_override_price'])) ?  $product->prices['product_override_price'] : 0;
+
             $htmlLabel = '';
             $dateDiff = date_diff(date_create(), date_create($product->product_available_date));
             if ($dateDiff->days < $newProductFrom) {
@@ -141,37 +143,6 @@ if (!class_exists('ModZtvirtuemarterProductHelper')) {
             }
 
             return $htmlLabel;
-        }
-
-        public static function getProducts($productGroup, $maxItems, $showPrice, $filterCategory, $categoryIds) {
-            $products = array();
-            $productModel = VmModel::getModel('Product');
-            if(is_array($categoryIds) && count($categoryIds) > 1 ) {
-                foreach($categoryIds as $categoryId) {
-                    if($maxItems > count($products)) {
-                        $prods = $productModel->getProductListing($productGroup, ($maxItems - count($products)), $showPrice, true, false, $filterCategory, $categoryId);
-                        $products = array_merge($prods, $products);
-                    }
-                }
-            }else {
-                $products = $productModel->getProductListing($productGroup, $maxItems, $showPrice, true, false, $filterCategory, $categoryIds[0]);
-            }
-
-            $productModel->addImages($products);
-            return $products;
-        }
-
-        public static function getTabsText($key) {
-            if($key == 'featured') return JText::_('MOD_ZTVIRTUEMARTER_PRODUCT_FEATURED_PRODUCTS');
-            elseif($key == 'latest') return JText::_('MOD_ZTVIRTUEMARTER_PRODUCT_LATEST_PRODUCTS');
-            elseif($key == 'random') return JText::_('MOD_ZTVIRTUEMARTER_PRODUCT_RANDOM_PRODUCTS');
-            elseif($key == 'topten') return JText::_('MOD_ZTVIRTUEMARTER_PRODUCT_BEST_SALES');
-            elseif($key == 'recent') return JText::_('MOD_ZTVIRTUEMARTER_PRODUCT_RECENT_PRODUCTS');
-            else {
-                $categoryModel = VmModel::getModel('category');
-                $category = $categoryModel->getCategory($key);
-                return isset($category->category_name) ? $category->category_name : $key;
-            }
         }
     }
 }

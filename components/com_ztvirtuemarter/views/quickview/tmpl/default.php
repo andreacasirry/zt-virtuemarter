@@ -134,13 +134,13 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 
         <div id="zt_tabs" class="tabs">
             <ul class="nav nav-tabs" role="tablist" id="myTab">
-                <li class=""><a href="#tab1" role="tab" data-toggle="tab"><?php echo 'DESCRIPTION'; ?></a></li>
-                <li class="active"><a href="#tab2" role="tab" data-toggle="tab"><?php echo 'REVIEWS'; ?></a></li>
+                <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><?php echo 'DESCRIPTION'; ?></a></li>
+                <li class=""><a href="#tab2" role="tab" data-toggle="tab"><?php echo 'REVIEWS'; ?></a></li>
             </ul>
 
 
             <div class="tab-content">
-                <div class="tab-pane " id="tab1">
+                <div class="tab-pane active" id="tab1">
                     <?php
                     // Product Description
                     if (!empty($this->product->product_desc)) :
@@ -152,7 +152,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="tab-pane active" id="tab2">
+                <div class="tab-pane" id="tab2">
                     <?php echo $this->loadTemplate('reviews'); ?>
                 </div>
             </div>

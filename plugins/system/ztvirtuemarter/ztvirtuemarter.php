@@ -8,6 +8,9 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 defined('_JEXEC') or die('Restricted access');
+if (!class_exists('VmConfig')) {
+    require(JPATH_ROOT . '/administrator/components/com_virtuemart/helpers/config.php');
+}
 class plgSystemZtvirtuemarter extends JPlugin
 {
     /**
@@ -21,7 +24,7 @@ class plgSystemZtvirtuemarter extends JPlugin
         $this->document = JFactory::getDocument();
         $this->loadLanguage();
         $jlang = JFactory::getLanguage();
-        $jlang->load('com_virtuemart', JPATH_SITE, $jlang->getDefault(), true);
+        $jlang->load('com_ztvirtuemarter', JPATH_SITE, $jlang->getDefault(), true);
     }
 
     public function onBeforeRender()

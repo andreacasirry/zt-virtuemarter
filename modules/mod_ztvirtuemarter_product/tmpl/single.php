@@ -1,11 +1,4 @@
 <?php // no direct access
-/**
- * @package    ZT VirtueMarter
- * @subpackage ZT VirtueMarter Product Module
- * @author       ZooTemplate.com
- * @link http://zootemplate.com
- * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
- */
 defined('_JEXEC') or die('Restricted access');
 vmJsApi::jPrice();
 
@@ -29,7 +22,7 @@ vmJsApi::jPrice();
                     $url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id); ?>
                     <a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>        <?php    echo '<div class="clear"></div>';
                     // $product->prices is not set when show_prices in config is unchecked
-                    if ($showPrice and isset($product->prices)) {
+                    if ($showPrice && isset($product->prices)) {
                         if (!empty($product->prices['salesPrice'])) echo $currency->createPriceDiv('salesPrice', '', $product->prices, true);
                         if (!empty($product->prices['salesPriceWithDiscount'])) echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, true);
                     }

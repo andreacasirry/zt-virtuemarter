@@ -1,15 +1,8 @@
 <?php // no direct access
-/**
- * @package    ZT VirtueMarter
- * @subpackage ZT VirtueMarter Product Module
- * @author       ZooTemplate.com
- * @link http://zootemplate.com
- * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
- */
 defined('_JEXEC') or die('Restricted access');
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
 vmJsApi::jPrice();
-
+error_reporting(E_ALL);
 $col = 1;
 $pwidth = ' width' . floor(100 / $productsPerRow);
 if ($productsPerRow > 1) :
@@ -67,7 +60,8 @@ endif;
                             $image = '';
                         }
                         $saleClass = '';
-                        if ($product->prices['product_override_price'] > 0) {
+
+                        if ($showPrice && $product->prices['product_override_price'] > 0) {
                             $saleClass = ' product-sale';
                         }
                         echo JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id), $image, array('title' => $product->product_name));
@@ -75,7 +69,8 @@ endif;
                         echo '</div>';
                         echo '<div class="clear"></div>';
                         echo '<div class="product-bottom"><div class="price">';
-                        echo '<div class="' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)).'</div>';
+                        if($showPrice)
+                            echo '<div class="product-price' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
 
                         echo '</div>';
                         if ($showAddtocart) {
@@ -91,6 +86,12 @@ endif;
                         }
                         echo '</div>';
                         ?>
+                        <div class="product_hover zt-product-content">
+                            <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
+                            <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                            <input class="quick_ids" type="hidden"
+                                   value="<?php echo $product->virtuemart_product_id; ?>">
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -127,11 +128,12 @@ endif;
                     <div class="clear"></div>
                     <?php
                     // $product->prices is not set when show_prices in config is unchecked
-                    if ($showPrice and isset($product->prices)) {
-                        echo $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
+                    if ($showPrice && isset($product->prices)) {
+                        echo '<div class="product-price">' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         if ($product->prices['salesPriceWithDiscount'] > 0) {
                             echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         }
+                        echo '</div>';
                     }
                     if ($showAddtocart) {
                         echo ModZtvirtuemarterProductHelper::addtocart($product);
@@ -165,12 +167,5 @@ if ($footerText) : ?>
     </div>
 <?php endif; ?>
 </div>
-<?php if ($productNumber != 0 && plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_auto_insert == '1') :?>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        ZtVirtuemarter.actionButtons(<?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_quickview; ?>, <?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_compare; ?>, <?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_wishlist; ?>);
-        ZtVirtuemarter.countdown(<?php echo plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_countdown; ?>);
-    });
-</script>
-<?php endif; ?>
+
 <!--ajax-->
