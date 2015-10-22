@@ -17,13 +17,21 @@ if (empty($this->product)) {
 }
 
 echo shopFunctionsF::renderVmSubLayout('askrecomjs', array('product' => $this->product));
+
 vmJsApi::jDynUpdate();
+
 vmJsApi::addJScript('updDynamicListeners', "
 jQuery(document).ready(function() { // GALT: Start listening for dynamic content update.
 	// If template is aware of dynamic update and provided a variable let's
 	// set-up the event listeners.
-	if (Virtuemart.container)
-		Virtuemart.updateDynamicUpdateListeners();
+	if (Virtuemart.container){
+        try{
+        Virtuemart.updateDynamicUpdateListeners();
+        }
+        catch(err) {
+            // Handle error(s) here
+        }
+    }
 
 }); ");
 ?>
@@ -122,7 +130,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
                         echo nl2br($this->product->product_s_desc);
                         ?>
                     </div>
-                <?php
+                    <?php
                 endif; // Product Short Description END
 
                 echo shopFunctionsF::renderVmSubLayout('customfields', array('product' => $this->product, 'position' => 'ontop'));
@@ -134,13 +142,13 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 
         <div id="zt_tabs" class="tabs">
             <ul class="nav nav-tabs" role="tablist" id="myTab">
-                <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><?php echo 'DESCRIPTION'; ?></a></li>
-                <li class=""><a href="#tab2" role="tab" data-toggle="tab"><?php echo 'REVIEWS'; ?></a></li>
+                <li class=""><a href="#tab1" role="tab" data-toggle="tab"><?php echo 'DESCRIPTION'; ?></a></li>
+                <li class="active"><a href="#tab2" role="tab" data-toggle="tab"><?php echo 'REVIEWS'; ?></a></li>
             </ul>
 
 
             <div class="tab-content">
-                <div class="tab-pane active" id="tab1">
+                <div class="tab-pane " id="tab1">
                     <?php
                     // Product Description
                     if (!empty($this->product->product_desc)) :
@@ -152,7 +160,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="tab-pane" id="tab2">
+                <div class="tab-pane active" id="tab2">
                     <?php echo $this->loadTemplate('reviews'); ?>
                 </div>
             </div>
@@ -231,7 +239,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 
         })(jQuery)
     </script>
-<?php
+    <?php
 endif;
 die;
 ?>
