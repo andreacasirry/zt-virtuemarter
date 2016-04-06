@@ -16,10 +16,10 @@ defined('_JEXEC') or die('Restricted access');
     for ($i = $start_image - 1; $i < count($this->product->images); $i++) :
         $image = $this->product->images[$i];
         ?>
-        <a href="#" class="elevatezoom-gallery" data-image="<?php echo JUri::root().$image->file_url_thumb?>" data-zoom-image="<?php echo JUri::root().$image->file_url?>">
-            <img id="image-zoom-product_<?php echo  $i; ?>" src="<?php echo JUri::root().$image->file_url_thumb?>"/>
+        <a href="#" class="elevatezoom-gallery" data-image="<?php echo JUri::root().($image->file_url_thumb?$image->file_url_thumb:$image->file_url) ?>" data-zoom-image="<?php echo JUri::root().$image->file_url?>">
+            <img id="image-zoom-product_<?php echo  $i; ?>" src="<?php echo JUri::root(). ($image->file_url_thumb?$image->file_url_thumb:$image->file_url) ?>"/>
         </a>
-    <?php
+        <?php
     endfor;
     ?>
 </div>
