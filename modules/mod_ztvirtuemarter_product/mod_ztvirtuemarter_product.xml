@@ -13,6 +13,8 @@
         <filename module="mod_ztvirtuemarter_product">mod_ztvirtuemarter_product.php</filename>
         <filename>index.html</filename>
         <filename>helper.php</filename>
+        <folder>assets</folder>
+        <folder>fields</folder>
         <folder>tmpl</folder>
         <folder>language</folder>
     </files>
@@ -162,7 +164,7 @@
                        default="1"
                        label="MOD_ZTVIRTUEMARTER_PRODUCT_CACHING_LABEL"
                        description="MOD_ZTVIRTUEMARTER_PRODUCT_CACHING_DESC"
-                        >
+                >
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
@@ -170,14 +172,14 @@
                        default="300"
                        label="MOD_ZTVIRTUEMARTER_PRODUCT_CACHING_TIME_LABEL"
                        description="MOD_ZTVIRTUEMARTER_PRODUCT_CACHING_TIME_DESC"
-                        />
+                />
             </fieldset>
             <fieldset name="advanced">
                 <field name="cache" type="list"
                        default="1"
                        label="COM_MODULES_FIELD_CACHING_LABEL"
                        description="COM_MODULES_FIELD_CACHING_DESC"
-                        >
+                >
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
