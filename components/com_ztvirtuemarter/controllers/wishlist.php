@@ -40,6 +40,8 @@ class ZtvirtuemarterControllerWishlist extends JControllerLegacy
         $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
         if (!empty($product->file_url_thumb)) {
             $imgUrl = $product->file_url_thumb;
+        }else if (!empty($product->file_url)) {
+            $imgUrl = $product->file_url;
         } else {
             $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
         }
