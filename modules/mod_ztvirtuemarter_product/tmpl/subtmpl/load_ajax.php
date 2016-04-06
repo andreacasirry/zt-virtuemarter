@@ -15,7 +15,7 @@ endif;
 
     <?php if ($headerText) : ?>
         <div class="vmheader"><?php echo $headerText ?></div>
-    <?php
+        <?php
     endif;
     if ($displayStyle == "div") :
         ?>
@@ -89,6 +89,7 @@ endif;
                         <div class="product_hover zt-product-content">
                             <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
                             <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                            <?php plgSystemZtvirtuemarter::addQuickviewButton($product); ?>
                             <input class="quick_ids" type="hidden"
                                    value="<?php echo $product->virtuemart_product_id; ?>">
                         </div>
@@ -104,7 +105,7 @@ endif;
             endforeach; ?>
         </div>
         <br style='clear:both;'/>
-    <?php
+        <?php
     else :
     $last = count($productss) - 1;
     ?>
@@ -142,6 +143,7 @@ endif;
                     <div class="product_hover zt-product-content">
                         <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
                         <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                        <?php plgSystemZtvirtuemarter::addQuickviewButton($product); ?>
                         <input class="quick_ids" type="hidden" value="<?php echo $product->virtuemart_product_id; ?>">
                     </div>
                 </div>
