@@ -35,7 +35,7 @@ class ZtvirtuemarterViewSetting extends JViewLegacy
         JToolBarHelper::title(JText::_('COM_ZTVIRTUEMARTER_ADMIN_TITLE'));
         JToolBarHelper::apply('setting.apply');
         JToolBarHelper::cancel();
-        JToolbarHelper::preferences('com_ztvirtuemarter');
+//        JToolbarHelper::preferences('com_ztvirtuemarter');
     }
 
 }
