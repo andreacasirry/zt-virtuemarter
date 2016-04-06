@@ -4,12 +4,15 @@ defined('_JEXEC') or die('Direct Access to ' . basename(__FILE__) . ' is not all
 
 if (!class_exists('VmConfig')) require(JPATH_ROOT . '/administrator/components/com_virtuemart/helpers/config.php');
 if (!class_exists('CurrencyDisplay')) {
-                require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/currencydisplay.php');
-            }
+    require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/currencydisplay.php');
+}
 
 VmConfig::loadConfig();
 VmConfig::loadJLang('mod_ztvirtuemarter_product', true);
 $jinput = JFactory::getApplication()->input;
+
+//add js
+JFactory::getDocument()->addScript('modules/mod_ztvirtuemarter_product/assets/js/owl.carousel.min.js');
 
 // Setting
 $maxItems = $params->get('max_items', 2); //maximum number of items to display
