@@ -15,7 +15,7 @@ if ($productsPerRow > 1) {
 
     <?php if ($headerText) { ?>
         <div class="vmheader"><?php echo $headerText ?></div>
-    <?php
+        <?php
     }
     if ($displayStyle == "div") {
         ?>
@@ -59,7 +59,7 @@ if ($productsPerRow > 1) {
         </ul>
         <br style='clear:both;'/>
 
-    <?php
+        <?php
     } else {
         $last = count($products) - 1;
         ?>
@@ -112,6 +112,7 @@ if ($productsPerRow > 1) {
 
                             <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
                             <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                            <?php plgSystemZtvirtuemarter::addQuickviewButton($product); ?>
                         </div>
                     </div>
                 </div>
@@ -126,7 +127,7 @@ if ($productsPerRow > 1) {
         </div>
         <div class="clear"></div>
 
-    <?php
+        <?php
     }
     if ($footerText) : ?>
         <div class="vmfooter<?php echo $params->get('moduleclass_sfx') ?>">
