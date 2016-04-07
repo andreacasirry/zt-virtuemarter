@@ -70,7 +70,7 @@ endif;
                         echo '<div class="clear"></div>';
                         echo '<div class="product-bottom"><div class="price">';
                         if($showPrice)
-                            echo '<div class="product-price' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
+                            echo '<div class="product-price' . $saleClass . '" id="productPrice'.$product->virtuemart_product_id.'">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
 
                         echo '</div>';
                         if ($showAddtocart) {
@@ -130,7 +130,7 @@ endif;
                     <?php
                     // $product->prices is not set when show_prices in config is unchecked
                     if ($showPrice && isset($product->prices)) {
-                        echo '<div class="product-price">' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
+                        echo '<div class="product-price"  id="productPrice'.$product->virtuemart_product_id.'>' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         if ($product->prices['salesPriceWithDiscount'] > 0) {
                             echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         }
