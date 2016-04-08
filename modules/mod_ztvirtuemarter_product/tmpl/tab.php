@@ -25,7 +25,7 @@ $doc->addStyleSheet( 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-
             foreach($products as $key => $value):
                 ?>
                 <li><a href="#producttabs-<?php echo $key ?>-<?php echo $module->id; ?>"><?php echo ModZtvirtuemarterProductHelper::getTabsText($key); ?></a></li>
-            <?php
+                <?php
             endforeach;
             ?>
         </ul>
@@ -78,6 +78,11 @@ $doc->addStyleSheet( 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-
                                         echo ModZtvirtuemarterProductHelper::addtocart($product);
                                     }
                                     ?>
+
+                                    <?php plgSystemZtvirtuemarter::addWishlistButton($product); ?>
+                                    <?php plgSystemZtvirtuemarter::addCompareButton($product); ?>
+                                    <?php plgSystemZtvirtuemarter::addQuickviewButton($product); ?>
+
                                 </div>
                             </div>
                         </div>
