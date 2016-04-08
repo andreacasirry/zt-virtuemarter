@@ -40,14 +40,16 @@ class ZtvirtuemarterControllerComparelist extends JControllerLegacy
         $productIds = $product->virtuemart_product_id;
         $title = '<div class="title">' . JHTML::link($product->link, $product->product_name) . '</div>';
         $prodUrl = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
-        if (!empty($product->file_url_thumb)) {
-            $imgUrl = $product->file_url_thumb;
-        }else if (!empty($product->file_url)) {
-            $imgUrl = $product->file_url;
-        } else {
-            $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
-        }
-        $imgProd = '<div class="compare-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+//        if (!empty($product->file_url_thumb)) {
+//            $imgUrl = $product->file_url_thumb;
+//        }else if (!empty($product->file_url)) {
+//            $imgUrl = $product->file_url;
+//        } else {
+//            $imgUrl = JURI::base() . 'images/stories/virtuemart/noimage.gif';
+//        }
+//        $imgProd = '<div class="compare-product-img"><a href="' . $prodUrl . '"><img src="' . JURI::base() . $imgUrl . '" alt="' . $product->product_name . '" title="' . $product->product_name . '" /></a></div>';
+        $images = $product->images;
+        $imgProd = '<div class="compare-product-img"><a href="' . $prodUrl . '">'.$images[0]->displayMediaThumb('alt="' . $product->product_name . '" title="' . $product->product_name . '" ', FALSE).'</a></div>';
         $prodName = '<div class="compare-product-detail"><div class="name">' . JHTML::link($product->link, $product->product_name) . '</div><div class="remcompare"><a class="tooltip-1" title="remove"  onclick="ZtVirtuemarter.compare.remove(' . $product->virtuemart_product_id . ');"><i class="fa fa-times"></i>' . JText::_('REMOVE') . '</a></div></div>';
         $link = JRoute::_('index.php?option=com_ztvirtuemarter&view=comparelist&Itemid=' . $itemId . '');
         $btncompare = '<a id="compare_go" class="button" rel="nofollow" href="' . $link . '">' . JText::_('GO_TO_COMPARE') . '</a>';
