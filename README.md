@@ -25,7 +25,12 @@ All of extensions in this package are required VirtueMart 3.0
 
 ------------ 1.1.5 Release [Oct 22, 2015]  ------------
 
-*
+* Fixed Thumbnail issues.
+* Add quickview button for mod_ztvirtuemarter_product .
+* Fixed quickview, wishlist, compare not working - js error.
+* Fixed missing folders installed for mod_ztvirtuemarter_product.
+* Remove Option button in admin setting.
+* Add Tab layout for mod_ztvirtuemarter_product.
 
 ------------ 1.1.4 Release [Oct 22, 2015]  ------------
 
