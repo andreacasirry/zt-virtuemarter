@@ -12,7 +12,7 @@ VmConfig::loadJLang('mod_ztvirtuemarter_product', true);
 $jinput = JFactory::getApplication()->input;
 
 //add js
-JFactory::getDocument()->addScript(JURL_ROOT.'/modules/mod_ztvirtuemarter_product/assets/js/owl.carousel.min.js');
+JFactory::getDocument()->addScript(JUri::root().'/modules/mod_ztvirtuemarter_product/assets/js/owl.carousel.min.js');
 
 // Setting
 $maxItems = $params->get('max_items', 2); //maximum number of items to display
