@@ -37,6 +37,8 @@ class plgSystemZtvirtuemarter extends JPlugin
 
         $doc->addStyleSheet(JURI::root() . '/plugins/system/ztvirtuemarter/assets/css/style.ztvirtuemarter.css');
         $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/ztvirtuemarter.js');
+        //add js
+        JFactory::getDocument()->addScript(JURL_ROOT.'/modules/mod_ztvirtuemarter_product/assets/js/owl.carousel.min.js');
 
         if (self::getZtvirtuemarterSetting()->enable_auto_insert == '1') {
             $scriptAction = array();
