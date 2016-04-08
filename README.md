@@ -23,6 +23,10 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
+------------ 1.1.5 Release [Oct 22, 2015]  ------------
+
+*
+
 ------------ 1.1.4 Release [Oct 22, 2015]  ------------
 
 * Fixed quickview error on virtuemart 3.0.10
