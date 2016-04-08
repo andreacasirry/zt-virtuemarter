@@ -17,7 +17,8 @@ defined('_JEXEC') or die('Restricted access');
         $image = $this->product->images[$i];
         ?>
         <a href="#" class="elevatezoom-gallery" data-image="<?php echo JUri::root().($image->file_url_thumb?$image->file_url_thumb:$image->file_url) ?>" data-zoom-image="<?php echo JUri::root().$image->file_url?>">
-            <img id="image-zoom-product_<?php echo  $i; ?>" src="<?php echo JUri::root(). ($image->file_url_thumb?$image->file_url_thumb:$image->file_url) ?>"/>
+            <?php echo $image->displayMediaThumb('id="image-zoom-product_'.$i.'"',FALSE) ?>
+<!--            <img id="image-zoom-product_--><?php //echo  $i; ?><!--" src="--><?php //echo JUri::root(). ($image->file_url_thumb?$image->file_url_thumb:$image->file_url) ?><!--"/>-->
         </a>
         <?php
     endfor;

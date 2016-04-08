@@ -14,7 +14,8 @@ if (!empty($this->product->images)) :
     $image = $this->product->images[0];
     ?>
     <div class="main-image">
-        <img id="image-zoom-product" src="<?php echo JUri::root().($image->file_url_thumb?$image->file_url_thumb:$image->file_url); ?>" data-zoom-image="<?php echo JUri::root().$image->file_url?>"/>
+        <?php echo $image->displayMediaThumb('id="image-zoom-product" data-zoom-image="'.JUri::root().$image->file_url.'"' ,FALSE) ?>
+<!--        <img id="image-zoom-product" src="--><?php //echo JUri::root().($image->file_url_thumb?$image->file_url_thumb:$image->file_url); ?><!--" data-zoom-image="--><?php //echo JUri::root().$image->file_url?><!--"/>-->
     </div>
 <?php endif; ?>
 
