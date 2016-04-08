@@ -23,7 +23,7 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
------------- 1.1.5 Release [Oct 22, 2015]  ------------
+------------ 1.1.5 Release [Apr 08, 2016]  ------------
 
 * Fixed Thumbnail issues.
 * Add quickview button for mod_ztvirtuemarter_product .
