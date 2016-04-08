@@ -23,7 +23,7 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
------------- 1.1.5 Release [Apr 08, 2016]  ------------
+## Version 1.1.5 Release Apr 08, 2016 
 
 * Fixed Thumbnail issues.
 * Add quickview button for mod_ztvirtuemarter_product .
@@ -32,30 +32,30 @@ All of extensions in this package are required VirtueMart 3.0
 * Remove Option button in admin setting.
 * Add Tab layout for mod_ztvirtuemarter_product.
 
------------- 1.1.4 Release [Oct 22, 2015]  ------------
+## Version 1.1.4 Release Oct 22, 2015
 
 * Fixed quickview error on virtuemart 3.0.10
 
------------- 1.1.3 Release [Aug 04, 2015]  ------------
+## Version 1.1.3 Release Aug 04, 2015
 
 * fixed error pricing in ztvituemarter product module
 * fixed component language not working
 * fixed error when update Joomla 3.4.1
 
------------- 1.1.2 Release [May 12, 2015]  ------------
+## Version 1.1.2 Release May 12, 2015
 
 * Fix missing image when ajax cart
 
------------- 1.1.1 Release [Apr 11, 2015]  ------------
+## Version 1.1.1 Release Apr 11, 2015
 
 * Add button compare, wishlist, quick view by ajax
 * Add count down in product
 * Add Photo Zoom
 
------------- 1.1.0 Release [Mar 06, 2015]  ------------
+## Version 1.1.0 Release Mar 06, 2015
 
 * Improve & clean the source code for much better performance 
 
------------- 1.0.0 Release [Feb 27, 2015]  ------------
+## Version 1.0.0 Release Feb 27, 2015
 
 ! Initial Release
