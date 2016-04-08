@@ -11,22 +11,19 @@ if (!class_exists('TableCategories'))
 jimport('joomla.form.formfield');
 
 // The class name must always be the same as the filename (in camel case)
-class JFormFieldVmMultipleSelect extends JFormField {
+class JFormFieldTab extends JFormField {
 
 
     //The field class must know its own type through the variable $type.
-    protected $type = 'VmMultipleSelect';
+    protected $type = 'tab';
 
     public function getInput() {
         VmConfig::loadConfig();
         VmConfig::loadJLang('com_virtuemart');
         $categorylist = ShopFunctions::categoryListTree($this->value);
         $html = '<select id="'.$this->id.'" name="'.$this->name.'[]" multiple>'.$categorylist.'</select>';
-
-        $html .="
-        <script>
+        $script ="
             jQuery(document).ready(function ($) {
-
                 if( $('#jform_params_layout').val() == 'tab'){
                     $('#jform_params_product_group').parent().parent().hide();
                     $('#jform_params_product_group_tab').parent().parent().show();
@@ -43,9 +40,12 @@ class JFormFieldVmMultipleSelect extends JFormField {
                         $('#jform_params_product_group_tab').parent().parent().hide();
                     }
                 });
-            })(jQuery);
+            });
 
-        </script>";
+        ";
+
+        JFactory::getDocument()->addScriptDeclaration($script);
+
         return $html;
     }
 }
