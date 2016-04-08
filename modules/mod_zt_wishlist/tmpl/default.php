@@ -42,12 +42,7 @@ if (plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_wishlist == '1')
                              class="modwishlistsprod clearfix">
                             <div class="wishlist-product-img">
                                 <a href="<?php echo JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id); ?>">
-                                    <img src="<?php if (!empty($product->file_url_thumb)) {
-                                        echo JURI::base() . $product->file_url_thumb;
-                                    } else {
-                                        echo JURI::base() . 'images/stories/virtuemart/noimage.gif';
-                                    } ?>" alt="<?php echo $product->product_name; ?>"
-                                         title="<?php echo $product->product_name; ?>"/>
+                                    <?php echo $product->images[0]->displayMediaThumb('alt="' . $product->product_name . '" title="' . $product->product_name . '" ', FALSE) ; ?>
                                 </a>
                             </div>
                             <div class="wishlist-product-detail">
