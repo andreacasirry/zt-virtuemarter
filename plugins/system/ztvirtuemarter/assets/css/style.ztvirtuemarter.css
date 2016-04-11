@@ -257,6 +257,8 @@
     margin-left: 5px;
 }
 
+body.wishlist {float: none;margin-left: auto;display: inherit;}
+
 .add-wishlist {
 
 }
