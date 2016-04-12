@@ -23,6 +23,10 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
+## Version 1.1.6 Release Apr 12, 2016
+
+* Fixed Wishlist page broken.
+
 ## Version 1.1.5 Release Apr 08, 2016 
 
 * Fixed Thumbnail issues.
