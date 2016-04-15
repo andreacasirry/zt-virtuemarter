@@ -23,6 +23,11 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
+## Version 1.1.7 Release Apr 15, 2016
+
+* Fixed item removing in compare and wishlist box.
+
+
 ## Version 1.1.6 Release Apr 12, 2016
 
 * Fixed Wishlist page broken.

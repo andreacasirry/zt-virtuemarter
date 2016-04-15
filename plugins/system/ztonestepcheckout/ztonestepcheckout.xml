@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.0" group="system" method="upgrade">
     <name>Plg System Ztonestepcheckout</name>
-    <creationDate>Apr 12, 2015</creationDate>
+    <creationDate>Apr 15, 2016</creationDate>
     <author>Zootemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
     <copyright>Copyright (c) 2016 ztonestepcheckout. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-    <version>1.0.6</version>
+    <version>1.1.7</version>
     <description>
         <![CDATA[
 
