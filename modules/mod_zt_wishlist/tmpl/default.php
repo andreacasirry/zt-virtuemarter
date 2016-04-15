@@ -51,7 +51,7 @@ if (plgSystemZtvirtuemarter::getZtvirtuemarterSetting()->enable_wishlist == '1')
                                 </div>
                                 <div class="remwishlists">
                                     <a class="tooltip-1" title="remove"
-                                       onclick="zo2.wishlist.remove('<?php echo $product->virtuemart_product_id; ?>');">
+                                       onclick="ZtVirtuemarter.wishlist.remove('<?php echo $product->virtuemart_product_id; ?>');">
                                         <i class="fa fa-times"></i><?php echo JText::_('REMOVE'); ?>
                                     </a>
                                 </div>
