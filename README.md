@@ -23,6 +23,10 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
+## Version 1.1.8 Release Apr 15, 2016
+
+* Fixed language issue in cart module.
+
 ## Version 1.1.7 Release Apr 15, 2016
 
 * Fixed item removing in compare and wishlist box.
