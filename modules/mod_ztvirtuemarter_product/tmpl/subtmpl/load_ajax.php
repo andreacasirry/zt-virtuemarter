@@ -72,7 +72,7 @@ endif;
                         echo '<div class="clear"></div>';
                         echo '<div class="product-bottom"><div class="price">';
                         if($showPrice)
-                            echo '<div class="product-price' . $saleClass . '" id="productPrice'.$product->virtuemart_product_id.'">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
+                            echo '<div class="product-price"' . $saleClass . '" id="productPrice"'.$product->virtuemart_product_id.'">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
 
                         echo '</div>';
                         if ($showAddtocart) {
