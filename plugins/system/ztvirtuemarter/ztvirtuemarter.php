@@ -29,7 +29,16 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public function onBeforeRender()
     {
+        $com  = JFactory::getApplication()->input->getString('option');
         $doc = JFactory::getDocument();
+
+        if ($com != 'com_virtuemart') {
+            JFactory::getDocument()->addScript('components/com_virtuemart/assets/js/fancybox/jquery.fancybox-1.3.4.pack.js');
+            JFactory::getDocument()->addScript('components/com_virtuemart/assets/js/vmprices.js');
+            JFactory::getDocument()->addScript('components/com_virtuemart/assets/js/chosen.jquery.min.js');
+            JFactory::getDocument()->addScript('components/com_virtuemart/assets/js/vmsite.js');
+        }
+
         if (self::getZtvirtuemarterSetting()->enable_countdown == '1')
             $doc->addScript(JURI::root() . '/plugins/system/ztvirtuemarter/assets/js/jquery.countdown.min.js');
         if (self::getZtvirtuemarterSetting()->enable_photozoom == '1')

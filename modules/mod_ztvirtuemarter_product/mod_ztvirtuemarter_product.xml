@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" method="upgrade">
     <name>Ztvirtuemarter Product</name>
-    <creationDate>Apr 15, 2016</creationDate>
+    <creationDate>Apr 26, 2016</creationDate>
     <author>Zootemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>http://www.zootemplate.com/</authorUrl>
     <copyright>Copyright (c) 2008 - 2016 ZooTemplate.com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <version>1.1.8</version>
+    <version>1.1.9</version>
     <description>MOD_ZTVIRTUEMARTER_PRODUCT_DESC</description>
     <files>
         <filename module="mod_ztvirtuemarter_product">mod_ztvirtuemarter_product.php</filename>

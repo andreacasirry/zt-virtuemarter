@@ -84,6 +84,7 @@
                 $.ajax({
                     url: 'index.php?action=countdown',
                     type: 'POST',
+                    dataType: "json",
                     cache: false,
                     data: 'countdownProductIds=' + ids.join('-'),
                     success: function (data) {

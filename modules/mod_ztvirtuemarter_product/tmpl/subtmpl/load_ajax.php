@@ -10,7 +10,9 @@ if ($productsPerRow > 1) :
 else:
     $float = "center";
 endif;
+
 ?>
+
 <div class="vmgroup<?php echo $params->get('moduleclass_sfx') ?>">
 
     <?php if ($headerText) : ?>
@@ -130,7 +132,7 @@ endif;
                     <?php
                     // $product->prices is not set when show_prices in config is unchecked
                     if ($showPrice && isset($product->prices)) {
-                        echo '<div class="product-price"  id="productPrice'.$product->virtuemart_product_id.'>' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
+                        echo '<div class="product-price"  id="productPrice"'.$product->virtuemart_product_id.'">"' . $currency->createPriceDiv('salesPrice', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         if ($product->prices['salesPriceWithDiscount'] > 0) {
                             echo $currency->createPriceDiv('salesPriceWithDiscount', '', $product->prices, FALSE, FALSE, 1.0, TRUE);
                         }
