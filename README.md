@@ -23,6 +23,10 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
+## Version 1.2 Release May 25, 2016
+
+* Fixed setting not change when it's saved
+
 ## Version 1.1.9 Release Apr 26, 2016
 
 * Fixed ajax request not found.
