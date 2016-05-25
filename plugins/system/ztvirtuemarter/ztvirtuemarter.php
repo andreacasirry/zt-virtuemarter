@@ -168,28 +168,21 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public static function getZtvirtuemarterSetting()
     {
-        $application = JFactory::getApplication();
-        $setting = $application->getUserState("com_ztvirtuemarter.site.setting");
-        if (!empty($setting)) {
-            return json_decode($setting);
-        } else {
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true);
-            $query->select('*');
-            $query->from($db->quoteName('#__ztvirtuemarter'));
-            $query->where($db->quoteName('id') . ' = 1');
-            $db->setQuery($query);
-            $results = $db->loadObjectList();
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select('*');
+        $query->from($db->quoteName('#__ztvirtuemarter'));
+        $query->where($db->quoteName('id') . ' = 1');
+        $db->setQuery($query);
+        $results = $db->loadObjectList();
 
-            if (isset($results[0]) && !empty($results[0]->setting)) {
-                $application->setUserState("com_ztvirtuemarter.site.setting", $results[0]->setting);
-                return json_decode($results[0]->setting);
-            } else {
-                $setting = '{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1","enable_countdown":"1","enable_photozoom":"1","enable_auto_insert":"1"}';
-                $application->setUserState("com_ztvirtuemarter.site.setting", $setting);
-                return json_decode($setting);
-            }
+        if (isset($results[0]) && !empty($results[0]->setting)) {
+            return json_decode($results[0]->setting);
+        } else {
+            $setting = '{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1","enable_countdown":"1","enable_photozoom":"1","enable_auto_insert":"1"}';
+            return json_decode($setting);
         }
+
     }
 
     public static function getCountdown($product)
