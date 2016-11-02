@@ -2,15 +2,14 @@
 /**
  * @package    ZT VirtueMarter
  * @subpackage ZT VirtueMarter Product Module
- * @author      ZooTemplate.com
- * @author      ZooTemplate.com
+ * @author       ZooTemplate.com
  * @link http://zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 defined ('_JEXEC') or die('Restricted access');
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
-JHtml::_('jquery.ui');
 $doc = JFactory::getDocument();
+$doc->addScript( 'https://code.jquery.com/ui/1.12.1/jquery-ui.js' );
 $doc->addStyleSheet( 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' );
 
 ?>

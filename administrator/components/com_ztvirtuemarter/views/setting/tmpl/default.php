@@ -43,7 +43,7 @@ $settings = json_decode($this->item->setting);
                                 <?php echo $this->form->getLabel('enable_wishlist'); ?>
                             </div>
                             <div class="controls">
-                                <?php echo $this->form->getInput('enable_wishlist', '', $settings->enable_wishlist); ?>
+                                <?php echo $this->form->getInput('enable_wishlist', '', (isset($settings->enable_wishlist) ? $settings->enable_wishlist : 1 )); ?>
                             </div>
                         </div>
                         <div class="control-group">
@@ -51,7 +51,7 @@ $settings = json_decode($this->item->setting);
                                 <?php echo $this->form->getLabel('enable_compare'); ?>
                             </div>
                             <div class="controls">
-                                <?php echo $this->form->getInput('enable_compare', '', $settings->enable_compare); ?>
+                                <?php echo $this->form->getInput('enable_compare', '', (isset($settings->enable_compare) ? $settings->enable_compare : 1)); ?>
                             </div>
                         </div>
                         <div class="control-group">
@@ -59,7 +59,7 @@ $settings = json_decode($this->item->setting);
                                 <?php echo $this->form->getLabel('enable_quickview'); ?>
                             </div>
                             <div class="controls">
-                                <?php echo $this->form->getInput('enable_quickview', '', $settings->enable_quickview); ?>
+                                <?php echo $this->form->getInput('enable_quickview', '', (isset($settings->enable_quickview)?$settings->enable_quickview : 1)); ?>
                             </div>
                         </div>
                         <div class="control-group">
@@ -67,7 +67,7 @@ $settings = json_decode($this->item->setting);
                                 <?php echo $this->form->getLabel('enable_countdown'); ?>
                             </div>
                             <div class="controls">
-                                <?php echo $this->form->getInput('enable_countdown', '', $settings->enable_countdown); ?>
+                                <?php echo $this->form->getInput('enable_countdown', '', (isset($settings->enable_countdown)? $settings->enable_countdown : 1)); ?>
                             </div>
                         </div>
                         <div class="control-group">
@@ -75,7 +75,7 @@ $settings = json_decode($this->item->setting);
                                 <?php echo $this->form->getLabel('enable_photozoom'); ?>
                             </div>
                             <div class="controls">
-                                <?php echo $this->form->getInput('enable_photozoom', '', $settings->enable_photozoom); ?>
+                                <?php echo $this->form->getInput('enable_photozoom', '', (isset($settings->enable_photozoom))? $settings->enable_photozoom : 1); ?>
                             </div>
                         </div>
                         <div class="control-group">
@@ -83,7 +83,7 @@ $settings = json_decode($this->item->setting);
                                 <?php echo $this->form->getLabel('enable_auto_insert'); ?>
                             </div>
                             <div class="controls">
-                                <?php echo $this->form->getInput('enable_auto_insert', '', $settings->enable_auto_insert); ?>
+                                <?php echo $this->form->getInput('enable_auto_insert', '', (isset($settings->enable_auto_insert)?$settings->enable_auto_insert : 1)); ?>
                             </div>
                         </div>
                     </div>

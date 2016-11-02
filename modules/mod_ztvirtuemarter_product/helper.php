@@ -130,7 +130,7 @@ if (!class_exists('ModZtvirtuemarterProductHelper')) {
 
         public static function label($product, $newProductFrom = 7)
         {
-
+        
             $sale = (isset($product->prices['product_override_price'])) ?  $product->prices['product_override_price'] : 0;
 
             $htmlLabel = '';

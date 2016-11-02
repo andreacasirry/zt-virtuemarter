@@ -69,15 +69,20 @@ class plgSystemZtvirtuemarter extends JPlugin
             if (!empty($productIds)) {
                 $ids = explode('-', $productIds);
                 if (!class_exists('VmConfig')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/config.php');
+                if (!class_exists('VmTable')) require(JPATH_ADMINISTRATOR . '/components/com_virtuemart/helpers/vmtable.php');
                 if (!class_exists('VirtueMartModelProduct')) {
                     JLoader::import('product', JPATH_ADMINISTRATOR . '/components/com_virtuemart/models');
                 }
                 $productModel = VmModel::getModel('product');
-                $products = $productModel->getProducts($ids);
-                if (count($products) > 0) {
-                    foreach ($products as $product) {
-                        if ($product->prices['product_price_publish_down'] > 0) {
-                            $time = strtotime($product->prices['product_price_publish_down']);
+                $lang = JFactory::getLanguage()->getTag();
+                $langTable = $productModel->getTable('products');
+                $langTable->setLanguage($lang);
+                if (count($ids) > 0) {
+                    foreach ($ids as $id) {
+                        $product = $langTable->load($id,0,0);
+                        if($product) $product_price = $productModel->loadProductPrices($product->virtuemart_product_id,array(0),false);
+                        if ($product && $product_price[0]['product_price_publish_down'] > 0) {
+                            $time = strtotime($product_price[0]['product_price_publish_down']);
                             $times[$product->virtuemart_product_id] = date('Y/m/d', $time);
                         }
                     }
@@ -168,6 +173,7 @@ class plgSystemZtvirtuemarter extends JPlugin
 
     public static function getZtvirtuemarterSetting()
     {
+        
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query->select('*');
@@ -182,7 +188,7 @@ class plgSystemZtvirtuemarter extends JPlugin
             $setting = '{"enable_wishlist":"1","enable_compare":"1","enable_quickview":"1","enable_countdown":"1","enable_photozoom":"1","enable_auto_insert":"1"}';
             return json_decode($setting);
         }
-
+        
     }
 
     public static function getCountdown($product)
