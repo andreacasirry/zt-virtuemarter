@@ -101,7 +101,7 @@ $doc->addStyleSheet( 'http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-
 </div>
 
 <script>
-    jQuery(document).ready(function(){
+    jQuery(window).load(function(){
         jQuery('#tab-vmproduct-<?php echo $module->id; ?>').tabs();
     });
 </script>
