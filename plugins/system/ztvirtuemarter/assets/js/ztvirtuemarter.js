@@ -34,16 +34,19 @@
                 var $this = this;
                 $($this._elements.vm3Product).each(function () {
                     var priceId = $(this).find('.product-price').attr('id');
-                    var productId = priceId.replace('productPrice', '');
-                    var html = '<div class="zt-product-action">';
-                    if (quickviewEnable == 1)
-                        html += $this.buttonQuickView(productId);
-                    if (compareEnable == 1)
-                        html += $this.buttonCompare(productId);
-                    if (wishlistEnable == 1)
-                        html += $this.buttonWishlist(productId);
-                    html += '</div>';
-                    $(this).append(html);
+                    if (typeof priceId != 'undefined' ) {
+                        var productId = priceId.replace('productPrice', '');
+                        var html = '<div class="zt-product-action">';
+                        if (quickviewEnable == 1)
+                            html += $this.buttonQuickView(productId);
+                        if (compareEnable == 1)
+                            html += $this.buttonCompare(productId);
+                        if (wishlistEnable == 1)
+                            html += $this.buttonWishlist(productId);
+                        html += '</div>';
+                        $(this).append(html);
+                    }
+
                 });
             },
 
@@ -79,7 +82,9 @@
                 var ids = [];
                 $($this._elements.vm3Product).each(function (index) {
                     var priceId = $(this).find('.product-price').attr('id');
-                    ids[index] = priceId.replace('productPrice', '');
+                    if (typeof priceId != 'undefined' ) {
+                        ids[index] = priceId.replace('productPrice', '');
+                    }
                 });
                 $.ajax({
                     url: 'index.php?action=countdown',
@@ -92,19 +97,21 @@
                         var countdownData = JSON.parse(data);
                         $($this._elements.vm3Product).each(function () {
                             var priceId = $(this).find('.product-price').attr('id');
-                            var id = priceId.replace('productPrice', '');
-                            if(typeof countdownData[id] != 'undefined') {
-                                var countdownHtml = '<div class="product-countdown-wrap countdown-'+id+'">'
-                                    +'<div class="count_holder">'
-                                    +'<div id="product-countdown-'+id+'"></div>'
-                                    +'</div>'
-                                    +'</div>';
-                                $(this).append(countdownHtml);
+                            if (typeof priceId != 'undefined' ) {
+                                var id = priceId.replace('productPrice', '');
+                                if(typeof countdownData[id] != 'undefined') {
+                                    var countdownHtml = '<div class="product-countdown-wrap countdown-'+id+'">'
+                                        +'<div class="count_holder">'
+                                        +'<div id="product-countdown-'+id+'"></div>'
+                                        +'</div>'
+                                        +'</div>';
+                                    $(this).append(countdownHtml);
 
-                                $('#product-countdown-'+id).countdown(countdownData[id], function (event) {
-                                    $(this).text(event.strftime('%D days %H:%M:%S')
-                                    );
-                                });
+                                    $('#product-countdown-'+id).countdown(countdownData[id], function (event) {
+                                        $(this).text(event.strftime('%D days %H:%M:%S')
+                                        );
+                                    });
+                                }
                             }
                         });
                     }
@@ -266,14 +273,14 @@
                         "closeBtn": false,
                         "closeClick": false,
                         "content":
-                            '<div class="compare-product-detail">'
-                                + json.img_prod
-                                + json.title
-                                + json.btnrem
-                                + json.message
-                                + json.btncompare
-                                + json.btncompareback
-                                + '</div>'
+                        '<div class="compare-product-detail">'
+                        + json.img_prod
+                        + json.title
+                        + json.btnrem
+                        + json.message
+                        + json.btncompare
+                        + json.btncompareback
+                        + '</div>'
                     });
                     if (json.totalcompare !== '') {
                         $('#mod_compare .zt-cart-inner .vmproduct .not_text').remove();
@@ -303,9 +310,9 @@
                 dataType: 'json',
                 success: function (json) {
                     $('.compare_prod_' + id
-                        + ', #compare_prod_' + id
-                        + ', .success .successprod_' + id
-                        + ', .success_compare span').remove();
+                    + ', #compare_prod_' + id
+                    + ', .success .successprod_' + id
+                    + ', .success_compare span').remove();
                     $('#system_view .success .success_compare').append('<span class="warning">' + json.rem + '</span>');
                     $('.list_compare' + id + ' a').removeClass('go_to_compare active');
                     if (json.totalrem < 1) {
@@ -436,14 +443,14 @@
                         "closeBtn": false,
                         "closeClick": false,
                         "content":
-                            '<div class="wishlist-product-detail">'
-                                + json.img_prod
-                                + json.title
-                                + json.btnrem
-                                + json.message
-                                + json.btnwishlists
-                                + json.btnwishlistsback
-                                + '</div>'
+                        '<div class="wishlist-product-detail">'
+                        + json.img_prod
+                        + json.title
+                        + json.btnrem
+                        + json.message
+                        + json.btnwishlists
+                        + json.btnwishlistsback
+                        + '</div>'
                     });
                     if (json.totalwishlists !== '') {
                         _self.updateItemCount(json.totalwishlists);
@@ -471,10 +478,10 @@
                 dataType: 'json',
                 success: function (json) {
                     $('.count_holder_small'
-                        + ', #wishlists_prod_' + id
-                        + ', .wishlists_prods_' + id
-                        + ', .success .successprod_' + id
-                        + ', .success_wishlists span').remove();
+                    + ', #wishlists_prod_' + id
+                    + ', .wishlists_prods_' + id
+                    + ', .success .successprod_' + id
+                    + ', .success_wishlists span').remove();
                     $('#system_view .success .success_wishlists').append('<span class="warning">' + json.rem + '</span>');
                     $('.list_wishlists' + id + ' a').removeClass('go_to_compare active');
                     if (json.totalrem < 1) {
