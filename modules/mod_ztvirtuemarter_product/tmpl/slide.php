@@ -2,7 +2,10 @@
 defined ('_JEXEC') or die('Restricted access');
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
 vmJsApi::jPrice();
-
+$doc = JFactory::getDocument();
+$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.carousel.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.theme.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.transitions.css');
 
 $col = 1;
 $pwidth = ' width' . floor (100 / $productsPerRow);
