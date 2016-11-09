@@ -23,6 +23,15 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
+## Version 1.2.2 Release Nov 9, 2016
+
+* Fixed slider css layout
+* Remove category filter option in admin
+
+## Version 1.2.1 Release Nov 2, 2016
+
+* Fixed jQuery slide layout
+
 ## Version 1.2 Release May 25, 2016
 
 * Fixed setting not change when it's saved
