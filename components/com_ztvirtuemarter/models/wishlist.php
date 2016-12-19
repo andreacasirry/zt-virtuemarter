@@ -1,11 +1,9 @@
 <?php
 /**
- * Hello Model for Hello World Component
- *
- * @package    Joomla.Tutorials
- * @subpackage Components
- * @link http://dev.joomla.org/component/option,com_jd-wiki/Itemid,31/id,tutorials:modules/
- * @license    GNU/GPL
+ * @package    ZT VirtueMarter
+ * @author       ZooTemplate.com
+ * @link http://www.zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 
 // No direct access

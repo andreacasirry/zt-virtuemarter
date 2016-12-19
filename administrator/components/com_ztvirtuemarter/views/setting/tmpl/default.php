@@ -1,15 +1,9 @@
 <?php
 /**
- * Zt Virtuemarter
- *
- * @package     Joomla
- * @subpackage  Component
- * @version     1.0.0
- * @author      ZooTemplate
- * @email       support@zootemplate.com
- * @link        http://www.zootemplate.com
- * @copyright   Copyright (c) 2015 ZooTemplate
- * @license     GPL v2
+ * @package    ZT VirtueMarter
+ * @author       ZooTemplate.com
+ * @link http://www.zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 
 defined('_JEXEC') or die('Restricted access');

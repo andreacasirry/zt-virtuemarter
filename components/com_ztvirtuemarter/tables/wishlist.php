@@ -1,10 +1,9 @@
 <?php
 /**
- * @package     Joomla.Administrator
- * @subpackage  com_ztvirtuemarter
- *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package    ZT VirtueMarter
+ * @author       ZooTemplate.com
+ * @link http://www.zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 // No direct access
 defined('_JEXEC') or die('Restricted access');
