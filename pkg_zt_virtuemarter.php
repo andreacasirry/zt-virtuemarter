@@ -1,10 +1,9 @@
 <?php
 /**
- * @package      Zo2
- *
+ * @package    ZT VirtueMarter
  * @author       ZooTemplate.com
- * @copyright    Copyright (C) 2008 - 2015. All rights reserved.
- * @license      GPL v2 or later
+ * @link http://www.zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
 defined('_JEXEC') or die();
 class PkgVirtuemartZooExInstallerScript

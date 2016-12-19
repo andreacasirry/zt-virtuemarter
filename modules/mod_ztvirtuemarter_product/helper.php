@@ -1,4 +1,12 @@
 <?php
+/**
+ * @package    ZT VirtueMarter
+ * @subpackage ZT VirtueMarter Product Module
+ * @author       ZooTemplate.com
+ * @link http://www.zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
+ */
+ 
 defined('_JEXEC') or die('Direct Access to ' . basename(__FILE__) . ' is not allowed.');
 
 /*

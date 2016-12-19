@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * @package    ZT VirtueMarter
+ * @subpackage ZT VirtueMarter Product Module
+ * @author       ZooTemplate.com
+ * @link http://www.zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
+ */
+ 
 defined('JPATH_BASE') or die;
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 if (!class_exists( 'VmConfig' )) require(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_virtuemart'.DS.'helpers'.DS.'config.php');

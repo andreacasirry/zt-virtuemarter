@@ -1,4 +1,13 @@
-<?php // no direct access
+<?php 
+/**
+ * @package    ZT VirtueMarter
+ * @subpackage ZT VirtueMarter Product Module
+ * @author       ZooTemplate.com
+ * @link http://www.zootemplate.com
+ * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
+ */
+ 
+// no direct access
 defined('_JEXEC') or die('Restricted access');
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
 vmJsApi::jPrice();

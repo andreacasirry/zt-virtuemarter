@@ -23,6 +23,10 @@ All of extensions in this package are required VirtueMart 3.0
 
 ## Change Logs
 
+## Version 1.2.3 Release Dec 19, 2016
+
+* Fixed issue that the quickview popup was not working when user logged in
+
 ## Version 1.2.2 Release Nov 9, 2016
 
 * Fixed slider css layout
