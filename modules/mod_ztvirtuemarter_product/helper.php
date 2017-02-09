@@ -6,7 +6,7 @@
  * @link http://www.zootemplate.com
  * @license http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later
  */
- 
+
 defined('_JEXEC') or die('Direct Access to ' . basename(__FILE__) . ' is not allowed.');
 
 /*
@@ -138,7 +138,7 @@ if (!class_exists('ModZtvirtuemarterProductHelper')) {
 
         public static function label($product, $newProductFrom = 7)
         {
-        
+
             $sale = (isset($product->prices['product_override_price'])) ?  $product->prices['product_override_price'] : 0;
 
             $htmlLabel = '';
@@ -156,7 +156,7 @@ if (!class_exists('ModZtvirtuemarterProductHelper')) {
         public static function getProducts($productGroup, $maxItems, $showPrice, $filterCategory, $categoryIds) {
             $products = array();
             $productModel = VmModel::getModel('Product');
-            VirtueMartModelProduct::$_alreadyLoadedIds = array();
+            //VirtueMartModelProduct::$_alreadyLoadedIds = array();
             if(is_array($categoryIds) && count($categoryIds) > 1 ) {
                 foreach($categoryIds as $categoryId) {
                     if($maxItems > count($products)) {
