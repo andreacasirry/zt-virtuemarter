@@ -261,6 +261,8 @@ class ZtvirtuemarterViewQuickview extends JViewLegacy
             $category->category_template = VmConfig::get('categorytemplate');
         }
 
+        $category->category_template = isset($category->category_template) ? $category->category_template : 0;
+        $product->product_template = isset($product->product_template) ? $product->product_template : 0;
         shopFunctionsF::setVmTemplate($this, $category->category_template, $product->product_template, $category->category_product_layout, $product->layout);
 
         shopFunctionsF::addProductToRecent($virtuemart_product_id);
