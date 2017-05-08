@@ -23,7 +23,6 @@ JFactory::getDocument()->addScript(JUri::root().'/modules/mod_ztvirtuemarter_pro
 // Setting
 $maxItems = $params->get('max_items', 2); //maximum number of items to display
 $layout = $params->get('layout', 'default');
-$categoryId = $params->get('virtuemart_category_ids', null); // Display products from this category only
 $categoryIds = $params->get('virtuemart_category_ids', null);
 $filterCategory = (bool)$params->get('filter_category', 0); // Filter the category
 $displayStyle = $params->get('display_style', "div"); // Display Style

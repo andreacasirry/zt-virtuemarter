@@ -11,9 +11,9 @@ defined ('_JEXEC') or die('Restricted access');
 // add javascript for price and cart, need even for quantity buttons, so we need it almost anywhere
 vmJsApi::jPrice();
 $doc = JFactory::getDocument();
+$doc->addScript(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/js/owl.carousel.min.js');
 $doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.carousel.css');
 $doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.theme.css');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.transitions.css');
 
 $col = 1;
 $pwidth = ' width' . floor (100 / $productsPerRow);
@@ -34,7 +34,7 @@ $number = $params->get ('products_per_row');
     }
     if ($display_style == "div") {
         ?>
-        <ul class="vmproduct<?php echo $params->get ('moduleclass_sfx'); ?> productdetails">
+        <ul class="vmproduct<?php echo $params->get ('moduleclass_sfx'); ?> productdetails owl-carousel owl-theme">
             <?php foreach ($products as $product) : ?>
                 <li class="item">
                     <?php
@@ -77,7 +77,7 @@ $number = $params->get ('products_per_row');
 
 
 
-        <div class="vmproduct <?php echo $params->get ('moduleclass_sfx'); ?> productdetails">
+        <div class="vmproduct <?php echo $params->get ('moduleclass_sfx'); ?> productdetails owl-carousel owl-theme">
 
             <?php foreach ($products as $product) { ?>
                 <div class="products">
@@ -206,11 +206,11 @@ $number = $params->get ('products_per_row');
     jQuery(window).load(function() {
         var owl = jQuery("#slide-product .productdetails");
         owl.owlCarousel({
-            autoPlay: 50000,
+            autoPlay: true,
             items : <?php echo $number;?>,
-            navigation : true,
-            pagination : false,
-            slideSpeed : 500,
+            nav : true,
+            dots : false,
+            smartSpeed : 500,
             responsive:{
                 0:{
                     items:1,

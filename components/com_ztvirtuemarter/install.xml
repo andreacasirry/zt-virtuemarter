@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.0" method="upgrade">
+<extension type="component" version="3.7.0" method="upgrade">
     <name>COM_ZTVIRTUEMARTER</name>
-    <creationDate>Nov 9, 2016</creationDate>
+    <creationDate>May 08, 2017</creationDate>
     <author>Zootemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>http://www.zootemplate.com/</authorUrl>
-    <copyright>Copyright (c) 2008 - 2016 ZooTemplate.com</copyright>
+    <copyright>Copyright (c) 2008 - 2017 ZooTemplate.com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
 
-    <version>1.2.2</version>
+    <version>1.2.4</version>
 
     <description>COM_ZTVIRTUEMARTER_DESCRIPTION</description>
 

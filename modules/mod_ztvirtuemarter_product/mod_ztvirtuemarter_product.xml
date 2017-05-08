@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="2.5.0" method="upgrade">
+<extension type="module" version="3.7.0" method="upgrade">
     <name>Ztvirtuemarter Product</name>
-    <creationDate>Dec 19, 2016</creationDate>
+    <creationDate>May 08, 2017</creationDate>
     <author>Zootemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>http://www.zootemplate.com/</authorUrl>
     <copyright>ZooTemplate.com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
     <description>MOD_ZTVIRTUEMARTER_PRODUCT_DESC</description>
     <files>
         <filename module="mod_ztvirtuemarter_product">mod_ztvirtuemarter_product.php</filename>
@@ -91,6 +91,14 @@
                 <field name="show_addtocart" type="list" default="1"
                        label="MOD_ZTVIRTUEMARTER_PRODUCT_SHOW_ADDTOCART"
                        description="MOD_ZTVIRTUEMARTER_PRODUCT_SHOW_ADDTOCART_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="filter_category"
+                       type="list"
+                       default="0"
+                       label="MOD_ZTVIRTUEMARTER_PRODUCT_FILTER_CATEGORY"
+                       description="MOD_ZTVIRTUEMARTER_PRODUCT_FILTER_CATEGORY_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
