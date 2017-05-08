@@ -9,7 +9,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 ?>
-<div class="additional-images" id="gallery_image-zoom-product">
+<div class="additional-images owl-carousel owl-theme" id="gallery_image-zoom-product">
     <?php
     $start_image = VmConfig::get('add_img_main', 0) ? 0 : 1;
 

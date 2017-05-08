@@ -223,7 +223,8 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
         (function ($) {
             jQuery("#gallery_image-zoom-product").owlCarousel({
                 items: 3,
-                navigation: true
+                nav: true,
+                dots: false
             });
             $("#image-zoom-product").elevateZoom({
                 gallery: 'gallery_image-zoom-product',
