@@ -12,8 +12,8 @@ defined ('_JEXEC') or die('Restricted access');
 vmJsApi::jPrice();
 $doc = JFactory::getDocument();
 $doc->addScript(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/js/owl.carousel.min.js');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.carousel.css');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.theme.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.carousel.min.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_ztvirtuemarter_product/assets/css/owl_carousel/owl.theme.default.min.css');
 
 $col = 1;
 $pwidth = ' width' . floor (100 / $productsPerRow);
