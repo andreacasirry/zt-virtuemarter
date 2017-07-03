@@ -59,10 +59,6 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
             <div class="vm-product-media-container">
                 <?php
                 echo $this->loadTemplate('images');
-                $count_images = count($this->product->images);
-                if ($count_images > 1) :
-                    echo $this->loadTemplate('images_additional');
-                endif;
 
                 // event onContentBeforeDisplay
                 echo $this->product->event->beforeDisplayContent;
@@ -139,43 +135,7 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
             <div class="clear"></div>
         </div>
 
-
-        <div id="zt_tabs" class="tabs">
-            <ul class="nav nav-tabs" role="tablist" id="myTab">
-                <li class=""><a href="#tab1" role="tab" data-toggle="tab"><?php echo 'DESCRIPTION'; ?></a></li>
-                <li class="active"><a href="#tab2" role="tab" data-toggle="tab"><?php echo 'REVIEWS'; ?></a></li>
-            </ul>
-
-
-            <div class="tab-content">
-                <div class="tab-pane " id="tab1">
-                    <?php
-                    // Product Description
-                    if (!empty($this->product->product_desc)) :
-                        ?>
-                        <div class="product-description">
-                            <?php /** @todo Test if content plugins modify the product description */ ?>
-                            <span class="title"><?php echo vmText::_('COM_VIRTUEMART_PRODUCT_DESC_TITLE') ?></span>
-                            <?php echo $this->product->product_desc; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-                <div class="tab-pane active" id="tab2">
-                    <?php echo $this->loadTemplate('reviews'); ?>
-                </div>
-            </div>
-        </div>
-        <!--/zt_tabs-->
-
         <?php
-        // Product Description
-        if (!empty($this->product->product_desc)) {
-            //no description
-        }
-
-        // Product Description END
-        echo shopFunctionsF::renderVmSubLayout('customfields', array('product' => $this->product, 'position' => 'normal'));
-
         // Product Packaging
         $product_packaging = '';
         if ($this->product->product_box) :
@@ -189,10 +149,6 @@ jQuery(document).ready(function() { // GALT: Start listening for dynamic content
 
         <?php
         echo shopFunctionsF::renderVmSubLayout('customfields', array('product' => $this->product, 'position' => 'onbot'));
-
-        echo shopFunctionsF::renderVmSubLayout('customfields', array('product' => $this->product, 'position' => 'related_products', 'class' => 'product-related-products', 'customTitle' => true));
-
-        echo shopFunctionsF::renderVmSubLayout('customfields', array('product' => $this->product, 'position' => 'related_categories', 'class' => 'product-related-categories'));
 
         // onContentAfterDisplay event
         echo $this->product->event->afterDisplayContent;

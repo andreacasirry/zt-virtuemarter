@@ -10,12 +10,22 @@
 defined('_JEXEC') or die('Restricted access');
 
 
-if (!empty($this->product->images)) :
-    $image = $this->product->images[0];
-    ?>
-    <div class="main-image">
-        <?php echo $image->displayMediaThumb('id="image-zoom-product" data-zoom-image="'.JUri::root().$image->file_url.'"' ,FALSE) ?>
-<!--        <img id="image-zoom-product" src="--><?php //echo JUri::root().($image->file_url_thumb?$image->file_url_thumb:$image->file_url); ?><!--" data-zoom-image="--><?php //echo JUri::root().$image->file_url?><!--"/>-->
-    </div>
-<?php endif; ?>
+if (!empty($this->product->images)) : ?>
 
+<div class="gallery_image-product owl-carousel">
+
+<?php
+  for ($i = 0; $i < count($this->product->images); $i++) {
+    $image = $this->product->images[$i];
+    echo $image->displayMediaFull('class="product-image" style="cursor: pointer"',false);
+  }
+?>
+
+</div>
+<script>
+  jQuery('.gallery_image-product').owlCarousel({
+    items: 1
+  });
+</script>
+<?php
+endif; ?>

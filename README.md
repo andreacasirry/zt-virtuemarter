@@ -23,6 +23,11 @@ All of extensions in this package are required VirtueMart 3.2.1
 
 ## Change Logs
 
+## Version 1.2.5 Release July 03, 2017
+
+* Remove Description, reviews, ralated products in quickview
+* Change style display quickvew images
+
 ## Version 1.2.4 Release May 08, 2017
 
 * Fixed issue that the module ztvirtuemarter product not has category filter option and fixed error language display
