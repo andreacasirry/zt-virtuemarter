@@ -22,7 +22,7 @@ if ($productsPerRow > 1) {
 } else {
     $float = "center";
 }
-//$display_style = $params->get( 'display_style', "div" );
+//$displayStyle = $params->get( 'displayStyle', "div" );
 $number = $params->get ('products_per_row');
 ?>
 
@@ -32,51 +32,8 @@ $number = $params->get ('products_per_row');
         <div class="vmheader"><?php echo $headerText ?></div>
     <?php
     }
-    if ($display_style == "div") {
+    if ($displayStyle == "div") {
         ?>
-        <ul class="vmproduct<?php echo $params->get ('moduleclass_sfx'); ?> productdetails owl-carousel owl-theme">
-            <?php foreach ($products as $product) : ?>
-                <li class="item">
-                    <?php
-                    if (!empty($product->images[0])) {
-                        $image = $product->images[0]->displayMediaThumb ('class="featuredProductImage" border="0"', FALSE);
-                    } else {
-                        $image = '';
-                    }
-                    echo JHTML::_ ('link', JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id), $image, array('title' => $product->product_name));
-                    echo '<div class="clear"></div>';
-                    $url = JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
-                        $product->virtuemart_category_id); ?>
-                    <a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>        <?php    echo '<div class="clear"></div>';
-                    // $product->prices is not set when show_prices in config is unchecked
-                    echo '<div class="product-price' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
-
-                    if ($show_addtocart) {
-                        echo shopFunctionsF::renderVmSubLayout('addtocart',array('product'=>$product));
-                    }
-                    ?>
-                </li>
-                <?php
-                if ($col == $productsPerRow && $productsPerRow && $last) {
-                    echo '
-        </ul><div class="clear"></div>';
-                    $col = 1;
-                } else {
-                    $col++;
-                }
-                $last--;
-            endforeach; ?>
-        </ul>
-        <br style='clear:both;'/>
-
-    <?php
-    } else {
-        $last = count ($products) - 1;
-        ?>
-
-
-
-
         <div class="vmproduct <?php echo $params->get ('moduleclass_sfx'); ?> productdetails owl-carousel owl-theme">
 
             <?php foreach ($products as $product) { ?>
@@ -158,7 +115,6 @@ $number = $params->get ('products_per_row');
 
                                 echo '<div class="product-price' . $saleClass . '">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
 
-
                                 ?>
                             </div>
                             <div class="product_hover add-to-link">
@@ -192,6 +148,34 @@ $number = $params->get ('products_per_row');
                 }
             } ?>
         </div>
+    <?php
+    } else {
+        $last = count ($products) - 1;
+        ?>
+        <ul class="vmproduct<?php echo $params->get ('moduleclass_sfx'); ?> productdetails owl-carousel owl-theme">
+            <?php foreach ($products as $product) : ?>
+                <li class="item">
+                    <?php
+                    if (!empty($product->images[0])) {
+                        $image = $product->images[0]->displayMediaThumb ('class="featuredProductImage" border="0"', FALSE);
+                    } else {
+                        $image = '';
+                    }
+                    echo JHTML::_ ('link', JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id), $image, array('title' => $product->product_name));
+                    echo '<div class="clear"></div>';
+                    $url = JRoute::_ ('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
+                        $product->virtuemart_category_id); ?>
+                    <a href="<?php echo $url ?>"><?php echo $product->product_name ?></a>        <?php    echo '<div class="clear"></div>';
+                    // $product->prices is not set when show_prices in config is unchecked
+                    echo '<div class="product-price">' . shopFunctionsF::renderVmSubLayout('prices', array('product' => $product, 'currency' => $currency)) . '</div>';
+
+                    if ($showAddtocart) {
+                        echo shopFunctionsF::renderVmSubLayout('addtocart',array('product'=>$product));
+                    }
+                    ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
 
     <?php
     }
@@ -221,7 +205,7 @@ $number = $params->get ('products_per_row');
                     nav:false
                 },
                 1000:{
-                    items:5,
+                    items: <?php echo $productsPerRow ?>,
                     nav:true,
                     loop:false
                 }

@@ -108,7 +108,7 @@ endif;
                 </div>
                 <?php
                 if ($col == $productsPerRow && $productsPerRow && $col < $totalProd) {
-                    echo "	</div><div style='clear:both;'>";
+                    echo "  </div><div style='clear:both;'>";
                     $col = 1;
                 } else {
                     $col++;
@@ -122,6 +122,8 @@ endif;
     ?>
     <ul id="vmproduct" class="vmproduct<?php echo $params->get('moduleclass_sfx'); ?> productdetails ">
         <?php foreach ($productss as $product) : ?>
+            <?php $url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id);
+            ?>
             <li class="col-md-3 col-sm-3 product-item">
                 <div class="spacer">
                     <h3><a href="<?php echo $url ?>"><?php echo $product->product_name ?></a></h3>
@@ -134,8 +136,6 @@ endif;
                     }
                     echo JHTML::_('link', JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' . $product->virtuemart_category_id), $image, array('title' => $product->product_name));
                     echo '<div class="clear"></div>';
-                    $url = JRoute::_('index.php?option=com_virtuemart&view=productdetails&virtuemart_product_id=' . $product->virtuemart_product_id . '&virtuemart_category_id=' .
-                        $product->virtuemart_category_id);
                     ?>
                     <div class="clear"></div>
                     <?php

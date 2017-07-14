@@ -23,6 +23,10 @@ All of extensions in this package are required VirtueMart 3.2.1
 
 ## Change Logs
 
+## Version 1.2.6 Release July 14, 2017
+
+* Fix some errors in default and slide layout
+
 ## Version 1.2.5 Release July 03, 2017
 
 * Remove Description, reviews, ralated products in quickview

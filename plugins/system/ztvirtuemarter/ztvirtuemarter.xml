@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.7" method="upgrade" group="system">
     <name>Plugin Zt Virtuemarter</name>
-    <creationDate>July 03, 2017</creationDate>
+    <creationDate>July 14, 2017</creationDate>
     <author>ZooTemplate</author>
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>http://www.zootemplate.com/</authorUrl>
     <copyright>ZooTemplate.com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
     <description>Description of Zoo Virtuemart Plugin</description>
 
     <scriptfile>script.php</scriptfile>
