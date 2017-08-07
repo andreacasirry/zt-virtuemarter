@@ -23,7 +23,8 @@ class plgSystemZtvirtuemarter extends JPlugin
         $this->document = JFactory::getDocument();
         $this->loadLanguage();
         $jlang = JFactory::getLanguage();
-        $jlang->load('com_ztvirtuemarter', JPATH_SITE, $jlang->getDefault(), true);
+        $tag = $jlang->getTag();
+        $jlang->load('com_ztvirtuemarter', JPATH_SITE, $tag, true);
     }
 
     public function onBeforeRender()
